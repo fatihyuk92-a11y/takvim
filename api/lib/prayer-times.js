@@ -9,9 +9,9 @@ const prayers = [
   { key: "Isha", name: "Yatsı" }
 ];
 
-function partsInCopenhagen(date = new Date()) {
+function partsInTimeZone(date = new Date(), timeZone = TIME_ZONE) {
   const parts = new Intl.DateTimeFormat("en-CA", {
-    timeZone: TIME_ZONE,
+    timeZone,
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
@@ -27,6 +27,10 @@ function partsInCopenhagen(date = new Date()) {
     hour: Number(value.hour),
     minute: Number(value.minute)
   };
+}
+
+function partsInCopenhagen(date = new Date()) {
+  return partsInTimeZone(date, TIME_ZONE);
 }
 
 function addDays(localDate, days) {
@@ -83,7 +87,7 @@ function medianTime(times, fallback) {
   return minutesToTime((values[midpoint - 1] + values[midpoint]) / 2);
 }
 
-function zonedDateToUtcMs(localDate, minutes) {
+function zonedDateToUtcMs(localDate, minutes, timeZone = TIME_ZONE) {
   const target = {
     year: localDate.year,
     month: localDate.month,
@@ -94,7 +98,7 @@ function zonedDateToUtcMs(localDate, minutes) {
   let utc = Date.UTC(target.year, target.month - 1, target.day, target.hour, target.minute);
 
   for (let index = 0; index < 4; index += 1) {
-    const actual = partsInCopenhagen(new Date(utc));
+    const actual = partsInTimeZone(new Date(utc), timeZone);
     const targetComparable = Date.UTC(target.year, target.month - 1, target.day, target.hour, target.minute);
     const actualComparable = Date.UTC(actual.year, actual.month - 1, actual.day, actual.hour, actual.minute);
     utc -= actualComparable - targetComparable;
@@ -158,7 +162,7 @@ async function fetchMwlTimes(city, localDate) {
   url.searchParams.set("longitude", city.lng);
   url.searchParams.set("method", "3");
   url.searchParams.set("school", "1");
-  url.searchParams.set("timezonestring", TIME_ZONE);
+  url.searchParams.set("timezonestring", city.timeZone || TIME_ZONE);
 
   const response = await fetch(url);
   if (!response.ok) throw new Error("MWL failed");
@@ -225,6 +229,7 @@ module.exports = {
   TIME_ZONE,
   prayers,
   addDays,
+  partsInTimeZone,
   partsInCopenhagen,
   minutesFromTime,
   cleanTime,

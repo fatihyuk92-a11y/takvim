@@ -1,6 +1,6 @@
 # YKSL Takvim
 
-Danimarka şehirleri için statik PWA:
+Seçtiğiniz ülke ve şehir için statik PWA:
 
 - Semerkand Takvimi temel kaynak olarak kullanılır
 - Sabah ve Yatsı vakitleri Semerkand, Türkiye Diyanet ve Muslim World League medyanı ile hesaplanır

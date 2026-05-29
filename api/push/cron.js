@@ -1,6 +1,7 @@
 const webpush = require("web-push");
 const { getAllSubscriptions, updateSubscription, deleteSubscriptionByEndpoint, hasStorageConfig } = require("../lib/push-store");
-const { prayers, addDays, partsInCopenhagen, minutesFromTime, cleanTime, zonedDateToUtcMs, getPrayerTimes } = require("../lib/prayer-times");
+const { getCity } = require("../lib/cities");
+const { TIME_ZONE, prayers, addDays, partsInTimeZone, minutesFromTime, cleanTime, zonedDateToUtcMs, getPrayerTimes } = require("../lib/prayer-times");
 const { isCronAuthorized, setNoStoreHeaders } = require("../lib/security");
 
 const WINDOW_MINUTES = Number(process.env.PUSH_CRON_WINDOW_MINUTES || 2);
@@ -30,7 +31,7 @@ function buildEventsForDate(schedule, localDate) {
     const minutes = minutesFromTime(time);
     if (!Number.isFinite(minutes)) return [];
 
-    const startAt = zonedDateToUtcMs(localDate, minutes);
+    const startAt = zonedDateToUtcMs(localDate, minutes, schedule.city.timeZone || TIME_ZONE);
     const reminderAt = startAt - 45 * 60 * 1000;
     const displayTime = cleanTime(time);
 
@@ -53,7 +54,8 @@ function buildEventsForDate(schedule, localDate) {
 
 async function dueEventsForCity(cityKey, cache) {
   const now = new Date();
-  const today = partsInCopenhagen(now);
+  const city = getCity(cityKey);
+  const today = partsInTimeZone(now, city.timeZone || TIME_ZONE);
   const localDates = [
     { year: today.year, month: today.month, day: today.day },
     addDays(today, 1)
