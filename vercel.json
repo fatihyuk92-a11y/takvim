@@ -5,7 +5,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'none'; script-src 'self' 'sha256-D3Y17pxrnV778dcU+FhVG/2j4DRF7SOF0EHyz6um50M='; script-src-attr 'none'; style-src 'self' 'sha256-SJvrVLhjebQ+KKL7UoMY46mX0TYh4AD1zVBz1OOhAcc='; style-src-attr 'none'; img-src 'self' data: blob:; font-src 'self'; media-src 'self'; connect-src 'self' https://www.semerkandtakvimi.com https://ezanvakti.emushaf.net https://api.aladhan.com; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests"
+          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'none'; script-src 'self' 'sha256-9WB9DaCW0a/wBvB9Q2YhIL1YOvXAuz1DN7empRgBxHM='; script-src-attr 'none'; style-src 'self' 'sha256-SJvrVLhjebQ+KKL7UoMY46mX0TYh4AD1zVBz1OOhAcc='; style-src-attr 'none'; img-src 'self' data: blob:; font-src 'self'; media-src 'self'; connect-src 'self' https://www.semerkandtakvimi.com https://ezanvakti.emushaf.net https://api.aladhan.com; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests"
         },
         {
           "key": "Strict-Transport-Security",
