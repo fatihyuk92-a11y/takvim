@@ -1,47 +1,47 @@
-# Bønnetider i Danmark
+# YKSL
 
-En statisk PWA til danske bønnetider med:
+Danimarka şehirleri için statik PWA:
 
-- Semerkand Takvimi som basis
-- Fajr og Isha som median af Semerkand, Türkiye Diyanet og Muslim World League
-- Automatisk nærmeste by via placering
-- Ezan-lyd
-- Web Push-notifikationer 45 minutter før og ved hver bønnetid
-- Installérbar på iPhone og Android
+- Semerkand Takvimi temel kaynak olarak kullanılır
+- Sabah ve Yatsı vakitleri Semerkand, Türkiye Diyanet ve Muslim World League medyanı ile hesaplanır
+- Konuma göre en yakın şehir seçilir
+- Ezan sesi vardır
+- Web Push bildirimleri namazdan 45 dakika önce ve namaz vakti girince gelir
+- iPhone ve Android üzerinde yüklenebilir
 
-## Deploy på Vercel
+## Vercel Deploy
 
-1. Upload alle filer i denne mappe til et GitHub-repository.
-2. Importér repository i Vercel.
-3. Opret Vercel Redis Storage til projektet.
-4. Tilføj environment variables fra `.env.example`.
-5. Kør `npm run generate:vapid` lokalt eller via `npx web-push generate-vapid-keys`, og indsæt nøglerne som `VAPID_PUBLIC_KEY` og `VAPID_PRIVATE_KEY`.
-6. Deploy.
+1. Bu klasördeki tüm dosyaları GitHub repository içine yükleyin.
+2. Repository'yi Vercel'e import edin.
+3. Vercel Redis Storage oluşturup projeye bağlayın.
+4. `.env.example` içindeki environment variable değerlerini Vercel'e ekleyin.
+5. Yerelde `npm run generate:vapid` veya `npx web-push generate-vapid-keys` çalıştırıp çıkan değerleri `VAPID_PUBLIC_KEY` ve `VAPID_PRIVATE_KEY` olarak ekleyin.
+6. Deploy edin.
 
-Placering og notifikationer kræver HTTPS. Det får du automatisk på Vercel.
+Konum ve bildirimler HTTPS gerektirir. Vercel bunu otomatik sağlar.
 
-iPhone kræver, at brugeren installerer appen på hjemmeskærmen, før Web Push-notifikationer virker stabilt. Android virker typisk direkte i Chrome/PWA.
+iPhone'da Web Push bildirimlerinin stabil çalışması için kullanıcının uygulamayı ana ekrana eklemesi gerekir. Android'de genelde Chrome/PWA üzerinden çalışır.
 
-## Vigtigt om notifikationer
+## Bildirimler
 
-Brugeren skal selv aktivere notifikationer i appen. Indstillingen gemmes i Redis på serveren, og push fortsætter automatisk, indtil brugeren slår det fra.
+Kullanıcı bildirimleri uygulama içinden etkinleştirmelidir. Abonelik Redis üzerinde saklanır ve kullanıcı kapatana kadar push bildirimleri devam eder.
 
-Redis-integrationen skal give en connection URL som `STORAGE_URL`, `REDIS_URL` eller `KV_URL`. Hvis du brugte prefix `STORAGE`, passer `STORAGE_URL` direkte.
+Redis bağlantısı `STORAGE_URL`, `REDIS_URL` veya `KV_URL` olarak okunur. Prefix olarak `STORAGE` kullandıysanız `STORAGE_URL` doğrudan uyumludur.
 
-Vercel Hobby/free tillader ikke cron hvert minut. Derfor bruger denne version en ekstern cron-service til at kalde:
+Vercel Hobby/free her dakika cron çalıştırmaya izin vermez. Bu yüzden harici bir cron servisi şu endpoint'i çağırmalıdır:
 
-`https://dit-domæne.vercel.app/api/push/cron`
+`https://alan-adiniz.vercel.app/api/push/cron`
 
-Den bør kaldes hvert minut for mest præcise bønnetidsnotifikationer.
+En doğru bildirim zamanı için her dakika çağrılmalıdır.
 
-Du kan fx bruge cron-job.org:
+Örneğin cron-job.org:
 
-1. Opret en cronjob efter deployment.
-2. Sæt URL til `https://dit-domæne.vercel.app/api/push/cron`.
-3. Sæt schedule til hvert minut.
-4. Sæt method til `GET`.
+1. Deploy sonrası yeni cronjob oluşturun.
+2. URL olarak `https://alan-adiniz.vercel.app/api/push/cron` girin.
+3. Schedule değerini her dakika yapın.
+4. Method değerini `GET` seçin.
 
-Hvis du senere opgraderer til Vercel Pro, kan du i stedet tilføje dette i `vercel.json`:
+Vercel Pro kullanırsanız `vercel.json` içine şu ayarı ekleyebilirsiniz:
 
 ```json
 "crons": [

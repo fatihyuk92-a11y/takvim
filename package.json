@@ -1,12 +1,12 @@
 {
-  "name": "bonnetider-danmark",
+  "name": "yksl",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "generate:vapid": "web-push generate-vapid-keys"
   },
   "dependencies": {
-    "redis": "^5.10.0",
+    "redis": "^5.8.2",
     "web-push": "^3.6.7"
   },
   "devDependencies": {}

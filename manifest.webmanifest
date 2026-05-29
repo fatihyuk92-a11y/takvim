@@ -1,8 +1,8 @@
 {
-  "name": "Bønnetider i Danmark",
-  "short_name": "Bønnetider",
-  "description": "Bønnetider for danske byer med en klassisk saba-inspireret ezan.",
-  "lang": "da-DK",
+  "name": "YKSL",
+  "short_name": "YKSL",
+  "description": "Danimarka şehirleri için namaz vakitleri, ezan ve bildirimler.",
+  "lang": "tr-TR",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

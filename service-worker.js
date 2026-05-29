@@ -1,4 +1,4 @@
-const CACHE_NAME = "bonnetider-danmark-v7";
+const CACHE_NAME = "yksl-v8";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -61,9 +61,9 @@ self.addEventListener("push", (event) => {
     payload = {};
   }
 
-  const title = payload.title || "Bønnetid";
+  const title = payload.title || "Namaz vakti";
   const options = {
-    body: payload.body || "Der er en ny bønnetidsnotifikation.",
+    body: payload.body || "Yeni bir namaz vakti bildirimi var.",
     tag: payload.tag || "bonnetid",
     renotify: true,
     icon: "./assets/icon-192.png",

@@ -1,17 +1,17 @@
 <!doctype html>
-<html lang="da">
+<html lang="tr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Bønnetider for danske byer med en klassisk saba-inspireret ezan.">
+  <meta name="description" content="Danimarka şehirleri için namaz vakitleri, ezan ve bildirimler.">
   <meta name="theme-color" content="#071516">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Bønnetider">
+  <meta name="apple-mobile-web-app-title" content="YKSL">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="assets/icon-192.png" sizes="192x192">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <title>Bønnetider i Danmark</title>
+  <title>YKSL</title>
   <style>
     :root {
       color-scheme: dark;
@@ -214,14 +214,27 @@
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 0.96fr) minmax(340px, 0.72fr);
+      grid-template-rows: auto auto;
       gap: clamp(28px, 5vw, 70px);
       align-items: end;
       min-height: calc(100vh - 120px);
     }
 
     .intro {
+      grid-column: 1;
+      grid-row: 1;
       max-width: 690px;
       padding-bottom: clamp(12px, 6vh, 72px);
+    }
+
+    .audio-stack {
+      grid-column: 1;
+      grid-row: 2;
+      display: grid;
+      gap: 14px;
+      width: min(100%, 580px);
+      align-self: start;
+      margin-top: -32px;
     }
 
     .eyebrow {
@@ -382,8 +395,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      width: min(100%, 580px);
-      margin-top: 18px;
+      width: 100%;
       padding: 14px;
       border: 1px solid rgba(248, 244, 234, 0.16);
       border-radius: 8px;
@@ -468,6 +480,8 @@
     }
 
     .prayer-area {
+      grid-column: 2;
+      grid-row: 1 / span 2;
       align-self: center;
       padding: 22px;
       border: 1px solid rgba(248, 244, 234, 0.16);
@@ -619,13 +633,24 @@
 
       .hero {
         grid-template-columns: 1fr;
+        grid-template-rows: none;
         align-items: start;
         gap: 24px;
         min-height: auto;
       }
 
       .intro {
+        grid-column: auto;
+        grid-row: auto;
         padding: 22px 0 0;
+      }
+
+      .audio-stack {
+        grid-column: auto;
+        grid-row: auto;
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 20px;
       }
 
       h1 {
@@ -639,6 +664,8 @@
       }
 
       .prayer-area {
+        grid-column: auto;
+        grid-row: auto;
         margin-bottom: 20px;
       }
     }
@@ -689,7 +716,6 @@
       .audio-panel {
         align-items: stretch;
         width: 100%;
-        margin-top: 14px;
       }
 
       .audio-actions {
@@ -830,7 +856,7 @@
   <main class="page">
     <div class="shell">
       <header class="topbar">
-        <div class="brand" aria-label="Bønnetider i Danmark">
+        <div class="brand" aria-label="YKSL namaz vakitleri">
           <div class="mark" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
               <path d="M12 4.5c2.8 2 4.25 4.4 4.25 7.2V19.5H7.75v-7.8c0-2.8 1.45-5.2 4.25-7.2Z" stroke="currentColor" stroke-width="1.6"/>
@@ -838,8 +864,8 @@
             </svg>
           </div>
           <div class="brand-text">
-            <strong>Bønnetider</strong>
-            <span>Danmark</span>
+            <strong>YKSL</strong>
+            <span>Namaz Vakitleri</span>
           </div>
         </div>
         <div class="top-actions">
@@ -848,27 +874,27 @@
               <path d="M12 4v10m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M5 17.5V20h14v-2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <span>Installer</span>
+            <span>Yükle</span>
           </button>
           <div class="status-pill">
             <span class="status-dot"></span>
-            <span id="statusText">Henter tider</span>
+            <span id="statusText">Vakitler alınıyor</span>
           </div>
           <div class="install-hint" id="installHint" hidden>
-            iPhone: Del og vælg Føj til hjemmeskærm. Android: vælg Installer app i browseren.
+            iPhone: Paylaş ve Ana Ekrana Ekle. Android: tarayıcıda Uygulamayı yükle.
           </div>
         </div>
       </header>
 
       <section class="hero" aria-labelledby="pageTitle">
         <div class="intro">
-          <p class="eyebrow">Islamiske bønnetider</p>
-          <h1 id="pageTitle">Bønnetider i Danmark</h1>
-          <p class="subtitle">Fajr, Dhuhr, Asr, Maghrib og Isha for danske byer, samlet i et enkelt og roligt overblik.</p>
+          <p class="eyebrow">İslami namaz vakitleri</p>
+          <h1 id="pageTitle">YKSL</h1>
+          <p class="subtitle">Danimarka şehirleri için Sabah, Öğle, İkindi, Akşam ve Yatsı vakitleri; sade ve huzurlu bir görünümde.</p>
 
-          <div class="controls" aria-label="Valg">
+          <div class="controls" aria-label="Seçimler">
             <label class="field">
-              <span>By</span>
+              <span>Şehir</span>
               <span class="select-wrap">
                 <select id="citySelect">
                   <option value="copenhagen">København</option>
@@ -879,6 +905,7 @@
                   <option value="ballerup">Ballerup</option>
                   <option value="esbjerg">Esbjerg</option>
                   <option value="fredericia">Fredericia</option>
+                  <option value="frederikssund">Frederikssund</option>
                   <option value="frederikshavn">Frederikshavn</option>
                   <option value="glostrup">Glostrup</option>
                   <option value="haderslev">Haderslev</option>
@@ -889,6 +916,7 @@
                   <option value="holstebro">Holstebro</option>
                   <option value="horsens">Horsens</option>
                   <option value="ikast">Ikast</option>
+                  <option value="ishoej">Ishøj</option>
                   <option value="kalundborg">Kalundborg</option>
                   <option value="kolding">Kolding</option>
                   <option value="koege">Køge</option>
@@ -905,35 +933,58 @@
                   <option value="silkeborg">Silkeborg</option>
                   <option value="skive">Skive</option>
                   <option value="slagelse">Slagelse</option>
+                  <option value="stenloese">Stenløse</option>
                   <option value="soenderborg">Sønderborg</option>
                   <option value="svendborg">Svendborg</option>
                   <option value="taastrup">Taastrup</option>
                   <option value="thisted">Thisted</option>
                   <option value="vejle">Vejle</option>
                   <option value="viborg">Viborg</option>
+                  <option value="oelstykke">Ølstykke</option>
                 </select>
               </span>
             </label>
             <div class="field">
-              <span>Dato</span>
-              <div class="date-chip" id="dateText">I dag</div>
+              <span>Tarih</span>
+              <div class="date-chip" id="dateText">Bugün</div>
             </div>
             <div class="field">
-              <span>Placering</span>
+              <span>Konum</span>
               <button class="location-button" id="locationButton" type="button">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M12 21s7-6.1 7-12A7 7 0 0 0 5 9c0 5.9 7 12 7 12Z" stroke="currentColor" stroke-width="1.7"/>
                   <path d="M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" stroke="currentColor" stroke-width="1.7"/>
                 </svg>
-                <span id="locationButtonText">Find</span>
+                <span id="locationButtonText">Bul</span>
               </button>
             </div>
           </div>
+        </div>
 
-          <div class="audio-panel" aria-label="Saba-inspireret ezan">
+        <section class="prayer-area" aria-label="Bugünün beş namaz vakti">
+          <div class="next">
+            <div>
+              <p class="next-label">Sonraki namaz</p>
+              <p class="next-name" id="nextName">-</p>
+            </div>
+            <div class="countdown-wrap">
+              <div class="countdown" id="countdown">-- dk kaldı</div>
+            </div>
+          </div>
+
+          <div class="prayer-grid" id="prayerGrid"></div>
+
+          <div class="source">
+            <span id="sourceText">Danimarka için vakitler hesaplanıyor</span>
+            <span id="methodText">Kaynaklar: Semerkand Takvimi + T&uuml;rkiye Diyanet + Muslim World League &middot; <a href="https://commons.wikimedia.org/wiki/File:Call_to_prayer_by_Sabah_Fakhry.mp3" target="_blank" rel="noreferrer">Ezan: Sabah Fakhry / public domain</a></span>
+          </div>
+        </section>
+
+        <div class="audio-stack">
+          <div class="audio-panel" aria-label="Saba makamında ezan">
             <div class="audio-copy">
-              <span class="audio-kicker">Saba ezan</span>
-              <strong id="ezanState">Slukket</strong>
+              <span class="audio-kicker">Saba ezanı</span>
+              <strong id="ezanState">Kapalı</strong>
             </div>
             <div class="audio-actions">
               <button class="icon-button primary" id="ezanToggle" type="button" aria-pressed="false">
@@ -941,7 +992,7 @@
                   <path d="M6 9v6h4l5 4V5l-5 4H6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
                   <path d="M18 9.5a4.2 4.2 0 0 1 0 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
                 </svg>
-                <span id="ezanToggleText">Aktivér</span>
+                <span id="ezanToggleText">Etkinleştir</span>
               </button>
               <button class="icon-button" id="ezanTest" type="button">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -949,7 +1000,7 @@
                 </svg>
                 <span>Test</span>
               </button>
-              <button class="icon-button ghost" id="ezanStop" type="button" aria-label="Stop ezan">
+              <button class="icon-button ghost" id="ezanStop" type="button" aria-label="Ezanı durdur">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M8 8h8v8H8z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
                 </svg>
@@ -957,10 +1008,10 @@
             </div>
           </div>
 
-          <div class="audio-panel notification-panel" aria-label="Notifikationer for bønnetider">
+          <div class="audio-panel notification-panel" aria-label="Namaz vakti bildirimleri">
             <div class="audio-copy">
-              <span class="audio-kicker">Notifikationer</span>
-              <strong id="notificationState">Slukket</strong>
+              <span class="audio-kicker">Bildirimler</span>
+              <strong id="notificationState">Kapalı</strong>
             </div>
             <div class="audio-actions">
               <button class="icon-button primary" id="notificationToggle" type="button" aria-pressed="false">
@@ -968,30 +1019,11 @@
                   <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
                   <path d="M10 20a2.2 2.2 0 0 0 4 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
                 </svg>
-                <span id="notificationToggleText">Aktivér</span>
+                <span id="notificationToggleText">Etkinleştir</span>
               </button>
             </div>
           </div>
         </div>
-
-        <section class="prayer-area" aria-label="Dagens fem bønnetider">
-          <div class="next">
-            <div>
-              <p class="next-label">Næste bøn</p>
-              <p class="next-name" id="nextName">-</p>
-            </div>
-            <div class="countdown-wrap">
-              <div class="countdown" id="countdown">Om -- min</div>
-            </div>
-          </div>
-
-          <div class="prayer-grid" id="prayerGrid"></div>
-
-          <div class="source">
-            <span id="sourceText">Beregner tider for Danmark</span>
-            <span id="methodText">Kilder: Semerkand Takvimi + T&uuml;rkiye Diyanet + Muslim World League &middot; <a href="https://commons.wikimedia.org/wiki/File:Call_to_prayer_by_Sabah_Fakhry.mp3" target="_blank" rel="noreferrer">Ezan: Sabah Fakhry / public domain</a></span>
-          </div>
-        </section>
       </section>
     </div>
   </main>
@@ -1010,6 +1042,7 @@
       ballerup: { label: "Ballerup", lat: 55.7317, lng: 12.3633, semerkandId: 221, semerkandLabel: "København", diyanetId: 17801 },
       esbjerg: { label: "Esbjerg", lat: 55.4765, lng: 8.4594, semerkandId: 849, semerkandLabel: "Esbjerg", diyanetId: 12638 },
       fredericia: { label: "Fredericia", lat: 55.5657, lng: 9.7526, semerkandId: 829, semerkandLabel: "Fredericia", diyanetId: 12623 },
+      frederikssund: { label: "Frederikssund", lat: 55.8396, lng: 12.0690, semerkandId: 851, semerkandLabel: "Hillerod", diyanetId: 12640 },
       frederikshavn: { label: "Frederikshavn", lat: 57.4427, lng: 10.5210, semerkandId: 842, semerkandLabel: "Frederikshavn", diyanetId: 12650 },
       glostrup: { label: "Glostrup", lat: 55.6666, lng: 12.4030, semerkandId: 221, semerkandLabel: "København", diyanetId: 12618 },
       haderslev: { label: "Haderslev", lat: 55.2494, lng: 9.4877, semerkandId: 850, semerkandLabel: "Haderslev", diyanetId: 12639 },
@@ -1020,6 +1053,7 @@
       holstebro: { label: "Holstebro", lat: 56.3601, lng: 8.6161, semerkandId: 840, semerkandLabel: "Holstebro", diyanetId: 12648 },
       horsens: { label: "Horsens", lat: 55.8607, lng: 9.8503, semerkandId: 837, semerkandLabel: "Horsens (Vejle)", diyanetId: 12633 },
       ikast: { label: "Ikast", lat: 56.1388, lng: 9.1577, semerkandId: 831, semerkandLabel: "Ikast", diyanetId: 12625 },
+      ishoej: { label: "Ishøj", lat: 55.6155, lng: 12.3518, semerkandId: 221, semerkandLabel: "København", diyanetId: 17800 },
       kalundborg: { label: "Kalundborg", lat: 55.6819, lng: 11.0886, semerkandId: 828, semerkandLabel: "Holbaek", diyanetId: 33334 },
       kolding: { label: "Kolding", lat: 55.4904, lng: 9.4722, semerkandId: 835, semerkandLabel: "Kolding", diyanetId: 12630 },
       koege: { label: "Køge", lat: 55.4580, lng: 12.1821, semerkandId: 834, semerkandLabel: "Koge", diyanetId: 12629 },
@@ -1036,23 +1070,25 @@
       silkeborg: { label: "Silkeborg", lat: 56.1697, lng: 9.5451, semerkandId: 838, semerkandLabel: "Silkeborg", diyanetId: 12634 },
       skive: { label: "Skive", lat: 56.5667, lng: 9.0300, semerkandId: 847, semerkandLabel: "Skive", diyanetId: 12655 },
       slagelse: { label: "Slagelse", lat: 55.4030, lng: 11.3546, semerkandId: 827, semerkandLabel: "Slagelse", diyanetId: 12621 },
+      stenloese: { label: "Stenløse", lat: 55.7685, lng: 12.1971, semerkandId: 221, semerkandLabel: "København", diyanetId: 17801 },
       soenderborg: { label: "Sønderborg", lat: 54.9138, lng: 9.7922, semerkandId: 854, semerkandLabel: "Sonderborg", diyanetId: 12644 },
       svendborg: { label: "Svendborg", lat: 55.0598, lng: 10.6068, semerkandId: 839, semerkandLabel: "Svendborg", diyanetId: 12635 },
       taastrup: { label: "Taastrup", lat: 55.6500, lng: 12.3014, semerkandId: 221, semerkandLabel: "København", diyanetId: 17800 },
       thisted: { label: "Thisted", lat: 56.9552, lng: 8.6949, semerkandId: 847, semerkandLabel: "Skive", diyanetId: 12655 },
       vejle: { label: "Vejle", lat: 55.7113, lng: 9.5364, semerkandId: 855, semerkandLabel: "Vejle", diyanetId: 12645 },
-      viborg: { label: "Viborg", lat: 56.4520, lng: 9.4024, semerkandId: 848, semerkandLabel: "Viborg", diyanetId: 12656 }
+      viborg: { label: "Viborg", lat: 56.4520, lng: 9.4024, semerkandId: 848, semerkandLabel: "Viborg", diyanetId: 12656 },
+      oelstykke: { label: "Ølstykke", lat: 55.7957, lng: 12.1552, semerkandId: 221, semerkandLabel: "København", diyanetId: 17801 }
     };
 
     const baseFallback = { Fajr: "01:14", Sunrise: "04:30", Dhuhr: "13:09", Asr: "17:32", Maghrib: "21:38", Isha: "23:45" };
 
     const prayers = [
-      { key: "Fajr", name: "Fajr", tone: "Daggry", icon: "M4 18h16M6 14.5c1.2-2.5 3.2-4 6-4s4.8 1.5 6 4M12 3v3.2M5.6 6.2l2.3 2.3M18.4 6.2l-2.3 2.3" },
-      { key: "Sunrise", name: "Solopgang", tone: "Fajr slutter", isPrayer: false, icon: "M4 18h16M7 14.5a5 5 0 0 1 10 0M12 4v3M5.8 7.1l2.1 2.1M18.2 7.1l-2.1 2.1" },
-      { key: "Dhuhr", name: "Dhuhr", tone: "Middag", icon: "M12 4v2.6M12 17.4V20M4 12h2.6M17.4 12H20M6.35 6.35l1.85 1.85M15.8 15.8l1.85 1.85M17.65 6.35 15.8 8.2M8.2 15.8l-1.85 1.85M12 8.4a3.6 3.6 0 1 1 0 7.2 3.6 3.6 0 0 1 0-7.2Z" },
-      { key: "Asr", name: "Asr", tone: "Eftermiddag", icon: "M4 17.5h16M7 13.8c1.4-1.8 3.1-2.7 5.1-2.7 2.2 0 4 .9 5.4 2.7M18.6 7.6c-1.8.3-3.6-.8-4.2-2.6-.6 2.3-2.7 3.8-5.1 3.6" },
-      { key: "Maghrib", name: "Maghrib", tone: "Solnedgang", icon: "M4 18h16M6.5 14.4a5.9 5.9 0 0 1 11 0M8 7.5c1.2.8 2.6 1.2 4 1.2s2.8-.4 4-1.2M12 4.5v2" },
-      { key: "Isha", name: "Isha", tone: "Aften", icon: "M18.7 15.2A7.2 7.2 0 0 1 8.8 5.3a7.2 7.2 0 1 0 9.9 9.9ZM17.7 4.8l.5 1.3 1.3.5-1.3.5-.5 1.3-.5-1.3-1.3-.5 1.3-.5.5-1.3Z" }
+      { key: "Fajr", name: "Sabah", tone: "İmsak", icon: "M4 18h16M6 14.5c1.2-2.5 3.2-4 6-4s4.8 1.5 6 4M12 3v3.2M5.6 6.2l2.3 2.3M18.4 6.2l-2.3 2.3" },
+      { key: "Sunrise", name: "Güneş", tone: "Sabah biter", isPrayer: false, icon: "M4 18h16M7 14.5a5 5 0 0 1 10 0M12 4v3M5.8 7.1l2.1 2.1M18.2 7.1l-2.1 2.1" },
+      { key: "Dhuhr", name: "Öğle", tone: "Öğle vakti", icon: "M12 4v2.6M12 17.4V20M4 12h2.6M17.4 12H20M6.35 6.35l1.85 1.85M15.8 15.8l1.85 1.85M17.65 6.35 15.8 8.2M8.2 15.8l-1.85 1.85M12 8.4a3.6 3.6 0 1 1 0 7.2 3.6 3.6 0 0 1 0-7.2Z" },
+      { key: "Asr", name: "İkindi", tone: "Öğleden sonra", icon: "M4 17.5h16M7 13.8c1.4-1.8 3.1-2.7 5.1-2.7 2.2 0 4 .9 5.4 2.7M18.6 7.6c-1.8.3-3.6-.8-4.2-2.6-.6 2.3-2.7 3.8-5.1 3.6" },
+      { key: "Maghrib", name: "Akşam", tone: "Gün batımı", icon: "M4 18h16M6.5 14.4a5.9 5.9 0 0 1 11 0M8 7.5c1.2.8 2.6 1.2 4 1.2s2.8-.4 4-1.2M12 4.5v2" },
+      { key: "Isha", name: "Yatsı", tone: "Gece", icon: "M18.7 15.2A7.2 7.2 0 0 1 8.8 5.3a7.2 7.2 0 1 0 9.9 9.9ZM17.7 4.8l.5 1.3 1.3.5-1.3.5-.5 1.3-.5-1.3-1.3-.5 1.3-.5.5-1.3Z" }
     ];
 
     const citySelect = document.querySelector("#citySelect");
@@ -1083,7 +1119,7 @@
     let deferredInstallPrompt = null;
     let detectingLocation = false;
 
-    const formatter = new Intl.DateTimeFormat("da-DK", {
+    const formatter = new Intl.DateTimeFormat("tr-TR", {
       weekday: "long",
       day: "numeric",
       month: "long",
@@ -1147,8 +1183,8 @@
     }
 
     function formatRemaining(hours, minutes) {
-      if (hours <= 0) return `Om ${minutes} min`;
-      return `Om ${hours} t ${String(minutes).padStart(2, "0")} min`;
+      if (hours <= 0) return `${minutes} dk kaldı`;
+      return `${hours} sa ${String(minutes).padStart(2, "0")} dk kaldı`;
     }
 
     function distanceKm(fromLat, fromLng, toLat, toLng) {
@@ -1188,8 +1224,8 @@
       if (!navigator.geolocation || detectingLocation) return false;
 
       detectingLocation = true;
-      if (!silent) updateLocationButton("Finder", true);
-      if (!silent) statusText.textContent = "Finder placering";
+      if (!silent) updateLocationButton("Bulunuyor", true);
+      if (!silent) statusText.textContent = "Konum bulunuyor";
 
       try {
         const position = await getCurrentPosition({
@@ -1202,17 +1238,17 @@
 
         citySelect.value = nearest.key;
         localStorage.setItem("selectedCity", nearest.key);
-        updateLocationButton("Fundet");
-        sourceText.textContent = `Nærmeste by: ${nearest.city.label}`;
+        updateLocationButton("Bulundu");
+        sourceText.textContent = `En yakın şehir: ${nearest.city.label}`;
         await loadTimes();
         return true;
       } catch (error) {
-        if (!silent) updateLocationButton("Find");
-        if (!silent) statusText.textContent = "Brug manuel by";
+        if (!silent) updateLocationButton("Bul");
+        if (!silent) statusText.textContent = "Şehri elle seçin";
         return false;
       } finally {
         detectingLocation = false;
-        if (!silent) window.setTimeout(() => updateLocationButton("Find"), 2600);
+        if (!silent) window.setTimeout(() => updateLocationButton("Bul"), 2600);
       }
     }
 
@@ -1342,7 +1378,7 @@
     function setNotificationState(text) {
       notificationState.textContent = text;
       notificationToggle.setAttribute("aria-pressed", String(notificationsEnabled));
-      notificationToggleText.textContent = notificationsEnabled ? "Sluk" : "Aktivér";
+      notificationToggleText.textContent = notificationsEnabled ? "Kapat" : "Etkinleştir";
     }
 
     function supportsPushNotifications() {
@@ -1368,7 +1404,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      if (!response.ok) throw new Error("API kald fejlede");
+      if (!response.ok) throw new Error("API çağrısı başarısız");
       return response.json();
     }
 
@@ -1379,7 +1415,7 @@
       let subscription = await registration.pushManager.getSubscription();
       if (!subscription && create) {
         const keyResponse = await fetch("/api/push/public-key", { cache: "no-store" });
-        if (!keyResponse.ok) throw new Error("Push server er ikke klar");
+        if (!keyResponse.ok) throw new Error("Push sunucusu hazır değil");
         const { publicKey } = await keyResponse.json();
         subscription = await registration.pushManager.subscribe({
           userVisibleOnly: true,
@@ -1396,26 +1432,26 @@
       if (!supportsPushNotifications()) {
         notificationsEnabled = false;
         localStorage.setItem("notificationsEnabled", "false");
-        setNotificationState("Ikke understøttet");
+        setNotificationState("Desteklenmiyor");
         return;
       }
 
       if (Notification.permission === "denied") {
         notificationsEnabled = false;
         localStorage.setItem("notificationsEnabled", "false");
-        setNotificationState("Blokeret");
+        setNotificationState("Engellendi");
         return;
       }
 
       if (Notification.permission !== "granted") {
-        setNotificationState("Kræver tilladelse");
+        setNotificationState("İzin gerekli");
         return;
       }
 
       try {
         const subscription = await getPushSubscription(false);
         if (!subscription) {
-          setNotificationState("Aktivér igen");
+          setNotificationState("Tekrar etkinleştir");
           return;
         }
 
@@ -1425,15 +1461,15 @@
           cityKey: citySelect.value,
           cityLabel: city.label
         });
-        setNotificationState("Aktiv: låst skærm");
+        setNotificationState("Aktif: kilit ekranı");
       } catch (error) {
-        setNotificationState("Synk fejlede");
+        setNotificationState("Senkronizasyon başarısız");
       }
     }
 
     async function enableNotifications() {
       if (!supportsPushNotifications()) {
-        setNotificationState("Ikke understøttet");
+        setNotificationState("Desteklenmiyor");
         return;
       }
 
@@ -1446,11 +1482,11 @@
         if (permission !== "granted") {
           notificationsEnabled = false;
           localStorage.setItem("notificationsEnabled", "false");
-          setNotificationState(permission === "denied" ? "Blokeret" : "Slukket");
+          setNotificationState(permission === "denied" ? "Engellendi" : "Kapalı");
           return;
         }
 
-        setNotificationState("Aktiverer");
+        setNotificationState("Etkinleştiriliyor");
         const subscription = await getPushSubscription(true);
         const city = cities[citySelect.value];
         await apiPost("/api/push/subscribe", {
@@ -1461,18 +1497,18 @@
 
         notificationsEnabled = true;
         localStorage.setItem("notificationsEnabled", "true");
-        setNotificationState("Aktiv: låst skærm");
+        setNotificationState("Aktif: kilit ekranı");
       } catch (error) {
         notificationsEnabled = false;
         localStorage.setItem("notificationsEnabled", "false");
-        setNotificationState("Server ikke klar");
+        setNotificationState("Sunucu hazır değil");
       }
     }
 
     async function disableNotifications() {
       notificationsEnabled = false;
       localStorage.setItem("notificationsEnabled", "false");
-      setNotificationState("Slukket");
+      setNotificationState("Kapalı");
 
       try {
         const subscription = await getPushSubscription(false);
@@ -1485,13 +1521,13 @@
     function setEzanState(text) {
       ezanState.textContent = text;
       ezanToggle.setAttribute("aria-pressed", String(ezanEnabled));
-      ezanToggleText.textContent = ezanEnabled ? "Sluk" : "Aktivér";
+      ezanToggleText.textContent = ezanEnabled ? "Kapat" : "Etkinleştir";
     }
 
     function stopEzan() {
       ezanAudio.pause();
       ezanAudio.currentTime = 0;
-      setEzanState(ezanEnabled ? "Aktiv for alle fem bønner" : "Slukket");
+      setEzanState(ezanEnabled ? "Beş namaz için aktif" : "Kapalı");
     }
 
     async function playEzan(prayerName) {
@@ -1502,11 +1538,11 @@
         ezanAudio.currentTime = 0;
         ezanAudio.volume = 0.9;
         await ezanAudio.play();
-        setEzanState(`Spiller ezan for ${prayerName}`);
+        setEzanState(`${prayerName} için ezan çalıyor`);
       } catch (error) {
         ezanEnabled = false;
         localStorage.setItem("ezanEnabled", "false");
-        setEzanState("Tryk aktivér igen");
+        setEzanState("Tekrar etkinleştir'e basın");
       }
     }
 
@@ -1520,11 +1556,11 @@
         ezanAudio.muted = false;
         ezanEnabled = true;
         localStorage.setItem("ezanEnabled", "true");
-        setEzanState("Aktiv for alle fem bønner");
+        setEzanState("Beş namaz için aktif");
       } catch (error) {
         ezanEnabled = false;
         localStorage.setItem("ezanEnabled", "false");
-        setEzanState("Lyden kunne ikke startes");
+        setEzanState("Ses başlatılamadı");
       }
     }
 
@@ -1532,7 +1568,7 @@
       ezanEnabled = false;
       localStorage.setItem("ezanEnabled", "false");
       stopEzan();
-      setEzanState("Slukket");
+      setEzanState("Kapalı");
     }
 
     function checkPrayerAlerts() {
@@ -1558,7 +1594,7 @@
       url.searchParams.set("CityId", city.semerkandId);
 
       const response = await fetch(url);
-      if (!response.ok) throw new Error("Kunne ikke hente Semerkand tider");
+      if (!response.ok) throw new Error("Semerkand vakitleri alınamadı");
       const yearTimes = await response.json();
       const today = yearTimes.find((item) => Number(item.DayOfYear) === dayOfYear());
       if (!today) return null;
@@ -1577,7 +1613,7 @@
       if (!city.diyanetId) return null;
 
       const response = await fetch(`https://ezanvakti.emushaf.net/vakitler/${city.diyanetId}`);
-      if (!response.ok) throw new Error("Kunne ikke hente Diyanet tider");
+      if (!response.ok) throw new Error("Diyanet vakitleri alınamadı");
       const monthTimes = await response.json();
       if (!Array.isArray(monthTimes)) return null;
       const todayIso = todayKey();
@@ -1615,24 +1651,24 @@
       const baseSource = sources.semerkand
         ? `Semerkand Takvimi (${city.semerkandLabel || city.label})`
         : sources.mwl
-          ? "Muslim World League fallback"
-          : "Offline fallback";
+          ? "Muslim World League yedeği"
+          : "Çevrimdışı yedek";
       const medianSources = [
         sources.semerkand && "Semerkand",
         sources.diyanet && "Diyanet",
         sources.mwl && "Muslim World League"
       ].filter(Boolean);
       const medianNote = medianSources.length
-        ? `Fajr og Isha: median af ${medianSources.join(" + ")}`
-        : "Fajr og Isha: offline fallback";
+        ? `Sabah ve Yatsı: ${medianSources.join(" + ")} medyanı`
+        : "Sabah ve Yatsı: çevrimdışı yedek";
 
-      methodText.innerHTML = `Basis: ${baseSource} &middot; ${medianNote} &middot; <a href="https://www.semerkandtakvimi.com/" target="_blank" rel="noreferrer">Semerkand</a> / <a href="https://ezanvakti.emushaf.net/" target="_blank" rel="noreferrer">Diyanet</a> / <a href="https://aladhan.com/prayer-times-api" target="_blank" rel="noreferrer">MWL</a> &middot; <a href="https://commons.wikimedia.org/wiki/File:Call_to_prayer_by_Sabah_Fakhry.mp3" target="_blank" rel="noreferrer">Ezan: Sabah Fakhry / public domain</a>`;
+      methodText.innerHTML = `Temel: ${baseSource} &middot; ${medianNote} &middot; <a href="https://www.semerkandtakvimi.com/" target="_blank" rel="noreferrer">Semerkand</a> / <a href="https://ezanvakti.emushaf.net/" target="_blank" rel="noreferrer">Diyanet</a> / <a href="https://aladhan.com/prayer-times-api" target="_blank" rel="noreferrer">MWL</a> &middot; <a href="https://commons.wikimedia.org/wiki/File:Call_to_prayer_by_Sabah_Fakhry.mp3" target="_blank" rel="noreferrer">Ezan: Sabah Fakhry / public domain</a>`;
     }
 
     async function loadTimes() {
       const city = cities[citySelect.value];
-      statusText.textContent = "Henter tider";
-      sourceText.textContent = `Beregner tider for ${city.label}`;
+      statusText.textContent = "Vakitler alınıyor";
+      sourceText.textContent = `${city.label} için vakitler hesaplanıyor`;
 
       try {
         const semerkandPromise = fetchSemerkandTimes(city).catch(() => null);
@@ -1645,7 +1681,7 @@
         url.searchParams.set("timezonestring", "Europe/Copenhagen");
 
         const response = await fetch(url);
-        if (!response.ok) throw new Error("Kunne ikke hente bønnetider");
+        if (!response.ok) throw new Error("Namaz vakitleri alınamadı");
         const payload = await response.json();
         const timings = payload?.data?.timings || {};
         const semerkandTimes = await semerkandPromise;
@@ -1663,8 +1699,8 @@
 
         render(mergeOptimizedTimes({ semerkandTimes, diyanetTimes, mwlTimes, fallbackTimes: fallbackFor(city) }));
 
-        statusText.textContent = "Opdateret";
-        sourceText.textContent = `Live tider for ${city.label}`;
+        statusText.textContent = "Güncellendi";
+        sourceText.textContent = `${city.label} için canlı vakitler`;
         updateMethodText(city, {
           semerkand: Boolean(semerkandTimes),
           diyanet: Boolean(diyanetTimes),
@@ -1681,8 +1717,8 @@
           mwlTimes: null,
           fallbackTimes: fallbackFor(city)
         }));
-        statusText.textContent = semerkandTimes || diyanetTimes ? "Delvist opdateret" : "Offline tider";
-        sourceText.textContent = semerkandTimes || diyanetTimes ? `Kilder + fallback for ${city.label}` : `Eksempel for ${city.label}`;
+        statusText.textContent = semerkandTimes || diyanetTimes ? "Kısmen güncellendi" : "Çevrimdışı vakitler";
+        sourceText.textContent = semerkandTimes || diyanetTimes ? `${city.label} için kaynaklar + yedek` : `${city.label} için örnek`;
         updateMethodText(city, {
           semerkand: Boolean(semerkandTimes),
           diyanet: Boolean(diyanetTimes),
@@ -1720,7 +1756,7 @@
     });
     ezanStop.addEventListener("click", stopEzan);
     ezanAudio.addEventListener("ended", () => {
-      setEzanState(ezanEnabled ? "Aktiv for alle fem bønner" : "Slukket");
+      setEzanState(ezanEnabled ? "Beş namaz için aktif" : "Kapalı");
     });
 
     window.addEventListener("beforeinstallprompt", (event) => {
@@ -1762,8 +1798,8 @@
     }
 
     showInstallButton();
-    setEzanState(ezanEnabled ? "Aktiv for alle fem bønner" : "Slukket");
-    setNotificationState(notificationsEnabled ? "Aktiv: 45 min + bøn" : "Slukket");
+    setEzanState(ezanEnabled ? "Beş namaz için aktif" : "Kapalı");
+    setNotificationState(notificationsEnabled ? "Aktif: kilit ekranı" : "Kapalı");
     scheduleDailyRefresh();
     setInterval(() => {
       updateNextPrayer();
