@@ -1,4 +1,4 @@
-const CACHE_NAME = "yksl-takvim-v14";
+const CACHE_NAME = "yksl-takvim-v15";
 const APP_SHELL = [
   "./",
   "./index.html",

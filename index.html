@@ -275,9 +275,72 @@
     .controls {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
+      align-items: flex-end;
       gap: 12px;
       margin-top: 34px;
+    }
+
+    .location-summary,
+    .location-fields {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .location-summary {
+      min-height: 50px;
+      align-items: center;
+      padding: 0 14px;
+      border: 1px solid rgba(86, 214, 176, 0.24);
+      border-radius: 999px;
+      background: rgba(86, 214, 176, 0.1);
+      color: var(--ink);
+      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.18);
+      cursor: pointer;
+      backdrop-filter: blur(18px);
+    }
+
+    .location-summary svg {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+      color: var(--jade);
+    }
+
+    .summary-copy {
+      display: grid;
+      gap: 1px;
+      min-width: 0;
+      text-align: left;
+    }
+
+    .summary-copy span {
+      color: rgba(248, 244, 234, 0.58);
+      font-size: 0.68rem;
+      font-weight: 760;
+      text-transform: uppercase;
+    }
+
+    .summary-copy strong {
+      max-width: 220px;
+      overflow: hidden;
+      color: var(--ink);
+      font-size: 0.92rem;
+      font-weight: 780;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .summary-action {
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 820;
+      white-space: nowrap;
+    }
+
+    .controls.location-collapsed .location-fields {
+      display: none;
     }
 
     .field {
@@ -743,6 +806,19 @@
         margin-top: 26px;
       }
 
+      .location-summary,
+      .location-fields {
+        width: 100%;
+      }
+
+      .location-summary {
+        justify-content: space-between;
+      }
+
+      .summary-copy strong {
+        max-width: calc(100vw - 170px);
+      }
+
       .field {
         width: 100%;
       }
@@ -948,66 +1024,46 @@
           <h1 id="pageTitle">NAMAZ<br>VAKİTLERİ</h1>
           <p class="subtitle">Seçtiğiniz ülke ve şehir için Sabah, Öğle, İkindi, Akşam ve Yatsı vakitleri; sade ve huzurlu bir görünümde.</p>
 
-          <div class="controls" aria-label="Seçimler">
-            <label class="field">
-              <span>Ülke</span>
-              <span class="select-wrap">
-                <select id="countrySelect">
-                  <option value="denmark">Danmark</option>
-                </select>
+          <div class="controls location-collapsed" id="controls" aria-label="Seçimler">
+            <button class="location-summary" id="locationSummary" type="button" aria-expanded="false" aria-controls="locationFields">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 21s7-6.1 7-12A7 7 0 0 0 5 9c0 5.9 7 12 7 12Z" stroke="currentColor" stroke-width="1.7"/>
+                <path d="M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" stroke="currentColor" stroke-width="1.7"/>
+              </svg>
+              <span class="summary-copy">
+                <span>Konum</span>
+                <strong id="locationSummaryText">København, Danmark</strong>
               </span>
-            </label>
-            <label class="field">
-              <span>Şehir</span>
-              <span class="select-wrap">
-                <select id="citySelect">
-                  <option value="copenhagen">København</option>
-                  <option value="aabenraa">Aabenraa</option>
-                  <option value="aarhus">Aarhus</option>
-                  <option value="odense">Odense</option>
-                  <option value="aalborg">Aalborg</option>
-                  <option value="ballerup">Ballerup</option>
-                  <option value="esbjerg">Esbjerg</option>
-                  <option value="fredericia">Fredericia</option>
-                  <option value="frederikssund">Frederikssund</option>
-                  <option value="frederikshavn">Frederikshavn</option>
-                  <option value="glostrup">Glostrup</option>
-                  <option value="haderslev">Haderslev</option>
-                  <option value="helsingor">Helsingør</option>
-                  <option value="herning">Herning</option>
-                  <option value="hilleroed">Hillerød</option>
-                  <option value="hjoerring">Hjørring</option>
-                  <option value="holstebro">Holstebro</option>
-                  <option value="horsens">Horsens</option>
-                  <option value="ikast">Ikast</option>
-                  <option value="ishoej">Ishøj</option>
-                  <option value="kalundborg">Kalundborg</option>
-                  <option value="kolding">Kolding</option>
-                  <option value="koege">Køge</option>
-                  <option value="middelfart">Middelfart</option>
-                  <option value="nakskov">Nakskov</option>
-                  <option value="nyborg">Nyborg</option>
-                  <option value="nykoebing_falster">Nykøbing Falster</option>
-                  <option value="naestved">Næstved</option>
-                  <option value="randers">Randers</option>
-                  <option value="ribe">Ribe</option>
-                  <option value="ringsted">Ringsted</option>
-                  <option value="roskilde">Roskilde</option>
-                  <option value="roenne">Rønne</option>
-                  <option value="silkeborg">Silkeborg</option>
-                  <option value="skive">Skive</option>
-                  <option value="slagelse">Slagelse</option>
-                  <option value="stenloese">Stenløse</option>
-                  <option value="soenderborg">Sønderborg</option>
-                  <option value="svendborg">Svendborg</option>
-                  <option value="taastrup">Taastrup</option>
-                  <option value="thisted">Thisted</option>
-                  <option value="vejle">Vejle</option>
-                  <option value="viborg">Viborg</option>
-                  <option value="oelstykke">Ølstykke</option>
-                </select>
-              </span>
-            </label>
+              <span class="summary-action" id="locationSummaryAction">Değiştir</span>
+            </button>
+            <div class="location-fields" id="locationFields">
+              <label class="field">
+                <span>Ülke</span>
+                <span class="select-wrap">
+                  <select id="countrySelect">
+                    <option value="denmark">Danmark</option>
+                  </select>
+                </span>
+              </label>
+              <label class="field">
+                <span>Şehir</span>
+                <span class="select-wrap">
+                  <select id="citySelect">
+                    <option value="copenhagen">København</option>
+                  </select>
+                </span>
+              </label>
+              <div class="field">
+                <span>Konum</span>
+                <button class="location-button" id="locationButton" type="button">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 21s7-6.1 7-12A7 7 0 0 0 5 9c0 5.9 7 12 7 12Z" stroke="currentColor" stroke-width="1.7"/>
+                    <path d="M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" stroke="currentColor" stroke-width="1.7"/>
+                  </svg>
+                  <span id="locationButtonText">Bul</span>
+                </button>
+              </div>
+            </div>
             <div class="field">
               <span>Tarih</span>
               <div class="date-nav" aria-label="Tarih seçimi">
@@ -1023,16 +1079,6 @@
                   </svg>
                 </button>
               </div>
-            </div>
-            <div class="field">
-              <span>Konum</span>
-              <button class="location-button" id="locationButton" type="button">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M12 21s7-6.1 7-12A7 7 0 0 0 5 9c0 5.9 7 12 7 12Z" stroke="currentColor" stroke-width="1.7"/>
-                  <path d="M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" stroke="currentColor" stroke-width="1.7"/>
-                </svg>
-                <span id="locationButtonText">Bul</span>
-              </button>
             </div>
           </div>
         </div>
@@ -1223,6 +1269,10 @@
       { key: "Isha", name: "Yatsı", tone: "Gece", icon: "M18.7 15.2A7.2 7.2 0 0 1 8.8 5.3a7.2 7.2 0 1 0 9.9 9.9ZM17.7 4.8l.5 1.3 1.3.5-1.3.5-.5 1.3-.5-1.3-1.3-.5 1.3-.5.5-1.3Z" }
     ];
 
+    const controls = document.querySelector("#controls");
+    const locationSummary = document.querySelector("#locationSummary");
+    const locationSummaryText = document.querySelector("#locationSummaryText");
+    const locationSummaryAction = document.querySelector("#locationSummaryAction");
     const countrySelect = document.querySelector("#countrySelect");
     const citySelect = document.querySelector("#citySelect");
     const grid = document.querySelector("#prayerGrid");
@@ -1254,6 +1304,7 @@
     let dailyRefreshTimer = null;
     let deferredInstallPrompt = null;
     let detectingLocation = false;
+    let locationPanelOpen = false;
     let selectedDate = startOfDay(new Date());
     let minSelectableDate = addMonthsClamped(selectedDate, -1);
     let maxSelectableDate = addMonthsClamped(selectedDate, 1);
@@ -1399,6 +1450,7 @@
 
       const fallbackCity = countries[countryKey]?.defaultCity || keys[0] || "copenhagen";
       citySelect.value = preferredCity && keys.includes(preferredCity) ? preferredCity : fallbackCity;
+      updateLocationSummary();
     }
 
     function setCountryForCity(cityKey) {
@@ -1407,6 +1459,23 @@
       populateCityOptions(countryKey, cityKey);
       localStorage.setItem("selectedCountry", countryKey);
       localStorage.setItem("selectedCity", citySelect.value);
+      updateLocationSummary();
+    }
+
+    function updateLocationSummary() {
+      const city = cities[citySelect.value] || cities.copenhagen;
+      const country = countries[cityCountryKey(citySelect.value)] || countries.denmark;
+      locationSummaryText.textContent = `${city.label}, ${country.label}`;
+      locationSummaryAction.textContent = locationPanelOpen ? "Kapat" : "Değiştir";
+      locationSummary.setAttribute("aria-expanded", String(locationPanelOpen));
+      controls.classList.toggle("location-open", locationPanelOpen);
+      controls.classList.toggle("location-collapsed", !locationPanelOpen);
+    }
+
+    function setLocationPanel(open, persist = true) {
+      locationPanelOpen = open;
+      if (persist && !open) localStorage.setItem("locationPanelOpen", "false");
+      updateLocationSummary();
     }
 
     function partsInTimeZone(date = new Date(), timeZone = "Europe/Copenhagen") {
@@ -1540,6 +1609,7 @@
         updateLocationButton("Bulundu");
         sourceText.textContent = `En yakın şehir: ${nearest.city.label}`;
         await loadTimes();
+        setLocationPanel(false);
         return true;
       } catch (error) {
         if (!silent) updateLocationButton("Bul");
@@ -2067,12 +2137,18 @@
       populateCityOptions(countryKey);
       localStorage.setItem("selectedCountry", countryKey);
       localStorage.setItem("selectedCity", citySelect.value);
+      setLocationPanel(false);
       loadTimes();
     });
     citySelect.addEventListener("change", () => {
       localStorage.setItem("selectedCountry", cityCountryKey(citySelect.value));
       localStorage.setItem("selectedCity", citySelect.value);
+      updateLocationSummary();
+      setLocationPanel(false);
       loadTimes();
+    });
+    locationSummary.addEventListener("click", () => {
+      setLocationPanel(!locationPanelOpen);
     });
     prevDate.addEventListener("click", () => shiftSelectedDate(-1));
     nextDate.addEventListener("click", () => shiftSelectedDate(1));
@@ -2144,6 +2220,7 @@
     }
 
     populateCountryOptions();
+    setLocationPanel(locationPanelOpen, false);
     showInstallButton();
     updateDateControls();
     setEzanState(ezanEnabled ? "Beş namaz için aktif" : "Kapalı");
