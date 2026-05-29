@@ -336,8 +336,44 @@
 
     .date-chip {
       padding: 0 18px;
+      min-width: 206px;
+      justify-content: center;
+      border: 1px solid var(--line);
       color: var(--ink);
+      font: inherit;
+      font-weight: 760;
       white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .date-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .date-step {
+      width: 50px;
+      min-height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(248, 244, 234, 0.14);
+      border-radius: 999px;
+      background: rgba(248, 244, 234, 0.08);
+      color: var(--ink);
+      cursor: pointer;
+      backdrop-filter: blur(18px);
+    }
+
+    .date-step svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .date-step:disabled {
+      opacity: 0.42;
+      cursor: not-allowed;
     }
 
     .location-button {
@@ -712,10 +748,21 @@
       }
 
       .select-wrap,
-      .date-chip,
+      .date-nav,
       .location-button {
         width: 100%;
         justify-content: space-between;
+      }
+
+      .date-chip {
+        flex: 1;
+        min-width: 0;
+        padding: 0 12px;
+      }
+
+      .date-step {
+        flex: 0 0 44px;
+        width: 44px;
       }
 
       select {
@@ -955,7 +1002,19 @@
             </label>
             <div class="field">
               <span>Tarih</span>
-              <div class="date-chip" id="dateText">Bugün</div>
+              <div class="date-nav" aria-label="Tarih seçimi">
+                <button class="date-step" id="prevDate" type="button" aria-label="Önceki gün">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 18 9 12l6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <button class="date-chip" id="dateText" type="button">Bugün</button>
+                <button class="date-step" id="nextDate" type="button" aria-label="Sonraki gün">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
             </div>
             <div class="field">
               <span>Konum</span>
@@ -970,7 +1029,7 @@
           </div>
         </div>
 
-        <section class="prayer-area" aria-label="Bugünün beş namaz vakti">
+        <section class="prayer-area" aria-label="Namaz vakitleri">
           <div class="next">
             <div>
               <p class="next-label">Sonraki namaz</p>
@@ -1107,8 +1166,11 @@
     const sourceText = document.querySelector("#sourceText");
     const methodText = document.querySelector("#methodText");
     const dateText = document.querySelector("#dateText");
+    const prevDate = document.querySelector("#prevDate");
+    const nextDate = document.querySelector("#nextDate");
     const locationButton = document.querySelector("#locationButton");
     const locationButtonText = document.querySelector("#locationButtonText");
+    const nextLabel = document.querySelector(".next-label");
     const nextName = document.querySelector("#nextName");
     const countdown = document.querySelector("#countdown");
     const ezanAudio = document.querySelector("#ezanAudio");
@@ -1128,6 +1190,9 @@
     let dailyRefreshTimer = null;
     let deferredInstallPrompt = null;
     let detectingLocation = false;
+    let selectedDate = startOfDay(new Date());
+    let minSelectableDate = addMonthsClamped(selectedDate, -1);
+    let maxSelectableDate = addMonthsClamped(selectedDate, 1);
 
     const formatter = new Intl.DateTimeFormat("tr-TR", {
       weekday: "long",
@@ -1135,27 +1200,74 @@
       month: "long",
       year: "numeric"
     });
-
-    dateText.textContent = formatter.format(new Date());
+    const dateButtonFormatter = new Intl.DateTimeFormat("tr-TR", {
+      day: "numeric",
+      month: "short",
+      year: "numeric"
+    });
 
     function cleanTime(value) {
       return String(value || "").match(/\d{1,2}:\d{2}/)?.[0] || "--:--";
     }
 
-    function todayPath() {
-      const now = new Date();
-      const dd = String(now.getDate()).padStart(2, "0");
-      const mm = String(now.getMonth() + 1).padStart(2, "0");
-      const yyyy = now.getFullYear();
+    function startOfDay(date) {
+      return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    }
+
+    function addMonthsClamped(date, amount) {
+      const target = startOfDay(date);
+      const day = target.getDate();
+      target.setDate(1);
+      target.setMonth(target.getMonth() + amount);
+      const lastDay = new Date(target.getFullYear(), target.getMonth() + 1, 0).getDate();
+      target.setDate(Math.min(day, lastDay));
+      return startOfDay(target);
+    }
+
+    function compareDates(first, second) {
+      return startOfDay(first).getTime() - startOfDay(second).getTime();
+    }
+
+    function clampDate(date) {
+      const normalized = startOfDay(date);
+      if (compareDates(normalized, minSelectableDate) < 0) return new Date(minSelectableDate);
+      if (compareDates(normalized, maxSelectableDate) > 0) return new Date(maxSelectableDate);
+      return normalized;
+    }
+
+    function refreshDateBounds() {
+      const today = startOfDay(new Date());
+      minSelectableDate = addMonthsClamped(today, -1);
+      maxSelectableDate = addMonthsClamped(today, 1);
+      selectedDate = clampDate(selectedDate);
+    }
+
+    function isSelectedToday() {
+      return compareDates(selectedDate, new Date()) === 0;
+    }
+
+    function datePath(date) {
+      const normalized = startOfDay(date);
+      const dd = String(normalized.getDate()).padStart(2, "0");
+      const mm = String(normalized.getMonth() + 1).padStart(2, "0");
+      const yyyy = normalized.getFullYear();
       return `${dd}-${mm}-${yyyy}`;
     }
 
-    function todayKey() {
-      return todayPath().split("-").reverse().join("-");
+    function selectedPath() {
+      return datePath(selectedDate);
     }
 
-    function todayDotted() {
-      return todayPath().split("-").join(".");
+    function todayKey() {
+      return datePath(new Date()).split("-").reverse().join("-");
+    }
+
+    function selectedKey() {
+      return selectedPath().split("-").reverse().join("-");
+    }
+
+    function selectedDotted() {
+      return selectedPath().split("-").join(".");
     }
 
     function dayOfYear(date = new Date()) {
@@ -1195,6 +1307,35 @@
     function formatRemaining(hours, minutes) {
       if (hours <= 0) return `${minutes} dk kaldı`;
       return `${hours} sa ${String(minutes).padStart(2, "0")} dk kaldı`;
+    }
+
+    function selectedDateLabel() {
+      return formatter.format(selectedDate);
+    }
+
+    function updateDateControls() {
+      dateText.textContent = isSelectedToday() ? "Bugün" : dateButtonFormatter.format(selectedDate);
+      dateText.setAttribute("aria-label", isSelectedToday() ? "Bugün" : "Bugüne dön");
+      prevDate.disabled = compareDates(selectedDate, minSelectableDate) <= 0;
+      nextDate.disabled = compareDates(selectedDate, maxSelectableDate) >= 0;
+    }
+
+    function setSelectedDate(date) {
+      const next = clampDate(date);
+      if (compareDates(next, selectedDate) === 0) {
+        updateDateControls();
+        return;
+      }
+
+      selectedDate = next;
+      updateDateControls();
+      loadTimes();
+    }
+
+    function shiftSelectedDate(days) {
+      const next = new Date(selectedDate);
+      next.setDate(next.getDate() + days);
+      setSelectedDate(next);
     }
 
     function distanceKm(fromLat, fromLng, toLat, toLng) {
@@ -1293,7 +1434,10 @@
       nextRefresh.setHours(0, 7, 0, 0);
 
       dailyRefreshTimer = window.setTimeout(() => {
-        dateText.textContent = formatter.format(new Date());
+        const wasToday = isSelectedToday();
+        refreshDateBounds();
+        if (wasToday) selectedDate = startOfDay(new Date());
+        updateDateControls();
         loadTimes();
         scheduleDailyRefresh();
       }, nextRefresh.getTime() - Date.now());
@@ -1345,12 +1489,20 @@
         </article>
       `).join("");
       updateNextPrayer();
-      checkPrayerAlerts();
+      if (isSelectedToday()) checkPrayerAlerts();
       syncPushSubscription();
     }
 
     function updateNextPrayer() {
       if (!Object.keys(currentTimes).length) return;
+
+      if (!isSelectedToday()) {
+        document.querySelectorAll(".prayer").forEach((item) => item.classList.remove("active"));
+        nextLabel.textContent = "Seçili tarih";
+        nextName.textContent = selectedDateLabel();
+        countdown.textContent = "Günlük vakitler";
+        return;
+      }
 
       const now = new Date();
       const nowMinutes = now.getHours() * 60 + now.getMinutes();
@@ -1383,6 +1535,7 @@
 
       nextName.textContent = next.name;
       countdown.textContent = formatRemaining(hours, minutes);
+      nextLabel.textContent = "Sonraki namaz";
     }
 
     function setNotificationState(text) {
@@ -1594,7 +1747,7 @@
     }
 
     function checkPrayerAlerts() {
-      if (!ezanEnabled || !Object.keys(currentTimes).length) return;
+      if (!ezanEnabled || !isSelectedToday() || !Object.keys(currentTimes).length) return;
 
       const now = new Date();
       const currentMinute = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
@@ -1612,13 +1765,13 @@
       if (!city.semerkandId) return null;
 
       const url = new URL("https://www.semerkandtakvimi.com/api/salaat-times");
-      url.searchParams.set("year", new Date().getFullYear());
+      url.searchParams.set("year", selectedDate.getFullYear());
       url.searchParams.set("CityId", city.semerkandId);
 
       const response = await fetch(url);
       if (!response.ok) throw new Error("Semerkand vakitleri alınamadı");
       const yearTimes = await response.json();
-      const today = yearTimes.find((item) => Number(item.DayOfYear) === dayOfYear());
+      const today = yearTimes.find((item) => Number(item.DayOfYear) === dayOfYear(selectedDate));
       if (!today) return null;
 
       return {
@@ -1638,8 +1791,8 @@
       if (!response.ok) throw new Error("Diyanet vakitleri alınamadı");
       const monthTimes = await response.json();
       if (!Array.isArray(monthTimes)) return null;
-      const todayIso = todayKey();
-      const todayDate = todayDotted();
+      const todayIso = selectedKey();
+      const todayDate = selectedDotted();
       const today = monthTimes.find((item) => {
         const isoDate = String(item.MiladiTarihKisaIso8601 || item.MiladiTarihUzunIso8601 || "").slice(0, 10);
         return isoDate === todayIso || item.MiladiTarihKisa === todayDate;
@@ -1690,12 +1843,12 @@
     async function loadTimes() {
       const city = cities[citySelect.value];
       statusText.textContent = "Vakitler alınıyor";
-      sourceText.textContent = `${city.label} için vakitler hesaplanıyor`;
+      sourceText.textContent = `${city.label} için ${selectedDateLabel()} vakitleri hesaplanıyor`;
 
       try {
         const semerkandPromise = fetchSemerkandTimes(city).catch(() => null);
         const diyanetPromise = fetchDiyanetTimes(city).catch(() => null);
-        const url = new URL(`https://api.aladhan.com/v1/timings/${todayPath()}`);
+        const url = new URL(`https://api.aladhan.com/v1/timings/${selectedPath()}`);
         url.searchParams.set("latitude", city.lat);
         url.searchParams.set("longitude", city.lng);
         url.searchParams.set("method", "3");
@@ -1722,7 +1875,7 @@
         render(mergeOptimizedTimes({ semerkandTimes, diyanetTimes, mwlTimes, fallbackTimes: fallbackFor(city) }));
 
         statusText.textContent = "Güncellendi";
-        sourceText.textContent = `${city.label} için canlı vakitler`;
+        sourceText.textContent = `${city.label} için ${selectedDateLabel()} vakitleri`;
         updateMethodText(city, {
           semerkand: Boolean(semerkandTimes),
           diyanet: Boolean(diyanetTimes),
@@ -1740,7 +1893,7 @@
           fallbackTimes: fallbackFor(city)
         }));
         statusText.textContent = semerkandTimes || diyanetTimes ? "Kısmen güncellendi" : "Çevrimdışı vakitler";
-        sourceText.textContent = semerkandTimes || diyanetTimes ? `${city.label} için kaynaklar + yedek` : `${city.label} için örnek`;
+        sourceText.textContent = semerkandTimes || diyanetTimes ? `${city.label} için ${selectedDateLabel()} kaynakları + yedek` : `${city.label} için örnek`;
         updateMethodText(city, {
           semerkand: Boolean(semerkandTimes),
           diyanet: Boolean(diyanetTimes),
@@ -1753,6 +1906,9 @@
       localStorage.setItem("selectedCity", citySelect.value);
       loadTimes();
     });
+    prevDate.addEventListener("click", () => shiftSelectedDate(-1));
+    nextDate.addEventListener("click", () => shiftSelectedDate(1));
+    dateText.addEventListener("click", () => setSelectedDate(new Date()));
     locationButton.addEventListener("click", () => {
       detectNearestCity({ silent: false }).then((found) => {
         if (!found) loadTimes();
@@ -1820,6 +1976,7 @@
     }
 
     showInstallButton();
+    updateDateControls();
     setEzanState(ezanEnabled ? "Beş namaz için aktif" : "Kapalı");
     setNotificationState(notificationsEnabled ? "Aktif: kilit ekranı" : "Kapalı");
     scheduleDailyRefresh();
