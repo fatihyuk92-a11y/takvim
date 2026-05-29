@@ -1,4 +1,4 @@
-const CACHE_NAME = "namaz-vakitleri-v10";
+const CACHE_NAME = "yksl-takvim-v11";
 const APP_SHELL = [
   "./",
   "./index.html",

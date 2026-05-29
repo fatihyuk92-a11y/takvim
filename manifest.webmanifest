@@ -1,6 +1,6 @@
 {
-  "name": "Namaz Vakitleri",
-  "short_name": "Namaz",
+  "name": "YKSL Takvim",
+  "short_name": "YKSL",
   "description": "Danimarka şehirleri için namaz vakitleri, ezan ve bildirimler.",
   "lang": "tr-TR",
   "start_url": "./index.html",

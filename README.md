@@ -1,4 +1,4 @@
-# Namaz Vakitleri
+# YKSL Takvim
 
 Danimarka şehirleri için statik PWA:
 
