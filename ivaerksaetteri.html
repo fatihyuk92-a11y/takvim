@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Iværksætteri & startup — Praksis</title>
+<meta name="description" content="AI til iværksætteri: ide-validering, MVP, salg, skalering og fundraising. Konkret praksis — ikke teori." />
+<meta name="theme-color" content="#F8F4EA" />
+<link rel="canonical" href="https://praksis-ai.vercel.app/ivaerksaetteri" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Iværksætteri & startup — Praksis" />
+<meta property="og:description" content="AI til iværksætteri: ide-validering, MVP, salg, skalering og fundraising. Konkret praksis — ikke teori." />
+<meta property="og:locale" content="da_DK" />
+<meta property="og:site_name" content="Praksis·ai" />
+<meta property="og:url" content="https://praksis-ai.vercel.app/ivaerksaetteri" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Iværksætteri & startup — Praksis" />
+<meta name="twitter:description" content="AI til iværksætteri: ide-validering, MVP, salg, skalering og fundraising. Konkret praksis — ikke teori." />
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;✦&lt;/text&gt;&lt;/svg&gt;" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,200..700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F8F4EA;--bg-2:#F2EDE0;--paper:#FFFFFF;--ink:#0F0D0B;--ink-2:#2A2520;--ink-3:#4A4239;--ink-dim:#6B6258;--ink-faint:#A8A095;--rule:#E5DDC9;--accent:#B23F1E;--area-color:#D4C5E5;--area-deep:#2A1F4A}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Manrope',system-ui,sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.mono{font-family:'JetBrains Mono',monospace;font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:11px}
+.nav{background:rgba(248,244,234,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:50}
+.nav-inner{max-width:1400px;margin:0 auto;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;gap:40px}
+.brand{font-family:'Fraunces',serif;font-size:22px;color:var(--ink);text-decoration:none}
+.brand em{font-style:italic;font-weight:300;color:var(--accent)}
+.nav-links{display:flex;gap:32px}.nav-links a{color:var(--ink-2);text-decoration:none;font-size:14px;font-weight:600}
+.nav-links a:hover{color:var(--accent)}.nav-right{display:flex;align-items:center;gap:16px}
+.nav-login{color:var(--ink-2);text-decoration:none;font-size:14px;font-weight:600}
+.btn-primary{background:var(--ink);color:var(--bg);padding:12px 22px;border:none;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:.3s}
+.btn-primary:hover{background:var(--accent)}
+.breadcrumb{max-width:1400px;margin:0 auto;padding:24px 40px 0;display:flex;align-items:center;gap:10px;color:var(--ink-dim);font-size:13px}
+.breadcrumb a{color:var(--ink-2);text-decoration:none;font-weight:500}.breadcrumb a:hover{color:var(--accent)}
+.breadcrumb .sep{color:var(--ink-faint)}.breadcrumb .current{color:var(--ink);font-weight:600}
+.hero{max-width:1400px;margin:0 auto;padding:50px 40px 80px;display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center}
+.area-tag{display:inline-block;background:var(--area-color);color:var(--area-deep);padding:6px 14px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:24px}
+.hero h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(48px,6vw,84px);line-height:.92;letter-spacing:-.035em;margin-bottom:28px}
+.hero h1 em{font-style:italic;font-weight:300;color:var(--accent)}
+.hero-sub{font-family:'Fraunces',serif;font-size:20px;line-height:1.5;color:var(--ink-2);margin-bottom:36px;max-width:520px}
+.hero-stats{display:flex;gap:32px;padding:24px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin-bottom:32px;max-width:520px}
+.hero-stats div .num{font-family:'Fraunces',serif;font-size:28px;color:var(--ink);line-height:1}
+.hero-stats div .label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-3);letter-spacing:.1em;text-transform:uppercase;font-weight:500;margin-top:6px}
+.hero-cta{display:flex;align-items:center;gap:20px}
+.btn-large{background:var(--ink);color:var(--bg);padding:18px 32px;font-size:15px;border-radius:100px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:.3s}
+.btn-large:hover{background:var(--accent)}.btn-ghost{color:var(--ink-2);text-decoration:none;font-size:14px;font-weight:600}.btn-ghost:hover{color:var(--accent)}
+.hero-video{background:var(--area-deep);border-radius:20px;aspect-ratio:4/3.2;overflow:hidden;position:relative;box-shadow:0 40px 80px -30px rgba(15,13,11,.35);padding:24px;display:flex;flex-direction:column;gap:14px}
+.hv-subject{display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.1)}
+.hv-subject .l{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.5);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.hv-subject .t{font-family:'Fraunces',serif;font-size:18px;color:#fff;margin-top:2px}
+.hv-subject .t em{font-style:italic;color:var(--area-color)}
+.hv-subject .progress{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--area-color);font-weight:600}
+.hv-msg{display:flex;gap:10px;align-items:flex-start;opacity:0;transform:translateY(6px);animation:msgIn .5s forwards}
+.hv-msg:nth-child(2){animation-delay:.5s}.hv-msg:nth-child(3){animation-delay:1.5s}.hv-msg:nth-child(4){animation-delay:2.8s}
+@keyframes msgIn{to{opacity:1;transform:translateY(0)}}
+.hv-av{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-style:italic;font-size:12px;font-weight:600;flex-shrink:0}
+.hv-av.u{background:rgba(255,255,255,.12);color:var(--area-color)}
+.hv-av.a{background:var(--accent);color:#fff}
+.hv-bub{background:rgba(255,255,255,.06);border-radius:10px;padding:10px 14px;color:rgba(255,255,255,.85);font-size:12px;line-height:1.5;max-width:90%}
+.hv-bub.a{background:rgba(255,255,255,.04)}
+.hv-bub strong{color:#fff;font-weight:600}
+.hv-bub em{color:var(--area-color);font-style:italic}
+.hv-quiz{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px;margin-top:auto;opacity:0;animation:fadeIn .5s 3.5s forwards}
+@keyframes fadeIn{to{opacity:1}}
+.hv-quiz-q{font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:#fff;margin-bottom:10px;line-height:1.4}
+.hv-quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.hv-quiz-opt{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:6px 10px;font-size:11px;color:rgba(255,255,255,.85)}
+.hv-quiz-opt.correct{background:rgba(197,220,200,.2);border-color:#C5DCC8;color:#C5DCC8}
+section{max-width:1400px;margin:0 auto;padding:100px 40px}
+.section-head{margin-bottom:60px;max-width:800px}
+.section-label{color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.section-label::before{content:'';width:24px;height:1px;background:var(--accent)}
+.section-head h2{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(36px,4.5vw,60px);line-height:.95;letter-spacing:-.035em;margin-bottom:20px}
+.section-head h2 em{font-style:italic;color:var(--accent)}
+.section-head p{font-family:'Fraunces',serif;font-size:18px;line-height:1.55;color:var(--ink-2);max-width:600px}
+.learn{background:var(--bg-2);padding:100px 0}.learn-inner{max-width:1400px;margin:0 auto;padding:0 40px}
+.learn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.learn-item{background:var(--paper);border:1px solid var(--rule);border-radius:16px;padding:28px;transition:.3s}
+.learn-item:hover{transform:translateY(-2px);box-shadow:0 20px 40px -20px rgba(15,13,11,.12)}
+.learn-item .num{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:40px;color:var(--accent);line-height:1;margin-bottom:14px}
+.learn-item h4{font-family:'Fraunces',serif;font-size:20px;color:var(--ink);margin-bottom:8px;letter-spacing:-.01em}
+.learn-item p{color:var(--ink-3);font-size:14px;line-height:1.55}
+.curriculum-list{display:flex;flex-direction:column;gap:16px}
+.module{background:var(--paper);border:1px solid var(--rule);border-radius:16px;padding:28px 32px;display:grid;grid-template-columns:60px 1fr auto;gap:32px;align-items:center;transition:.3s}
+.module:hover{border-color:var(--ink-faint);box-shadow:0 16px 40px -20px rgba(15,13,11,.1)}
+.module-num{font-family:'Fraunces',serif;font-style:italic;font-weight:200;font-size:48px;color:var(--accent);line-height:1}
+.module-body h3{font-family:'Fraunces',serif;font-size:24px;line-height:1.1;color:var(--ink);margin-bottom:6px;letter-spacing:-.02em}
+.module-body h3 em{font-style:italic;font-weight:300}
+.module-body p{color:var(--ink-3);font-size:14px;line-height:1.55;margin-bottom:10px}
+.module-lessons{display:flex;gap:14px;flex-wrap:wrap}
+.module-lesson{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-3);letter-spacing:.05em;text-transform:uppercase;font-weight:500;padding:4px 10px;background:var(--bg-2);border-radius:100px}
+.module-meta{text-align:right;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+.module-meta strong{display:block;font-family:'Manrope',sans-serif;font-size:18px;color:var(--ink);font-weight:600;text-transform:none;margin-bottom:2px}
+.lessons-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.lesson-text-card{background:var(--paper);border:1px solid var(--rule);border-radius:16px;padding:32px;display:flex;flex-direction:column;transition:.3s}
+.lesson-text-card:hover{border-color:var(--ink-faint);transform:translateY(-3px);box-shadow:0 24px 50px -25px rgba(15,13,11,.15)}
+.lesson-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--rule)}
+.lesson-meta .cat{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.lesson-meta .time{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-3);font-weight:500}
+.lesson-text-card h3{font-family:'Fraunces',serif;font-size:24px;line-height:1.15;color:var(--ink);margin-bottom:16px;letter-spacing:-.02em}
+.lesson-text-card h3 em{font-style:italic;font-weight:300}
+.lesson-excerpt{flex:1;margin-bottom:22px}
+.lesson-excerpt p{font-family:'Fraunces',serif;font-size:15px;line-height:1.55;color:var(--ink-3)}
+.lesson-pull{background:var(--bg-2);border-left:2px solid var(--accent);padding:14px 18px;margin:16px 0;border-radius:0 8px 8px 0;font-family:'Fraunces',serif;font-style:italic;font-size:14px;line-height:1.5;color:var(--ink-2)}
+.lesson-key{background:var(--bg-2);border-radius:12px;padding:16px 18px;margin-bottom:22px}
+.lesson-key-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink-3);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:10px}
+.key-point{position:relative;padding-left:18px;font-size:13px;color:var(--ink-2);margin-bottom:8px;line-height:1.45}
+.key-point:last-child{margin-bottom:0}.key-point::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.lesson-link{color:var(--accent);text-decoration:none;font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:6px;transition:gap .3s;margin-top:auto}
+.lesson-link:hover{gap:12px}
+.cta-section{background:var(--ink);color:var(--bg);padding:100px 40px;margin-top:60px}
+.cta-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr;gap:60px;align-items:center}
+.cta-section h2{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(36px,5vw,60px);line-height:.95;letter-spacing:-.035em;margin-bottom:24px}
+.cta-section h2 em{font-style:italic;color:#E8A87C}
+.cta-section p{font-family:'Fraunces',serif;font-size:18px;color:rgba(248,244,234,.8);line-height:1.55;max-width:480px}
+.cta-pricebox{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:32px}
+.cta-pricebox .price-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:#E8A87C;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:8px}
+.cta-pricebox .price{font-family:'Fraunces',serif;font-weight:300;font-size:48px;color:#fff;line-height:1;margin-bottom:4px;letter-spacing:-.02em}
+.cta-pricebox .price em{font-style:italic}
+.cta-pricebox .price-sub{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:24px;font-style:italic}
+.cta-pricebox ul{list-style:none;margin-bottom:24px}
+.cta-pricebox ul li{color:rgba(255,255,255,.85);padding:8px 0;font-size:14px;display:flex;gap:10px}
+.cta-pricebox ul li::before{content:'+';color:#E8A87C;font-family:'JetBrains Mono',monospace;font-weight:600}
+.btn-orange{background:var(--accent);color:#fff;padding:16px 28px;border-radius:100px;font-weight:600;font-size:14px;width:100%;text-decoration:none;display:block;text-align:center;transition:.3s}
+.btn-orange:hover{background:#fff;color:var(--ink)}
+.related{padding:100px 40px;max-width:1400px;margin:0 auto}
+.related h3{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(28px,3.5vw,42px);line-height:.95;letter-spacing:-.03em;margin-bottom:40px}
+.related h3 em{font-style:italic;color:var(--accent)}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.related-card{background:var(--paper);border:1px solid var(--rule);border-radius:14px;padding:24px;text-decoration:none;color:inherit;display:flex;justify-content:space-between;align-items:center;transition:.3s}
+.related-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.related-card .info .cat{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink-3);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.related-card .info .title{font-family:'Fraunces',serif;font-size:18px;color:var(--ink)}
+.related-card .info .title em{font-style:italic;font-weight:300}
+.related-card .arrow{width:36px;height:36px;border-radius:50%;background:var(--bg-2);display:flex;align-items:center;justify-content:center;color:var(--ink);transition:.3s}
+.related-card:hover .arrow{background:var(--accent);color:#fff;transform:rotate(-45deg)}
+footer{border-top:1px solid var(--rule);padding:40px;max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;color:var(--ink-3);font-size:13px}
+footer a{color:var(--ink-3)}
+@media (max-width:980px){.nav-inner{padding:16px 20px;gap:16px}.nav-links{display:none}.breadcrumb{padding:18px 20px 0;flex-wrap:wrap}.hero{grid-template-columns:1fr;padding:32px 20px 60px;gap:40px}section{padding:60px 20px}.learn{padding:60px 0}.learn-inner{padding:0 20px}.learn-grid,.lessons-grid,.related-grid{grid-template-columns:1fr;gap:16px}.module{grid-template-columns:1fr;gap:12px;padding:24px}.module-meta{text-align:left}.cta-section{padding:60px 20px}.cta-inner{grid-template-columns:1fr;gap:32px}.related{padding:60px 20px}footer{padding:24px 20px;flex-direction:column}.hero-stats{gap:20px}.hero-stats div .num{font-size:22px}}
+
+/* === Clickable module cards (link to undervisning) === */
+a.module{cursor:pointer;text-decoration:none;color:inherit}
+a.module .module-cta{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--accent);margin-top:8px;display:inline-flex;align-items:center;gap:6px;transition:gap .25s}
+a.module:hover .module-cta{gap:12px}
+.curriculum-cta{margin-top:36px;display:flex;justify-content:center}
+.btn-undervisning{background:var(--ink);color:var(--bg);padding:16px 30px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:.3s}
+.btn-undervisning:hover{background:var(--accent);transform:translateY(-2px)}
+
+
+/* === Anchor offset under sticky nav === */
+section[id], [id^="undervisning-"]{scroll-margin-top:150px}
+/* === Respect reduced motion === */
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+
+
+/* ===================== MOBILE MENU ===================== */
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:none;border:none;cursor:pointer;padding:10px;margin-left:auto;z-index:60}
+.nav-toggle span{display:block;height:2px;width:100%;background:var(--ink);border-radius:2px;transition:.3s}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;inset:0;top:0;background:var(--bg);z-index:55;padding:90px 28px 40px;flex-direction:column;gap:4px;overflow-y:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Fraunces',serif;font-size:26px;color:var(--ink);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule)}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu a em{font-style:italic;color:var(--accent)}
+.mobile-menu .mm-cta{margin-top:24px;background:var(--ink);color:var(--bg);border-radius:100px;text-align:center;padding:16px;font-family:'Manrope',sans-serif;font-size:15px;font-weight:600;border-bottom:none}
+body.menu-open{overflow:hidden}
+
+/* ===================== PHONE BREAKPOINT (<=600px) ===================== */
+@media (max-width:600px){
+  /* show hamburger, hide desktop links */
+  .nav-toggle{display:flex}
+  .nav-inner .nav-links{display:none}
+  .nav-inner .nav-right{display:none}
+  .nav-inner{padding:14px 18px}
+  .brand{font-size:20px}
+
+  /* tame huge display type */
+  .hero h1{font-size:clamp(38px,11vw,52px)!important}
+  h1{word-break:break-word;hyphens:auto}
+  .section-head h2,.cta h2,.platform-demo h2,.how h2,.outro h2,.related h3{font-size:clamp(30px,8vw,40px)!important}
+  .lesson-title{font-size:clamp(28px,8vw,36px)!important}
+  .lesson-num{font-size:64px!important}
+
+  /* tighter section padding */
+  section{padding:48px 18px!important}
+  .hero{padding:28px 18px 44px!important}
+  .lesson{padding:40px 18px 16px!important}
+  .breadcrumb{padding:16px 18px 0!important;font-size:12px}
+
+  /* prevent overflow from wide demos / code */
+  .code-block,.code-box code{font-size:11px!important;padding:16px!important}
+  .demo-frame,.hero-video,.hero-card{max-width:100%;overflow:hidden}
+  pre,code{white-space:pre-wrap!important;word-break:break-word}
+
+  /* stack any 2-up compares and tool grids */
+  .brief-compare,.code-compare,.code-compare.three,.tools-grid,.lessons-grid,.learn-grid,.related-grid{grid-template-columns:1fr!important}
+
+  /* touch targets */
+  .btn-primary,.btn-large,.btn-ghost,.btn-orange,.btn-outline,.btn-undervisning,.lesson-link,.nav-login{min-height:44px;display:inline-flex;align-items:center}
+
+  /* lesson prev/next stacks */
+  .lesson-nav{flex-direction:column}
+
+  /* hero stats / mini stats wrap */
+  .hero-stats{flex-wrap:wrap;gap:18px!important}
+
+  /* sticky section-nav scroll on teaching pages */
+  .section-nav-inner{padding:12px 18px}
+
+  /* reduce scroll-margin so anchors aren't too low on small screens */
+  section[id],[id^="undervisning-"]{scroll-margin-top:80px}
+
+  /* footer */
+  footer{padding:24px 18px!important}
+  .hero-stats{flex-wrap:wrap}
+  .hero-video,.hero-card,.demo-frame{max-width:100%;height:auto}
+}
+
+/* prevent horizontal scroll globally */
+html,body{max-width:100%;overflow-x:hidden}
+
+
+/* === Eksplicitte font-weights (matcher data.html) === */
+body{font-weight:400}
+.brand{font-weight:400}
+.hero-stats div .num{font-weight:400}
+.module-body h3{font-weight:400}
+.learn-item h4{font-weight:500}
+.lesson-info h4{font-weight:400}
+.lesson-thumb .duration{font-weight:600}
+.lesson-thumb .badge-free{font-weight:700}
+.lesson-info .cat{font-weight:600}
+
+
+/* ===================== NAV DROPDOWNS ===================== */
+.nav-links{position:relative}
+.has-dropdown{position:relative;display:inline-block}
+.has-dropdown > a{position:relative}
+.has-dropdown > a::after{
+  content:'';
+  display:inline-block;
+  width:0;height:0;
+  margin-left:6px;
+  vertical-align:middle;
+  border-left:3.5px solid transparent;
+  border-right:3.5px solid transparent;
+  border-top:4px solid currentColor;
+  opacity:.55;
+  transition:transform .2s
+}
+.has-dropdown:hover > a::after{transform:rotate(180deg)}
+.dropdown-menu{
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%) translateY(8px);
+  min-width:280px;
+  background:var(--paper);
+  border:1px solid var(--rule);
+  border-radius:14px;
+  padding:10px;
+  box-shadow:0 24px 60px -20px rgba(15,13,11,.18), 0 4px 16px -4px rgba(15,13,11,.08);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index:80;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px
+}
+.dropdown-menu.single-col{grid-template-columns:1fr;min-width:240px}
+.has-dropdown:hover .dropdown-menu,
+.has-dropdown:focus-within .dropdown-menu{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(2px)
+}
+/* Bridge so cursor doesn't drop the menu when crossing gap */
+.has-dropdown::before{
+  content:'';
+  position:absolute;
+  top:100%;
+  left:0;right:0;
+  height:14px
+}
+.dropdown-menu a{
+  display:block;
+  padding:9px 14px;
+  border-radius:9px;
+  color:var(--ink-2)!important;
+  font-family:'Manrope',sans-serif;
+  font-size:13.5px;
+  font-weight:500;
+  text-decoration:none;
+  letter-spacing:0;
+  text-transform:none;
+  white-space:nowrap;
+  transition:background .12s, color .12s
+}
+.dropdown-menu a:hover{
+  background:var(--bg-2);
+  color:var(--ink)!important
+}
+.dropdown-menu a .dd-num{
+  display:inline-block;
+  width:22px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--ink-faint);
+  font-weight:600;
+  margin-right:4px
+}
+.dropdown-menu .dd-all{
+  grid-column:1 / -1;
+  margin-top:6px;
+  padding-top:10px;
+  border-top:1px solid var(--rule);
+  font-style:italic;
+  font-family:'Fraunces',serif;
+  color:var(--accent)!important;
+  font-size:13px
+}
+/* Skjul dropdowns på mobil */
+@media (max-width:600px){
+  .has-dropdown::before{display:none}
+  .dropdown-menu{display:none!important}
+  .has-dropdown > a::after{display:none}
+}
+
+</style></head>
+<body>
+
+<nav class="nav"><div class="nav-inner">
+<a href="index.html" class="brand">Praksis<em>·ai</em></a>
+<div class="nav-links"><span class="has-dropdown"><a href="index.html#omrader">Områder</a>
+<div class="dropdown-menu">
+  <a href="data.html"><span class="dd-num">01</span>Data &amp; Excel</a>
+  <a href="marketing.html"><span class="dd-num">02</span>Markedsføring</a>
+  <a href="finans.html"><span class="dd-num">03</span>Finans</a>
+  <a href="bolig.html"><span class="dd-num">04</span>Bolig</a>
+  <a href="kode.html"><span class="dd-num">05</span>Kode</a>
+  <a href="hverdag.html"><span class="dd-num">06</span>Hverdag</a>
+  <a href="karriere.html"><span class="dd-num">07</span>Karriere</a>
+  <a href="sundhed.html"><span class="dd-num">08</span>Sundhed</a>
+  <a href="laering.html"><span class="dd-num">09</span>Læring</a>
+  <a href="skriv.html"><span class="dd-num">10</span>Skriv</a>
+  <a href="ivaerksaetteri.html"><span class="dd-num">11</span>Iværksætteri</a>
+  <a href="salg.html"><span class="dd-num">12</span>Salg</a>
+  <a href="rejse.html"><span class="dd-num">13</span>Rejse</a>
+  <a href="mad.html"><span class="dd-num">14</span>Mad</a>
+  <a href="index.html#omrader" class="dd-all">Se alle 14 områder &rarr;</a>
+</div>
+</span><a href="index.html#metode">Metode</a><span class="has-dropdown"><a href="index.html#pro">Pro</a>
+<div class="dropdown-menu single-col">
+  <a href="pro-byg.html"><span class="dd-num">01</span>Byg AI-produkter</a>
+  <a href="pro-automation.html"><span class="dd-num">02</span>Automation i skala</a>
+  <a href="pro-prompt.html"><span class="dd-num">03</span>Prompt engineering</a>
+  <a href="pro-strategi.html"><span class="dd-num">04</span>AI-strategi</a>
+  <a href="pro-finans.html"><span class="dd-num">05</span>Avanceret finans</a>
+  <a href="pro-research.html"><span class="dd-num">06</span>AI-research</a>
+  <a href="index.html#pro" class="dd-all">Se alle Pro-områder &rarr;</a>
+</div>
+</span><a href="index.html#priser">Priser</a><a href="#">Blog</a></div>
+<button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button><div class="nav-right"><a href="#" class="nav-login">Log ind</a><a href="#cta" class="btn-primary">Start gratis →</a></div>
+</div></nav>
+<div class="mobile-menu">
+<a href="index.html#omrader">Områder</a>
+<a href="index.html#metode">Metode</a>
+<a href="index.html#pro">Pro</a>
+<a href="index.html#priser">Priser</a>
+<a href="#">Blog</a>
+<a href="#">Log ind</a>
+<a href="#cta" class="mm-cta">Start gratis →</a>
+</div>
+
+<div class="breadcrumb"><a href="index.html">Bibliotek</a><span class="sep">/</span><span class="current">Iværksætteri & startup</span></div>
+
+<section class="hero">
+<div>
+<div class="area-tag">Område 11 · Mellem niveau</div>
+<h1>Iværksætteri<br>&amp; <em>startup.</em></h1>
+<p class="hero-sub">Fra ide til første kunde til skaleret forretning. AI som CTO, marketing-team og rådgiver &mdash; så du kan teste flere ideer på kortere tid.</p>
+<div class="hero-stats">
+<div><div class="num">54</div><div class="label">Lektioner</div></div>
+<div><div class="num">15t</div><div class="label">Indhold</div></div>
+<div><div class="num">★ 4.9</div><div class="label">Bedømmelse</div></div>
+</div>
+<div class="hero-cta"><a href="#cta" class="btn-large">Start dette område →</a><a href="#previews" class="btn-ghost">Læs gratis lektioner</a></div>
+</div>
+
+<div class="hero-video">
+<div class="hv-subject">
+<div><div class="l">Business Model · Pivot 3</div><div class="t">Frokost-app for <em>kontorbrugere</em></div></div>
+<div class="progress">Validering</div>
+</div>
+
+<div class="hv-msg"><div class="hv-av u">MK</div><div class="hv-bub">Min ide er en app der kobler frokost-leverandører med kontorer. Er det godt?</div></div>
+
+<div class="hv-msg"><div class="hv-av a">P</div><div class="hv-bub a">Lad mig udfordre den. <strong>Tre spørgsmål</strong> der afgør om ideen er stærk:<br><br>1. Hvem betaler &mdash; <em>kontoret</em> eller <em>medarbejderen</em>?<br>2. Hvad gør de i dag &mdash; og hvorfor er det ikke godt nok?<br>3. Hvad er den mest sandsynlige grund til at det fejler?</div></div>
+
+<div class="hv-msg"><div class="hv-av u">MK</div><div class="hv-bub">Hmm. Medarbejderne kunne bare bruge Wolt &mdash; det er nok en blocker.</div></div>
+
+<div class="hv-quiz">
+<div class="hv-quiz-q">AI’en foreslår tre pivot-retninger</div>
+<div class="hv-quiz-opts">
+<div class="hv-quiz-opt">Catering kun</div>
+<div class="hv-quiz-opt correct">Pre-paid abonnement</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="learn"><div class="learn-inner">
+<div class="section-head">
+<div class="section-label mono">/ Hvad lærer du</div>
+<h2>Hvad du <em>tager med</em><br>fra dette område.</h2>
+<p>Hver lektion er bygget op om et konkret problem &mdash; ikke et generelt emne. Du går aldrig fra en lektion uden noget du kan bruge i morgen.</p>
+</div>
+<div class="learn-grid">
+<div class="learn-item"><div class="num">01</div><h4>Validér din ide før du bygger</h4><p>De fleste startups fejler fordi de bygger noget ingen vil have. AI hjælper dig stille de rigtige spørgsmål.</p></div>
+<div class="learn-item"><div class="num">02</div><h4>Lav et MVP på en uge</h4><p>Med no-code og AI kan du bygge en testbar prototype hurtigere end nogensinde.</p></div>
+<div class="learn-item"><div class="num">03</div><h4>Find dine første 10 kunder</h4><p>Den sværeste del af enhver startup. AI som outreach-assistent &mdash; uden at lyde som spam.</p></div>
+<div class="learn-item"><div class="num">04</div><h4>Skaler uden at ansætte</h4><p>Solo-founders bygger millionforretninger med AI. Lær hvordan du ser strukturen.</p></div>
+<div class="learn-item"><div class="num">05</div><h4>Forhandl med investorer</h4><p>Termsheet, due diligence, pitch deck. AI som juridisk og finansiel sparringspartner.</p></div>
+<div class="learn-item"><div class="num">06</div><h4>Lær af de der fejlede</h4><p>Cases fra danske startups. Hvad de gjorde rigtigt og forkert &mdash; analyseret af AI.</p></div>
+
+</div>
+</div></section>
+
+<section id="curriculum">
+<div class="section-head">
+<div class="section-label mono">/ Pensum</div>
+<h2>Fem moduler.<br><em>54 lektioner</em> i alt.</h2>
+<p>Modulerne kan tages selvstændigt eller i rækkefølge. Find dem der løser dit konkrete behov &mdash; eller tag alt fra start til slut.</p>
+</div>
+<div class="curriculum-list">
+<a class="module" href="ivaerksaetteri-undervisning.html#undervisning-1"><div class="module-num">01</div><div class="module-body">
+<h3>Ide-validering &amp; <em>research</em></h3>
+<p>Test din ide med rigtige mennesker før du bygger noget. AI som assistent i hele processen.</p>
+<div class="module-lessons"><span class="module-lesson">Validering</span><span class="module-lesson">Interviews</span><span class="module-lesson">Marked</span><span class="module-lesson">Konkurrenter</span></div>
+<span class="module-cta">Læs undervisningen →</span></div><div class="module-meta"><strong>~4 min</strong>læsning</div></a>
+
+<a class="module" href="ivaerksaetteri-undervisning.html#undervisning-2"><div class="module-num">02</div><div class="module-body">
+<h3>Byg din <em>MVP</em></h3>
+<p>No-code, AI-tools og hurtig prototyping. Fra ide til testbart produkt på en uge.</p>
+<div class="module-lessons"><span class="module-lesson">No-code</span><span class="module-lesson">Prototype</span><span class="module-lesson">Launch</span></div>
+<span class="module-cta">Læs undervisningen →</span></div><div class="module-meta"><strong>~4 min</strong>læsning</div></a>
+
+<a class="module" href="ivaerksaetteri-undervisning.html#undervisning-3"><div class="module-num">03</div><div class="module-body">
+<h3>Salg &amp; <em>første kunder</em></h3>
+<p>Outreach, demos, lukning af aftaler. Den hårdeste fase &mdash; gjort lettere med AI.</p>
+<div class="module-lessons"><span class="module-lesson">Outreach</span><span class="module-lesson">Demo</span><span class="module-lesson">Lukning</span></div>
+<span class="module-cta">Læs undervisningen →</span></div><div class="module-meta"><strong>~4 min</strong>læsning</div></a>
+
+<a class="module" href="ivaerksaetteri-undervisning.html#undervisning-4"><div class="module-num">04</div><div class="module-body">
+<h3>Skalering &amp; <em>operations</em></h3>
+<p>Som du vokser. Hvordan AI giver dig en større stab uden at du ansætter.</p>
+<div class="module-lessons"><span class="module-lesson">Processer</span><span class="module-lesson">Automation</span><span class="module-lesson">Team</span></div>
+<span class="module-cta">Læs undervisningen →</span></div><div class="module-meta"><strong>~4 min</strong>læsning</div></a>
+
+<a class="module" href="ivaerksaetteri-undervisning.html#undervisning-5"><div class="module-num">05</div><div class="module-body">
+<h3>Fundraising &amp; <em>exit</em></h3>
+<p>Investorer, juridiske dokumenter, exit-strategier. AI som første rådgiver.</p>
+<div class="module-lessons"><span class="module-lesson">Investorer</span><span class="module-lesson">Term sheets</span><span class="module-lesson">Exit</span></div>
+<span class="module-cta">Læs undervisningen →</span></div><div class="module-meta"><strong>~4 min</strong>læsning</div></a>
+
+
+</div>
+  <div class="curriculum-cta"><a href="ivaerksaetteri-undervisning.html" class="btn-undervisning">Åbn hele undervisningen →</a></div>
+
+</section>
+
+<section id="previews">
+<div class="section-head">
+<div class="section-label mono">/ Smagsprøve</div>
+<h2>Læs et <em>uddrag</em> fra tre lektioner.</h2>
+<p>Hver lektion er en kort, læsbar tekst med konkrete eksempler. Du går aldrig fra siden uden noget du kan bruge i morgen.</p>
+</div>
+<div class="lessons-grid">
+<article class="lesson-text-card">
+<div class="lesson-meta"><span class="cat">Modul 01 · Lektion 02</span><span class="time">10 min</span></div>
+<h3>Validér ideen <em>før du koder en linje</em></h3>
+<div class="lesson-excerpt">
+<p>De mest brændte iværksætter-historier starter med et halvt års kodning af et produkt &mdash; og opdager bagefter at ingen vil have det. AI er overraskende dygtig til at hjælpe dig validere før du bygger. Den stiller de spørgsmål du selv undgår at stille.</p>
+</div>
+<div class="lesson-pull">"AI’ens fornemmeste opgave er ikke at sige din ide er god. Det er at hjælpe dig finde de 10 grunde til at den måske ikke er det."</div>
+<div class="lesson-key">
+<div class="lesson-key-label">I denne lektion lærer du</div>
+<div class="key-point">Den 5-trins validerings-proces du kan gennemføre på 3 dage</div>
+<div class="key-point">Hvordan du laver interviews med rigtige mennesker uden at lede dem</div>
+<div class="key-point">De røde flag der betyder du skal pivote nu &mdash; ikke om 6 måneder</div>
+</div>
+<a href="#" class="lesson-link">Læs hele lektionen →</a>
+</article>
+
+<article class="lesson-text-card">
+<div class="lesson-meta"><span class="cat">Modul 03 · Lektion 04</span><span class="time">9 min</span></div>
+<h3>Outreach der <em>ikke føles som spam</em></h3>
+<div class="lesson-excerpt">
+<p>Dine første 10 kunder er de sværeste. Du skal opsøge folk, du ikke kender, og overbevise dem om at give dig deres tid (eller penge). AI kan hjælpe dig skrive cold mails der faktisk får svar &mdash; uden at lyde som en automatiseret bot.</p>
+</div>
+<div class="lesson-pull">"En cold mail der virker har én ting til fælles: den lyder som om den blev skrevet til netop denne ene person, klokken 14 om eftermiddagen."</div>
+<div class="lesson-key">
+<div class="lesson-key-label">I denne lektion lærer du</div>
+<div class="key-point">Skabelonen for den cold mail der får 20%+ svar-rate</div>
+<div class="key-point">Hvordan AI’en personliggør 100 mails på en time</div>
+<div class="key-point">De 3 fejl næsten alle nye iværksættere begår i outreach</div>
+</div>
+<a href="#" class="lesson-link">Læs hele lektionen →</a>
+</article>
+
+<article class="lesson-text-card">
+<div class="lesson-meta"><span class="cat">Modul 04 · Lektion 06</span><span class="time">12 min</span></div>
+<h3>Skaler uden at <em>ansætte 10 mennesker</em></h3>
+<div class="lesson-excerpt">
+<p>Den nye virkelighed for solo-founders: med AI kan en person drive en forretning der historisk krævede et lille team. Operations, support, marketing, en del af salget &mdash; det kan automatiseres. Men kun hvis du designer det rigtigt fra start.</p>
+</div>
+<div class="lesson-pull">"Det er ikke om at automatisere alt. Det er om at vide præcis hvor du selv skaber værdi &mdash; og automatisere resten."</div>
+<div class="lesson-key">
+<div class="lesson-key-label">I denne lektion lærer du</div>
+<div class="key-point">Den 80/20-analyse der finder de processer du skal automatisere først</div>
+<div class="key-point">Tre cases fra danske solo-founders der bygger 5M kr-forretninger alene</div>
+<div class="key-point">Hvornår du SKAL ansætte &mdash; og hvorfor de fleste venter for længe</div>
+</div>
+<a href="#" class="lesson-link">Læs hele lektionen →</a>
+</article>
+
+
+</div>
+</section>
+
+<section class="cta-section" id="cta">
+<div class="cta-inner">
+<div>
+<div class="section-label mono" style="color:#E8A87C">/ Adgang</div>
+<h2>Få adgang til alle 54 lektioner.<br><em>Og 13 andre områder.</em></h2>
+<p>Når du melder dig ind, får du adgang til hele biblioteket &mdash; ikke kun dette område. Nye områder lægges til hver måned.</p>
+</div>
+<div class="cta-pricebox">
+<div class="price-label">Årligt medlemskab</div>
+<div class="price">166<em>kr</em></div>
+<div class="price-sub">per måned · 1.990 kr / år</div>
+<ul>
+<li>Alle 14 områder, 70 lektioner</li>
+<li>Nye kurser hver måned</li>
+<li>Adgang til lukket Discord</li>
+<li>Personligt certifikat</li>
+<li>Annullér når du vil</li>
+</ul>
+<a href="#" class="btn-orange">Start gratis prøveperiode</a>
+</div>
+</div>
+</section>
+
+<section class="related">
+<h3>Andre områder du måske <em>kunne lide</em>.</h3>
+<div class="related-grid">
+<a href="kode.html" class="related-card"><div class="info"><div class="cat">Område 05</div><div class="title">Kode &amp; <em>automation</em></div></div><div class="arrow">→</div></a>
+<a href="salg.html" class="related-card"><div class="info"><div class="cat">Område 12</div><div class="title">Salg &amp; <em>forhandling</em></div></div><div class="arrow">→</div></a>
+<a href="finans.html" class="related-card"><div class="info"><div class="cat">Område 03</div><div class="title">Finansielle <em>platforme</em></div></div><div class="arrow">→</div></a>
+
+</div>
+</section>
+
+<footer>
+<div>© 2026 Praksis ApS · Bygget i København</div>
+<div>CVR 00000000 · <a href="#">Vilkår</a> · <a href="#">Privatliv</a></div>
+</footer>
+
+
+<script>
+(function(){
+  var toggle=document.querySelector('.nav-toggle');
+  var menu=document.querySelector('.mobile-menu');
+  if(!toggle||!menu)return;
+  function close(){toggle.setAttribute('aria-expanded','false');menu.classList.remove('open');document.body.classList.remove('menu-open');}
+  toggle.addEventListener('click',function(){
+    var open=toggle.getAttribute('aria-expanded')==='true';
+    if(open){close();}
+    else{toggle.setAttribute('aria-expanded','true');menu.classList.add('open');document.body.classList.add('menu-open');}
+  });
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
+})();
+</script>
+
+</body></html>

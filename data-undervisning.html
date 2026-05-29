@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Undervisning i Data &amp; regneark — Praksis</title>
+<meta name="description" content="Lær at bruge AI i Excel og Google Sheets. Formler, pivottabeller, modeller og automatisering — på dansk, med konkrete eksempler." />
+<meta name="theme-color" content="#F8F4EA" />
+<link rel="canonical" href="https://praksis-ai.vercel.app/data-undervisning" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Undervisning i Data &amp; regneark — Praksis" />
+<meta property="og:description" content="Lær at bruge AI i Excel og Google Sheets. Formler, pivottabeller, modeller og automatisering — på dansk, med konkrete eksempler." />
+<meta property="og:locale" content="da_DK" />
+<meta property="og:site_name" content="Praksis·ai" />
+<meta property="og:url" content="https://praksis-ai.vercel.app/data-undervisning" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Undervisning i Data &amp; regneark — Praksis" />
+<meta name="twitter:description" content="Lær at bruge AI i Excel og Google Sheets. Formler, pivottabeller, modeller og automatisering — på dansk, med konkrete eksempler." />
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;✦&lt;/text&gt;&lt;/svg&gt;" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,200..700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F8F4EA;--bg-2:#F2EDE0;--paper:#FFFFFF;--ink:#0F0D0B;--ink-2:#2A2520;
+  --ink-3:#4A4239;--ink-dim:#6B6258;--ink-faint:#A8A095;--rule:#E5DDC9;--rule-soft:#EFE9D8;
+  --accent:#B23F1E;--accent-soft:#F2E1D9;--area-color:#F0E5BA;--area-deep:#5C4E1A;
+  --good:#2A6B3D;--good-soft:#E1EFE5;--warn:#A6630B;--warn-soft:#F5E8CC;--bad:#9B2C20;--bad-soft:#F2DDDB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Manrope',system-ui,sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.mono{font-family:'JetBrains Mono',monospace;font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:11px}
+a{color:var(--accent)}
+
+/* NAV */
+.nav{background:rgba(248,244,234,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:50}
+.nav-inner{max-width:1400px;margin:0 auto;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;gap:40px}
+.brand{font-family:'Fraunces',serif;font-size:22px;color:var(--ink);text-decoration:none}
+.brand em{font-style:italic;font-weight:300;color:var(--accent)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{color:var(--ink-2);text-decoration:none;font-size:13px;font-weight:600}
+.nav-links a:hover{color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.btn-primary{background:var(--ink);color:var(--bg);padding:12px 22px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none}
+.btn-primary:hover{background:var(--accent)}
+
+.breadcrumb{max-width:1400px;margin:0 auto;padding:24px 40px 0;display:flex;align-items:center;gap:10px;color:var(--ink-dim);font-size:13px}
+.breadcrumb a{color:var(--ink-2);text-decoration:none;font-weight:500}
+.breadcrumb a:hover{color:var(--accent)}
+.breadcrumb .sep{color:var(--ink-faint)}
+.breadcrumb .current{color:var(--ink);font-weight:600}
+
+/* HERO */
+.hero{max-width:1400px;margin:0 auto;padding:50px 40px 60px}
+.area-tag{display:inline-block;background:var(--area-color);color:var(--area-deep);padding:6px 14px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:24px}
+.hero h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(44px,5.5vw,76px);line-height:.95;letter-spacing:-.035em;margin-bottom:24px;max-width:900px}
+.hero h1 em{font-style:italic;color:var(--accent);font-weight:300}
+.hero-sub{font-family:'Fraunces',serif;font-size:19px;line-height:1.55;color:var(--ink-2);margin-bottom:32px;max-width:680px}
+.hero-cta{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.btn-large{background:var(--ink);color:var(--bg);padding:16px 28px;font-size:14px;border-radius:100px;font-weight:600;text-decoration:none}
+.btn-large:hover{background:var(--accent)}
+.btn-ghost{color:var(--ink-2);text-decoration:none;font-size:14px;font-weight:600}
+.btn-ghost:hover{color:var(--accent)}
+
+/* SECTION NAV */
+.section-nav{background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);position:sticky;top:73px;z-index:40}
+.section-nav-inner{max-width:1400px;margin:0 auto;padding:18px 40px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.section-nav-inner::-webkit-scrollbar{display:none}
+.section-nav a{flex-shrink:0;display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:100px;background:transparent;color:var(--ink-2);text-decoration:none;font-size:13px;font-weight:600;border:1px solid transparent;transition:.2s}
+.section-nav a:hover{background:var(--paper);border-color:var(--rule)}
+.section-nav a .n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-faint);font-weight:600}
+
+/* MAIN CONTENT */
+.lesson{max-width:1400px;margin:0 auto;padding:90px 40px 40px;display:grid;grid-template-columns:1fr 2fr;gap:60px}
+.lesson-header{position:sticky;top:160px;align-self:start}
+.lesson-num{font-family:'Fraunces',serif;font-style:italic;font-weight:200;font-size:clamp(72px,9vw,140px);line-height:.85;color:var(--accent);margin-bottom:8px}
+.lesson-label{color:var(--ink-3);margin-bottom:14px}
+.lesson-title{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(34px,3.6vw,48px);line-height:1;letter-spacing:-.025em}
+.lesson-title em{font-style:italic;color:var(--accent);font-weight:300}
+.lesson-body{max-width:720px}
+.lesson-body h3{font-family:'Fraunces',serif;font-weight:400;font-size:28px;line-height:1.15;letter-spacing:-.015em;margin:42px 0 16px}
+.lesson-body h3:first-child{margin-top:0}
+.lesson-body h3 em{font-style:italic;color:var(--accent);font-weight:300}
+.lesson-body h4{font-family:'Fraunces',serif;font-weight:500;font-size:18px;line-height:1.3;margin:28px 0 10px;color:var(--ink)}
+.lesson-body p{margin-bottom:16px;color:var(--ink-2);font-size:15.5px;line-height:1.7}
+.lesson-body p strong{color:var(--ink);font-weight:600}
+.lesson-body ul:not(.checklist):not(.bullet-mono){margin:14px 0 22px;padding-left:0;list-style:none}
+.lesson-body ul:not(.checklist):not(.bullet-mono) li{position:relative;padding-left:24px;margin-bottom:10px;color:var(--ink-2);line-height:1.65}
+.lesson-body ul:not(.checklist):not(.bullet-mono) li::before{content:'';position:absolute;left:0;top:11px;width:14px;height:1px;background:var(--accent)}
+.lesson-body strong em{font-style:italic;color:var(--accent)}
+
+/* BLOCKQUOTE - rule callout */
+.callout{background:var(--bg-2);border-left:3px solid var(--accent);padding:18px 24px;margin:24px 0;font-family:'Fraunces',serif;font-style:italic;font-size:17px;line-height:1.5;color:var(--ink-2);border-radius:0 8px 8px 0}
+.callout strong{font-style:normal;font-family:'Manrope',sans-serif;color:var(--ink);display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;font-weight:600}
+
+/* BRIEF COMPARE BOX */
+.brief-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+.brief-box{padding:20px 22px;border-radius:12px;border:1px solid var(--rule);background:var(--paper)}
+.brief-box.bad{background:var(--bad-soft);border-color:rgba(155,44,32,.25)}
+.brief-box.good{background:var(--good-soft);border-color:rgba(42,107,61,.25)}
+.brief-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.brief-box.bad .brief-label{color:var(--bad)}
+.brief-box.good .brief-label{color:var(--good)}
+.brief-box p{font-family:'Fraunces',serif;font-style:italic;font-size:15px;line-height:1.5;color:var(--ink-2);margin:0}
+
+/* SIDE-BY-SIDE CODE COMPARE */
+.code-compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}
+.code-compare.three{grid-template-columns:1fr 1fr 1fr}
+.code-box{background:var(--ink);border-radius:12px;padding:16px 18px;overflow:hidden}
+.code-box .code-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--area-color);margin-bottom:10px;font-weight:600}
+.code-box code{font-family:'JetBrains Mono',monospace;font-size:12px;color:#F8F4EA;font-weight:500;display:block;white-space:pre-wrap;word-break:break-all;line-height:1.5}
+
+/* BIG PROMPT/CODE BLOCK */
+.code-block{background:var(--ink);color:var(--bg);border-radius:14px;padding:24px 28px;margin:24px 0;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;overflow-x:auto;font-weight:400}
+.code-block .comment{color:#A8A095;font-style:italic}
+.code-block .keyword{color:#F0E5BA}
+.code-block .string{color:#E8A87C}
+
+.code-label-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:8px}
+
+/* TOOLS GRID */
+.tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:24px 0}
+.tool-card{background:var(--paper);border:1px solid var(--rule);border-radius:14px;padding:20px 22px}
+.tool-card h4{font-family:'Fraunces',serif;font-weight:500;font-size:17px;margin:0 0 8px;color:var(--ink)}
+.tool-card p{font-size:13.5px;color:var(--ink-3);margin:0;line-height:1.6}
+
+/* DATA TABLE */
+.data-table{width:100%;border-collapse:collapse;margin:18px 0 22px;background:var(--paper);border-radius:12px;overflow:hidden;font-size:13px;border:1px solid var(--rule)}
+.data-table th{background:var(--bg-2);text-align:left;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600;border-bottom:1px solid var(--rule)}
+.data-table td{padding:11px 14px;border-bottom:1px solid var(--rule-soft);color:var(--ink-2)}
+.data-table tr:last-child td{border-bottom:none}
+.data-table td.num{font-family:'JetBrains Mono',monospace;font-weight:500;color:var(--ink)}
+
+/* WARNING / FAIL BOX */
+.fail-box{background:#FBF4E8;border:1px solid rgba(166,99,11,.25);border-left:3px solid var(--warn);border-radius:0 12px 12px 0;padding:20px 24px;margin:24px 0}
+.fail-box h4{font-family:'Manrope',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--warn);margin:0 0 12px}
+.fail-box ul{margin:0;padding:0;list-style:none}
+.fail-box ul li{position:relative;padding-left:22px;margin-bottom:10px;color:var(--ink-2);font-size:14px;line-height:1.55}
+.fail-box ul li:last-child{margin-bottom:0}
+.fail-box ul li::before{content:'!';position:absolute;left:0;top:0;width:14px;height:14px;background:var(--warn);color:#fff;border-radius:50%;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:3px}
+
+/* CHECKLIST */
+.checklist{margin:18px 0 22px;list-style:none;padding:0}
+.checklist li{position:relative;padding-left:30px;margin-bottom:10px;color:var(--ink-2);font-size:14.5px;line-height:1.55}
+.checklist li::before{content:'';position:absolute;left:0;top:3px;width:16px;height:16px;border:1.5px solid var(--ink-3);border-radius:4px;background:var(--paper)}
+
+/* PROMPT BULLETS */
+.bullet-mono{list-style:none;padding:0;margin:20px 0 0;border-top:1px solid var(--rule);padding-top:18px}
+.bullet-mono li{position:relative;padding-left:22px;margin-bottom:10px;color:var(--ink-3);font-size:13.5px;line-height:1.55}
+.bullet-mono li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+
+/* INLINE CODE */
+.lesson-body code:not(.code-block code):not(.code-box code){background:var(--bg-2);padding:2px 7px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink);font-weight:500}
+
+/* DIVIDER */
+.divider{max-width:1400px;margin:0 auto;padding:0 40px}
+.divider hr{border:none;border-top:1px solid var(--rule);margin:20px 0}
+
+/* OUTRO */
+.outro{max-width:1400px;margin:0 auto;padding:80px 40px 100px;text-align:center}
+.outro h2{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(36px,4.5vw,56px);line-height:1;letter-spacing:-.03em;margin-bottom:24px}
+.outro h2 em{font-style:italic;color:var(--accent);font-weight:300}
+.outro p{font-family:'Fraunces',serif;font-size:18px;color:var(--ink-2);max-width:560px;margin:0 auto 32px;line-height:1.5}
+.outro-cta{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+
+/* FOOTER */
+footer{border-top:1px solid var(--rule);padding:40px;max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;color:var(--ink-3);font-size:13px}
+footer a{color:var(--ink-3);text-decoration:none}
+footer a:hover{color:var(--accent)}
+
+/* MOBILE */
+@media (max-width:980px){
+  .nav-inner{padding:16px 20px;gap:16px}
+  .nav-links{display:none}
+  .breadcrumb{padding:18px 20px 0;flex-wrap:wrap}
+  .hero{padding:36px 20px 40px}
+  .section-nav{top:65px}
+  .section-nav-inner{padding:14px 20px}
+  .lesson{grid-template-columns:1fr;gap:32px;padding:60px 20px 20px}
+  .lesson-header{position:static;top:auto}
+  .lesson-num{font-size:80px}
+  .brief-compare,.code-compare,.code-compare.three,.tools-grid{grid-template-columns:1fr}
+  .outro{padding:60px 20px 80px}
+  footer{padding:24px 20px;flex-direction:column}
+  .data-table{font-size:12px}
+  .data-table th,.data-table td{padding:9px 10px}
+}
+
+/* === Progress bar === */
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:0%;z-index:60;transition:width .1s linear}
+/* === Active section nav highlight === */
+.section-nav a.active{background:var(--paper);border-color:var(--accent);color:var(--accent)}
+.section-nav a.active .n{color:var(--accent)}
+/* === Prev/next lesson nav === */
+.lesson-nav{display:flex;justify-content:space-between;gap:16px;max-width:720px;margin-left:auto}
+.lesson-nav-btn{flex:1;display:flex;flex-direction:column;gap:4px;padding:18px 22px;border:1px solid var(--rule);border-radius:14px;background:var(--paper);text-decoration:none;transition:.25s}
+.lesson-nav-btn:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 12px 30px -18px rgba(15,13,11,.25)}
+.lesson-nav-btn.next{text-align:right;align-items:flex-end}
+.lesson-nav-btn .dir{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
+.lesson-nav-btn .ttl{font-family:'Fraunces',serif;font-size:17px;color:var(--ink);line-height:1.1}
+.lesson-nav-btn .ttl em{font-style:italic;color:var(--accent);font-weight:300}
+.lesson-nav-btn.disabled{opacity:.4;pointer-events:none}
+/* === Back to top === */
+.to-top{position:fixed;bottom:28px;right:28px;width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--bg);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:18px;opacity:0;pointer-events:none;transition:.3s;z-index:55;border:none;cursor:pointer}
+.to-top.show{opacity:1;pointer-events:auto}
+.to-top:hover{background:var(--accent)}
+@media (max-width:980px){.lesson-nav{margin-left:0}.lesson-nav-btn{padding:14px 16px}.lesson-nav-btn .ttl{font-size:15px}.to-top{bottom:18px;right:18px;width:42px;height:42px}}
+
+
+/* === Anchor offset under sticky nav === */
+section[id], [id^="undervisning-"]{scroll-margin-top:150px}
+/* === Respect reduced motion === */
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+
+
+/* ===================== MOBILE MENU ===================== */
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:none;border:none;cursor:pointer;padding:10px;margin-left:auto;z-index:60}
+.nav-toggle span{display:block;height:2px;width:100%;background:var(--ink);border-radius:2px;transition:.3s}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;inset:0;top:0;background:var(--bg);z-index:55;padding:90px 28px 40px;flex-direction:column;gap:4px;overflow-y:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Fraunces',serif;font-size:26px;color:var(--ink);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule)}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu a em{font-style:italic;color:var(--accent)}
+.mobile-menu .mm-cta{margin-top:24px;background:var(--ink);color:var(--bg);border-radius:100px;text-align:center;padding:16px;font-family:'Manrope',sans-serif;font-size:15px;font-weight:600;border-bottom:none}
+body.menu-open{overflow:hidden}
+
+/* ===================== PHONE BREAKPOINT (<=600px) ===================== */
+@media (max-width:600px){
+  /* show hamburger, hide desktop links */
+  .nav-toggle{display:flex}
+  .nav-inner .nav-links{display:none}
+  .nav-inner .nav-right{display:none}
+  .nav-inner{padding:14px 18px}
+  .brand{font-size:20px}
+
+  /* tame huge display type */
+  .hero h1{font-size:clamp(38px,11vw,52px)!important}
+  h1{word-break:break-word;hyphens:auto}
+  .section-head h2,.cta h2,.platform-demo h2,.how h2,.outro h2,.related h3{font-size:clamp(30px,8vw,40px)!important}
+  .lesson-title{font-size:clamp(28px,8vw,36px)!important}
+  .lesson-num{font-size:64px!important}
+
+  /* tighter section padding */
+  section{padding:48px 18px!important}
+  .hero{padding:28px 18px 44px!important}
+  .lesson{padding:40px 18px 16px!important}
+  .breadcrumb{padding:16px 18px 0!important;font-size:12px}
+
+  /* prevent overflow from wide demos / code */
+  .code-block,.code-box code{font-size:11px!important;padding:16px!important}
+  .demo-frame,.hero-video,.hero-card{max-width:100%;overflow:hidden}
+  pre,code{white-space:pre-wrap!important;word-break:break-word}
+
+  /* stack any 2-up compares and tool grids */
+  .brief-compare,.code-compare,.code-compare.three,.tools-grid,.lessons-grid,.learn-grid,.related-grid{grid-template-columns:1fr!important}
+
+  /* touch targets */
+  .btn-primary,.btn-large,.btn-ghost,.btn-orange,.btn-outline,.btn-undervisning,.lesson-link,.nav-login{min-height:44px;display:inline-flex;align-items:center}
+
+  /* lesson prev/next stacks */
+  .lesson-nav{flex-direction:column}
+
+  /* hero stats / mini stats wrap */
+  .hero-stats{flex-wrap:wrap;gap:18px!important}
+
+  /* sticky section-nav scroll on teaching pages */
+  .section-nav-inner{padding:12px 18px}
+
+  /* reduce scroll-margin so anchors aren't too low on small screens */
+  section[id],[id^="undervisning-"]{scroll-margin-top:80px}
+  .section-nav{top:60px}
+  .hero-video,.hero-card,.demo-frame{transform:none!important}
+
+  /* footer */
+  footer{padding:24px 18px!important}
+}
+
+/* prevent horizontal scroll globally */
+html,body{max-width:100%;overflow-x:hidden}
+
+
+/* === Eksplicitte font-weights (matcher data.html) === */
+body{font-weight:400}
+.brand{font-weight:400}
+.hero-stats div .num{font-weight:400}
+.module-body h3{font-weight:400}
+.learn-item h4{font-weight:500}
+.lesson-info h4{font-weight:400}
+.lesson-thumb .duration{font-weight:600}
+.lesson-thumb .badge-free{font-weight:700}
+.lesson-info .cat{font-weight:600}
+
+
+.prompt-demo{max-width:1100px;margin:30px auto 60px;padding:0 40px}
+.prompt-demo-card{background:var(--ink);color:var(--bg);border-radius:18px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(15,13,11,.3)}
+.prompt-demo-bar{background:rgba(255,255,255,.05);padding:12px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.prompt-demo-dots{display:flex;gap:6px}
+.prompt-demo-dots span{width:11px;height:11px;border-radius:50%}
+.prompt-demo-dots span:nth-child(1){background:#FF5F57}
+.prompt-demo-dots span:nth-child(2){background:#FEBC2E}
+.prompt-demo-dots span:nth-child(3){background:#28C840}
+.prompt-demo-url{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.4);margin-left:16px;letter-spacing:.05em}
+.prompt-demo-stage{padding:24px 28px;min-height:340px;display:flex;flex-direction:column;gap:14px}
+.pd-row{display:flex;gap:14px;align-items:flex-start;opacity:0;animation:pdFade .4s forwards}
+.pd-avatar{width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;flex-shrink:0;letter-spacing:0}
+.pd-avatar.ai{background:rgba(255,255,255,.1);color:rgba(255,255,255,.7)}
+.pd-bubble{flex:1;background:rgba(255,255,255,.06);padding:13px 16px;border-radius:12px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.6;color:rgba(255,255,255,.92);white-space:pre-wrap;word-break:break-word}
+.pd-bubble.user{background:rgba(178,63,30,.18);border:1px solid rgba(178,63,30,.4)}
+.pd-bubble.ai{font-family:'Manrope',sans-serif;font-size:13px;line-height:1.65}
+.pd-bubble.ai pre{font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.55;color:#E8C8B8;margin:0}
+.pd-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:600;padding:18px 0 6px;border-top:1px dashed rgba(255,255,255,.1);margin-top:6px;opacity:0;animation:pdFade .4s forwards}
+.pd-label:first-child{padding-top:0;border-top:none;margin-top:0}
+.pd-label.bad{color:#E8A87C}
+.pd-label.good{color:#A0D4A8}
+@keyframes pdFade{to{opacity:1}}
+@keyframes pdType{from{width:0}to{width:100%}}
+.prompt-demo-caption{text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--ink-3);margin-top:18px;line-height:1.5}
+.prompt-demo-caption strong{font-style:normal;color:var(--accent);font-weight:500}
+@media (max-width:600px){
+  .prompt-demo{padding:0 18px;margin:18px auto 36px}
+  .prompt-demo-stage{padding:18px 16px;min-height:auto}
+  .pd-bubble{font-size:11.5px;padding:11px 13px}
+  .pd-bubble.ai{font-size:12px}
+  .pd-bubble.ai pre{font-size:10.5px}
+}
+
+
+.prompt-demo{max-width:1100px;margin:30px auto 60px;padding:0 40px}
+.prompt-demo-card{background:var(--ink);color:var(--bg);border-radius:18px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(15,13,11,.3)}
+.prompt-demo-bar{background:rgba(255,255,255,.05);padding:12px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.prompt-demo-dots{display:flex;gap:6px}
+.prompt-demo-dots span{width:11px;height:11px;border-radius:50%}
+.prompt-demo-dots span:nth-child(1){background:#FF5F57}
+.prompt-demo-dots span:nth-child(2){background:#FEBC2E}
+.prompt-demo-dots span:nth-child(3){background:#28C840}
+.prompt-demo-url{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.4);margin-left:16px;letter-spacing:.05em}
+.prompt-demo-stage{padding:24px 28px;min-height:340px;display:flex;flex-direction:column;gap:14px}
+.pd-row{display:flex;gap:14px;align-items:flex-start;opacity:0;animation:pdFade .4s forwards}
+.pd-avatar{width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;flex-shrink:0;letter-spacing:0}
+.pd-avatar.ai{background:rgba(255,255,255,.1);color:rgba(255,255,255,.7)}
+.pd-bubble{flex:1;background:rgba(255,255,255,.06);padding:13px 16px;border-radius:12px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.6;color:rgba(255,255,255,.92);white-space:pre-wrap;word-break:break-word}
+.pd-bubble.user{background:rgba(178,63,30,.18);border:1px solid rgba(178,63,30,.4)}
+.pd-bubble.ai{font-family:'Manrope',sans-serif;font-size:13px;line-height:1.65}
+.pd-bubble.ai pre{font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.55;color:#E8C8B8;margin:0}
+.pd-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:600;padding:18px 0 6px;border-top:1px dashed rgba(255,255,255,.1);margin-top:6px;opacity:0;animation:pdFade .4s forwards}
+.pd-label:first-child{padding-top:0;border-top:none;margin-top:0}
+.pd-label.bad{color:#E8A87C}
+.pd-label.good{color:#A0D4A8}
+@keyframes pdFade{to{opacity:1}}
+@keyframes pdType{from{width:0}to{width:100%}}
+.prompt-demo-caption{text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--ink-3);margin-top:18px;line-height:1.5}
+.prompt-demo-caption strong{font-style:normal;color:var(--accent);font-weight:500}
+@media (max-width:600px){
+  .prompt-demo{padding:0 18px;margin:18px auto 36px}
+  .prompt-demo-stage{padding:18px 16px;min-height:auto}
+  .pd-bubble{font-size:11.5px;padding:11px 13px}
+  .pd-bubble.ai{font-size:12px}
+  .pd-bubble.ai pre{font-size:10.5px}
+}
+
+
+/* === Prompt-demo animation === */
+.prompt-demo{max-width:1100px;margin:30px auto 60px;padding:0 40px}
+.prompt-demo-card{background:var(--ink);color:var(--bg);border-radius:18px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(15,13,11,.3)}
+.prompt-demo-bar{background:rgba(255,255,255,.05);padding:12px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.prompt-demo-dots{display:flex;gap:6px}
+.prompt-demo-dots span{width:11px;height:11px;border-radius:50%}
+.prompt-demo-dots span:nth-child(1){background:#FF5F57}
+.prompt-demo-dots span:nth-child(2){background:#FEBC2E}
+.prompt-demo-dots span:nth-child(3){background:#28C840}
+.prompt-demo-url{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.4);margin-left:16px;letter-spacing:.05em}
+.prompt-demo-stage{padding:24px 28px;min-height:340px;display:flex;flex-direction:column;gap:14px}
+.pd-row{display:flex;gap:14px;align-items:flex-start;opacity:0;animation:pdFade .4s forwards}
+.pd-avatar{width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;flex-shrink:0;letter-spacing:0}
+.pd-avatar.ai{background:rgba(255,255,255,.1);color:rgba(255,255,255,.7)}
+.pd-bubble{flex:1;background:rgba(255,255,255,.06);padding:13px 16px;border-radius:12px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.6;color:rgba(255,255,255,.92);white-space:pre-wrap;word-break:break-word}
+.pd-bubble.user{background:rgba(178,63,30,.18);border:1px solid rgba(178,63,30,.4)}
+.pd-bubble.ai{font-family:'Manrope',sans-serif;font-size:13px;line-height:1.65}
+.pd-bubble.ai pre{font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.55;color:#E8C8B8;margin:0}
+.pd-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:600;padding:18px 0 6px;border-top:1px dashed rgba(255,255,255,.1);margin-top:6px;opacity:0;animation:pdFade .4s forwards}
+.pd-label:first-child{padding-top:0;border-top:none;margin-top:0}
+.pd-label.bad{color:#E8A87C}
+.pd-label.good{color:#A0D4A8}
+@keyframes pdFade{to{opacity:1}}
+@keyframes pdType{from{width:0}to{width:100%}}
+.prompt-demo-caption{text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--ink-3);margin-top:18px;line-height:1.5}
+.prompt-demo-caption strong{font-style:normal;color:var(--accent);font-weight:500}
+@media (max-width:600px){
+  .prompt-demo{padding:0 18px;margin:18px auto 36px}
+  .prompt-demo-stage{padding:18px 16px;min-height:auto}
+  .pd-bubble{font-size:11.5px;padding:11px 13px}
+  .pd-bubble.ai{font-size:12px}
+  .pd-bubble.ai pre{font-size:10.5px}
+}
+
+
+
+
+/* ===================== NAV DROPDOWNS ===================== */
+.nav-links{position:relative}
+.has-dropdown{position:relative;display:inline-block}
+.has-dropdown > a{position:relative}
+.has-dropdown > a::after{
+  content:'';
+  display:inline-block;
+  width:0;height:0;
+  margin-left:6px;
+  vertical-align:middle;
+  border-left:3.5px solid transparent;
+  border-right:3.5px solid transparent;
+  border-top:4px solid currentColor;
+  opacity:.55;
+  transition:transform .2s
+}
+.has-dropdown:hover > a::after{transform:rotate(180deg)}
+.dropdown-menu{
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%) translateY(8px);
+  min-width:280px;
+  background:var(--paper);
+  border:1px solid var(--rule);
+  border-radius:14px;
+  padding:10px;
+  box-shadow:0 24px 60px -20px rgba(15,13,11,.18), 0 4px 16px -4px rgba(15,13,11,.08);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index:80;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px
+}
+.dropdown-menu.single-col{grid-template-columns:1fr;min-width:240px}
+.has-dropdown:hover .dropdown-menu,
+.has-dropdown:focus-within .dropdown-menu{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(2px)
+}
+/* Bridge so cursor doesn't drop the menu when crossing gap */
+.has-dropdown::before{
+  content:'';
+  position:absolute;
+  top:100%;
+  left:0;right:0;
+  height:14px
+}
+.dropdown-menu a{
+  display:block;
+  padding:9px 14px;
+  border-radius:9px;
+  color:var(--ink-2)!important;
+  font-family:'Manrope',sans-serif;
+  font-size:13.5px;
+  font-weight:500;
+  text-decoration:none;
+  letter-spacing:0;
+  text-transform:none;
+  white-space:nowrap;
+  transition:background .12s, color .12s
+}
+.dropdown-menu a:hover{
+  background:var(--bg-2);
+  color:var(--ink)!important
+}
+.dropdown-menu a .dd-num{
+  display:inline-block;
+  width:22px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--ink-faint);
+  font-weight:600;
+  margin-right:4px
+}
+.dropdown-menu .dd-all{
+  grid-column:1 / -1;
+  margin-top:6px;
+  padding-top:10px;
+  border-top:1px solid var(--rule);
+  font-style:italic;
+  font-family:'Fraunces',serif;
+  color:var(--accent)!important;
+  font-size:13px
+}
+/* Skjul dropdowns på mobil */
+@media (max-width:600px){
+  .has-dropdown::before{display:none}
+  .dropdown-menu{display:none!important}
+  .has-dropdown > a::after{display:none}
+}
+
+</style>
+</head>
+<body>
+<div class="progress-bar"></div>
+<button class="to-top" aria-label="Til toppen">↑</button>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Praksis<em>·ai</em></a>
+    <div class="nav-links">
+      <span class="has-dropdown"><a href="index.html#omrader">Områder</a>
+<div class="dropdown-menu">
+  <a href="data.html"><span class="dd-num">01</span>Data &amp; Excel</a>
+  <a href="marketing.html"><span class="dd-num">02</span>Markedsføring</a>
+  <a href="finans.html"><span class="dd-num">03</span>Finans</a>
+  <a href="bolig.html"><span class="dd-num">04</span>Bolig</a>
+  <a href="kode.html"><span class="dd-num">05</span>Kode</a>
+  <a href="hverdag.html"><span class="dd-num">06</span>Hverdag</a>
+  <a href="karriere.html"><span class="dd-num">07</span>Karriere</a>
+  <a href="sundhed.html"><span class="dd-num">08</span>Sundhed</a>
+  <a href="laering.html"><span class="dd-num">09</span>Læring</a>
+  <a href="skriv.html"><span class="dd-num">10</span>Skriv</a>
+  <a href="ivaerksaetteri.html"><span class="dd-num">11</span>Iværksætteri</a>
+  <a href="salg.html"><span class="dd-num">12</span>Salg</a>
+  <a href="rejse.html"><span class="dd-num">13</span>Rejse</a>
+  <a href="mad.html"><span class="dd-num">14</span>Mad</a>
+  <a href="index.html#omrader" class="dd-all">Se alle 14 områder &rarr;</a>
+</div>
+</span>
+      <a href="index.html#metode">Metode</a>
+      <span class="has-dropdown"><a href="index.html#pro">Pro</a>
+<div class="dropdown-menu single-col">
+  <a href="pro-byg.html"><span class="dd-num">01</span>Byg AI-produkter</a>
+  <a href="pro-automation.html"><span class="dd-num">02</span>Automation i skala</a>
+  <a href="pro-prompt.html"><span class="dd-num">03</span>Prompt engineering</a>
+  <a href="pro-strategi.html"><span class="dd-num">04</span>AI-strategi</a>
+  <a href="pro-finans.html"><span class="dd-num">05</span>Avanceret finans</a>
+  <a href="pro-research.html"><span class="dd-num">06</span>AI-research</a>
+  <a href="index.html#pro" class="dd-all">Se alle Pro-områder &rarr;</a>
+</div>
+</span>
+      <a href="index.html#priser">Priser</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button><div class="nav-right">
+      <a href="data.html#cta" class="btn-primary">Start gratis →</a>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu">
+<a href="index.html#omrader">Områder</a>
+<a href="index.html#metode">Metode</a>
+<a href="index.html#pro">Pro</a>
+<a href="index.html#priser">Priser</a>
+<a href="data.html#cta" class="mm-cta">Start gratis →</a>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Forside</a>
+  <span class="sep">/</span>
+  <a href="data.html">Data &amp; regneark</a>
+  <span class="sep">/</span>
+  <span class="current">Undervisning</span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="area-tag">Område 01 · Undervisning</div>
+  <h1>Undervisning i <em>Excel, Sheets og AI.</em></h1>
+  <p class="hero-sub">Fem undervisninger der tager dig fra første brief til en automatiseret pipeline. Konkrete eksempler, faktiske formler, og det vi ser AI fejle med &mdash; så du undgår de samme fejl.</p>
+  <div class="hero-cta">
+    <a href="#undervisning-1" class="btn-large">Start med undervisning 1 →</a>
+    <a href="data.html#curriculum" class="btn-ghost">Tilbage til pensum</a>
+  </div>
+</section>
+
+<section class="prompt-demo" aria-label="Eksempel: dårlig vs god prompt">
+  <div class="prompt-demo-card">
+    <div class="prompt-demo-bar">
+      <div class="prompt-demo-dots"><span></span><span></span><span></span></div>
+      <div class="prompt-demo-url">chat.data.ai</div>
+    </div>
+    <div class="prompt-demo-stage">
+      <div class="pd-label bad">Vag prompt — overfladisk svar</div>
+      <div class="pd-row">
+        <div class="pd-avatar">DU</div>
+        <div class="pd-bubble user">Hvordan bruger jeg VLOOKUP?</div>
+      </div>
+      <div class="pd-row">
+        <div class="pd-avatar ai">AI</div>
+        <div class="pd-bubble ai">VLOOKUP er en Excel-funktion der slår værdier op... [generisk forklaring der ikke passer til dit problem]</div>
+      </div>
+      <div class="pd-label good">Detaljeret prompt — brugbart svar</div>
+      <div class="pd-row">
+        <div class="pd-avatar">DU</div>
+        <div class="pd-bubble user">Excel dansk. Ordre-id i A2 på ark &quot;Ordrer&quot;. Kundeliste på ark &quot;Kunder&quot; med id i A og kundetype i D. Lav formel der henter kundetype. Returnér &quot;Ukendt&quot; ved manglende match. Skal kunne kopieres ned i 8.000 rækker.</div>
+      </div>
+      <div class="pd-row">
+        <div class="pd-avatar ai">AI</div>
+        <div class="pd-bubble ai"><pre>=HVIS.FEJL(LOPSLAG(A2; Kunder!A:D; 4; FALSK); &quot;Ukendt&quot;)
+
+Bemærk: bruger LOPSLAG (dansk) og 4 som kolonneindeks for kundetype.
+FALSK sikrer eksakt match. HVIS.FEJL håndterer manglende id.</pre></div>
+      </div>
+    </div>
+  </div>
+  <div class="prompt-demo-caption">Forskellen er ikke AI'en — det er <strong>briefen</strong>.</div>
+</section>
+
+<!-- SECTION NAV -->
+<div class="section-nav">
+  <div class="section-nav-inner">
+    <a href="#undervisning-1"><span class="n">01</span> AI-opsætning</a>
+    <a href="#undervisning-2"><span class="n">02</span> Formler</a>
+    <a href="#undervisning-3"><span class="n">03</span> Pivotanalyse</a>
+    <a href="#undervisning-4"><span class="n">04</span> Modeller &amp; dashboards</a>
+    <a href="#undervisning-5"><span class="n">05</span> Automatisering</a>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- UNDERVISNING 1 -->
+<!-- ============================================================ -->
+<section class="lesson" id="undervisning-1">
+  <div class="lesson-header">
+    <div class="lesson-num">01</div>
+    <div class="lesson-label mono">/ Undervisning 1</div>
+    <h2 class="lesson-title">Fundamentet &amp; <em>AI-opsætning</em></h2>
+  </div>
+
+  <div class="lesson-body">
+    <h3>Det vigtigste valg er ikke værktøjet. Det er <em>konteksten</em>.</h3>
+    <p>AI bliver god i regneark, når den forstår tre ting: hvad data betyder, hvad du vil opnå, og hvordan svaret skal leveres. Skriver du <em>"lav en formel"</em>, får du en formel. Skriver du <em>"her er mine kolonner, her er reglen, her er hvad jeg vil opnå"</em>, får du noget du kan sætte direkte ind og være tryg ved.</p>
+    <p>Den nemmeste måde at se forskellen på, er at sammenligne to briefs på samme problem:</p>
+
+    <div class="brief-compare">
+      <div class="brief-box bad">
+        <div class="brief-label">✗ Dårlig brief</div>
+        <p>"Hvordan finder jeg dubletter i Excel?"</p>
+      </div>
+      <div class="brief-box good">
+        <div class="brief-label">✓ God brief</div>
+        <p>"Jeg har en kundeliste i Excel (dansk) med ~12.000 rækker. Kolonner: A=cvr, B=firma, C=email, D=oprettelsesdato. Find rækker, hvor cvr går igen, og behold kun den nyeste. Giv mig en formel-tilgang og en alternativ med Fjern dubletter &mdash; og fortæl hvilken jeg bør vælge for 12.000 rækker."</p>
+      </div>
+    </div>
+
+    <p>Den anden brief giver et svar du kan bruge direkte. Den første giver dig en tutorial.</p>
+
+    <h3>Rens dit data, før du involverer <em>AI</em>.</h3>
+    <p>Det her er den mest oversete del. AI er fremragende til at læse rod og foreslå løsninger, men hvis du selv ikke har overblikket, kan du ikke kontrollere svaret. Lav et 5-minutters tjek før hver opgave:</p>
+    <ul>
+      <li><strong>Én tabel pr. ark.</strong> Ingen totaler midt i data, ingen tomme rækker mellem grupper.</li>
+      <li><strong>Tydelige kolonneoverskrifter.</strong> <code>Dato_oprettet</code> er bedre end <code>Dato</code> eller <code>Kolonne1</code>.</li>
+      <li><strong>Ens datoformater.</strong> Den hyppigste fejlkilde: blanding af "01-03-2025", "1/3/25" og "1. marts" får AI til at gætte forkert.</li>
+      <li><strong>Tal som tal.</strong> "1.250 kr" er tekst &mdash; <code>1250</code> er tal. Excel skelner skarpt.</li>
+      <li><strong>Ingen flettede celler.</strong> De ødelægger alt fra sortering til pivottabeller.</li>
+    </ul>
+
+    <h3>Værktøjerne du typisk skal kende.</h3>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <h4>Copilot i Excel</h4>
+        <p>Sidder inde i Excel og kan skrive formler direkte ind, opbygge pivottabeller og foreslå diagrammer. Stærkest når data er ryddet op. Svagest til ad hoc-analyse på CSV-filer.</p>
+      </div>
+      <div class="tool-card">
+        <h4>Gemini i Google Sheets</h4>
+        <p>Tæt integreret med Sheets-formler, særligt QUERY og ARRAYFORMULA. God til Workspace-flowet, hvor data ligger i Drive og rapporter sendes via Gmail.</p>
+      </div>
+      <div class="tool-card">
+        <h4>ChatGPT med filanalyse</h4>
+        <p>Stærkest til at <em>analysere</em> data: kør statistik, lav grafer, find outliers, sammenlign perioder. Åbner CSV/XLSX direkte og viser resultater med kode du kan kopiere.</p>
+      </div>
+      <div class="tool-card">
+        <h4>Claude</h4>
+        <p>Bedst til lange, komplekse forklaringer, modelkritik og kravspecifikationer. Stærk til at gennemskue hvorfor en formel ikke virker, eller om en model har skjulte antagelser.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Tommelfingerregel</strong>
+      Brug Copilot/Gemini når du skal <em>bygge</em> noget i regnearket. Brug ChatGPT/Claude når du skal <em>forstå</em> eller <em>analysere</em> noget, før du beslutter dig.
+    </div>
+
+    <h3>Den brief der gør svaret <em>brugbart</em>.</h3>
+    <p>En god brief har fem felter. Først rollen: <em>"Du er en Excel-specialist".</em> Derefter data: kolonner, eksempelrækker og eventuelle regler. Så målet: hvad skal beregnes eller forklares. Dernæst output: formel, trin-for-trin, tabel, kontrolspørgsmål eller en færdig model. Til sidst begrænsninger: dansk Excel eller engelsk Excel, semikolon eller komma, Sheets eller Excel, og om svaret skal være sikkert nok til at sende videre.</p>
+
+    <div class="fail-box">
+      <h4>Hvor AI fejler &mdash; og hvordan du fanger det</h4>
+      <ul>
+        <li><strong>Forkert separator.</strong> AI'en giver dig komma-syntaks (<code>,</code>) i et regneark der kræver semikolon (<code>;</code>). Eller omvendt. Tjek altid.</li>
+        <li><strong>Funktionsnavne på forkert sprog.</strong> <code>VLOOKUP</code> virker ikke i dansk Excel &mdash; det skal være <code>LOPSLAG</code>. AI'en glemmer at oversætte, hvis du ikke siger det.</li>
+        <li><strong>Forkerte aggregeringer ved duplikater.</strong> AI'en summerer ofte uden at tjekke for dubletter &mdash; du får et tal, der ser rigtigt ud, men ikke er det.</li>
+        <li><strong>Datoformater fortolket forkert.</strong> "03-04-2025" kan være 3. april eller 4. marts. AI'en gætter &mdash; og gætter ofte forkert ved 1.-12. i måneden.</li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      <strong>Test-reglen</strong>
+      Hvis du ikke kan eftervise svaret på 2-3 kendte rækker, må du ikke bruge det på de andre 12.000. AI giver dig sjældent en åbenlys fejl &mdash; den giver dig et plausibelt forkert svar.
+    </div>
+
+    <h3>Prompt du kan bruge.</h3>
+    <div class="code-label-tag">Universel brief-skabelon</div>
+    <div class="code-block">Du er ekspert i Excel og Google Sheets.
+
+Jeg bruger: [Excel dansk / Excel engelsk / Google Sheets]
+Mine kolonner er: [indsæt kolonnenavne]
+Eksempelrækker:
+[indsæt 3-5 rækker]
+
+Målet er: [hvad skal beregnes eller forklares]
+
+Giv mig:
+1. Den præcise formel (med korrekt separator og sprog)
+2. En kort forklaring af logikken
+3. To testcases jeg kan eftervise manuelt
+4. De 3 mest sandsynlige måder formlen kan fejle</div>
+
+    <ul class="bullet-mono">
+      <li>Del aldrig persondata uden samtykke eller anonymisering.</li>
+      <li>Bed altid AI om at forklare sine antagelser.</li>
+      <li>Test output på 2-3 kendte rækker, før du bruger det bredt.</li>
+      <li>Hvis AI'en virker for sikker, så bed den finde fem grunde til at svaret kan være forkert.</li>
+    </ul>
+  
+<div class="lesson-nav"><span class="lesson-nav-btn prev disabled"><span class="dir">← Forrige</span><span class="ttl">Start</span></span><a href="#undervisning-2" class="lesson-nav-btn next"><span class="dir">Næste →</span><span class="ttl">Formler</span></a></div>
+</div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- ============================================================ -->
+<!-- UNDERVISNING 2 -->
+<!-- ============================================================ -->
+<section class="lesson" id="undervisning-2">
+  <div class="lesson-header">
+    <div class="lesson-num">02</div>
+    <div class="lesson-label mono">/ Undervisning 2</div>
+    <h2 class="lesson-title">Formler &amp; <em>funktioner</em></h2>
+  </div>
+
+  <div class="lesson-body">
+    <h3>Bed ikke kun om en formel. Bed om en <em>formelstrategi</em>.</h3>
+    <p>En formel er sjældent én funktion. Den rigtige løsning afhænger af datatyper, tomme felter, dubletter, datoformater og om du skal kunne trække formlen ned over mange rækker uden at den brækker. Få AI til at forklare strategien først &mdash; så ved du, om du kan stole på den.</p>
+    <p>Det er især her AI fejler subtilt: SUMIFS, COUNTIFS, XLOOKUP, INDEX/MATCH, FILTER, UNIQUE og QUERY (Sheets) ser simple ud, men har version-, sprog- og datatypefælder, der koster timer at finde.</p>
+
+    <h3>Dansk vs engelsk Excel &mdash; den vigtigste ting at vide.</h3>
+    <p>Samme opslag, samme data, helt forskellig syntaks:</p>
+
+    <div class="code-compare three">
+      <div class="code-box">
+        <div class="code-label">Engelsk Excel</div>
+        <code>=XLOOKUP(A2, Customers!A:A, Customers!D:D, "Unknown")</code>
+      </div>
+      <div class="code-box">
+        <div class="code-label">Dansk Excel</div>
+        <code>=XOPSLAG(A2;Kunder!A:A;Kunder!D:D;"Ukendt")</code>
+      </div>
+      <div class="code-box">
+        <div class="code-label">Google Sheets</div>
+        <code>=XLOOKUP(A2, Kunder!A:A, Kunder!D:D, "Ukendt")</code>
+      </div>
+    </div>
+
+    <p>Tre forskelle: funktionsnavn, separator (komma vs semikolon), og standardsproget for argumenter. Hvis du ikke fortæller AI'en hvilken version du har, gætter den &mdash; og gætter typisk på engelsk Excel med komma. Resultatet ser rigtigt ud, men virker ikke.</p>
+
+    <h3>XLOOKUP, INDEX/MATCH eller VLOOKUP &mdash; <em>hvornår hvad?</em></h3>
+    <p>Det her er det mest stillede formelspørgsmål, og det dækker 80% af regnearksarbejdet:</p>
+    <ul>
+      <li><strong>XLOOKUP / XOPSLAG.</strong> Brug den, hvis du har Excel 365 eller Excel 2021+. Den slår både til venstre og højre, har indbygget fejlhåndtering, og er hurtigere på store datasæt. Det er det rigtige valg i dag.</li>
+      <li><strong>INDEX/MATCH (INDEKS/SAMMENLIGN).</strong> Brug den, hvis du arbejder med Excel 2019 eller ældre, eller deler filen med kolleger på ældre versioner. Fleksibel og dækker det meste.</li>
+      <li><strong>VLOOKUP / LOPSLAG.</strong> Undgå den, medmindre du er nødt til det. Den slår kun til højre, har dårlig fejlhåndtering, og er langsom på store datasæt.</li>
+    </ul>
+
+    <h3>Et komplet eksempel.</h3>
+    <p>Du har en ordreliste i ark <em>"Ordrer"</em> med ordre-id i kolonne A. Kundeoplysninger ligger i ark <em>"Kunder"</em> med ordre-id i A og kundetype (Premium/Standard) i D. Du vil hente kundetypen ind i ordrelisten, returnere "Ukendt" hvis der ikke findes match, og pakke det ind så formlen ikke knækker ved tomme rækker.</p>
+
+    <div class="brief-compare">
+      <div class="brief-box good" style="grid-column:1/-1">
+        <div class="brief-label">✓ Brief til AI</div>
+        <p>"Excel dansk. Ordre-id står i A2 på ark Ordrer. Kundelisten ligger på ark Kunder med ordre-id i A og kundetype i D. Lav en formel der henter kundetype. Returnér 'Ukendt' ved manglende match. Returnér tom streng hvis A2 selv er tom. Skal kunne kopieres ned i 8.000 rækker."</p>
+      </div>
+    </div>
+
+    <p><strong>Forventet svar:</strong></p>
+    <div class="code-block">=HVIS(A2="";"";XOPSLAG(A2;Kunder!A:A;Kunder!D:D;"Ukendt"))</div>
+
+    <p><strong>Sådan tester du svaret før du stoler på det:</strong></p>
+    <ol style="margin:14px 0 22px;padding-left:0;list-style:none;counter-reset:test">
+      <li style="counter-increment:test;position:relative;padding-left:30px;margin-bottom:10px;color:var(--ink-2)"><span style="position:absolute;left:0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);font-weight:600;top:3px">01</span>Find en ordre du <em>ved</em> hører til en Premium-kunde &mdash; formlen skal returnere "Premium".</li>
+      <li style="counter-increment:test;position:relative;padding-left:30px;margin-bottom:10px;color:var(--ink-2)"><span style="position:absolute;left:0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);font-weight:600;top:3px">02</span>Find en ordre du <em>ved</em> ikke findes i kundelisten &mdash; formlen skal returnere "Ukendt".</li>
+      <li style="counter-increment:test;position:relative;padding-left:30px;margin-bottom:10px;color:var(--ink-2)"><span style="position:absolute;left:0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);font-weight:600;top:3px">03</span>Lad A2 være tom &mdash; formlen skal returnere tom celle (ikke "Ukendt" eller en fejl).</li>
+      <li style="counter-increment:test;position:relative;padding-left:30px;margin-bottom:10px;color:var(--ink-2)"><span style="position:absolute;left:0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);font-weight:600;top:3px">04</span>Tjek at formlen ikke spreder sig (spilder) på tværs af rækker du ikke har rørt.</li>
+    </ol>
+
+    <h3>LET &mdash; <em>det skjulte trick</em> til komplekse formler.</h3>
+    <p>Hvis du arbejder i Excel 365 eller Google Sheets, så lær <code>LET</code>-funktionen. Den lader dig gemme delresultater i en formel, så den bliver læselig.</p>
+
+    <div class="code-compare">
+      <div class="code-box">
+        <div class="code-label">Uden LET</div>
+        <code>=HVIS((B2-A2)/A2>0,1;"Vækst";
+  HVIS((B2-A2)/A2&lt;-0,1;"Fald";"Stabil"))</code>
+      </div>
+      <div class="code-box">
+        <div class="code-label">Med LET</div>
+        <code>=LET(vækst;(B2-A2)/A2;
+  HVIS(vækst>0,1;"Vækst";
+  HVIS(vækst&lt;-0,1;"Fald";"Stabil")))</code>
+      </div>
+    </div>
+
+    <p>Det er ikke kortere &mdash; men det er forståeligt om tre måneder, når du skal redigere formlen.</p>
+
+    <div class="fail-box">
+      <h4>Hvor AI fejler oftest i formler</h4>
+      <ul>
+        <li><strong>Glemmer fejlhåndtering.</strong> Du får <code>=XOPSLAG(A2;...)</code> uden default-værdi, og hver række uden match viser <code>#I/T</code>.</li>
+        <li><strong>Bruger absolutte referencer forkert.</strong> <code>$A$2:$D$8000</code> virker &mdash; men når du skal udvide til række 8001, glemmer du at opdatere. Brug navngivne områder eller tabeller (Indsæt → Tabel).</li>
+        <li><strong>Antager dansk talformat.</strong> "1.250,50" er dansk. "1,250.50" er engelsk. Hvis AI'en producerer formler der filtrerer på <code>&gt;1000</code>, men dit data står som "1.250" (tekst med tusindtalsseparator), får du ingen match.</li>
+        <li><strong>Lover SUMIFS-formler der ikke virker med kriterier på samme kolonne.</strong> SUMIFS kan kun OR'e ved at lægge flere SUMIFS sammen &mdash; ikke ved at putte to værdier i ét kriterie.</li>
+      </ul>
+    </div>
+
+    <h3>Formelprompt.</h3>
+    <div class="code-label-tag">Skabelon til alle formelopgaver</div>
+    <div class="code-block">Lav en formel til [Excel dansk / Excel engelsk / Google Sheets].
+
+Data:
+- Kolonne A: [navn og datatype]
+- Kolonne B: [navn og datatype]
+- Kolonne C: [navn og datatype]
+
+Eksempelrækker:
+[3-5 rækker]
+
+Jeg vil beregne: [mål med konkret eksempel]
+
+Svar med:
+- Den præcise formel med korrekt separator og funktionssprog
+- Hvor i regnearket den skal indsættes
+- To testcases jeg kan eftervise manuelt
+- Den alternative formel hvis min version ikke understøtter funktionen
+- De 3 mest typiske fejl jeg skal tjekke</div>
+
+    <ul class="bullet-mono">
+      <li>Kontrollér separatorer: komma eller semikolon.</li>
+      <li>Spørg om alternativ til ældre Excel-versioner.</li>
+      <li>Få AI til at forklare hver del af formlen &mdash; i menneskesprog.</li>
+      <li>Brug Excel-tabeller (Indsæt → Tabel) når du kan. Det gør formler robuste.</li>
+    </ul>
+  
+<div class="lesson-nav"><a href="#undervisning-1" class="lesson-nav-btn prev"><span class="dir">← Forrige</span><span class="ttl">AI-opsætning</span></a><a href="#undervisning-3" class="lesson-nav-btn next"><span class="dir">Næste →</span><span class="ttl">Pivotanalyse</span></a></div>
+</div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- ============================================================ -->
+<!-- UNDERVISNING 3 -->
+<!-- ============================================================ -->
+<section class="lesson" id="undervisning-3">
+  <div class="lesson-header">
+    <div class="lesson-num">03</div>
+    <div class="lesson-label mono">/ Undervisning 3</div>
+    <h2 class="lesson-title">Pivottabeller &amp; <em>analyse</em></h2>
+  </div>
+
+  <div class="lesson-body">
+    <h3>AI er bedst <em>før og efter</em> pivottabellen.</h3>
+    <p>Selve klikarbejdet i en pivottabel er enkelt. Det svære er at vide, hvilke spørgsmål tabellen skal besvare, og om data overhovedet er klar. Brug AI til at omdanne et forretningsspørgsmål til en pivotstruktur &mdash; og bagefter til at <em>læse</em> hvad pivoten viser.</p>
+
+    <h3>Et komplet case &mdash; <em>fra rå data til indsigt</em>.</h3>
+    <p>Du har en salgsfil med fem måneders data:</p>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>Dato</th><th>Sælger</th><th>Region</th><th>Produkt</th><th>Omsætning</th><th>Kostpris</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2025-01-04</td><td>Anna</td><td>Vest</td><td>Aurora</td><td class="num">12.500</td><td class="num">7.200</td></tr>
+        <tr><td>2025-01-04</td><td>Peter</td><td>Øst</td><td>Bolt</td><td class="num">8.300</td><td class="num">5.100</td></tr>
+        <tr><td>2025-01-05</td><td>Anna</td><td>Vest</td><td>Bolt</td><td class="num">4.200</td><td class="num">2.800</td></tr>
+        <tr><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>Forretningsspørgsmål</strong>
+      "Vores DB-margin er faldet siden marts. Skyldes det enkelte produkter, enkelte regioner eller hele biksen?"
+    </div>
+
+    <p><strong>AI-brief:</strong></p>
+    <div class="brief-compare">
+      <div class="brief-box good" style="grid-column:1/-1">
+        <div class="brief-label">✓ Brief</div>
+        <p>"Excel dansk. Datasæt: dato, sælger, region, produkt, omsætning, kostpris. ~6.000 rækker fra januar-maj 2025. Forretningsspørgsmål: DB-margin falder siden marts &mdash; hvor kommer faldet fra? Foreslå pivotstruktur. Hvilke beregnede felter har jeg brug for? Hvilke slicers gør analysen brugbar? Hvilke tre indsigter skal jeg lede efter?"</p>
+      </div>
+    </div>
+
+    <p><strong>Forventet pivotstruktur:</strong></p>
+    <ul>
+      <li><strong>Rækker:</strong> Produkt</li>
+      <li><strong>Kolonner:</strong> Måned (af dato)</li>
+      <li><strong>Værdier:</strong> DB-margin (beregnet felt)</li>
+      <li><strong>Filtre:</strong> Region</li>
+      <li><strong>Slicers:</strong> Sælger, Region</li>
+    </ul>
+
+    <p><strong>Beregnede felter:</strong></p>
+    <div class="code-block">DB-kroner   = Omsætning - Kostpris
+DB-margin   = (Omsætning - Kostpris) / Omsætning</div>
+
+    <p><strong>De tre indsigter at lede efter:</strong></p>
+    <ul>
+      <li><strong>Produktmix-skift.</strong> Sælges der mere af lavmargin-produkter nu end før?</li>
+      <li><strong>Prisfald på enkelte produkter.</strong> Er omsætning pr. enhed faldet, selvom mængden er stabil?</li>
+      <li><strong>Stigende kostpriser.</strong> Er kostpris pr. enhed steget, selvom prisen ikke er?</li>
+    </ul>
+
+    <p>Det er den her form for <em>"fra spørgsmål til konkret analyseplan"</em> AI gør hurtigt &mdash; og som tager 30 minutter selv.</p>
+
+    <h3>Det rette værdifelt &mdash; <em>den oversete fælde</em>.</h3>
+    <p>Når du trækker et felt ind i værdier, vælger Excel ofte SUM automatisk. Det er forkert i de fleste analyser. Højreklik på værdifeltet og vælg <em>"Værdifeltsindstillinger"</em>:</p>
+    <ul>
+      <li><strong>SUM.</strong> Brug ved kroner, mængder, antal styk.</li>
+      <li><strong>GENNEMSNIT.</strong> Brug ved priser, marginer, scores.</li>
+      <li><strong>ANTAL.</strong> Brug ved antal transaktioner, antal kunder.</li>
+      <li><strong>% AF KOLONNESUM.</strong> Brug når du vil se andele inden for hver kolonne (fx <em>"hvor stor andel af Q1's omsætning kommer fra Vest?"</em>).</li>
+      <li><strong>% AF RÆKKESUM.</strong> Når du vil se udviklingen over tid for hver række.</li>
+      <li><strong>DIFFERENCE FRA.</strong> Brug til at vise ændring over for forrige periode.</li>
+    </ul>
+
+    <div class="callout">
+      Den ene indstilling er ofte forskellen på en pivot der svarer på spørgsmålet, og en der bare viser tal.
+    </div>
+
+    <h3>Pivot eller PowerQuery &mdash; <em>hvornår hvad?</em></h3>
+    <p>Pivottabeller er hurtige at bygge, men begrænsede. PowerQuery (Excel) eller Connected Sheets (Google) er stærkere, men sværere at lære:</p>
+    <ul>
+      <li><strong>Brug pivottabel</strong> når data ligger i én tabel, og du skal lave en hurtig analyse.</li>
+      <li><strong>Brug PowerQuery</strong> når du skal samle data fra flere kilder, lave gentagne rensninger, eller transformere data før analyse (fx slå navne sammen, beregne aldersgrupper, fjerne dubletter med regler).</li>
+      <li><strong>Brug pivot på PowerQuery</strong> når du gør det samme arbejde hver måned &mdash; bygget én gang, opdateres med ét klik.</li>
+    </ul>
+
+    <div class="fail-box">
+      <h4>Hvor AI fejler i pivot-arbejde</h4>
+      <ul>
+        <li><strong>Foreslår beregnede felter der ikke virker.</strong> Beregnede felter i pivottabeller fungerer på <em>summerede</em> data, ikke pr. række. <code>(Omsætning - Kostpris) / Omsætning</code> virker, men <code>=HVIS(Region="Vest";1;0)</code> gør ikke.</li>
+        <li><strong>Glemmer datokolonner skal grupperes.</strong> Hvis du trækker dato ind i rækker, får du én række pr. dag. Højreklik → Gruppér → vælg Måned/Kvartal/År.</li>
+        <li><strong>Foreslår slicers på felter med 500+ unikke værdier.</strong> Slicers er gode med 5-20 værdier. Til lange lister: brug filter eller søgning.</li>
+      </ul>
+    </div>
+
+    <h3>Pivotprompt.</h3>
+    <div class="code-label-tag">Skabelon til analyseopgaver</div>
+    <div class="code-block">Jeg har et datasæt med disse kolonner:
+[indsæt kolonner + datatyper]
+~[antal] rækker fra [periode]
+
+Forretningsspørgsmålet er:
+[så konkret som muligt — ikke "analyse" men "hvorfor falder X"]
+
+Foreslå:
+1. Pivotlayout: rækker, kolonner, værdier, filtre
+2. Eventuelle beregnede felter (med formel)
+3. Korrekt værdifeltsindstilling (sum, gennemsnit, %)
+4. Hvilke slicers der gør analysen brugbar
+5. Tre konkrete indsigter jeg skal lede efter
+6. To opfølgningsspørgsmål, hvis indsigterne er svære at se</div>
+
+    <ul class="bullet-mono">
+      <li>Brug rene datatabeller uden tomme overskrifter.</li>
+      <li>Lav datoer om til rigtige datoformater før pivot (ikke tekst).</li>
+      <li>Brug slicers til gentagne analyser &mdash; én slicer kan styre flere pivottabeller.</li>
+      <li>Når en indsigt er overraskende: dobbelttjek ved at sortere rådata efter samme kriterium.</li>
+    </ul>
+  
+<div class="lesson-nav"><a href="#undervisning-2" class="lesson-nav-btn prev"><span class="dir">← Forrige</span><span class="ttl">Formler</span></a><a href="#undervisning-4" class="lesson-nav-btn next"><span class="dir">Næste →</span><span class="ttl">Modeller &amp; dashboards</span></a></div>
+</div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- ============================================================ -->
+<!-- UNDERVISNING 4 -->
+<!-- ============================================================ -->
+<section class="lesson" id="undervisning-4">
+  <div class="lesson-header">
+    <div class="lesson-num">04</div>
+    <div class="lesson-label mono">/ Undervisning 4</div>
+    <h2 class="lesson-title">Modeller &amp; <em>dashboards</em></h2>
+  </div>
+
+  <div class="lesson-body">
+    <h3>Del modellen i <em>input, beregning og output</em>.</h3>
+    <p>De fleste regnearksmodeller bliver svære, fordi alt ligger blandet sammen. Brug AI til at designe strukturen <em>før</em> du laver formlerne. Tre ark, klart adskilt:</p>
+    <ul>
+      <li><strong>Input.</strong> De tal du ændrer. Antagelser, drivers, parametre. Markér felterne tydeligt (gul baggrund er konvention).</li>
+      <li><strong>Beregning.</strong> Logikken. Her ligger formlerne &mdash; og kun formler. Inputfelter bør være referencer hertil, aldrig hardcodede tal.</li>
+      <li><strong>Output.</strong> Dashboard, KPI'er, scenarier. Det andre ser.</li>
+    </ul>
+
+    <div class="callout">
+      Reglen er enkel: hvis du kan se et tal du har skrevet ind manuelt på <em>beregnings-</em> eller <em>output-</em>arket, har du brudt strukturen. Det er den hyppigste fejl i modeller &mdash; og den dyreste, fordi den dukker op om to måneder, når en kollega spørger "hvor kommer det her tal fra?".
+    </div>
+
+    <h3>En simpel scenariomodel &mdash; <em>sådan ser den ud</em>.</h3>
+    <p>Du laver en omsætningsmodel for tre scenarier. På <strong>inputarket</strong>:</p>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>Antagelse</th><th>Base</th><th>Optimistisk</th><th>Forsigtig</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Nye kunder/måned</td><td class="num">25</td><td class="num">40</td><td class="num">12</td></tr>
+        <tr><td>Pris pr. kunde</td><td class="num">1.990</td><td class="num">1.990</td><td class="num">1.790</td></tr>
+        <tr><td>Churn pr. måned</td><td class="num">4%</td><td class="num">3%</td><td class="num">6%</td></tr>
+        <tr><td>Måneder</td><td class="num">12</td><td class="num">12</td><td class="num">12</td></tr>
+      </tbody>
+    </table>
+
+    <p>På <strong>beregningsarket</strong> bruger du en switch-celle (fx E1) der vælger hvilket scenarie (1=Base, 2=Opt, 3=Forsigt), og en <code>VÆLG</code>-formel der trækker det rigtige input:</p>
+
+    <div class="code-block">=VÆLG($E$1;Input!B3;Input!C3;Input!D3)</div>
+
+    <p>På <strong>outputarket</strong>: et lille dashboard, der viser ARR efter 12 mdr, kumulativt cashflow, og en visuel sammenligning af de tre scenarier.</p>
+    <p>Det her er en god model, fordi du kan skifte mellem scenarier ved at ændre én celle, og fordi alle antagelser er synlige på inputarket &mdash; ikke skjult i 200 formler.</p>
+
+    <h3>Dashboardet skal svare på <em>fire spørgsmål</em>.</h3>
+    <p>Et godt dashboard er bygget om fire spørgsmål, ikke 17 grafer:</p>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <h4>01 &mdash; Hvad er status?</h4>
+        <p>Top-KPI'er øverst. Omsætning, margin, cash, pipeline.</p>
+      </div>
+      <div class="tool-card">
+        <h4>02 &mdash; Hvad har ændret sig?</h4>
+        <p>Afvigelse mod budget eller forrige periode.</p>
+      </div>
+      <div class="tool-card">
+        <h4>03 &mdash; Hvor skal vi kigge?</h4>
+        <p>Top 5 og bund 5: kunder, produkter, regioner.</p>
+      </div>
+      <div class="tool-card">
+        <h4>04 &mdash; Hvad gør vi nu?</h4>
+        <p>Kort tekstblok med anbefalet handling. Skrevet af mennesker &mdash; eller af AI ud fra tallene.</p>
+      </div>
+    </div>
+
+    <h3>Hvad gør en god <em>KPI?</em></h3>
+    <p>Mange dashboards drukner i tal, fordi alle KPI'er behandles ens. En god KPI har fire egenskaber:</p>
+    <ul>
+      <li><strong>Den er actionable.</strong> Hvis tallet ændrer sig, ved nogen hvad de skal gøre.</li>
+      <li><strong>Den har en sammenligning.</strong> Tal alene er meningsløse &mdash; sammenlign med budget, sidste periode, eller mål.</li>
+      <li><strong>Den har en grænseværdi.</strong> Gul over X, rød over Y. Ellers ser alt "okay" ud, indtil det ikke er.</li>
+      <li><strong>Den har en ejer.</strong> En navngiven person der reagerer, når tallet bevæger sig.</li>
+    </ul>
+
+    <div class="brief-compare">
+      <div class="brief-box bad">
+        <div class="brief-label">✗ Tal</div>
+        <p>"Omsætning denne måned: 1.420.000 kr"</p>
+      </div>
+      <div class="brief-box good">
+        <div class="brief-label">✓ KPI</div>
+        <p>"Omsætning denne måned: 1.420.000 (mål 1.500.000, &minus;5,3%, ansvarlig: Peter)"</p>
+      </div>
+    </div>
+
+    <h3>AI som <em>modelkritiker</em>.</h3>
+    <p>Når du har første version, så bed AI om at finde svagheder. Det er den her opgave AI er mest værdifuld til &mdash; fordi du selv er blind for fejlene, du lige har skrevet:</p>
+
+    <div class="code-label-tag">Prompt til modelkritik</div>
+    <div class="code-block">Du er en erfaren finanscontroller. Jeg har bygget en
+regnearksmodel [indsæt eller beskriv].
+
+Find:
+1. Hardcodede værdier der bør være input
+2. Skjulte antagelser inde i formler
+3. Formler der knækker, hvis nogen indsætter en række
+4. KPI'er uden tydelig betydning eller mål
+5. Grafer der ikke besvarer et konkret spørgsmål
+6. Steder hvor cirkulære referencer kan opstå
+7. Felter der bør være låst, så folk ikke kan overskrive dem
+
+For hver svaghed: forklar risikoen og foreslå en konkret rettelse.</div>
+
+    <h3>Sanity checks &mdash; <em>det alle modeller bør have</em>.</h3>
+    <p>Indbyg minimum tre kontroller på output-arket:</p>
+    <ul>
+      <li><strong>Balance-check.</strong> Sum af input = sum af output. Hvis du har en P&L, skal nettoresultat matche cashflow-modellen.</li>
+      <li><strong>Rimelighedstjek.</strong> Hvis du modellerer 40% vækst, bør der være en celle der siger <em>"advarsel: vækst overstiger historisk maksimum"</em>.</li>
+      <li><strong>Dato-check.</strong> Modellen bør vise dato for seneste opdatering &mdash; automatisk via <code>=I DAG()</code> på input-arket.</li>
+    </ul>
+    <p>Hvis nogen åbner modellen, og en af kontrollerne lyser rødt, ved de at noget skal undersøges, før de bruger tallene.</p>
+
+    <h3>Modelprompt.</h3>
+    <div class="code-label-tag">Skabelon til model-design</div>
+    <div class="code-block">Du er min sparringspartner til en regnearksmodel.
+
+Formål:
+[hvad modellen skal bruges til — beslutninger der skal tages]
+
+Modtagere:
+[hvem læser den — direktion, kollega, dig selv om 3 mdr]
+
+Input jeg kan ændre:
+[liste med antagelser]
+
+Output jeg har brug for:
+[dashboard, KPI'er, scenarier — konkret]
+
+Foreslå:
+1. Arkstruktur (input/beregning/output)
+2. Vigtige formler med korrekt syntaks
+3. Dashboardlayout der besvarer 4 spørgsmål
+4. Antagelser der skal være synlige
+5. Sanity checks der afslører fejl
+6. Hvad jeg skal låse, så modtagere ikke ødelægger modellen</div>
+
+    <ul class="bullet-mono">
+      <li>Hold inputfelter samlet og farvet tydeligt.</li>
+      <li>Undgå hardcodede tal inde i beregninger.</li>
+      <li>Vis altid dato for seneste opdatering.</li>
+      <li>Lås beregningsark (Gennemse → Beskyt ark), så andre kun kan ændre input.</li>
+    </ul>
+  
+<div class="lesson-nav"><a href="#undervisning-3" class="lesson-nav-btn prev"><span class="dir">← Forrige</span><span class="ttl">Pivotanalyse</span></a><a href="#undervisning-5" class="lesson-nav-btn next"><span class="dir">Næste →</span><span class="ttl">Automatisering</span></a></div>
+</div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- ============================================================ -->
+<!-- UNDERVISNING 5 -->
+<!-- ============================================================ -->
+<section class="lesson" id="undervisning-5">
+  <div class="lesson-header">
+    <div class="lesson-num">05</div>
+    <div class="lesson-label mono">/ Undervisning 5</div>
+    <h2 class="lesson-title">Automatisering &amp; <em>scripts</em></h2>
+  </div>
+
+  <div class="lesson-body">
+    <h3>Automatisér <em>det kedelige, stabile arbejde</em> først.</h3>
+    <p>Den bedste første automatisering er ikke avanceret. Det er en opgave, du gentager ofte, hvor reglerne er tydelige: importér CSV, ryd kolonner, formatér datoer, opdatér pivot, send mail med status.</p>
+    <p>AI kan skrive første version af en makro eller et Apps Script &mdash; men du skal give den en opskrift og bede om sikkerhedstjek: hvad ændrer scriptet, hvad sletter det, og hvordan kan du teste det uden at ødelægge noget?</p>
+
+    <h3>Vælg det rigtige <em>niveau</em>.</h3>
+    <ul>
+      <li><strong>Indbyggede funktioner først.</strong> Excel-tabeller, navngivne områder, dynamiske formler (FILTER, UNIQUE, LET) løser 60% af det folk skriver makroer til. Spørg AI om der findes en formel-løsning, før du springer til kode.</li>
+      <li><strong>PowerQuery / Connected Sheets.</strong> Til datatransformation: rens kolonner, slå data sammen, fjern dubletter med regler. Bygges visuelt &mdash; ingen kode.</li>
+      <li><strong>No-code automatiseringer (Make, Zapier, Power Automate, n8n).</strong> Når Excel skal tale med andre systemer: mail, kalendere, Slack, databaser. Hurtigere end at skrive kode &mdash; og lettere at vedligeholde.</li>
+      <li><strong>Office Scripts / Apps Script.</strong> Når du virkelig har brug for kode: gentagne, komplekse operationer der ikke kan bygges visuelt.</li>
+      <li><strong>VBA-makroer.</strong> Sidste valg. Stadig nyttigt til legacy Excel, men har ingen fremtid på Mac eller i sky-versionen.</li>
+    </ul>
+
+    <h3>Et konkret <em>Apps Script-eksempel</em>.</h3>
+    <p>Lad mig vise et komplet, kommenteret script. Det her flytter "afsluttede" opgaver fra en aktiv liste til et arkiv-ark &mdash; typisk en daglig oprydning der tager 5 minutter manuelt:</p>
+
+    <div class="code-label-tag">Google Apps Script · arkiverAfsluttede.gs</div>
+    <div class="code-block">function arkiverAfsluttede() {
+  // SIKKERHED: kør altid på en kopi første gang
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const aktivt = ss.getSheetByName('Opgaver');
+  const arkiv  = ss.getSheetByName('Arkiv');
+
+  // Hent al data fra aktivt-arket (inklusive overskrifter)
+  const data = aktivt.getDataRange().getValues();
+  const overskrifter = data[0];
+
+  // Find indeks for status-kolonnen
+  const statusIdx = overskrifter.indexOf('Status');
+  if (statusIdx === -1) {
+    throw new Error('Kolonnen "Status" mangler — afbryder');
+  }
+
+  // Find rækker der skal arkiveres (status = "Afsluttet")
+  // Vi går baglæns, så sletning ikke forskyder indekser
+  let antalArkiveret = 0;
+  for (let i = data.length - 1; i &gt;= 1; i--) {
+    if (data[i][statusIdx] === 'Afsluttet') {
+      arkiv.appendRow(data[i]);    // tilføj til arkiv
+      aktivt.deleteRow(i + 1);     // slet fra aktivt (1-indekseret)
+      antalArkiveret++;
+    }
+  }
+
+  // LOG: så du kan se hvad der skete
+  Logger.log(`Arkiveret ${antalArkiveret} rækker den ${new Date()}`);
+
+  // Vis besked i regnearket
+  SpreadsheetApp.getUi().alert(
+    `Arkivering færdig: ${antalArkiveret} opgaver flyttet til arkiv.`
+  );
+}</div>
+
+    <p><strong>Tre ting der gør scriptet sikkert:</strong></p>
+    <ul>
+      <li><strong>Det validerer kolonner.</strong> Hvis "Status"-kolonnen omdøbes, stopper scriptet i stedet for at flytte tilfældige rækker.</li>
+      <li><strong>Det logger.</strong> Hver kørsel skriver til Apps Script-konsollen, så du kan se hvad der skete.</li>
+      <li><strong>Det giver feedback.</strong> Brugeren ser en besked om hvor mange rækker der blev flyttet.</li>
+    </ul>
+
+    <h3>"Dry run"-mønstret &mdash; <em>det vigtigste trick</em>.</h3>
+    <p>Det her er det vigtigste mønster i automatisering. Lad altid AI skrive en variant der <em>fortæller hvad den ville gøre</em> uden faktisk at ændre noget:</p>
+
+    <div class="code-block">function arkiverAfsluttede(dryRun = true) {
+  // ... samme logik som før ...
+
+  for (let i = data.length - 1; i &gt;= 1; i--) {
+    if (data[i][statusIdx] === 'Afsluttet') {
+      if (dryRun) {
+        Logger.log(`[DRY RUN] Ville arkivere række ${i+1}: ${data[i]}`);
+      } else {
+        arkiv.appendRow(data[i]);
+        aktivt.deleteRow(i + 1);
+        antalArkiveret++;
+      }
+    }
+  }
+}</div>
+
+    <p>Første kørsel: <code>arkiverAfsluttede(true)</code> &mdash; du ser i loggen præcis hvad der ville ske, men intet ændres. Når du er tryg: <code>arkiverAfsluttede(false)</code>.</p>
+
+    <h3>Sikkerheds-checklist &mdash; <em>før du kører noget script</em>.</h3>
+    <ul class="checklist">
+      <li>Har jeg en backup af filen? (Gem som-kopi inden)</li>
+      <li>Har jeg læst hver linje og forstået hvad den gør?</li>
+      <li>Har scriptet en <code>dry run</code>-mode? Har jeg kørt den først?</li>
+      <li>Logger scriptet sine handlinger?</li>
+      <li>Validerer scriptet sine input (kolonnenavne, datatyper)?</li>
+      <li>Hvad sker der, hvis input er tomt eller forkert format?</li>
+      <li>Har jeg testet på 10 rækker før jeg kører på 10.000?</li>
+      <li>Hvis det går galt, kan jeg rulle tilbage?</li>
+    </ul>
+
+    <div class="fail-box">
+      <h4>Hvor AI fejler i kode</h4>
+      <ul>
+        <li><strong>Skriver kode der virker &mdash; men er sårbar.</strong> Den antager dine kolonnenavne aldrig ændrer sig. Den antager der ikke er tomme rækker. Den antager datoer er datoer, ikke tekst.</li>
+        <li><strong>Glemmer hjørnesager.</strong> Hvad sker der med tom liste? Hvad sker der ved første kørsel hvor "Arkiv"-arket ikke findes endnu?</li>
+        <li><strong>Bruger forældede APIer.</strong> Apps Script-eksempler fra AI bruger nogle gange syntaks der er udfaset.</li>
+        <li><strong>Optimerer for tidligt.</strong> Skriver en kompleks løkke hvor en simpel filter-formel havde været bedre.</li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      Bed altid AI om at <em>forklare</em> hver del af koden, før du kører den. Hvis du ikke kan følge logikken, kan du ikke fejlsøge når noget går galt &mdash; og noget går galt.
+    </div>
+
+    <h3>Automationsprompt.</h3>
+    <div class="code-label-tag">Skabelon til scripts og makroer</div>
+    <div class="code-block">Skriv et [Excel VBA / Office Script / Google Apps Script / no-code i Make].
+
+Den gentagne opgave:
+[beskriv processen trin-for-trin som du selv ville gøre den manuelt]
+
+Krav:
+- Må ikke slette data uden eksplicit bekræftelse
+- Skal have en dry-run-mode der logger uden at ændre
+- Skal validere at nødvendige kolonner findes
+- Skal logge hvad der ændres
+- Skal håndtere tomme felter og forkerte datatyper
+
+Giv mig:
+1. Det fulde script med kommentarer på hver vigtig linje
+2. Installationsvejledning (hvor og hvordan jeg sætter det op)
+3. En testplan: 3 scenarier jeg bør teste før jeg stoler på det
+4. Hvad jeg skal ændre, hvis kolonnenavne eller arknavne ændrer sig
+5. De 3 mest sandsynlige måder scriptet kan fejle — og hvordan jeg fanger det</div>
+
+    <ul class="bullet-mono">
+      <li>Kør aldrig nyt script på originalfilen. Lav en kopi.</li>
+      <li>Gem før/efter-eksempel til kontrol.</li>
+      <li>Få AI til at kommentere alle risikolinjer i koden.</li>
+      <li>Test på 10 rækker. Så 100. Så de rigtige 10.000.</li>
+    </ul>
+  
+<div class="lesson-nav"><a href="#undervisning-4" class="lesson-nav-btn prev"><span class="dir">← Forrige</span><span class="ttl">Modeller &amp; dashboards</span></a><span class="lesson-nav-btn next disabled"><span class="dir">Næste →</span><span class="ttl">Færdig</span></span></div>
+</div>
+</section>
+
+<!-- OUTRO -->
+<section class="outro">
+  <h2>Klar til at bruge pensum <em>i praksis?</em></h2>
+  <p>Gå tilbage til Data &amp; regneark, eller hop direkte til den undervisning du vil bygge videre på.</p>
+  <div class="outro-cta">
+    <a href="data.html#curriculum" class="btn-large">Tilbage til moduloversigten</a>
+    <a href="data.html#cta" class="btn-ghost">Se priser →</a>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Praksis ApS · Bygget i København</div>
+  <div><a href="index.html">Forside</a> · <a href="data.html">Data &amp; regneark</a></div>
+</footer>
+
+
+<script>
+(function(){
+  var bar=document.querySelector('.progress-bar');
+  var toTop=document.querySelector('.to-top');
+  var navLinks=Array.prototype.slice.call(document.querySelectorAll('.section-nav a'));
+  var sections=navLinks.map(function(a){var id=a.getAttribute('href').slice(1);return document.getElementById(id);});
+  function onScroll(){
+    var h=document.documentElement;
+    var scrolled=h.scrollTop;
+    var height=h.scrollHeight-h.clientHeight;
+    var pct=height>0?(scrolled/height*100):0;
+    if(bar)bar.style.width=pct+'%';
+    if(toTop){if(scrolled>600)toTop.classList.add('show');else toTop.classList.remove('show');}
+    // active section
+    var idx=-1;
+    for(var i=0;i<sections.length;i++){
+      if(sections[i]&&sections[i].getBoundingClientRect().top<=160)idx=i;
+    }
+    navLinks.forEach(function(a,i){if(i===idx)a.classList.add('active');else a.classList.remove('active');});
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+  if(toTop)toTop.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+
+
+<script>
+(function(){
+  var toggle=document.querySelector('.nav-toggle');
+  var menu=document.querySelector('.mobile-menu');
+  if(!toggle||!menu)return;
+  function close(){toggle.setAttribute('aria-expanded','false');menu.classList.remove('open');document.body.classList.remove('menu-open');}
+  toggle.addEventListener('click',function(){
+    var open=toggle.getAttribute('aria-expanded')==='true';
+    if(open){close();}
+    else{toggle.setAttribute('aria-expanded','true');menu.classList.add('open');document.body.classList.add('menu-open');}
+  });
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
+})();
+</script>
+
+
+
+
+
+
+
+
+<script>
+(function(){
+  var demo = document.querySelector('.prompt-demo');
+  if(!demo) return;
+  var rows = demo.querySelectorAll('.pd-row, .pd-label');
+  rows.forEach(function(r){r.style.animationPlayState='paused';});
+  function trigger(){
+    rows.forEach(function(r, i){
+      r.style.animationDelay = (i*0.5) + 's';
+      r.style.animationPlayState = 'running';
+    });
+  }
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){trigger(); io.disconnect();}
+      });
+    }, {threshold: 0.2});
+    io.observe(demo);
+  } else { trigger(); }
+})();
+</script>
+
+
+
+</body>
+</html>

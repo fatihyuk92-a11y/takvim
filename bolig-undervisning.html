@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Undervisning i Bolig &amp; ejendom — Praksis</title>
+<meta name="description" content="AI til bolig og ejendom: vurdering, investering, markedsanalyse, salg og finansiering. Konkrete metoder fra mæglerverdenen." />
+<meta name="theme-color" content="#F8F4EA" />
+<link rel="canonical" href="https://praksis-ai.vercel.app/bolig-undervisning" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Undervisning i Bolig &amp; ejendom — Praksis" />
+<meta property="og:description" content="AI til bolig og ejendom: vurdering, investering, markedsanalyse, salg og finansiering. Konkrete metoder fra mæglerverdenen." />
+<meta property="og:locale" content="da_DK" />
+<meta property="og:site_name" content="Praksis·ai" />
+<meta property="og:url" content="https://praksis-ai.vercel.app/bolig-undervisning" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Undervisning i Bolig &amp; ejendom — Praksis" />
+<meta name="twitter:description" content="AI til bolig og ejendom: vurdering, investering, markedsanalyse, salg og finansiering. Konkrete metoder fra mæglerverdenen." />
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;✦&lt;/text&gt;&lt;/svg&gt;" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,200..700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F8F4EA;--bg-2:#F2EDE0;--paper:#FFFFFF;--ink:#0F0D0B;--ink-2:#2A2520;
+  --ink-3:#4A4239;--ink-dim:#6B6258;--ink-faint:#A8A095;--rule:#E5DDC9;--rule-soft:#EFE9D8;
+  --accent:#B23F1E;--accent-soft:#F2E1D9;--area-color:#E0D5C5;--area-deep:#5C4828;
+  --good:#2A6B3D;--good-soft:#E1EFE5;--warn:#A6630B;--warn-soft:#F5E8CC;--bad:#9B2C20;--bad-soft:#F2DDDB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Manrope',system-ui,sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.mono{font-family:'JetBrains Mono',monospace;font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:11px}
+a{color:var(--accent)}
+.nav{background:rgba(248,244,234,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:50}
+.nav-inner{max-width:1400px;margin:0 auto;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;gap:40px}
+.brand{font-family:'Fraunces',serif;font-size:22px;color:var(--ink);text-decoration:none}
+.brand em{font-style:italic;font-weight:300;color:var(--accent)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{color:var(--ink-2);text-decoration:none;font-size:13px;font-weight:600}
+.nav-links a:hover{color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.btn-primary{background:var(--ink);color:var(--bg);padding:12px 22px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none}
+.btn-primary:hover{background:var(--accent)}
+.breadcrumb{max-width:1400px;margin:0 auto;padding:24px 40px 0;display:flex;align-items:center;gap:10px;color:var(--ink-dim);font-size:13px}
+.breadcrumb a{color:var(--ink-2);text-decoration:none;font-weight:500}
+.breadcrumb a:hover{color:var(--accent)}
+.breadcrumb .sep{color:var(--ink-faint)}
+.breadcrumb .current{color:var(--ink);font-weight:600}
+.hero{max-width:1400px;margin:0 auto;padding:50px 40px 60px}
+.area-tag{display:inline-block;background:var(--area-color);color:var(--area-deep);padding:6px 14px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:24px}
+.hero h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(44px,5.5vw,76px);line-height:.95;letter-spacing:-.035em;margin-bottom:24px;max-width:900px}
+.hero h1 em{font-style:italic;color:var(--accent);font-weight:300}
+.hero-sub{font-family:'Fraunces',serif;font-size:19px;line-height:1.55;color:var(--ink-2);margin-bottom:32px;max-width:680px}
+.hero-cta{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.btn-large{background:var(--ink);color:var(--bg);padding:16px 28px;font-size:14px;border-radius:100px;font-weight:600;text-decoration:none}
+.btn-large:hover{background:var(--accent)}
+.btn-ghost{color:var(--ink-2);text-decoration:none;font-size:14px;font-weight:600}
+.btn-ghost:hover{color:var(--accent)}
+.section-nav{background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);position:sticky;top:73px;z-index:40}
+.section-nav-inner{max-width:1400px;margin:0 auto;padding:18px 40px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.section-nav-inner::-webkit-scrollbar{display:none}
+.section-nav a{flex-shrink:0;display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:100px;background:transparent;color:var(--ink-2);text-decoration:none;font-size:13px;font-weight:600;border:1px solid transparent;transition:.2s}
+.section-nav a:hover{background:var(--paper);border-color:var(--rule)}
+.section-nav a .n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-faint);font-weight:600}
+.lesson{max-width:1400px;margin:0 auto;padding:90px 40px 40px;display:grid;grid-template-columns:1fr 2fr;gap:60px}
+.lesson-header{position:sticky;top:160px;align-self:start}
+.lesson-num{font-family:'Fraunces',serif;font-style:italic;font-weight:200;font-size:clamp(72px,9vw,140px);line-height:.85;color:var(--accent);margin-bottom:8px}
+.lesson-label{color:var(--ink-3);margin-bottom:14px}
+.lesson-title{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(34px,3.6vw,48px);line-height:1;letter-spacing:-.025em}
+.lesson-title em{font-style:italic;color:var(--accent);font-weight:300}
+.lesson-body{max-width:720px}
+.lesson-body h3{font-family:'Fraunces',serif;font-weight:400;font-size:28px;line-height:1.15;letter-spacing:-.015em;margin:42px 0 16px}
+.lesson-body h3:first-child{margin-top:0}
+.lesson-body h3 em{font-style:italic;color:var(--accent);font-weight:300}
+.lesson-body h4{font-family:'Fraunces',serif;font-weight:500;font-size:18px;line-height:1.3;margin:28px 0 10px;color:var(--ink)}
+.lesson-body p{margin-bottom:16px;color:var(--ink-2);font-size:15.5px;line-height:1.7}
+.lesson-body p strong{color:var(--ink);font-weight:600}
+.lesson-body ul:not(.checklist):not(.bullet-mono){margin:14px 0 22px;padding-left:0;list-style:none}
+.lesson-body ul:not(.checklist):not(.bullet-mono) li{position:relative;padding-left:24px;margin-bottom:10px;color:var(--ink-2);line-height:1.65}
+.lesson-body ul:not(.checklist):not(.bullet-mono) li::before{content:'';position:absolute;left:0;top:11px;width:14px;height:1px;background:var(--accent)}
+.lesson-body strong em{font-style:italic;color:var(--accent)}
+.callout{background:var(--bg-2);border-left:3px solid var(--accent);padding:18px 24px;margin:24px 0;font-family:'Fraunces',serif;font-style:italic;font-size:17px;line-height:1.5;color:var(--ink-2);border-radius:0 8px 8px 0}
+.callout strong{font-style:normal;font-family:'Manrope',sans-serif;color:var(--ink);display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;font-weight:600}
+.brief-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+.brief-box{padding:20px 22px;border-radius:12px;border:1px solid var(--rule);background:var(--paper)}
+.brief-box.bad{background:var(--bad-soft);border-color:rgba(155,44,32,.25)}
+.brief-box.good{background:var(--good-soft);border-color:rgba(42,107,61,.25)}
+.brief-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.brief-box.bad .brief-label{color:var(--bad)}
+.brief-box.good .brief-label{color:var(--good)}
+.brief-box p{font-family:'Fraunces',serif;font-style:italic;font-size:15px;line-height:1.5;color:var(--ink-2);margin:0}
+.code-compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}
+.code-compare.three{grid-template-columns:1fr 1fr 1fr}
+.code-box{background:var(--ink);border-radius:12px;padding:16px 18px;overflow:hidden}
+.code-box .code-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--area-color);margin-bottom:10px;font-weight:600}
+.code-box code{font-family:'JetBrains Mono',monospace;font-size:12px;color:#F8F4EA;font-weight:500;display:block;white-space:pre-wrap;word-break:break-all;line-height:1.5}
+.code-block{background:var(--ink);color:var(--bg);border-radius:14px;padding:24px 28px;margin:24px 0;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;overflow-x:auto;font-weight:400}
+.code-label-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:8px}
+.tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:24px 0}
+.tool-card{background:var(--paper);border:1px solid var(--rule);border-radius:14px;padding:20px 22px}
+.tool-card h4{font-family:'Fraunces',serif;font-weight:500;font-size:17px;margin:0 0 8px;color:var(--ink)}
+.tool-card p{font-size:13.5px;color:var(--ink-3);margin:0;line-height:1.6}
+.data-table{width:100%;border-collapse:collapse;margin:18px 0 22px;background:var(--paper);border-radius:12px;overflow:hidden;font-size:13px;border:1px solid var(--rule)}
+.data-table th{background:var(--bg-2);text-align:left;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600;border-bottom:1px solid var(--rule)}
+.data-table td{padding:11px 14px;border-bottom:1px solid var(--rule-soft);color:var(--ink-2)}
+.data-table tr:last-child td{border-bottom:none}
+.data-table td.num{font-family:'JetBrains Mono',monospace;font-weight:500;color:var(--ink)}
+.fail-box{background:#FBF4E8;border:1px solid rgba(166,99,11,.25);border-left:3px solid var(--warn);border-radius:0 12px 12px 0;padding:20px 24px;margin:24px 0}
+.fail-box h4{font-family:'Manrope',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--warn);margin:0 0 12px}
+.fail-box ul{margin:0;padding:0;list-style:none}
+.fail-box ul li{position:relative;padding-left:22px;margin-bottom:10px;color:var(--ink-2);font-size:14px;line-height:1.55}
+.fail-box ul li:last-child{margin-bottom:0}
+.fail-box ul li::before{content:'!';position:absolute;left:0;top:0;width:14px;height:14px;background:var(--warn);color:#fff;border-radius:50%;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:3px}
+.checklist{margin:18px 0 22px;list-style:none;padding:0}
+.checklist li{position:relative;padding-left:30px;margin-bottom:10px;color:var(--ink-2);font-size:14.5px;line-height:1.55}
+.checklist li::before{content:'';position:absolute;left:0;top:3px;width:16px;height:16px;border:1.5px solid var(--ink-3);border-radius:4px;background:var(--paper)}
+.bullet-mono{list-style:none;padding:0;margin:20px 0 0;border-top:1px solid var(--rule);padding-top:18px}
+.bullet-mono li{position:relative;padding-left:22px;margin-bottom:10px;color:var(--ink-3);font-size:13.5px;line-height:1.55}
+.bullet-mono li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.lesson-body code:not(.code-block code):not(.code-box code){background:var(--bg-2);padding:2px 7px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink);font-weight:500}
+.divider{max-width:1400px;margin:0 auto;padding:0 40px}
+.divider hr{border:none;border-top:1px solid var(--rule);margin:20px 0}
+.outro{max-width:1400px;margin:0 auto;padding:80px 40px 100px;text-align:center}
+.outro h2{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(36px,4.5vw,56px);line-height:1;letter-spacing:-.03em;margin-bottom:24px}
+.outro h2 em{font-style:italic;color:var(--accent);font-weight:300}
+.outro p{font-family:'Fraunces',serif;font-size:18px;color:var(--ink-2);max-width:560px;margin:0 auto 32px;line-height:1.5}
+.outro-cta{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+footer{border-top:1px solid var(--rule);padding:40px;max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;color:var(--ink-3);font-size:13px}
+footer a{color:var(--ink-3);text-decoration:none}
+footer a:hover{color:var(--accent)}
+@media (max-width:980px){
+  .nav-inner{padding:16px 20px;gap:16px}.nav-links{display:none}.breadcrumb{padding:18px 20px 0;flex-wrap:wrap}
+  .hero{padding:36px 20px 40px}.section-nav{top:65px}.section-nav-inner{padding:14px 20px}
+  .lesson{grid-template-columns:1fr;gap:32px;padding:60px 20px 20px}.lesson-header{position:static;top:auto}
+  .lesson-num{font-size:80px}.brief-compare,.code-compare,.code-compare.three,.tools-grid{grid-template-columns:1fr}
+  .outro{padding:60px 20px 80px}footer{padding:24px 20px;flex-direction:column}
+  .data-table{font-size:12px}.data-table th,.data-table td{padding:9px 10px}
+}
+
+/* === Progress bar === */
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:0%;z-index:60;transition:width .1s linear}
+/* === Active section nav highlight === */
+.section-nav a.active{background:var(--paper);border-color:var(--accent);color:var(--accent)}
+.section-nav a.active .n{color:var(--accent)}
+/* === Prev/next lesson nav === */
+.lesson-nav{display:flex;justify-content:space-between;gap:16px;max-width:720px;margin-left:auto}
+.lesson-nav-btn{flex:1;display:flex;flex-direction:column;gap:4px;padding:18px 22px;border:1px solid var(--rule);border-radius:14px;background:var(--paper);text-decoration:none;transition:.25s}
+.lesson-nav-btn:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 12px 30px -18px rgba(15,13,11,.25)}
+.lesson-nav-btn.next{text-align:right;align-items:flex-end}
+.lesson-nav-btn .dir{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
+.lesson-nav-btn .ttl{font-family:'Fraunces',serif;font-size:17px;color:var(--ink);line-height:1.1}
+.lesson-nav-btn .ttl em{font-style:italic;color:var(--accent);font-weight:300}
+.lesson-nav-btn.disabled{opacity:.4;pointer-events:none}
+/* === Back to top === */
+.to-top{position:fixed;bottom:28px;right:28px;width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--bg);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:18px;opacity:0;pointer-events:none;transition:.3s;z-index:55;border:none;cursor:pointer}
+.to-top.show{opacity:1;pointer-events:auto}
+.to-top:hover{background:var(--accent)}
+@media (max-width:980px){.lesson-nav{margin-left:0}.lesson-nav-btn{padding:14px 16px}.lesson-nav-btn .ttl{font-size:15px}.to-top{bottom:18px;right:18px;width:42px;height:42px}}
+
+
+/* === Anchor offset under sticky nav === */
+section[id], [id^="undervisning-"]{scroll-margin-top:150px}
+/* === Respect reduced motion === */
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+
+
+/* ===================== MOBILE MENU ===================== */
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:none;border:none;cursor:pointer;padding:10px;margin-left:auto;z-index:60}
+.nav-toggle span{display:block;height:2px;width:100%;background:var(--ink);border-radius:2px;transition:.3s}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;inset:0;top:0;background:var(--bg);z-index:55;padding:90px 28px 40px;flex-direction:column;gap:4px;overflow-y:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Fraunces',serif;font-size:26px;color:var(--ink);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule)}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu a em{font-style:italic;color:var(--accent)}
+.mobile-menu .mm-cta{margin-top:24px;background:var(--ink);color:var(--bg);border-radius:100px;text-align:center;padding:16px;font-family:'Manrope',sans-serif;font-size:15px;font-weight:600;border-bottom:none}
+body.menu-open{overflow:hidden}
+
+/* ===================== PHONE BREAKPOINT (<=600px) ===================== */
+@media (max-width:600px){
+  /* show hamburger, hide desktop links */
+  .nav-toggle{display:flex}
+  .nav-inner .nav-links{display:none}
+  .nav-inner .nav-right{display:none}
+  .nav-inner{padding:14px 18px}
+  .brand{font-size:20px}
+
+  /* tame huge display type */
+  .hero h1{font-size:clamp(38px,11vw,52px)!important}
+  h1{word-break:break-word;hyphens:auto}
+  .section-head h2,.cta h2,.platform-demo h2,.how h2,.outro h2,.related h3{font-size:clamp(30px,8vw,40px)!important}
+  .lesson-title{font-size:clamp(28px,8vw,36px)!important}
+  .lesson-num{font-size:64px!important}
+
+  /* tighter section padding */
+  section{padding:48px 18px!important}
+  .hero{padding:28px 18px 44px!important}
+  .lesson{padding:40px 18px 16px!important}
+  .breadcrumb{padding:16px 18px 0!important;font-size:12px}
+
+  /* prevent overflow from wide demos / code */
+  .code-block,.code-box code{font-size:11px!important;padding:16px!important}
+  .demo-frame,.hero-video,.hero-card{max-width:100%;overflow:hidden}
+  pre,code{white-space:pre-wrap!important;word-break:break-word}
+
+  /* stack any 2-up compares and tool grids */
+  .brief-compare,.code-compare,.code-compare.three,.tools-grid,.lessons-grid,.learn-grid,.related-grid{grid-template-columns:1fr!important}
+
+  /* touch targets */
+  .btn-primary,.btn-large,.btn-ghost,.btn-orange,.btn-outline,.btn-undervisning,.lesson-link,.nav-login{min-height:44px;display:inline-flex;align-items:center}
+
+  /* lesson prev/next stacks */
+  .lesson-nav{flex-direction:column}
+
+  /* hero stats / mini stats wrap */
+  .hero-stats{flex-wrap:wrap;gap:18px!important}
+
+  /* sticky section-nav scroll on teaching pages */
+  .section-nav-inner{padding:12px 18px}
+
+  /* reduce scroll-margin so anchors aren't too low on small screens */
+  section[id],[id^="undervisning-"]{scroll-margin-top:80px}
+  .section-nav{top:60px}
+  .hero-video,.hero-card,.demo-frame{transform:none!important}
+
+  /* footer */
+  footer{padding:24px 18px!important}
+}
+
+/* prevent horizontal scroll globally */
+html,body{max-width:100%;overflow-x:hidden}
+
+
+/* === Eksplicitte font-weights (matcher data.html) === */
+body{font-weight:400}
+.brand{font-weight:400}
+.hero-stats div .num{font-weight:400}
+.module-body h3{font-weight:400}
+.learn-item h4{font-weight:500}
+.lesson-info h4{font-weight:400}
+.lesson-thumb .duration{font-weight:600}
+.lesson-thumb .badge-free{font-weight:700}
+.lesson-info .cat{font-weight:600}
+
+
+/* === Prompt-demo animation === */
+.prompt-demo{max-width:1100px;margin:30px auto 60px;padding:0 40px}
+.prompt-demo-card{background:var(--ink);color:var(--bg);border-radius:18px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(15,13,11,.3)}
+.prompt-demo-bar{background:rgba(255,255,255,.05);padding:12px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.prompt-demo-dots{display:flex;gap:6px}
+.prompt-demo-dots span{width:11px;height:11px;border-radius:50%}
+.prompt-demo-dots span:nth-child(1){background:#FF5F57}
+.prompt-demo-dots span:nth-child(2){background:#FEBC2E}
+.prompt-demo-dots span:nth-child(3){background:#28C840}
+.prompt-demo-url{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.4);margin-left:16px;letter-spacing:.05em}
+.prompt-demo-stage{padding:24px 28px;min-height:340px;display:flex;flex-direction:column;gap:14px}
+.pd-row{display:flex;gap:14px;align-items:flex-start;opacity:0;animation:pdFade .4s forwards}
+.pd-avatar{width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;flex-shrink:0;letter-spacing:0}
+.pd-avatar.ai{background:rgba(255,255,255,.1);color:rgba(255,255,255,.7)}
+.pd-bubble{flex:1;background:rgba(255,255,255,.06);padding:13px 16px;border-radius:12px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.6;color:rgba(255,255,255,.92);white-space:pre-wrap;word-break:break-word}
+.pd-bubble.user{background:rgba(178,63,30,.18);border:1px solid rgba(178,63,30,.4)}
+.pd-bubble.ai{font-family:'Manrope',sans-serif;font-size:13px;line-height:1.65}
+.pd-bubble.ai pre{font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.55;color:#E8C8B8;margin:0}
+.pd-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:600;padding:18px 0 6px;border-top:1px dashed rgba(255,255,255,.1);margin-top:6px;opacity:0;animation:pdFade .4s forwards}
+.pd-label:first-child{padding-top:0;border-top:none;margin-top:0}
+.pd-label.bad{color:#E8A87C}
+.pd-label.good{color:#A0D4A8}
+@keyframes pdFade{to{opacity:1}}
+@keyframes pdType{from{width:0}to{width:100%}}
+.prompt-demo-caption{text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--ink-3);margin-top:18px;line-height:1.5}
+.prompt-demo-caption strong{font-style:normal;color:var(--accent);font-weight:500}
+@media (max-width:600px){
+  .prompt-demo{padding:0 18px;margin:18px auto 36px}
+  .prompt-demo-stage{padding:18px 16px;min-height:auto}
+  .pd-bubble{font-size:11.5px;padding:11px 13px}
+  .pd-bubble.ai{font-size:12px}
+  .pd-bubble.ai pre{font-size:10.5px}
+}
+
+
+/* ===================== NAV DROPDOWNS ===================== */
+.nav-links{position:relative}
+.has-dropdown{position:relative;display:inline-block}
+.has-dropdown > a{position:relative}
+.has-dropdown > a::after{
+  content:'';
+  display:inline-block;
+  width:0;height:0;
+  margin-left:6px;
+  vertical-align:middle;
+  border-left:3.5px solid transparent;
+  border-right:3.5px solid transparent;
+  border-top:4px solid currentColor;
+  opacity:.55;
+  transition:transform .2s
+}
+.has-dropdown:hover > a::after{transform:rotate(180deg)}
+.dropdown-menu{
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%) translateY(8px);
+  min-width:280px;
+  background:var(--paper);
+  border:1px solid var(--rule);
+  border-radius:14px;
+  padding:10px;
+  box-shadow:0 24px 60px -20px rgba(15,13,11,.18), 0 4px 16px -4px rgba(15,13,11,.08);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index:80;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px
+}
+.dropdown-menu.single-col{grid-template-columns:1fr;min-width:240px}
+.has-dropdown:hover .dropdown-menu,
+.has-dropdown:focus-within .dropdown-menu{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(2px)
+}
+/* Bridge so cursor doesn't drop the menu when crossing gap */
+.has-dropdown::before{
+  content:'';
+  position:absolute;
+  top:100%;
+  left:0;right:0;
+  height:14px
+}
+.dropdown-menu a{
+  display:block;
+  padding:9px 14px;
+  border-radius:9px;
+  color:var(--ink-2)!important;
+  font-family:'Manrope',sans-serif;
+  font-size:13.5px;
+  font-weight:500;
+  text-decoration:none;
+  letter-spacing:0;
+  text-transform:none;
+  white-space:nowrap;
+  transition:background .12s, color .12s
+}
+.dropdown-menu a:hover{
+  background:var(--bg-2);
+  color:var(--ink)!important
+}
+.dropdown-menu a .dd-num{
+  display:inline-block;
+  width:22px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--ink-faint);
+  font-weight:600;
+  margin-right:4px
+}
+.dropdown-menu .dd-all{
+  grid-column:1 / -1;
+  margin-top:6px;
+  padding-top:10px;
+  border-top:1px solid var(--rule);
+  font-style:italic;
+  font-family:'Fraunces',serif;
+  color:var(--accent)!important;
+  font-size:13px
+}
+/* Skjul dropdowns på mobil */
+@media (max-width:600px){
+  .has-dropdown::before{display:none}
+  .dropdown-menu{display:none!important}
+  .has-dropdown > a::after{display:none}
+}
+
+</style>
+</head>
+<body>
+<div class="progress-bar"></div>
+<button class="to-top" aria-label="Til toppen">↑</button>
+<nav class="nav"><div class="nav-inner">
+<a href="index.html" class="brand">Praksis<em>·ai</em></a>
+<div class="nav-links"><span class="has-dropdown"><a href="index.html#omrader">Områder</a>
+<div class="dropdown-menu">
+  <a href="data.html"><span class="dd-num">01</span>Data &amp; Excel</a>
+  <a href="marketing.html"><span class="dd-num">02</span>Markedsføring</a>
+  <a href="finans.html"><span class="dd-num">03</span>Finans</a>
+  <a href="bolig.html"><span class="dd-num">04</span>Bolig</a>
+  <a href="kode.html"><span class="dd-num">05</span>Kode</a>
+  <a href="hverdag.html"><span class="dd-num">06</span>Hverdag</a>
+  <a href="karriere.html"><span class="dd-num">07</span>Karriere</a>
+  <a href="sundhed.html"><span class="dd-num">08</span>Sundhed</a>
+  <a href="laering.html"><span class="dd-num">09</span>Læring</a>
+  <a href="skriv.html"><span class="dd-num">10</span>Skriv</a>
+  <a href="ivaerksaetteri.html"><span class="dd-num">11</span>Iværksætteri</a>
+  <a href="salg.html"><span class="dd-num">12</span>Salg</a>
+  <a href="rejse.html"><span class="dd-num">13</span>Rejse</a>
+  <a href="mad.html"><span class="dd-num">14</span>Mad</a>
+  <a href="index.html#omrader" class="dd-all">Se alle 14 områder &rarr;</a>
+</div>
+</span><a href="index.html#metode">Metode</a><span class="has-dropdown"><a href="index.html#pro">Pro</a>
+<div class="dropdown-menu single-col">
+  <a href="pro-byg.html"><span class="dd-num">01</span>Byg AI-produkter</a>
+  <a href="pro-automation.html"><span class="dd-num">02</span>Automation i skala</a>
+  <a href="pro-prompt.html"><span class="dd-num">03</span>Prompt engineering</a>
+  <a href="pro-strategi.html"><span class="dd-num">04</span>AI-strategi</a>
+  <a href="pro-finans.html"><span class="dd-num">05</span>Avanceret finans</a>
+  <a href="pro-research.html"><span class="dd-num">06</span>AI-research</a>
+  <a href="index.html#pro" class="dd-all">Se alle Pro-områder &rarr;</a>
+</div>
+</span><a href="index.html#priser">Priser</a></div>
+<button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button><div class="nav-right"><a href="bolig.html#cta" class="btn-primary">Start gratis →</a></div>
+</div></nav>
+<div class="mobile-menu">
+<a href="index.html#omrader">Områder</a>
+<a href="index.html#metode">Metode</a>
+<a href="index.html#pro">Pro</a>
+<a href="index.html#priser">Priser</a>
+<a href="bolig.html#cta" class="mm-cta">Start gratis →</a>
+</div>
+<div class="breadcrumb">
+<a href="index.html">Forside</a><span class="sep">/</span>
+<a href="bolig.html">Bolig &amp; ejendom</a><span class="sep">/</span>
+<span class="current">Undervisning</span>
+</div>
+<section class="hero">
+<div class="area-tag">Område 04 · Undervisning</div>
+<h1>Undervisning i <em>bolig &amp; ejendom.</em></h1>
+<p class="hero-sub">Fem undervisninger i ejendomsvurdering, investering, markedsanalyse, salg og finansiering. Konkrete metoder fra mæglerverdenen &mdash; tilpasset privatkøber og investor.</p>
+<div class="hero-cta">
+<a href="#undervisning-1" class="btn-large">Start med undervisning 1 →</a>
+<a href="bolig.html#curriculum" class="btn-ghost">Tilbage til pensum</a>
+</div>
+</section>
+
+<section class="prompt-demo" aria-label="Eksempel: dårlig vs god prompt">
+  <div class="prompt-demo-card">
+    <div class="prompt-demo-bar">
+      <div class="prompt-demo-dots"><span></span><span></span><span></span></div>
+      <div class="prompt-demo-url">chat.bolig.ai</div>
+    </div>
+    <div class="prompt-demo-stage">
+      <div class="pd-label bad">Vag prompt — overfladisk svar</div>
+      <div class="pd-row">
+        <div class="pd-avatar">DU</div>
+        <div class="pd-bubble user">Hvor meget kan jeg sælge mit hus for?</div>
+      </div>
+      <div class="pd-row">
+        <div class="pd-avatar ai">AI</div>
+        <div class="pd-bubble ai">Det afhænger af mange faktorer. Du bør kontakte en mægler for en konkret vurdering...</div>
+      </div>
+      <div class="pd-label good">Detaljeret prompt — brugbart svar</div>
+      <div class="pd-row">
+        <div class="pd-avatar">DU</div>
+        <div class="pd-bubble user">Vurdér realistic salgspris for: 142m² parcelhus, byggeår 1972, renoveret 2019 (nyt køkken+bad), 4 værelser, 720m² grund i Birkerød. Tag højde for: solgte sammenlignelige sidste 6 mdr, nuværende rentniveau 4.2%, og at 3 huse i området er til salg lige nu.</div>
+      </div>
+      <div class="pd-row">
+        <div class="pd-avatar ai">AI</div>
+        <div class="pd-bubble ai">Estimeret prisinterval: 5.2 - 5.6 mio kr<br><br>5 sammenlignelige solgt sidste 6 mdr:<br>  · Snittes til 38.500 kr/m² (justeret for stand)<br>  · 142m² × 38.500 = 5.47 mio<br><br>Markedsfaktorer:<br>  · 3 til salg samtidig = press på pris (-2-4%)<br>  · Renoveret bad/køkken = +5-8% vs gennemsnit<br><br>Realistisk udbudspris: 5.6 mio, accept omkring 5.3-5.4.</div>
+      </div>
+    </div>
+  </div>
+  <div class="prompt-demo-caption">Forskellen er ikke AI'en — det er <strong>briefen</strong>.</div>
+</section>
+
+<div class="section-nav"><div class="section-nav-inner">
+<a href="#undervisning-1"><span class="n">01</span> Vurdering</a>
+<a href="#undervisning-2"><span class="n">02</span> Investor</a>
+<a href="#undervisning-3"><span class="n">03</span> Markedsanalyse</a>
+<a href="#undervisning-4"><span class="n">04</span> Salg</a>
+<a href="#undervisning-5"><span class="n">05</span> Køb &amp; finansiering</a>
+</div></div>
+<section class="lesson" id="undervisning-1">
+<div class="lesson-header">
+<div class="lesson-num">01</div>
+<div class="lesson-label mono">/ Undervisning 1</div>
+<h2 class="lesson-title">Vurdering &amp; <em>fundamentet</em></h2>
+</div>
+<div class="lesson-body">
+
+<h3>En god vurdering hviler på <em>sammenligning</em>, ikke på smag.</h3>
+<p>Hver bolig vurderes mod faktisk handlede sammenlignelige boliger i samme område. AI'en kan hjælpe dig finde sammenligningsgrundlaget hurtigere og strukturere analysen, men du skal levere data fra primær kilde (Boligsiden, BBR, kommunens lokalplan).</p>
+
+<h3>De 7 variabler en god vurdering bruger.</h3>
+<ul>
+<li><strong>Boligareal</strong> &mdash; BBR-areal, ikke salgsopstillingens. De afviger ofte 5-10 m&sup2;.</li>
+<li><strong>Grundareal</strong> &mdash; især vigtigt for parcelhuse. Pris pr. m&sup2; grund varierer enormt mellem områder.</li>
+<li><strong>Byggeår &amp; tilstand</strong> &mdash; ikke kun året, men også energimærke og kendte vedligehold.</li>
+<li><strong>Beliggenhed</strong> &mdash; ned til vejen og adressen. To huse på samme vej kan have 200.000 kr i forskel.</li>
+<li><strong>Niveau</strong> &mdash; har boligen været moderniseret? Hvor for nylig?</li>
+<li><strong>Udlejning &amp; ejerlejligheder</strong> &mdash; for lejligheder: er ejendommen velholdt? Fællesomkostninger?</li>
+<li><strong>Markedsforhold</strong> &mdash; sælgers eller købers marked? Renteniveauet på vurderingsdagen?</li>
+</ul>
+
+<h3>Find dine sammenlignelige &mdash; <em>de 8-12 bedste</em>.</h3>
+<p>Den klassiske mæglerfejl: at kigge på "alle solgte i området sidste 12 mdr". Det giver støj. Den gode tilgang: find 8-12 sammenlignelige der ligner KONKRETT &mdash; samme type bolig, samme størrelse +/- 15%, samme stand, solgt indenfor 6-9 mdr. AI er fremragende til at strukturere dette filter:</p>
+
+<div class="brief-compare">
+<div class="brief-box bad"><div class="brief-label">✗ Bred</div><p>"Hvad er en lejlighed værd på Frederiksberg?"</p></div>
+<div class="brief-box good"><div class="brief-label">✓ Specifik</div><p>"Her er 18 solgte lejligheder i 2025 [paste CSV]. Filtrér til 89-105 m&sup2;, 2-3 værelser, byggeår 1900-1930, indenfor 500 m af min adresse. Lav en tabel sorteret efter pris/m&sup2;, med kommentarer på outliers."</p></div>
+</div>
+
+<h3>Modeltabel: sammenlignings-grundlaget.</h3>
+<table class="data-table">
+<thead><tr><th>Adresse</th><th>Solgt</th><th>m&sup2;</th><th>Pris</th><th>kr/m&sup2;</th><th>Note</th></tr></thead>
+<tbody>
+<tr><td>Lundtoftevej 12</td><td>Apr 25</td><td class="num">94</td><td class="num">5.450.000</td><td class="num">57.979</td><td>Renoveret 2022</td></tr>
+<tr><td>Pile Allé 8, 2.tv</td><td>Jun 25</td><td class="num">102</td><td class="num">5.890.000</td><td class="num">57.745</td><td>Original stand</td></tr>
+<tr><td>Niels Ebbesensvej 3</td><td>Jul 25</td><td class="num">97</td><td class="num">5.150.000</td><td class="num">53.093</td><td>Mangler vedligehold</td></tr>
+<tr><td><strong>Median</strong></td><td></td><td class="num">98</td><td class="num">5.450.000</td><td class="num"><strong>57.745</strong></td><td>Brug median, ikke gennemsnit</td></tr>
+</tbody>
+</table>
+
+<div class="callout"><strong>Median, ikke gennemsnit</strong>
+&Eacute;n outlier (renoveret penthouse til 80.000 kr/m&sup2;) kan trække gennemsnittet helt skævt. Median giver et mere repræsentativt billede.</div>
+
+<h3>Justeringer &mdash; <em>hvor de fleste fejler</em>.</h3>
+<p>Når du har dit sammenligningsgrundlag, skal vurderingen justeres for hvor DIN bolig adskiller sig:</p>
+<ul>
+<li><strong>Vedligehold</strong> &mdash; +/-2.000-5.000 kr/m&sup2; alt efter stand</li>
+<li><strong>Etage</strong> &mdash; tværetage +500 kr/m&sup2;, 4.+ etage uden elevator -2.000 kr/m&sup2;</li>
+<li><strong>Altan/terrasse</strong> &mdash; +50.000-150.000 kr afhængig af størrelse og udsigt</li>
+<li><strong>Sol &amp; orientering</strong> &mdash; sydvendt vs nordvendt: 3-5% forskel ofte</li>
+<li><strong>Parkering</strong> &mdash; egen plads i København: 200.000-500.000 kr ekstra</li>
+</ul>
+
+<div class="fail-box"><h4>Hvor AI fejler i boligvurdering</h4><ul>
+<li><strong>Bruger gamle data.</strong> AI'en kender ikke aktuelle handler. Du SKAL levere data fra Boligsiden eller dingeo.</li>
+<li><strong>Misforstår "tæt på".</strong> 500 m i fugleflugt &ne; 500 m at gå. Tjek på kort.</li>
+<li><strong>Ignorerer lokalplaner.</strong> En grund med byggetilladelse til ekstra etage er værd 20% mere &mdash; AI'en ved det ikke uden at du fortæller det.</li>
+<li><strong>Glider mod offentlig vurdering.</strong> Den er sjældent rigtig. Brug handelspriser, ikke ejendomsvurderinger.</li>
+</ul></div>
+
+<h3>Vurderingsprompt.</h3>
+<div class="code-label-tag">Skabelon til estimering</div>
+<div class="code-block">Du er erfaren ejendomsmægler. Jeg vurderer en bolig
+på [adresse], [m2] m², [type], byggeår [år], stand [vurder].
+
+Sammenlignelige solgte boliger (sidste 9 mdr):
+[paste CSV med adresse, dato, m2, pris]
+
+Lav:
+1. Filtrér til 8-12 mest sammenlignelige med begrundelse
+2. Median pris/m² og spread (P25-P75)
+3. Justeringer for boligens specifikke karakteristika
+4. Endelig vurdering med +/-5% interval
+5. Tre forhold der kunne ændre vurderingen (op eller ned)
+
+Vær konservativ: hvis usikkerhed er stor, sig
+intervallet bredere, ikke smallere.</div>
+
+<ul class="bullet-mono">
+<li>Brug median &mdash; aldrig gennemsnit &mdash; for pris/m&sup2;.</li>
+<li>Find 8-12 sammenlignelige, ikke alle solgte.</li>
+<li>Verificér BBR-areal &mdash; det afviger ofte fra salgsopstillingen.</li>
+<li>En vurdering er et interval, ikke ét tal.</li>
+</ul>
+
+
+<div class="lesson-nav"><span class="lesson-nav-btn prev disabled"><span class="dir">← Forrige</span><span class="ttl">Start</span></span><a href="#undervisning-2" class="lesson-nav-btn next"><span class="dir">Næste →</span><span class="ttl">Investor</span></a></div>
+</div>
+</section>
+<div class="divider"><hr></div>
+<section class="lesson" id="undervisning-2">
+<div class="lesson-header">
+<div class="lesson-num">02</div>
+<div class="lesson-label mono">/ Undervisning 2</div>
+<h2 class="lesson-title">Investorperspektiv: <em>afkast &amp; risiko</em></h2>
+</div>
+<div class="lesson-body">
+
+<h3>Boligen som investering er <em>cashflow</em>, ikke bare værditilvækst.</h3>
+<p>Den almindelige fejl ved boliginvestering: at fokusere på "hvad er den værd om 5 år?" og ignorere månedlig cashflow. Gode investorer regner på det modsatte &mdash; hvad er det årlige nettoafkast efter ALLE omkostninger?</p>
+
+<h3>De fem afkast-typer du skal forstå.</h3>
+<ul>
+<li><strong>Bruttoleje-afkast</strong> &mdash; årlig leje / købspris. Bare en indikation, intet mere.</li>
+<li><strong>Nettoleje-afkast</strong> &mdash; årlig leje minus driftsudgifter / købspris. Tættere på sandheden.</li>
+<li><strong>Cash-on-cash</strong> &mdash; årlig cashflow efter afdrag / din egen indbetaling. Den vigtigste for investorer med belåning.</li>
+<li><strong>Total return</strong> &mdash; cashflow + værditilvækst / investeret kapital. Den fulde historie.</li>
+<li><strong>IRR</strong> &mdash; intern rente over investeringens fulde levetid. Den eneste der tager højde for tid.</li>
+</ul>
+
+<h3>Realistisk regnestykke for udlejningsbolig.</h3>
+<table class="data-table">
+<thead><tr><th>Post</th><th>Årligt (kr)</th><th>Note</th></tr></thead>
+<tbody>
+<tr><td>Bruttoleje</td><td class="num">+ 180.000</td><td>15.000 kr/mdr</td></tr>
+<tr><td>Ejendomsskat &amp; grundskyld</td><td class="num">- 12.000</td><td></td></tr>
+<tr><td>Vedligehold</td><td class="num">- 18.000</td><td>10% af leje som tommelfingerregel</td></tr>
+<tr><td>Tomgang</td><td class="num">- 9.000</td><td>5% af leje &mdash; gennemsnit</td></tr>
+<tr><td>Administration</td><td class="num">- 7.500</td><td>Hvis du selv administrerer: regn din tid</td></tr>
+<tr><td>Rente på lån</td><td class="num">- 60.000</td><td>Variabelt &mdash; aktuelt niveau</td></tr>
+<tr><td><strong>Netto cashflow</strong></td><td class="num"><strong>+ 73.500</strong></td><td>Før afdrag og skat</td></tr>
+</tbody>
+</table>
+
+<div class="callout"><strong>Den glemte omkostning: din tid</strong>
+Hvis du selv administrerer en lejlighed, bruger du måske 30 timer om året. Den tid er ikke gratis &mdash; den skal indregnes i afkastet.</div>
+
+<h3>Belåningens to-sidede sværd.</h3>
+<p>Belåning er den vigtigste mekanisme i ejendomsinvestering &mdash; og den mest misforståede. 70% belåning gør 5% værditilvækst til 15% afkast på din egenkapital. Det er fantastisk &mdash; lige indtil priserne falder 10% og du har tabt 30% af din egenkapital.</p>
+
+<div class="brief-compare">
+<div class="brief-box good" style="grid-column:1/-1"><div class="brief-label">✓ Scenarie-prompt</div><p>"Investering: 4 mio. kr lejlighed, 1 mio. egenkapital, 3 mio. fast forrentet lån (4,5%). Beregn cash-on-cash år 1-5 under tre scenarier: 1) Priser flat, leje +2%/år, 2) Priser +3%/år, leje +2%/år, 3) Priser -10% år 2, så flat. Vis IRR og maksimum drawdown for hver."</p></div>
+</div>
+
+<h3>De tre fælder for nye investorer.</h3>
+<ul>
+<li><strong>Underestimerer omkostninger.</strong> Realistisk er drift 30-40% af brutto leje, ikke 10-20%.</li>
+<li><strong>Overvurderer kort tid.</strong> 5% værditilvækst lyder fantastisk &mdash; men over 10 år er 30% nominal et middel resultat.</li>
+<li><strong>Ignorerer likviditet.</strong> En lejlighed kan ikke sælges på 5 minutter. Hvis du har brug for pengene hurtigt, er det ikke det rigtige aktiv.</li>
+</ul>
+
+<h3>Sammenligning med alternative investeringer.</h3>
+<p>Den ærlige test: ville du være bedre stillet med din egenkapital i bredt aktieindeks? Historisk afkast S&P 500: ca. 7% real. Bolig i Danmark: ca. 2-3% real plus eventuel leje. Bolig vinder på cashflow og lavere volatilitet &mdash; aktier vinder på likviditet og tidshorisont.</p>
+
+<div class="fail-box"><h4>Hvor AI fejler i ejendomsinvestering</h4><ul>
+<li><strong>Bruger "udlejnings-shop"-tal.</strong> Annoncerede lejeniveauer er ikke faktisk indtjente lejer &mdash; check Boligsiden eller mæglerstatistik.</li>
+<li><strong>Glemmer fradrag for vedligehold.</strong> En tag-renovation hver 25. år er 200.000 kr. Det skal afsættes løbende.</li>
+<li><strong>Antager flat renter.</strong> Variabelt forrentede lån kan stige &mdash; modellér både +1pp og +2pp.</li>
+<li><strong>Misforstår dansk skat.</strong> Personlig udlejning vs virksomhedsskat har vidt forskellige skattefordele. Få revisor på &mdash; ikke kun AI.</li>
+</ul></div>
+
+<h3>Investor-prompt.</h3>
+<div class="code-label-tag">Underwriting af udlejningsbolig</div>
+<div class="code-block">Du er ejendomsinvestor med 15 års erfaring.
+
+Bolig: [adresse, m2, pris]
+Forventet leje: [kr/mdr] — baseret på [kilde]
+Belåning: [%]
+Rente: [% — fast eller variabel]
+
+Lav:
+1. Realistisk drifts-regnskab (med konservative antagelser)
+2. Cash-on-cash år 1, 3, 5
+3. 3 scenarier for kapitalvækst (forsigtig, base, optimistisk)
+4. IRR for hvert scenarie over 10 år
+5. De 3 vigtigste risici jeg overser
+6. Sammenligning med 7% real i aktieindeks for samme egenkapital
+
+Vær konservativ med antagelser. Sig hvis et tal er
+gæt vs målt fra reelle handler.</div>
+
+<ul class="bullet-mono">
+<li>Cashflow er kongen &mdash; værditilvækst er bonus.</li>
+<li>Drift er 30-40% af brutto leje, ikke 10%.</li>
+<li>Belåning forstærker både gevinster og tab &mdash; respekter det.</li>
+<li>Sammenlign altid med alternativ investering for samme kapital.</li>
+</ul>
+
+
+<div class="lesson-nav"><a href="#undervisning-1" class="lesson-nav-btn prev"><span class="dir">← Forrige</span><span class="ttl">Vurdering</span></a><a href="#undervisning-3" class="lesson-nav-btn next"><span class="dir">Næste →</span><span class="ttl">Markedsanalyse</span></a></div>
+</div>
+</section>
+<div class="divider"><hr></div>
+<section class="lesson" id="undervisning-3">
+<div class="lesson-header">
+<div class="lesson-num">03</div>
+<div class="lesson-label mono">/ Undervisning 3</div>
+<h2 class="lesson-title">Markedsanalyse &amp; <em>tendenser</em></h2>
+</div>
+<div class="lesson-body">
+
+<h3>Markedet er <em>lokalt</em>. Statistikken er ofte misvisende.</h3>
+<p>"Boligmarkedet i Danmark steg 4% sidste år" siger næsten ingenting. Frederiksberg steg måske 7%, mens Lolland faldt 2%. AI er fremragende til at skære statistik ned til det område og den boligtype du er interesseret i.</p>
+
+<h3>De data-kilder du bør kende.</h3>
+<div class="tools-grid">
+<div class="tool-card"><h4>Boligsiden &amp; Boliga</h4><p>Aktuelle og historiske handler. Gratis og opdateret. Bedste kilde til lokal prishistorik.</p></div>
+<div class="tool-card"><h4>Danmarks Statistik (BOL55, EJEN67)</h4><p>Officielle handelspriser pr. kommune, pr. type. Lidt forsinket, men autoritativ.</p></div>
+<div class="tool-card"><h4>BBR &amp; dingeo</h4><p>Detaljerede oplysninger om hver bolig. Areal, byggeår, energimærke, lokalplaner.</p></div>
+<div class="tool-card"><h4>Realkreditrådet &amp; Finans Danmark</h4><p>Renteudvikling, belåningsgrader, betalingsanmærkninger. Den makro-kontekst boligmarkedet bevæger sig i.</p></div>
+</div>
+
+<h3>De fire signaler der varsler om <em>vendepunkter</em>.</h3>
+<p>De fleste boligmarkeds-vendepunkter er synlige 6-12 mdr før prisen reagerer. Hold øje med:</p>
+<ul>
+<li><strong>Liggetid.</strong> Stiger den fra 60 til 90 dage &mdash; kommer prisfald.</li>
+<li><strong>Antal udbudte vs solgte.</strong> Pukler op af usolgte &mdash; købers marked.</li>
+<li><strong>Spread mellem udbudspris og handelspris.</strong> Falder spread under 2% &mdash; sælgers marked. Over 5% &mdash; købers.</li>
+<li><strong>Realkreditrenten.</strong> 1% stigning på 30-årig fastforrentet sænker købskraften 8-10%.</li>
+</ul>
+
+<h3>Lav din egen <em>område-analyse</em>.</h3>
+<p>Inden du køber i et område, skal du have svar på 5 spørgsmål. AI kan hjælpe dig finde og sammenstille det:</p>
+
+<div class="callout"><strong>Område-due-diligence-prompt</strong>
+"Lav en analyse af [postnummer/by]. Inkluder: 1) Prisudvikling sidste 5 og 10 år vs landsgennemsnit, 2) Demografisk udvikling (alder, indkomst, beskæftigelse), 3) Tilflytning/fraflytning, 4) Større anlægsprojekter (metro, kommunale planer), 5) Sammenlignelige områder i samme by med højere/lavere prisniveau &mdash; hvorfor forskellen?"</div>
+
+<h3>Mikro-områder &mdash; den <em>oversete dimension</em>.</h3>
+<p>Inden for samme postnummer kan der være enorm variation. Den ene side af gaden er stille &mdash; den anden er busrute. Hjørnehus eller midt-i-husrækken. Sol- eller skyggeside. AI'en kender ikke disse nuancer fra data alene &mdash; men hvis du beskriver dem, kan den hjælpe dig kvantificere.</p>
+
+<h3>Tendenser der historisk er <em>fanget for sent</em>.</h3>
+<ul>
+<li><strong>Gentrificering.</strong> Når caféer, økologiske butikker og co-working åbner, er priserne allerede stigende.</li>
+<li><strong>Skoler.</strong> En markant skole-rating-stigning gør boligkvarteret 5-10% mere værdifuld over 3-5 år.</li>
+<li><strong>Transport.</strong> Ny metro-station: kør boligpriserne 15-25% op indenfor 1 km i de 5 år før og 2 år efter åbning.</li>
+<li><strong>Klimarisici.</strong> Lavtliggende kystområder vil blive vurderet anderledes om 10-20 år &mdash; det starter nu.</li>
+</ul>
+
+<div class="fail-box"><h4>Hvor AI fejler i markedsanalyse</h4><ul>
+<li><strong>Bruger landsgennemsnit til lokal analyse.</strong> Tag altid kommunal eller postnummer-niveau data.</li>
+<li><strong>Ignorerer sæson.</strong> Boligmarkedet er stærkest i forår-sommer. "Salg faldt 30% fra august til december" er normalt &mdash; ikke en krise.</li>
+<li><strong>Overekstrapolerer trends.</strong> En 10% stigning i 2 år bliver ikke nødvendigvis til 50% i 10 år.</li>
+<li><strong>Misser politik-effekter.</strong> Skatteændringer (boligskat, ejendomsværdiskat) ændrer markedet markant.</li>
+</ul></div>
+
+<h3>Markedsanalyse-prompt.</h3>
+<div class="code-label-tag">Lokalt vendepunkts-tjek</div>
+<div class="code-block">Du er boligmarkedsanalytiker. Jeg overvejer at købe
+i [område]. Mit budget er [DKK], jeg leder efter [type].
+
+Lav en analyse af:
+1. Prisudvikling sidste 12, 36 og 60 måneder i området
+2. Aktuel liggetid vs 3-årigt gennemsnit
+3. Spread mellem udbuds- og handelspris
+4. Sammenligning med 2 nabokvarterer
+5. Identificér 3 mikro-områder indenfor [området] der er over- eller undervurderede
+
+Materiale jeg vedhæfter:
+- Sidste 12 mdr handler [paste CSV fra Boliga]
+- Aktuelt udbud [paste]
+- DST kommunal data om [området]
+
+Konkluder: vendepunkts-tegn (sælgers eller købers marked)?
+Sandsynlig retning næste 6-12 mdr og hvorfor.</div>
+
+<ul class="bullet-mono">
+<li>National statistik er næsten altid misvisende for lokale beslutninger.</li>
+<li>Liggetid og spread varsler om vendepunkter før prisen.</li>
+<li>Mikroområder indenfor samme postnummer kan have 30%+ prisforskel.</li>
+<li>Renter på 30-årig fastforrentet er den vigtigste makro-variabel for boligmarkedet.</li>
+</ul>
+
+
+<div class="lesson-nav"><a href="#undervisning-2" class="lesson-nav-btn prev"><span class="dir">← Forrige</span><span class="ttl">Investor</span></a><a href="#undervisning-4" class="lesson-nav-btn next"><span class="dir">Næste →</span><span class="ttl">Salg</span></a></div>
+</div>
+</section>
+<div class="divider"><hr></div>
+<section class="lesson" id="undervisning-4">
+<div class="lesson-header">
+<div class="lesson-num">04</div>
+<div class="lesson-label mono">/ Undervisning 4</div>
+<h2 class="lesson-title">Sælg &amp; <em>markedsfør</em> en bolig</h2>
+</div>
+<div class="lesson-body">
+
+<h3>Sælg ikke en bolig &mdash; sælg et <em>hjem at flytte ind i</em>.</h3>
+<p>De fleste salgsopstillinger fokuserer på areal, byggeår, og badeværelser. Det er statistik, ikke salg. Den gode opstilling lader køberen forestille sig hverdagen i boligen &mdash; morgenkaffe på terrassen, søndagsmiddagen i køkkenet, hvor barnet sover.</p>
+
+<h3>De fire elementer i en konverterende salgsopstilling.</h3>
+<ul>
+<li><strong>Headline-billede.</strong> Det første billede afgør 70% af click-through-raten på portalerne. Det skal være boligens stærkeste vinkel &mdash; uanset om det er køkken, stue eller udsigt.</li>
+<li><strong>Tekst-hook.</strong> Første sætning skal sige hvad der gør boligen specifik &mdash; ikke at den har 4 værelser.</li>
+<li><strong>Plan.</strong> En tegnet plantegning &mdash; ikke et fotograferet udsnit. Folk vil forstå flowet.</li>
+<li><strong>Tre billed-historier.</strong> Ikke 47 billeder. Tre sektioner: hverdag (køkken, stue), privatliv (soveværelse, badeværelse), ude (have/altan).</li>
+</ul>
+
+<h3>Headline-eksempel.</h3>
+<div class="brief-compare">
+<div class="brief-box bad"><div class="brief-label">✗ Statistik</div><p>"Lys 3-vær. på 89 m&sup2; med vestvendt altan til salg"</p></div>
+<div class="brief-box good"><div class="brief-label">✓ Hjem</div><p>"Den sjældne lejlighed med plads til familiens køkkenø &mdash; og altan så stor den hører til en have"</p></div>
+</div>
+
+<h3>AI som <em>second eye</em> på salgsopstillingen.</h3>
+<p>Hold ikke teksten for dig selv. Bed AI om at læse den som en specifik køber:</p>
+
+<div class="callout"><strong>Mål-køber-prompt</strong>
+"Læs denne salgsopstilling [paste]. Du er en familie på to voksne og to børn på 5 og 9 år. I leder efter en bolig der kan rumme jer i 10+ år. Hvad er uklart? Hvad mangler du svar på? Hvilke spørgsmål ville du stille mægleren ved fremvisning?"</div>
+
+<h3>Pris-strategien &mdash; <em>under, over eller på</em>?</h3>
+<p>Tre legitime prisstrategier, hver med konsekvenser:</p>
+<ul>
+<li><strong>Under markedet.</strong> Risikerer bydekrig &mdash; kan ende over vurdering. God i sælgers marked. Risikabel i købers.</li>
+<li><strong>På markedet.</strong> Realistisk udbudspris baseret på sammenlignelige. Liggetid 60-90 dage normalt.</li>
+<li><strong>Over markedet.</strong> Kun hvis boligen har et unikt salgspunkt (udsigt, beliggenhed, sjælden type). Risikerer lang liggetid &mdash; som signalerer "problem" til markedet.</li>
+</ul>
+
+<h3>Pris-fald: <em>hvornår og hvor meget</em>?</h3>
+<p>Hvis boligen ikke har modtaget bud efter 6-8 uger, er prisen forkert. Den hyppigste fejl: 50.000 kr ad gangen. Det signalerer desperation. Den rigtige: ét væsentligt fald på 3-5%, der bringer den ind i et nyt søgespektrum (fra "over 3 mio" til "under 3 mio").</p>
+
+<h3>Markedsføringen ud over portalen.</h3>
+<ul>
+<li><strong>Personligt netværk.</strong> Mæglerens database af tidligere potentielle købere &mdash; bed eksplicit om en SMS-runde.</li>
+<li><strong>Sociale medier.</strong> Mæglerens annoncering på Facebook og Instagram er ofte målrettet til en lille radius. Boost det hvis nødvendigt.</li>
+<li><strong>Lokal opslag.</strong> Stadig effektivt i mindre byer og specifikke kvarterer.</li>
+<li><strong>Open house.</strong> Sæsonbestemt &mdash; forår og start-efterår mest effektivt.</li>
+</ul>
+
+<div class="fail-box"><h4>Hvor AI (og sælgere) fejler i markedsføring</h4><ul>
+<li><strong>Skriver til alle, sælger til ingen.</strong> "Drømmebolig for alle" rammer ingen. Vælg én målgruppe.</li>
+<li><strong>Overpolerer billeder.</strong> AI-redigerede stuer der ser flot ud men ikke matcher virkeligheden = skuffede køber ved fremvisning.</li>
+<li><strong>Glemmer udeområder.</strong> Køberen ser sig selv leve UDE også. Vis terrasse, have, vej.</li>
+<li><strong>Ignorerer praktiske detaljer.</strong> Cykelparkering, vaskerum, ekstra opbevaring &mdash; ofte deal-breakere.</li>
+</ul></div>
+
+<h3>Salgsopstillings-prompt.</h3>
+<div class="code-label-tag">Skabelon til mægler-tekst</div>
+<div class="code-block">Du er senior tekstforfatter til ejendomsmægler.
+
+Boligen:
+[type, m2, byggeår, etage, beliggenhed]
+
+Stærke sider:
+[5-7 konkrete ting der gør boligen speciel]
+
+Målgruppen:
+[1-2 specifikke køber-personas]
+
+Lav:
+1. Headline (1 sætning, ikke et adjektiv-stack)
+2. Underrubrik (1 sætning, konkret fordel)
+3. Brødtekst (300-400 ord, tre sektioner: hverdag/privatliv/ude)
+4. Tre underoverskrifter mellem afsnittene
+5. Tre alternative headlines vi kan teste A/B
+
+Krav:
+- Aldrig brug: "unik", "perle", "drøm"
+- Sælg hverdagen, ikke arealet
+- Hver sætning skal sige NOGET — ikke fylde
+- Brug konkrete tal hvor de imponerer</div>
+
+<ul class="bullet-mono">
+<li>Headline-billede afgør 70% af klik &mdash; brug det stærkeste motiv.</li>
+<li>Skriv til én specifik køber, ikke alle.</li>
+<li>3 billed-historier slår 47 tilfældige fotos.</li>
+<li>Hvis boligen ikke får bud efter 6-8 uger, er prisen forkert.</li>
+</ul>
+
+
+<div class="lesson-nav"><a href="#undervisning-3" class="lesson-nav-btn prev"><span class="dir">← Forrige</span><span class="ttl">Markedsanalyse</span></a><a href="#undervisning-5" class="lesson-nav-btn next"><span class="dir">Næste →</span><span class="ttl">Køb &amp; finansiering</span></a></div>
+</div>
+</section>
+<div class="divider"><hr></div>
+<section class="lesson" id="undervisning-5">
+<div class="lesson-header">
+<div class="lesson-num">05</div>
+<div class="lesson-label mono">/ Undervisning 5</div>
+<h2 class="lesson-title">Køb &amp; <em>finansiering</em></h2>
+</div>
+<div class="lesson-body">
+
+<h3>De fleste købere taber penge <em>før</em> de skriver under.</h3>
+<p>Pris og finansiering hænger uadskilleligt sammen. 100.000 kr ekstra i købspris koster måske 300-400 kr/mdr i ydelse over 30 år &mdash; men 1 procentpoint forskel i rente koster det samme. AI kan hjælpe dig regne på hele billedet, ikke kun købsprisen.</p>
+
+<h3>Realkreditlandskabet i 2026 &mdash; <em>hvad du bør forstå</em>.</h3>
+<div class="tools-grid">
+<div class="tool-card"><h4>Fastforrentet 30-årigt</h4><p>Den klassiske. Kendt ydelse i hele løbetiden. Du betaler højere rente for sikkerheden &mdash; men kan konvertere ned ved rentefald.</p></div>
+<div class="tool-card"><h4>F1, F3, F5</h4><p>Variabelt forrentede. Lavere rente i dag, men risiko for stigning. Egnet til kort horisont eller robust økonomi.</p></div>
+<div class="tool-card"><h4>RTL (rentetilpasningslån)</h4><p>Mellemløsning. Lavere end fastforrentet, mere stabilt end F1.</p></div>
+<div class="tool-card"><h4>Afdragsfrit</h4><p>Op til 10 år. Frigør likviditet, men ingen reduktion af gæld. Vurder om du SKAL bruge det &mdash; ikke fordi du KAN.</p></div>
+</div>
+
+<h3>Den vigtigste øvelse: <em>ydelsesbelastning</em>.</h3>
+<p>Bankerne ser på din rådighedsbeløb efter alle udgifter inkl. ydelse. Den uoffielle regel: total boligudgift (ydelse + ejendomsskat + fællesomkostninger + el/varme) bør ikke overstige 35% af din nettoindkomst. Mange overskrider det og opdager først problemet ved renteændring eller jobskifte.</p>
+
+<div class="callout"><strong>Sanity-check-prompt</strong>
+"Mit budget: bolig X mio kr, 5% udbetaling, resten realkredit. Min nettoindkomst er Y kr/mdr. Beregn total boligudgift i tre rentescenarier (3%, 5%, 7%). I hvert scenarie: hvilken procent af min nettoindkomst går til bolig? Hvor meget rådighedsbeløb har jeg tilbage? Hvor risikabelt er det?"</div>
+
+<h3>Forhandling &mdash; <em>3 ting der er forhandlelige</em>, som de fleste glemmer.</h3>
+<ul>
+<li><strong>Pris</strong> &mdash; jo længere liggetid, jo mere fleksibilitet. Bed mægleren om sidste budhistorik.</li>
+<li><strong>Indretning ved overtagelse</strong> &mdash; hvidevarer, gardiner, lamper. Ofte tusinder af kroners værdi.</li>
+<li><strong>Overtagelses-dato</strong> &mdash; fleksibilitet kan være værdiskabende for sælger. Brug det som forhandlingsvariabel.</li>
+</ul>
+
+<h3>Den juridiske gennemgang &mdash; <em>hvor AI hjælper, hvor den ikke gør</em>.</h3>
+<p>AI er fremragende til at læse en salgsopstilling, tilstandsrapport og ejendomsdatarapport &mdash; og finde de røde flag du burde stille spørgsmål til. Men du SKAL stadig have en boligadvokat eller -rådgiver til selve handlen.</p>
+
+<div class="brief-compare">
+<div class="brief-box good" style="grid-column:1/-1"><div class="brief-label">✓ Due diligence-prompt</div><p>"Læs vedlagte tilstandsrapport, ejendomsdatarapport og energimærke. Identificér: 1) Alle anmærkninger med karakter K2/K3 eller dårligere, 2) Vedligehold der er udskudt mere end 5 år, 3) Bekymrende noter i 'andre forhold', 4) Diskrepenser mellem rapporterne, 5) Spørgsmål jeg bør stille mægleren før jeg afgiver bud."</p></div>
+</div>
+
+<h3>Bydestrategien &mdash; <em>de 3 typer marked</em>.</h3>
+<ul>
+<li><strong>Sælgers marked (kort liggetid, lille spread).</strong> Bud over udbudspris, kort fortrydelsesfrist, fleksibel overtagelse.</li>
+<li><strong>Balanceret marked.</strong> Bud lige under udbudspris med begrundelse. Normal fortrydelsesfrist.</li>
+<li><strong>Købers marked (lang liggetid, stor spread).</strong> Bud 5-10% under udbudspris er rimeligt &mdash; vær tålmodig og forhandl flere ting.</li>
+</ul>
+
+<div class="fail-box"><h4>Hvor AI (og købere) fejler i køb og finansiering</h4><ul>
+<li><strong>Forelsker sig.</strong> "Vi MÅ have den her." Stop. Mindst 3 boliger skal være reelle alternativer før du byder.</li>
+<li><strong>Glemmer købsomkostninger.</strong> Tinglysning, advokat, mægler-honorar = 30-50.000 kr ekstra. Skal være med i budget.</li>
+<li><strong>Ignorerer renterisiko.</strong> "F1 er så billigt!" &mdash; ja, indtil rentemarkedet skifter. Stress-test din økonomi ved +2pp.</li>
+<li><strong>Overser fællesomkostninger.</strong> En lejlighed med 4.500 kr/mdr i fællesomkostninger er reelt dyrere end én med 3.000 kr &mdash; selv ved samme pris.</li>
+</ul></div>
+
+<h3>Finansieringsprompt.</h3>
+<div class="code-label-tag">Helhedsberegning før bud</div>
+<div class="code-block">Du er uafhængig boligrådgiver.
+
+Køb:
+- Bolig: [pris]
+- Udbetaling: [%]
+- Realkredit: [type — fastforrentet/F3/F5/RTL]
+- Banklån (top 5%): [vilkår]
+
+Min økonomi:
+- Nettoindkomst: [kr/mdr]
+- Andre faste udgifter: [kr/mdr]
+- Friværdi efter køb: [kr]
+
+Lav:
+1. Total månedlig boligudgift (ydelse + ejendomsskat + fæll. + forsikring + el/varme estimat)
+2. Procent af nettoindkomst der går til bolig
+3. Stress-test ved renteændring +2pp og +4pp
+4. Stress-test ved indkomstfald 25%
+5. Sammenligning mellem fastforrentet og variabel over 10 år
+   under tre rentescenarier
+
+Konkluder: er denne bolig økonomisk forsvarlig?
+Sig konkret hvis du ser røde flag.</div>
+
+<ul class="bullet-mono">
+<li>Total boligudgift over 35% af nettoindkomst er en risiko-zone.</li>
+<li>Stress-test altid ved +2 procentpoint rente.</li>
+<li>Husk købsomkostninger i budgettet (30-50.000 kr).</li>
+<li>Få boligadvokat &mdash; AI erstatter ikke juridisk gennemgang.</li>
+</ul>
+
+
+<div class="lesson-nav"><a href="#undervisning-4" class="lesson-nav-btn prev"><span class="dir">← Forrige</span><span class="ttl">Salg</span></a><span class="lesson-nav-btn next disabled"><span class="dir">Næste →</span><span class="ttl">Færdig</span></span></div>
+</div>
+</section>
+<div class="divider"><hr></div>
+
+<section class="outro">
+<h2>Klar til at bruge pensum <em>i praksis?</em></h2>
+<p>Gå tilbage til moduloversigten, eller hop direkte til den undervisning du vil bygge videre på.</p>
+<div class="outro-cta">
+<a href="bolig.html#curriculum" class="btn-large">Tilbage til moduloversigten</a>
+<a href="bolig.html#cta" class="btn-ghost">Se priser →</a>
+</div>
+</section>
+<footer>
+<div>© 2026 Praksis ApS · Bygget i København</div>
+<div><a href="index.html">Forside</a> · <a href="bolig.html">Bolig &amp; ejendom</a></div>
+</footer>
+
+<script>
+(function(){
+  var bar=document.querySelector('.progress-bar');
+  var toTop=document.querySelector('.to-top');
+  var navLinks=Array.prototype.slice.call(document.querySelectorAll('.section-nav a'));
+  var sections=navLinks.map(function(a){var id=a.getAttribute('href').slice(1);return document.getElementById(id);});
+  function onScroll(){
+    var h=document.documentElement;
+    var scrolled=h.scrollTop;
+    var height=h.scrollHeight-h.clientHeight;
+    var pct=height>0?(scrolled/height*100):0;
+    if(bar)bar.style.width=pct+'%';
+    if(toTop){if(scrolled>600)toTop.classList.add('show');else toTop.classList.remove('show');}
+    // active section
+    var idx=-1;
+    for(var i=0;i<sections.length;i++){
+      if(sections[i]&&sections[i].getBoundingClientRect().top<=160)idx=i;
+    }
+    navLinks.forEach(function(a,i){if(i===idx)a.classList.add('active');else a.classList.remove('active');});
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+  if(toTop)toTop.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+
+
+<script>
+(function(){
+  var toggle=document.querySelector('.nav-toggle');
+  var menu=document.querySelector('.mobile-menu');
+  if(!toggle||!menu)return;
+  function close(){toggle.setAttribute('aria-expanded','false');menu.classList.remove('open');document.body.classList.remove('menu-open');}
+  toggle.addEventListener('click',function(){
+    var open=toggle.getAttribute('aria-expanded')==='true';
+    if(open){close();}
+    else{toggle.setAttribute('aria-expanded','true');menu.classList.add('open');document.body.classList.add('menu-open');}
+  });
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
+})();
+</script>
+
+
+<script>
+(function(){
+  var demo = document.querySelector('.prompt-demo');
+  if(!demo) return;
+  var rows = demo.querySelectorAll('.pd-row, .pd-label');
+  rows.forEach(function(r){r.style.animationPlayState='paused';});
+  function trigger(){
+    rows.forEach(function(r, i){
+      r.style.animationDelay = (i*0.5) + 's';
+      r.style.animationPlayState = 'running';
+    });
+  }
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){trigger(); io.disconnect();}
+      });
+    }, {threshold: 0.2});
+    io.observe(demo);
+  } else { trigger(); }
+})();
+</script>
+
+</body></html>

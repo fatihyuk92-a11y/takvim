@@ -1,1811 +1,2664 @@
-<!doctype html>
-<html lang="tr">
+<!DOCTYPE html>
+<html lang="da">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Danimarka şehirleri için namaz vakitleri, ezan ve bildirimler.">
-  <meta name="theme-color" content="#071516">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="YKSL">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="assets/icon-192.png" sizes="192x192">
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <title>YKSL</title>
-  <style>
-    :root {
-      color-scheme: dark;
-      --ink: #f8f4ea;
-      --muted: rgba(248, 244, 234, 0.72);
-      --soft: rgba(248, 244, 234, 0.12);
-      --line: rgba(248, 244, 234, 0.2);
-      --gold: #f3c86a;
-      --jade: #56d6b0;
-      --rose: #ffb4a8;
-      --night: #071516;
-      --panel: rgba(5, 18, 20, 0.58);
-      --shadow: 0 28px 90px rgba(0, 0, 0, 0.34);
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PRAKSIS — Akademi for anvendt AI</title>
+<meta name="description" content="Praksis·ai — lær at bruge AI i praksis. 14 områder, 70 lektioner i klart dansk. Fra data og kode til sundhed, karriere og kreativitet." />
+<meta name="theme-color" content="#F8F4EA" />
+<link rel="canonical" href="https://praksis-ai.vercel.app" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="PRAKSIS — Akademi for anvendt AI" />
+<meta property="og:description" content="Praksis·ai — lær at bruge AI i praksis. 14 områder, 70 lektioner i klart dansk. Fra data og kode til sundhed, karriere og kreativitet." />
+<meta property="og:locale" content="da_DK" />
+<meta property="og:site_name" content="Praksis·ai" />
+<meta property="og:url" content="https://praksis-ai.vercel.app" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="PRAKSIS — Akademi for anvendt AI" />
+<meta name="twitter:description" content="Praksis·ai — lær at bruge AI i praksis. 14 områder, 70 lektioner i klart dansk. Fra data og kode til sundhed, karriere og kreativitet." />
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;✦&lt;/text&gt;&lt;/svg&gt;" />
 
-    * {
-      box-sizing: border-box;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,200..700&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F8F4EA;
+    --bg-2: #F2EDE0;
+    --paper: #FFFFFF;
+    --ink: #0F0D0B;
+    --ink-2: #2A2520;
+    --ink-3: #4A4239;
+    --ink-dim: #6B6258;
+    --ink-faint: #A8A095;
+    --rule: #E5DDC9;
+    --rule-soft: #EFE9D8;
+    --accent: #B23F1E;
+    --accent-soft: #F2E1D9;
+    --c-peach: #F0D4BA;
+    --c-blue: #C5D5DE;
+    --c-sage: #C8D4B8;
+    --c-mint: #C7DDC8;
+    --c-lavender: #DACAE0;
+    --c-butter: #ECDCA8;
+  }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      letter-spacing: 0;
-      color: var(--ink);
-      background: var(--night);
-      overflow-x: hidden;
-    }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
 
-    button,
-    select {
-      font: inherit;
-    }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
 
-    button {
-      border: 0;
-      color: inherit;
-      cursor: pointer;
-    }
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 11px;
+  }
 
-    .page {
-      position: relative;
-      min-height: 100vh;
-      min-height: 100svh;
-      isolation: isolate;
-      background:
-        linear-gradient(90deg, rgba(3, 12, 13, 0.92) 0%, rgba(3, 12, 13, 0.66) 43%, rgba(3, 12, 13, 0.2) 100%),
-        linear-gradient(180deg, rgba(3, 11, 12, 0.2) 0%, rgba(3, 11, 12, 0.28) 48%, rgba(3, 11, 12, 0.92) 100%),
-        url("assets/sultan-ahmed-hero.png") center right / cover no-repeat;
-    }
+  /* ============ NAV ============ */
+  .nav {
+    background: rgba(248, 244, 234, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
 
-    .page::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.026) 1px, transparent 1px);
-      background-size: 88px 88px;
-      mask-image: linear-gradient(90deg, black, rgba(0, 0, 0, 0.1));
-    }
+  .nav-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+  }
 
-    .shell {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 28px 0 42px;
-    }
+  .brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .brand em { font-style: italic; font-weight: 300; color: var(--accent); }
 
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 10px 0 34px;
-    }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+  }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
+  .nav-links a {
+    color: var(--ink-2);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
 
-    .mark {
-      width: 44px;
-      height: 44px;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 50% 25%, rgba(243, 200, 106, 0.55), transparent 32%),
-        rgba(248, 244, 234, 0.08);
-      box-shadow: 0 14px 42px rgba(243, 200, 106, 0.16);
-      flex: 0 0 auto;
-    }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
 
-    .mark svg {
-      width: 24px;
-      height: 24px;
-    }
+  .nav-login {
+    color: var(--ink-2);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+  }
 
-    .brand-text {
-      display: grid;
-      gap: 1px;
-      min-width: 0;
-    }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 12px 22px;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover {
+    background: var(--accent);
+  }
 
-    .brand-text strong {
-      font-size: 0.98rem;
-      font-weight: 760;
-      white-space: nowrap;
-    }
+  .btn-large {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 18px 32px;
+    font-size: 15px;
+  }
 
-    .brand-text span {
-      color: var(--muted);
-      font-size: 0.82rem;
-      white-space: nowrap;
-    }
+  /* ============ HERO ============ */
+  .hero {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 70px 40px 100px;
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 60px;
+    align-items: center;
+  }
 
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      min-height: 38px;
-      padding: 0 14px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(5, 18, 20, 0.44);
-      color: var(--muted);
-      backdrop-filter: blur(18px);
-      white-space: nowrap;
-    }
+  .hero-label {
+    color: var(--accent);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-label::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
 
-    .top-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-left: auto;
-      position: relative;
-    }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(48px, 6.5vw, 92px);
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
 
-    .install-app {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      min-height: 38px;
-      padding: 0 14px;
-      border: 1px solid rgba(243, 200, 106, 0.4);
-      border-radius: 999px;
-      background: rgba(243, 200, 106, 0.13);
-      color: var(--gold);
-      font-size: 0.88rem;
-      font-weight: 760;
-      backdrop-filter: blur(18px);
-      white-space: nowrap;
-    }
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-size: 21px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    margin-bottom: 36px;
+    max-width: 520px;
+    font-weight: 400;
+  }
 
-    .install-app[hidden] {
-      display: none;
-    }
+  .hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
 
-    .install-app svg {
-      width: 17px;
-      height: 17px;
-      flex: 0 0 auto;
-    }
+  .hero-cta .play-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--ink-2);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
 
-    .install-hint {
-      position: absolute;
-      top: calc(100% + 10px);
-      right: 0;
-      width: min(340px, calc(100vw - 28px));
-      padding: 12px 14px;
-      border: 1px solid rgba(248, 244, 234, 0.16);
-      border-radius: 8px;
-      background: rgba(5, 18, 20, 0.86);
-      color: rgba(248, 244, 234, 0.84);
-      box-shadow: var(--shadow);
-      font-size: 0.86rem;
-      line-height: 1.45;
-      backdrop-filter: blur(20px);
-      z-index: 5;
-    }
+  .hero-cta .play-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
 
-    .install-hint[hidden] {
-      display: none;
-    }
+  .hero-cta .play-link:hover .play-icon {
+    background: var(--ink);
+    color: var(--bg);
+  }
 
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--jade);
-      box-shadow: 0 0 0 5px rgba(86, 214, 176, 0.12);
-    }
+  .hero-cta .play-icon::before {
+    content: '';
+    border-left: 8px solid currentColor;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    margin-left: 3px;
+  }
+
+  .hero-mini-stats {
+    display: flex;
+    gap: 40px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .hero-mini-stats div .num {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  .hero-mini-stats div .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  /* ============ HERO VIDEO MOCKUP ============ */
+  .hero-video {
+    background: var(--ink);
+    border-radius: 16px;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 40px 80px -30px rgba(15, 13, 11, 0.35);
+  }
+
+  .video-frame {
+    background: #1a1714;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .video-topbar {
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    background: #14110E;
+  }
+
+  .traffic-light {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+  }
+  .tl-r { background: #FF5F57; }
+  .tl-y { background: #FEBC2E; }
+  .tl-g { background: #28C840; }
+
+  .video-url {
+    margin-left: 16px;
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.7);
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .video-content {
+    flex: 1;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Multi-scene rotation
+     4 scenes x 7s = 28s total cycle
+     Each scene visible from t to t+6s, fade out 6-7s */
+  .hero-scenes {
+    position: relative;
+    height: 100%;
+  }
+
+  .hero-scene {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    animation: sceneRotate 28s infinite;
+  }
+
+  .hero-scene:nth-of-type(1) { animation-delay: 0s; }
+  .hero-scene:nth-of-type(2) { animation-delay: 7s; }
+  .hero-scene:nth-of-type(3) { animation-delay: 14s; }
+  .hero-scene:nth-of-type(4) { animation-delay: 21s; }
+
+  @keyframes sceneRotate {
+    0% { opacity: 0; transform: translateY(8px); }
+    2%, 22% { opacity: 1; transform: translateY(0); }
+    25%, 100% { opacity: 0; transform: translateY(-8px); }
+  }
+
+  /* Scene badge - shows which area is featured */
+  .scene-badge {
+    position: absolute;
+    top: -8px;
+    right: 0;
+    background: var(--accent);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    text-transform: uppercase;
+    z-index: 5;
+  }
+
+  /* Chat msgs inside scene - timings relative to scene start (0.5s in) */
+  .chat-msg {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: msgIn 0.5s forwards;
+  }
+
+  .hero-scene .chat-msg:nth-child(1) { animation-delay: 0.5s; }
+  .hero-scene .chat-msg:nth-child(2) { animation-delay: 1.8s; }
+  .hero-scene .chat-msg:nth-child(3) { animation-delay: 3.2s; }
+
+  @keyframes msgIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+  }
+  .av-user { background: var(--c-peach); color: var(--ink); }
+  .av-ai { background: var(--accent); color: white; }
+
+  .chat-bubble {
+    background: rgba(255,255,255,0.06);
+    padding: 10px 14px;
+    border-radius: 12px;
+    color: rgba(255,255,255,0.9);
+    font-size: 13px;
+    line-height: 1.5;
+    max-width: 320px;
+    font-family: 'Manrope', sans-serif;
+  }
+
+  .chat-bubble.ai {
+    background: rgba(178, 63, 30, 0.15);
+    color: rgba(255, 235, 220, 0.95);
+  }
+
+  .chat-bubble .typing {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 1.2s steps(40) forwards;
+    width: 0;
+  }
+
+  @keyframes typing {
+    to { width: 100%; }
+  }
+
+  /* Spreadsheet result */
+  .result-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    margin-top: 8px;
+    overflow: hidden;
+    opacity: 0;
+    animation: cardIn 0.5s 3.7s forwards;
+  }
+
+  @keyframes cardIn {
+    to { opacity: 1; }
+  }
+
+  .result-head {
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.6);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .result-rows {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .result-rows div {
+    padding: 6px 12px;
+    color: rgba(255,255,255,0.7);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .result-rows div:nth-child(3n+1) { color: rgba(255,255,255,0.9); }
+  .result-rows div:nth-child(3n) { color: rgba(232, 168, 124, 0.9); text-align: right; }
+
+  /* Result variants for different areas */
+  .result-post {
+    padding: 14px 16px;
+    color: rgba(255,255,255,0.85);
+    font-size: 12px;
+    line-height: 1.55;
+    font-family: 'Manrope', sans-serif;
+  }
+  .result-post .post-head {
+    font-weight: 600;
+    color: white;
+    margin-bottom: 6px;
+  }
+  .result-post .hashtags {
+    color: #E8A87C;
+    margin-top: 8px;
+    font-size: 11px;
+  }
+
+  .result-chart {
+    padding: 12px 14px;
+  }
+  .result-chart-head {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255,255,255,0.6);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .result-chart-head strong { color: #C8E1B0; font-weight: 600; }
+  .result-chart svg { width: 100%; height: 60px; }
+  .result-chart-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    color: rgba(255,255,255,0.8);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .result-chart-row span:last-child { color: #C8E1B0; }
+  .result-chart-row.neg span:last-child { color: #FFAB7E; }
+
+  .result-property {
+    padding: 14px 16px;
+    color: rgba(255,255,255,0.85);
+  }
+  .result-property .prop-price {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    color: white;
+    margin-bottom: 4px;
+    font-weight: 400;
+  }
+  .result-property .prop-price em {
+    color: #E8A87C;
+    font-style: italic;
+  }
+  .result-property .prop-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .result-property .prop-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .result-property .prop-stat {
+    color: rgba(255,255,255,0.5);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .result-property .prop-stat strong {
+    display: block;
+    color: white;
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-top: 2px;
+  }
+
+  .result-email {
+    padding: 14px 16px;
+    color: rgba(255,255,255,0.85);
+    font-size: 12px;
+    line-height: 1.55;
+    font-family: 'Manrope', sans-serif;
+  }
+  .result-email .email-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .result-email .email-meta strong { color: rgba(255,255,255,0.8); }
+
+  /* Floating accent - removed, badges now per-scene */
+
+  /* ============ LOGOS STRIP ============ */
+  .logos {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: var(--bg-2);
+    padding: 24px 40px;
+    overflow: hidden;
+  }
+
+  .logos-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .logos-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .marquee {
+    flex: 1;
+    overflow: hidden;
+    mask: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 60px;
+    animation: scroll 80s linear infinite;
+    white-space: nowrap;
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .marquee-track span {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--ink-2);
+    font-weight: 400;
+  }
+
+  .marquee-track .sep {
+    color: var(--accent);
+    font-style: normal;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+  }
+
+  /* ============ SECTION ============ */
+  section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 120px 40px;
+  }
+
+  .section-head {
+    margin-bottom: 80px;
+    max-width: 800px;
+  }
+
+  .section-label {
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .section-head h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .section-head h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .section-head p {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    font-weight: 400;
+    max-width: 640px;
+  }
+
+  /* ============ AREAS GRID ============ */
+  .areas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .area-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .area-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 50px -25px rgba(15, 13, 11, 0.15);
+  }
+
+  .area-video {
+    aspect-ratio: 16/10;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .area-card:hover .area-video .scene { animation-play-state: running; }
+
+  .scene {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* SCENE: Excel cells filling */
+  .scene-excel {
+    background: var(--c-peach);
+  }
+  .scene-excel .cell {
+    position: absolute;
+    background: rgba(15,13,11,0.08);
+    border: 1px solid rgba(15,13,11,0.2);
+    border-radius: 2px;
+    opacity: 0;
+    animation: cellFill 4s infinite;
+  }
+  @keyframes cellFill {
+    0%, 100% { opacity: 0; }
+    20%, 80% { opacity: 1; }
+  }
+
+  .scene-excel .num {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink);
+    font-weight: 500;
+    opacity: 0;
+    animation: numIn 4s infinite;
+  }
+  @keyframes numIn {
+    0%, 30% { opacity: 0; transform: translateY(4px); }
+    50%, 70% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; }
+  }
+
+  .scene-excel .sum-bar {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    background: var(--accent);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    opacity: 0;
+    animation: barIn 4s infinite;
+  }
+  @keyframes barIn {
+    0%, 60% { opacity: 0; transform: translateY(8px); }
+    75%, 95% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; }
+  }
+
+  /* SCENE: Finance chart drawing */
+  .scene-finance {
+    background: var(--c-blue);
+  }
+  .scene-finance svg {
+    width: 100%;
+    height: 100%;
+  }
+  .chart-line {
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 2;
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    animation: drawLine 4s infinite ease-out;
+  }
+  @keyframes drawLine {
+    0%, 100% { stroke-dashoffset: 600; }
+    30%, 70% { stroke-dashoffset: 0; }
+  }
+  .chart-dot {
+    fill: var(--accent);
+    opacity: 0;
+    animation: dotIn 4s infinite;
+  }
+  @keyframes dotIn {
+    0%, 50% { opacity: 0; }
+    65%, 90% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  .chart-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    fill: var(--ink);
+    font-weight: 600;
+    opacity: 0;
+    animation: labelIn 4s infinite;
+  }
+  @keyframes labelIn {
+    0%, 60% { opacity: 0; }
+    75%, 95% { opacity: 1; }
+  }
+
+  /* SCENE: Marketing typing */
+  .scene-marketing {
+    background: var(--c-lavender);
+    padding: 24px;
+  }
+  .scene-marketing .typing-box {
+    background: var(--paper);
+    border-radius: 8px;
+    padding: 16px;
+    width: 100%;
+    box-shadow: 0 10px 30px -10px rgba(15,13,11,0.15);
+  }
+  .scene-marketing .heading-anim {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink);
+    margin-bottom: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--accent);
+    width: 0;
+    animation: typeHead 4s infinite;
+  }
+  @keyframes typeHead {
+    0%, 5% { width: 0; }
+    40% { width: 100%; }
+    90% { width: 100%; border-color: var(--accent); }
+    95%, 100% { width: 0; border-color: transparent; }
+  }
+
+  .scene-marketing .body-line {
+    height: 6px;
+    background: rgba(15,13,11,0.1);
+    border-radius: 100px;
+    margin: 6px 0;
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: lineIn 4s infinite;
+  }
+  .scene-marketing .body-line:nth-of-type(2) { animation-delay: 0.4s; width: 70%; }
+  .scene-marketing .body-line:nth-of-type(3) { animation-delay: 0.6s; width: 85%; }
+  .scene-marketing .body-line:nth-of-type(4) { animation-delay: 0.8s; width: 55%; }
+  @keyframes lineIn {
+    0%, 40% { transform: scaleX(0); }
+    60%, 90% { transform: scaleX(1); }
+    100% { transform: scaleX(0); }
+  }
+
+  /* SCENE: Bolig building */
+  .scene-bolig {
+    background: var(--c-sage);
+  }
+  .scene-bolig svg {
+    width: 100%;
+    height: 100%;
+  }
+  .building {
+    fill: rgba(15,13,11,0.25);
+    transform: translateY(60px);
+    opacity: 0;
+    animation: rise 4s infinite;
+  }
+  .building.b1 { animation-delay: 0.2s; }
+  .building.b2 { animation-delay: 0.4s; }
+  .building.b3 { animation-delay: 0.6s; }
+  @keyframes rise {
+    0%, 10% { transform: translateY(60px); opacity: 0; }
+    35%, 85% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(60px); opacity: 0; }
+  }
+
+  /* SCENE: Code */
+  .scene-code {
+    background: var(--c-mint);
+  }
+  .scene-code .code-block {
+    background: rgba(15,13,11,0.95);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.9);
+    margin: 16px;
+    width: 80%;
+  }
+  .scene-code .line-item {
+    opacity: 0;
+    animation: codeLineIn 4s infinite;
+  }
+  .scene-code .line-item:nth-child(1) { animation-delay: 0.1s; }
+  .scene-code .line-item:nth-child(2) { animation-delay: 0.6s; }
+  .scene-code .line-item:nth-child(3) { animation-delay: 1.1s; }
+  .scene-code .line-item:nth-child(4) { animation-delay: 1.6s; }
+  @keyframes codeLineIn {
+    0%, 5% { opacity: 0; }
+    20%, 85% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  .kw { color: #FFAB7E; }
+  .str { color: #C8E1B0; }
+  .com { color: rgba(255,255,255,0.4); }
+
+  /* SCENE: Hverdag clock */
+  .scene-hverdag {
+    background: var(--c-butter);
+  }
+  .scene-hverdag svg { width: 100%; height: 100%; }
+  .clock-hand {
+    transform-origin: 200px 150px;
+    animation: rotate 8s infinite linear;
+  }
+  @keyframes rotate {
+    to { transform: rotate(360deg); }
+  }
+  .task {
+    fill: rgba(15,13,11,0.85);
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    opacity: 0;
+    animation: taskIn 4s infinite;
+  }
+  .task.t1 { animation-delay: 0.2s; }
+  .task.t2 { animation-delay: 1s; }
+  .task.t3 { animation-delay: 1.8s; }
+  @keyframes taskIn {
+    0%, 5% { opacity: 0; transform: translateX(-4px); }
+    20%, 85% { opacity: 1; transform: translateX(0); }
+    100% { opacity: 0; }
+  }
+
+  .area-body {
+    padding: 24px;
+  }
+  .area-cat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .area-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .area-title em { font-style: italic; font-weight: 300; }
+  .area-desc {
+    color: var(--ink-3);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  /* ============ PLATFORM DEMO ============ */
+  .platform-demo {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 80px 40px;
+    margin: 80px 0;
+  }
+
+  .platform-demo-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .platform-demo .section-label { color: #E8A87C; }
+  .platform-demo .section-label::before { background: #E8A87C; }
+
+  .platform-demo h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    color: var(--bg);
+    margin-bottom: 24px;
+  }
+  .platform-demo h2 em {
+    font-style: italic;
+    color: #E8A87C;
+  }
+
+  .platform-demo p {
+    color: rgba(248, 244, 234, 0.8);
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    line-height: 1.55;
+    margin-bottom: 32px;
+    max-width: 480px;
+  }
+
+  .platform-features {
+    list-style: none;
+    margin-bottom: 32px;
+  }
+  .platform-features li {
+    color: rgba(248, 244, 234, 0.9);
+    padding: 10px 0;
+    border-top: 1px solid rgba(248, 244, 234, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 15px;
+  }
+  .platform-features li:last-child { border-bottom: 1px solid rgba(248, 244, 234, 0.15); }
+  .platform-features .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #E8A87C;
+    font-weight: 600;
+  }
+
+  /* Big platform demo "video" */
+  .demo-frame {
+    background: #1a1714;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 50px 100px -30px rgba(0,0,0,0.5);
+    aspect-ratio: 16/10;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .demo-frame .video-topbar { background: #14110E; }
+
+  .demo-content {
+    flex: 1;
+    display: flex;
+  }
+
+  .demo-sidebar {
+    width: 36%;
+    background: #14110E;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    padding: 16px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .demo-side-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 8px 8px 4px;
+    font-weight: 600;
+  }
+
+  .demo-lesson {
+    padding: 8px 10px;
+    border-radius: 6px;
+    color: rgba(255,255,255,0.6);
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+  }
+
+  .demo-lesson.done { color: rgba(255,255,255,0.5); }
+  .demo-lesson.done::before { content: '✓'; color: #6FB48C; font-size: 10px; }
+  .demo-lesson.active {
+    background: rgba(178, 63, 30, 0.2);
+    color: white;
+  }
+  .demo-lesson.active::before { content: '▶'; color: #E8A87C; font-size: 9px; }
+  .demo-lesson:not(.done):not(.active)::before { content: '○'; color: rgba(255,255,255,0.3); font-size: 8px; }
+
+  .demo-main {
+    flex: 1;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .demo-tag {
+    display: inline-block;
+    background: rgba(232, 168, 124, 0.2);
+    color: #E8A87C;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .demo-title {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+  .demo-title em { font-style: italic; color: #E8A87C; }
+
+  .demo-text {
+    color: rgba(255,255,255,0.6);
+    font-size: 11px;
+    line-height: 1.6;
+    font-family: 'Newsreader', 'Manrope', serif;
+  }
+
+  .demo-text-anim {
+    height: 6px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 100px;
+    margin: 6px 0;
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: demoLineIn 6s infinite;
+  }
+  .demo-text-anim:nth-of-type(1) { animation-delay: 0.3s; width: 92%; }
+  .demo-text-anim:nth-of-type(2) { animation-delay: 0.6s; width: 80%; }
+  .demo-text-anim:nth-of-type(3) { animation-delay: 0.9s; width: 95%; }
+  .demo-text-anim:nth-of-type(4) { animation-delay: 1.2s; width: 65%; }
+  @keyframes demoLineIn {
+    0%, 5% { transform: scaleX(0); }
+    25%, 90% { transform: scaleX(1); }
+    100% { transform: scaleX(0); }
+  }
+
+  .demo-exercise {
+    margin-top: 16px;
+    padding: 12px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px;
+    border: 1px solid rgba(232, 168, 124, 0.3);
+    opacity: 0;
+    animation: exerciseIn 6s infinite;
+  }
+  @keyframes exerciseIn {
+    0%, 60% { opacity: 0; transform: translateY(8px); }
+    75%, 95% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; }
+  }
+  .demo-exercise-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: #E8A87C;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .demo-exercise-text {
+    color: rgba(255,255,255,0.7);
+    font-size: 11px;
+  }
+
+  /* ============ HOW IT WORKS ============ */
+  .how {
+    background: var(--bg-2);
+    padding: 120px 0;
+    margin: 80px 0 0;
+  }
+  .how-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 60px;
+  }
+
+  .step {
+    background: var(--paper);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+  }
+
+  .step-video {
+    aspect-ratio: 16/10;
+    background: var(--ink);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .step:nth-child(1) .step-video { background: #2A2520; }
+  .step:nth-child(2) .step-video { background: #1F3A35; }
+  .step:nth-child(3) .step-video { background: #3A2A1F; }
+
+  /* Step 1: Watch */
+  .step-video-1 .play-big {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: relative;
+    z-index: 2;
+  }
+  .step-video-1 .play-big::before {
+    content: '';
+    border-left: 20px solid white;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    margin-left: 4px;
+  }
+  .step-video-1 .ripple {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    animation: ripple 2.5s infinite;
+  }
+  .step-video-1 .ripple:nth-child(2) { animation-delay: 0.8s; }
+  @keyframes ripple {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(2.5); opacity: 0; }
+  }
+  .step-video-1 .timer {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    color: rgba(255,255,255,0.7);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+
+  /* Step 2: Read */
+  .step-video-2 {
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .step-video-2 .doc-line {
+    height: 6px;
+    width: 100%;
+    background: rgba(255,255,255,0.15);
+    border-radius: 100px;
+    margin-bottom: 8px;
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: docIn 3s infinite ease-out;
+  }
+  .step-video-2 .doc-line:nth-child(1) { animation-delay: 0.1s; width: 60%; }
+  .step-video-2 .doc-line:nth-child(2) { animation-delay: 0.3s; }
+  .step-video-2 .doc-line:nth-child(3) { animation-delay: 0.5s; width: 90%; }
+  .step-video-2 .doc-line:nth-child(4) { animation-delay: 0.7s; width: 75%; }
+  .step-video-2 .doc-line:nth-child(5) { animation-delay: 0.9s; }
+  .step-video-2 .doc-line:nth-child(6) { animation-delay: 1.1s; width: 80%; }
+  @keyframes docIn {
+    0%, 10% { transform: scaleX(0); }
+    50%, 90% { transform: scaleX(1); }
+    100% { transform: scaleX(0); }
+  }
+
+  /* Step 3: Do */
+  .step-video-3 {
+    padding: 20px;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .step-video-3 .check-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.85);
+    font-size: 11px;
+    font-weight: 500;
+    width: 100%;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    opacity: 0;
+    animation: checkIn 4s infinite;
+  }
+  .step-video-3 .check-row:nth-child(1) { animation-delay: 0.2s; }
+  .step-video-3 .check-row:nth-child(2) { animation-delay: 1s; }
+  .step-video-3 .check-row:nth-child(3) { animation-delay: 1.8s; }
+  @keyframes checkIn {
+    0%, 5% { opacity: 0; transform: translateY(4px); }
+    20%, 90% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; }
+  }
+  .step-video-3 .check-box {
+    width: 16px; height: 16px;
+    border-radius: 4px;
+    background: #E8A87C;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink);
+    font-size: 10px;
+    font-weight: 800;
+  }
+
+  .step-body {
+    padding: 40px 28px 32px;
+  }
+
+  .step-num {
+    font-family: 'Fraunces', serif;
+    font-weight: 200;
+    font-size: 56px;
+    line-height: 1;
+    color: var(--accent);
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+
+  .step-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .step-desc {
+    color: var(--ink-3);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ============ CTA ============ */
+  .cta {
+    text-align: center;
+    padding: 120px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .cta h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    margin-bottom: 28px;
+  }
+  .cta h2 em { font-style: italic; color: var(--accent); }
+
+  .cta p {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    color: var(--ink-2);
+    margin-bottom: 40px;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .btn-outline {
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    background: transparent;
+    padding: 18px 32px;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+  .btn-outline:hover {
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    color: var(--ink-3);
+    font-size: 13px;
+  }
+
+  /* ============ MOBILE ============ */
+  @media (max-width: 980px) {
+    .nav-inner { padding: 16px 20px; gap: 16px; }
+    .nav-links { display: none; }
 
     .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 0.96fr) minmax(340px, 0.72fr);
-      grid-template-rows: auto auto;
-      gap: clamp(28px, 5vw, 70px);
-      align-items: end;
-      min-height: calc(100vh - 120px);
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 40px 20px 60px;
     }
 
-    .intro {
-      grid-column: 1;
-      grid-row: 1;
-      max-width: 690px;
-      padding-bottom: clamp(12px, 6vh, 72px);
+    .logos-inner { flex-direction: column; gap: 16px; }
+
+    section { padding: 80px 20px; }
+
+    .areas { grid-template-columns: 1fr; gap: 20px; }
+
+    .platform-demo { padding: 60px 20px; margin: 40px 0; }
+    .platform-demo-inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
     }
 
-    .audio-stack {
-      grid-column: 1;
-      grid-row: 2;
-      display: grid;
-      gap: 14px;
-      width: min(100%, 580px);
-      align-self: start;
-      margin-top: -32px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin: 0 0 22px;
-      color: var(--gold);
-      font-size: 0.82rem;
-      font-weight: 720;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 38px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold));
-    }
-
-    h1 {
-      margin: 0;
-      max-width: 12ch;
-      font-size: clamp(4rem, 9vw, 8.8rem);
-      line-height: 0.86;
-      letter-spacing: 0;
-      text-wrap: balance;
-    }
-
-    .subtitle {
-      margin: 24px 0 0;
-      max-width: 580px;
-      color: rgba(248, 244, 234, 0.82);
-      font-size: clamp(1.02rem, 1.7vw, 1.25rem);
-      line-height: 1.6;
-    }
-
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 12px;
-      margin-top: 34px;
-    }
-
-    .field {
-      display: grid;
-      gap: 7px;
-    }
-
-    .field span {
-      color: rgba(248, 244, 234, 0.68);
-      font-size: 0.74rem;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .select-wrap,
-    .date-chip {
-      min-height: 50px;
-      display: inline-flex;
-      align-items: center;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(248, 244, 234, 0.1);
-      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.18);
-      backdrop-filter: blur(18px);
-    }
-
-    .select-wrap {
-      position: relative;
-      padding: 0 16px 0 18px;
-    }
-
-    .select-wrap::after {
-      content: "";
-      width: 8px;
-      height: 8px;
-      margin-left: 12px;
-      border-right: 2px solid var(--gold);
-      border-bottom: 2px solid var(--gold);
-      transform: rotate(45deg) translateY(-3px);
-      pointer-events: none;
-    }
-
-    select {
-      min-width: 188px;
-      border: 0;
-      outline: 0;
-      color: var(--ink);
-      background: transparent;
-      appearance: none;
-      cursor: pointer;
-    }
-
-    select option {
-      color: #0d1718;
-    }
-
-    .date-chip {
-      padding: 0 18px;
-      color: var(--ink);
-      white-space: nowrap;
-    }
-
-    .location-button {
-      min-height: 50px;
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 0 16px;
-      border: 1px solid rgba(86, 214, 176, 0.26);
-      border-radius: 999px;
-      background: rgba(86, 214, 176, 0.1);
-      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.18);
-      color: var(--ink);
-      font-weight: 760;
-      backdrop-filter: blur(18px);
-    }
-
-    .location-button svg {
-      width: 18px;
-      height: 18px;
-      color: var(--jade);
-      flex: 0 0 auto;
-    }
-
-    .location-button span {
-      color: var(--ink);
-      font-size: 0.9rem;
-      font-weight: 760;
-      text-transform: none;
-    }
-
-    .location-button.locating svg {
-      animation: locatePulse 1.1s ease-in-out infinite;
-    }
-
-    .location-button:disabled {
-      cursor: wait;
-      opacity: 0.82;
-    }
-
-    @keyframes locatePulse {
-      0%, 100% {
-        transform: scale(1);
-        opacity: 0.72;
-      }
-
-      50% {
-        transform: scale(1.12);
-        opacity: 1;
-      }
-    }
-
-    .audio-panel {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      width: 100%;
-      padding: 14px;
-      border: 1px solid rgba(248, 244, 234, 0.16);
-      border-radius: 8px;
-      background: rgba(5, 18, 20, 0.46);
-      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.18);
-      backdrop-filter: blur(18px);
-    }
-
-    .notification-panel {
-      border-color: rgba(86, 214, 176, 0.22);
-      background: rgba(5, 32, 31, 0.46);
-    }
-
-    .notification-panel .audio-kicker,
-    .notification-panel .icon-button.primary {
-      color: var(--jade);
-    }
-
-    .notification-panel .icon-button.primary {
-      border-color: rgba(86, 214, 176, 0.42);
-      background: rgba(86, 214, 176, 0.14);
-    }
-
-    .audio-copy {
-      display: grid;
-      gap: 2px;
-      min-width: 0;
-    }
-
-    .audio-kicker {
-      color: var(--gold);
-      font-size: 0.72rem;
-      font-weight: 760;
-      text-transform: uppercase;
-    }
-
-    .audio-copy strong {
-      overflow: hidden;
-      font-size: 0.96rem;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .audio-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex: 0 0 auto;
-    }
-
-    .icon-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 42px;
-      padding: 0 13px;
-      border: 1px solid rgba(248, 244, 234, 0.16);
-      border-radius: 999px;
-      background: rgba(248, 244, 234, 0.09);
-      color: var(--ink);
-      font-size: 0.88rem;
-      font-weight: 760;
-      white-space: nowrap;
-    }
-
-    .icon-button.primary {
-      border-color: rgba(243, 200, 106, 0.46);
-      background: rgba(243, 200, 106, 0.18);
-      color: var(--gold);
-    }
-
-    .icon-button.ghost {
-      width: 42px;
-      padding: 0;
-    }
-
-    .icon-button svg {
-      width: 18px;
-      height: 18px;
-      flex: 0 0 auto;
-    }
-
-    .prayer-area {
-      grid-column: 2;
-      grid-row: 1 / span 2;
-      align-self: center;
-      padding: 22px;
-      border: 1px solid rgba(248, 244, 234, 0.16);
-      border-radius: 8px;
-      background: linear-gradient(180deg, rgba(5, 18, 20, 0.7), rgba(5, 18, 20, 0.48));
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(22px);
-    }
-
-    .next {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      align-items: center;
-      padding-bottom: 18px;
-      border-bottom: 1px solid rgba(248, 244, 234, 0.14);
-    }
-
-    .next-label {
-      margin: 0 0 6px;
-      color: var(--muted);
-      font-size: 0.76rem;
-      font-weight: 740;
-      text-transform: uppercase;
-    }
-
-    .next-name {
-      margin: 0;
-      font-size: clamp(1.6rem, 3vw, 2.55rem);
-      line-height: 1;
-      font-weight: 820;
-    }
-
-    .countdown {
-      min-width: 116px;
-      text-align: right;
-      color: var(--gold);
-      font-size: clamp(1.05rem, 1.65vw, 1.35rem);
-      font-weight: 820;
-      line-height: 1.1;
-    }
-
-    .countdown-wrap {
-      display: grid;
-      min-width: 136px;
-      justify-items: end;
-    }
-
-    .remaining-text {
-      display: none;
-    }
-
-    .prayer-grid {
-      display: grid;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .prayer {
-      display: grid;
-      grid-template-columns: 48px minmax(0, 1fr) auto;
-      align-items: center;
-      gap: 14px;
-      min-height: 74px;
-      padding: 12px 14px;
-      border: 1px solid rgba(248, 244, 234, 0.14);
-      border-radius: 8px;
-      background: rgba(248, 244, 234, 0.075);
-    }
-
-    .prayer.active {
-      border-color: rgba(243, 200, 106, 0.58);
-      background:
-        linear-gradient(90deg, rgba(243, 200, 106, 0.22), rgba(248, 244, 234, 0.08)),
-        rgba(248, 244, 234, 0.09);
-      box-shadow: inset 4px 0 0 var(--gold);
-    }
-
-    .prayer.info {
-      border-color: rgba(86, 214, 176, 0.2);
-      background: rgba(86, 214, 176, 0.075);
-    }
-
-    .prayer-icon {
-      width: 48px;
-      height: 48px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      color: var(--gold);
-      background: rgba(243, 200, 106, 0.13);
-    }
-
-    .prayer-icon svg {
-      width: 23px;
-      height: 23px;
-    }
-
-    .prayer h2 {
-      margin: 0;
-      font-size: 1rem;
-      line-height: 1.1;
-      font-weight: 800;
-    }
-
-    .prayer p {
-      margin: 5px 0 0;
-      color: var(--muted);
-      font-size: 0.82rem;
-      line-height: 1.3;
-    }
-
-    .time {
-      font-size: clamp(1.35rem, 3vw, 1.85rem);
-      font-weight: 840;
-      font-variant-numeric: tabular-nums;
-      white-space: nowrap;
-    }
-
-    .source {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      margin-top: 16px;
-      color: rgba(248, 244, 234, 0.62);
-      font-size: 0.78rem;
-      line-height: 1.4;
-    }
-
-    .source span:last-child {
-      text-align: right;
-    }
-
-    .source a {
-      color: inherit;
-      text-decoration-color: rgba(243, 200, 106, 0.55);
-      text-underline-offset: 3px;
-    }
-
-    @media (max-width: 900px) {
-      .page {
-        background-position: center top;
-      }
-
-      .shell {
-        width: min(100% - 24px, 680px);
-        padding-top: 18px;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-        grid-template-rows: none;
-        align-items: start;
-        gap: 24px;
-        min-height: auto;
-      }
-
-      .intro {
-        grid-column: auto;
-        grid-row: auto;
-        padding: 22px 0 0;
-      }
-
-      .audio-stack {
-        grid-column: auto;
-        grid-row: auto;
-        width: 100%;
-        margin-top: 0;
-        margin-bottom: 20px;
-      }
-
-      h1 {
-        max-width: 100%;
-        font-size: clamp(2.85rem, 12vw, 4.05rem);
-        line-height: 0.94;
-      }
-
-      .subtitle {
-        margin-top: 18px;
-      }
-
-      .prayer-area {
-        grid-column: auto;
-        grid-row: auto;
-        margin-bottom: 20px;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .topbar {
-        align-items: flex-start;
-        padding-bottom: 18px;
-      }
-
-      .brand-text span,
-      .status-pill {
-        display: none;
-      }
-
-      .install-app span {
-        display: none;
-      }
-
-      .install-app {
-        width: 42px;
-        justify-content: center;
-        padding: 0;
-      }
-
-      .controls {
-        align-items: stretch;
-        gap: 10px;
-        margin-top: 26px;
-      }
-
-      .field {
-        width: 100%;
-      }
-
-      .select-wrap,
-      .date-chip,
-      .location-button {
-        width: 100%;
-        justify-content: space-between;
-      }
-
-      select {
-        width: 100%;
-        min-width: 0;
-      }
-
-      .audio-panel {
-        align-items: stretch;
-        width: 100%;
-      }
-
-      .audio-actions {
-        justify-content: flex-end;
-      }
-
-      .prayer-area {
-        padding: 14px;
-      }
-
-      .next {
-        align-items: flex-start;
-      }
-
-      .countdown-wrap {
-        min-width: 118px;
-      }
-
-      .prayer {
-        grid-template-columns: 42px minmax(0, 1fr) auto;
-        gap: 10px;
-        min-height: 68px;
-        padding: 10px;
-      }
-
-      .prayer-icon {
-        width: 42px;
-        height: 42px;
-      }
-
-      .source {
-        display: grid;
-      }
-
-      .source span:last-child {
-        text-align: left;
-      }
-    }
-
-    @media (max-width: 430px) {
-      .shell {
-        width: min(100% - 18px, 680px);
-        padding-top: 12px;
-      }
-
-      .intro {
-        padding-top: 10px;
-      }
-
-      .eyebrow {
-        margin-bottom: 15px;
-        font-size: 0.74rem;
-      }
-
-      h1 {
-        max-width: 100%;
-        font-size: clamp(2.82rem, 11.6vw, 3.35rem);
-        line-height: 0.96;
-      }
-
-      .subtitle {
-        font-size: 0.98rem;
-        line-height: 1.55;
-      }
-
-      .audio-panel {
-        display: grid;
-      }
-
-      .audio-actions {
-        justify-content: stretch;
-      }
-
-      .icon-button {
-        flex: 1 1 auto;
-      }
-
-      .icon-button.ghost {
-        flex: 0 0 42px;
-      }
-
-      .next-name {
-        font-size: 1.55rem;
-      }
-
-      .countdown {
-        min-width: 82px;
-        font-size: 1.2rem;
-      }
-
-      .prayer h2 {
-        font-size: 0.95rem;
-      }
-
-      .prayer p {
-        font-size: 0.76rem;
-      }
-
-      .time {
-        font-size: 1.22rem;
-      }
-    }
-
-    @media (max-width: 370px) {
-      .mark {
-        width: 38px;
-        height: 38px;
-      }
-
-      .brand {
-        gap: 9px;
-      }
-
-      h1 {
-        font-size: 2.5rem;
-      }
-
-      .audio-actions {
-        flex-wrap: wrap;
-      }
-
-      .icon-button.ghost {
-        flex: 1 1 42px;
-      }
-
-      .prayer {
-        grid-template-columns: 38px minmax(0, 1fr) auto;
-      }
-
-      .prayer-icon {
-        width: 38px;
-        height: 38px;
-      }
-    }
-  </style>
+    .how { padding: 80px 0; }
+    .how-inner { padding: 0 20px; }
+    .steps { grid-template-columns: 1fr; gap: 24px; }
+
+    .cta { padding: 80px 20px; }
+    .cta-buttons { flex-direction: column; align-items: stretch; }
+
+    footer { padding: 24px 20px; flex-direction: column; }
+
+    .hero-mini-stats { gap: 24px; }
+  }
+
+/* =============================================
+   PRO SECTION
+   ============================================= */
+.pro-section{
+  background: var(--ink);
+  color: var(--bg);
+  padding: 120px 0;
+  margin: 80px 0 0;
+  position: relative;
+  overflow: hidden;
+}
+.pro-section::before{
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+.pro-inner{
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.pro-head{
+  max-width: 720px;
+  margin: 0 auto 70px;
+  text-align: center;
+}
+.pro-badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.pro-badge::before{
+  content: '';
+  width: 28px; height: 1px;
+  background: var(--accent);
+}
+.pro-head h2{
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 22px;
+  color: var(--bg);
+}
+.pro-head h2 em{
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 300;
+}
+.pro-lead{
+  font-family: 'Fraunces', serif;
+  font-size: 19px;
+  line-height: 1.55;
+  color: rgba(248,244,234,.7);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.pro-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 70px;
+}
+.pro-card{
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 18px;
+  padding: 32px 30px;
+  text-decoration: none;
+  color: var(--bg);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 28px;
+  align-items: start;
+  transition: .3s;
+  cursor: pointer;
+}
+.pro-card:hover{
+  background: rgba(255,255,255,.07);
+  border-color: rgba(178,63,30,.4);
+  transform: translateY(-2px);
+}
+.pro-num{
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 200;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.pro-card-body h3{
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.1;
+  letter-spacing: -.015em;
+  margin: 8px 0 10px;
+  color: var(--bg);
+}
+.pro-card-body h3 em{
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 300;
+}
+.pro-card-body p{
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(248,244,234,.7);
+  margin-bottom: 14px;
+}
+.pro-tags{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.pro-tags span{
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: rgba(248,244,234,.6);
+  padding: 4px 10px;
+  background: rgba(255,255,255,.06);
+  border-radius: 100px;
+}
+.pro-meta{
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(248,244,234,.45);
+  font-weight: 600;
+  flex-shrink: 0;
+  min-width: 80px;
+}
+.pro-meta strong{
+  display: block;
+  font-family: 'Manrope', sans-serif;
+  font-size: 17px;
+  color: var(--bg);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-bottom: 2px;
+}
+
+.pro-cta-block{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+  padding: 40px 44px;
+  background: linear-gradient(135deg, rgba(178,63,30,.12), rgba(178,63,30,.04));
+  border: 1px solid rgba(178,63,30,.25);
+  border-radius: 20px;
+}
+.pro-cta-text h3{
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 1.1;
+  margin-bottom: 10px;
+  color: var(--bg);
+}
+.pro-cta-text h3 em{
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 300;
+}
+.pro-cta-text p{
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: rgba(248,244,234,.75);
+  max-width: 480px;
+}
+.pro-cta-text strong{
+  color: var(--bg);
+  font-weight: 600;
+}
+.pro-cta-buttons{
+  display: flex;
+  gap: 14px;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.btn-pro{
+  background: var(--accent);
+  color: var(--bg);
+  padding: 14px 26px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: .25s;
+}
+.btn-pro:hover{
+  background: #C9501F;
+  transform: translateY(-1px);
+}
+.btn-pro-ghost{
+  color: rgba(248,244,234,.85);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  padding: 10px;
+}
+.btn-pro-ghost:hover{
+  color: var(--accent);
+}
+
+@media (max-width: 980px){
+  .pro-section{padding: 80px 0;}
+  .pro-grid{grid-template-columns: 1fr; gap: 14px;}
+  .pro-card{padding: 24px; gap: 18px;}
+  .pro-num{font-size: 44px;}
+  .pro-cta-block{
+    grid-template-columns: 1fr;
+    padding: 30px 24px;
+    text-align: center;
+  }
+  .pro-cta-text p{margin: 0 auto;}
+  .pro-cta-buttons{flex-direction: column;}
+}
+@media (max-width: 600px){
+  .pro-inner{padding: 0 18px;}
+  .pro-head{margin-bottom: 40px;}
+  .pro-card{
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 20px;
+  }
+  .pro-num{font-size: 36px;}
+  .pro-card-body h3{font-size: 22px;}
+  .pro-meta{text-align: left;}
+}
+
+
+section[id], [id^="undervisning-"]{scroll-margin-top:150px}
+/* === Respect reduced motion === */
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+
+
+/* ===================== MOBILE MENU ===================== */
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:none;border:none;cursor:pointer;padding:10px;margin-left:auto;z-index:60}
+.nav-toggle span{display:block;height:2px;width:100%;background:var(--ink);border-radius:2px;transition:.3s}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;inset:0;top:0;background:var(--bg);z-index:55;padding:90px 28px 40px;flex-direction:column;gap:4px;overflow-y:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Fraunces',serif;font-size:26px;color:var(--ink);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule)}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu a em{font-style:italic;color:var(--accent)}
+.mobile-menu .mm-cta{margin-top:24px;background:var(--ink);color:var(--bg);border-radius:100px;text-align:center;padding:16px;font-family:'Manrope',sans-serif;font-size:15px;font-weight:600;border-bottom:none}
+body.menu-open{overflow:hidden}
+
+/* ===================== PHONE BREAKPOINT (<=600px) ===================== */
+@media (max-width:600px){
+  /* show hamburger, hide desktop links */
+  .nav-toggle{display:flex}
+  .nav-inner .nav-links{display:none}
+  .nav-inner .nav-right{display:none}
+  .nav-inner{padding:14px 18px}
+  .brand{font-size:20px}
+
+  /* tame huge display type */
+  .hero h1{font-size:clamp(38px,11vw,52px)!important}
+  h1{word-break:break-word;hyphens:auto}
+  .section-head h2,.cta h2,.platform-demo h2,.how h2,.outro h2,.related h3{font-size:clamp(30px,8vw,40px)!important}
+  .lesson-title{font-size:clamp(28px,8vw,36px)!important}
+  .lesson-num{font-size:64px!important}
+
+  /* tighter section padding */
+  section{padding:48px 18px!important}
+  .hero{padding:28px 18px 44px!important}
+  .lesson{padding:40px 18px 16px!important}
+  .breadcrumb{padding:16px 18px 0!important;font-size:12px}
+
+  /* prevent overflow from wide demos / code */
+  .code-block,.code-box code{font-size:11px!important;padding:16px!important}
+  .demo-frame,.hero-video,.hero-card{max-width:100%;overflow:hidden}
+  pre,code{white-space:pre-wrap!important;word-break:break-word}
+
+  /* stack any 2-up compares and tool grids */
+  .brief-compare,.code-compare,.code-compare.three,.tools-grid,.lessons-grid,.learn-grid,.related-grid{grid-template-columns:1fr!important}
+
+  /* touch targets */
+  .btn-primary,.btn-large,.btn-ghost,.btn-orange,.btn-outline,.btn-undervisning,.lesson-link,.nav-login{min-height:44px;display:inline-flex;align-items:center}
+
+  /* lesson prev/next stacks */
+  .lesson-nav{flex-direction:column}
+
+  /* hero stats / mini stats wrap */
+  .hero-stats{flex-wrap:wrap;gap:18px!important}
+
+  /* sticky section-nav scroll on teaching pages */
+  .section-nav-inner{padding:12px 18px}
+
+  /* reduce scroll-margin so anchors aren't too low on small screens */
+  section[id],[id^="undervisning-"]{scroll-margin-top:80px}
+
+  /* footer */
+  footer{padding:24px 18px!important}
+  .hero-stats{flex-wrap:wrap}
+  .hero-video,.hero-card,.demo-frame{max-width:100%;height:auto}
+}
+
+/* prevent horizontal scroll globally */
+html,body{max-width:100%;overflow-x:hidden}
+
+
+/* ===================== NAV DROPDOWNS ===================== */
+.nav-links{position:relative}
+.has-dropdown{position:relative;display:inline-block}
+.has-dropdown > a{position:relative}
+.has-dropdown > a::after{
+  content:'';
+  display:inline-block;
+  width:0;height:0;
+  margin-left:6px;
+  vertical-align:middle;
+  border-left:3.5px solid transparent;
+  border-right:3.5px solid transparent;
+  border-top:4px solid currentColor;
+  opacity:.55;
+  transition:transform .2s
+}
+.has-dropdown:hover > a::after{transform:rotate(180deg)}
+.dropdown-menu{
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%) translateY(8px);
+  min-width:280px;
+  background:var(--paper);
+  border:1px solid var(--rule);
+  border-radius:14px;
+  padding:10px;
+  box-shadow:0 24px 60px -20px rgba(15,13,11,.18), 0 4px 16px -4px rgba(15,13,11,.08);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index:80;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px
+}
+.dropdown-menu.single-col{grid-template-columns:1fr;min-width:240px}
+.has-dropdown:hover .dropdown-menu,
+.has-dropdown:focus-within .dropdown-menu{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(2px)
+}
+/* Bridge so cursor doesn't drop the menu when crossing gap */
+.has-dropdown::before{
+  content:'';
+  position:absolute;
+  top:100%;
+  left:0;right:0;
+  height:14px
+}
+.dropdown-menu a{
+  display:block;
+  padding:9px 14px;
+  border-radius:9px;
+  color:var(--ink-2)!important;
+  font-family:'Manrope',sans-serif;
+  font-size:13.5px;
+  font-weight:500;
+  text-decoration:none;
+  letter-spacing:0;
+  text-transform:none;
+  white-space:nowrap;
+  transition:background .12s, color .12s
+}
+.dropdown-menu a:hover{
+  background:var(--bg-2);
+  color:var(--ink)!important
+}
+.dropdown-menu a .dd-num{
+  display:inline-block;
+  width:22px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--ink-faint);
+  font-weight:600;
+  margin-right:4px
+}
+.dropdown-menu .dd-all{
+  grid-column:1 / -1;
+  margin-top:6px;
+  padding-top:10px;
+  border-top:1px solid var(--rule);
+  font-style:italic;
+  font-family:'Fraunces',serif;
+  color:var(--accent)!important;
+  font-size:13px
+}
+/* Skjul dropdowns på mobil */
+@media (max-width:600px){
+  .has-dropdown::before{display:none}
+  .dropdown-menu{display:none!important}
+  .has-dropdown > a::after{display:none}
+}
+
+</style>
 </head>
 <body>
-  <main class="page">
-    <div class="shell">
-      <header class="topbar">
-        <div class="brand" aria-label="YKSL namaz vakitleri">
-          <div class="mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M12 4.5c2.8 2 4.25 4.4 4.25 7.2V19.5H7.75v-7.8c0-2.8 1.45-5.2 4.25-7.2Z" stroke="currentColor" stroke-width="1.6"/>
-              <path d="M12 9.2v10.3M5 19.5h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="brand-text">
-            <strong>YKSL</strong>
-            <span>Namaz Vakitleri</span>
-          </div>
-        </div>
-        <div class="top-actions">
-          <button class="install-app" id="installButton" type="button" hidden>
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 4v10m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M5 17.5V20h14v-2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Yükle</span>
-          </button>
-          <div class="status-pill">
-            <span class="status-dot"></span>
-            <span id="statusText">Vakitler alınıyor</span>
-          </div>
-          <div class="install-hint" id="installHint" hidden>
-            iPhone: Paylaş ve Ana Ekrana Ekle. Android: tarayıcıda Uygulamayı yükle.
-          </div>
-        </div>
-      </header>
 
-      <section class="hero" aria-labelledby="pageTitle">
-        <div class="intro">
-          <p class="eyebrow">İslami namaz vakitleri</p>
-          <h1 id="pageTitle">YKSL</h1>
-          <p class="subtitle">Danimarka şehirleri için Sabah, Öğle, İkindi, Akşam ve Yatsı vakitleri; sade ve huzurlu bir görünümde.</p>
-
-          <div class="controls" aria-label="Seçimler">
-            <label class="field">
-              <span>Şehir</span>
-              <span class="select-wrap">
-                <select id="citySelect">
-                  <option value="copenhagen">København</option>
-                  <option value="aabenraa">Aabenraa</option>
-                  <option value="aarhus">Aarhus</option>
-                  <option value="odense">Odense</option>
-                  <option value="aalborg">Aalborg</option>
-                  <option value="ballerup">Ballerup</option>
-                  <option value="esbjerg">Esbjerg</option>
-                  <option value="fredericia">Fredericia</option>
-                  <option value="frederikssund">Frederikssund</option>
-                  <option value="frederikshavn">Frederikshavn</option>
-                  <option value="glostrup">Glostrup</option>
-                  <option value="haderslev">Haderslev</option>
-                  <option value="helsingor">Helsingør</option>
-                  <option value="herning">Herning</option>
-                  <option value="hilleroed">Hillerød</option>
-                  <option value="hjoerring">Hjørring</option>
-                  <option value="holstebro">Holstebro</option>
-                  <option value="horsens">Horsens</option>
-                  <option value="ikast">Ikast</option>
-                  <option value="ishoej">Ishøj</option>
-                  <option value="kalundborg">Kalundborg</option>
-                  <option value="kolding">Kolding</option>
-                  <option value="koege">Køge</option>
-                  <option value="middelfart">Middelfart</option>
-                  <option value="nakskov">Nakskov</option>
-                  <option value="nyborg">Nyborg</option>
-                  <option value="nykoebing_falster">Nykøbing Falster</option>
-                  <option value="naestved">Næstved</option>
-                  <option value="randers">Randers</option>
-                  <option value="ribe">Ribe</option>
-                  <option value="ringsted">Ringsted</option>
-                  <option value="roskilde">Roskilde</option>
-                  <option value="roenne">Rønne</option>
-                  <option value="silkeborg">Silkeborg</option>
-                  <option value="skive">Skive</option>
-                  <option value="slagelse">Slagelse</option>
-                  <option value="stenloese">Stenløse</option>
-                  <option value="soenderborg">Sønderborg</option>
-                  <option value="svendborg">Svendborg</option>
-                  <option value="taastrup">Taastrup</option>
-                  <option value="thisted">Thisted</option>
-                  <option value="vejle">Vejle</option>
-                  <option value="viborg">Viborg</option>
-                  <option value="oelstykke">Ølstykke</option>
-                </select>
-              </span>
-            </label>
-            <div class="field">
-              <span>Tarih</span>
-              <div class="date-chip" id="dateText">Bugün</div>
-            </div>
-            <div class="field">
-              <span>Konum</span>
-              <button class="location-button" id="locationButton" type="button">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M12 21s7-6.1 7-12A7 7 0 0 0 5 9c0 5.9 7 12 7 12Z" stroke="currentColor" stroke-width="1.7"/>
-                  <path d="M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" stroke="currentColor" stroke-width="1.7"/>
-                </svg>
-                <span id="locationButtonText">Bul</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <section class="prayer-area" aria-label="Bugünün beş namaz vakti">
-          <div class="next">
-            <div>
-              <p class="next-label">Sonraki namaz</p>
-              <p class="next-name" id="nextName">-</p>
-            </div>
-            <div class="countdown-wrap">
-              <div class="countdown" id="countdown">-- dk kaldı</div>
-            </div>
-          </div>
-
-          <div class="prayer-grid" id="prayerGrid"></div>
-
-          <div class="source">
-            <span id="sourceText">Danimarka için vakitler hesaplanıyor</span>
-            <span id="methodText">Kaynaklar: Semerkand Takvimi + T&uuml;rkiye Diyanet + Muslim World League &middot; <a href="https://commons.wikimedia.org/wiki/File:Call_to_prayer_by_Sabah_Fakhry.mp3" target="_blank" rel="noreferrer">Ezan: Sabah Fakhry / public domain</a></span>
-          </div>
-        </section>
-
-        <div class="audio-stack">
-          <div class="audio-panel" aria-label="Saba makamında ezan">
-            <div class="audio-copy">
-              <span class="audio-kicker">Saba ezanı</span>
-              <strong id="ezanState">Kapalı</strong>
-            </div>
-            <div class="audio-actions">
-              <button class="icon-button primary" id="ezanToggle" type="button" aria-pressed="false">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M6 9v6h4l5 4V5l-5 4H6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-                  <path d="M18 9.5a4.2 4.2 0 0 1 0 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                </svg>
-                <span id="ezanToggleText">Etkinleştir</span>
-              </button>
-              <button class="icon-button" id="ezanTest" type="button">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M8 5.5v13l10-6.5-10-6.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-                </svg>
-                <span>Test</span>
-              </button>
-              <button class="icon-button ghost" id="ezanStop" type="button" aria-label="Ezanı durdur">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M8 8h8v8H8z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <div class="audio-panel notification-panel" aria-label="Namaz vakti bildirimleri">
-            <div class="audio-copy">
-              <span class="audio-kicker">Bildirimler</span>
-              <strong id="notificationState">Kapalı</strong>
-            </div>
-            <div class="audio-actions">
-              <button class="icon-button primary" id="notificationToggle" type="button" aria-pressed="false">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-                  <path d="M10 20a2.2 2.2 0 0 0 4 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                </svg>
-                <span id="notificationToggleText">Etkinleştir</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand" style="text-decoration: none;">Praksis<em>·ai</em></a>
+    <div class="nav-links">
+      <span class="has-dropdown"><a href="#omrader">Områder</a>
+<div class="dropdown-menu">
+  <a href="data.html"><span class="dd-num">01</span>Data &amp; Excel</a>
+  <a href="marketing.html"><span class="dd-num">02</span>Markedsføring</a>
+  <a href="finans.html"><span class="dd-num">03</span>Finans</a>
+  <a href="bolig.html"><span class="dd-num">04</span>Bolig</a>
+  <a href="kode.html"><span class="dd-num">05</span>Kode</a>
+  <a href="hverdag.html"><span class="dd-num">06</span>Hverdag</a>
+  <a href="karriere.html"><span class="dd-num">07</span>Karriere</a>
+  <a href="sundhed.html"><span class="dd-num">08</span>Sundhed</a>
+  <a href="laering.html"><span class="dd-num">09</span>Læring</a>
+  <a href="skriv.html"><span class="dd-num">10</span>Skriv</a>
+  <a href="ivaerksaetteri.html"><span class="dd-num">11</span>Iværksætteri</a>
+  <a href="salg.html"><span class="dd-num">12</span>Salg</a>
+  <a href="rejse.html"><span class="dd-num">13</span>Rejse</a>
+  <a href="mad.html"><span class="dd-num">14</span>Mad</a>
+  <a href="#omrader" class="dd-all">Se alle 14 områder &rarr;</a>
+</div>
+</span>
+      <a href="#metode">Metode</a>
+      <span class="has-dropdown"><a href="#pro">Pro</a>
+<div class="dropdown-menu single-col">
+  <a href="pro-byg.html"><span class="dd-num">01</span>Byg AI-produkter</a>
+  <a href="pro-automation.html"><span class="dd-num">02</span>Automation i skala</a>
+  <a href="pro-prompt.html"><span class="dd-num">03</span>Prompt engineering</a>
+  <a href="pro-strategi.html"><span class="dd-num">04</span>AI-strategi</a>
+  <a href="pro-finans.html"><span class="dd-num">05</span>Avanceret finans</a>
+  <a href="pro-research.html"><span class="dd-num">06</span>AI-research</a>
+  <a href="#pro" class="dd-all">Se alle Pro-områder &rarr;</a>
+</div>
+</span>
+      <a href="#priser">Priser</a>
+      <a href="#">Blog</a>
     </div>
-  </main>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button><div class="nav-right">
+      <a href="#" class="nav-login">Log ind</a>
+      <a href="#priser" class="btn-primary">Start gratis →</a>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu">
+<a href="#omrader">Områder</a>
+<a href="#metode">Metode</a>
+<a href="#pro">Pro</a>
+<a href="#priser">Priser</a>
+<a href="#">Blog</a>
+<a href="#">Log ind</a>
+<a href="#priser" class="mm-cta">Start gratis →</a>
+</div>
 
-  <audio id="ezanAudio" preload="auto">
-    <source src="assets/saba-ezan.mp3" type="audio/mpeg">
-  </audio>
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-label mono">Akademi · Anvendt AI</div>
+    <h1>Lær AI<br>som et<br><em>håndværk.</em></h1>
+    <p class="hero-sub">Et akademi for dig der ikke vil nøjes med at læse om AI &mdash; men faktisk bruge det til at løse rigtige problemer i Excel, marketing, finans, bolig og hverdag.</p>
+    <div class="hero-cta">
+      <a href="#priser" class="btn-primary btn-large">Få adgang →</a>
+      <a href="#omrader" class="play-link">
+        <span class="play-icon"></span>
+        Se hvordan det virker
+      </a>
+    </div>
+    <div class="hero-mini-stats">
+      <div>
+        <div class="num">70</div>
+        <div class="label">Lektioner</div>
+      </div>
+      <div>
+        <div class="num">14</div>
+        <div class="label">Områder</div>
+      </div>
+      <div>
+        <div class="num">2.400+</div>
+        <div class="label">Medlemmer</div>
+      </div>
+    </div>
+  </div>
 
-  <script>
-    const cities = {
-      copenhagen: { label: "København", lat: 55.6761, lng: 12.5683, semerkandId: 221, semerkandLabel: "København", diyanetId: 12618 },
-      aabenraa: { label: "Aabenraa", lat: 55.0443, lng: 9.4174, semerkandId: 856, semerkandLabel: "Aabenraa", diyanetId: 12646 },
-      aarhus: { label: "Aarhus", lat: 56.1629, lng: 10.2039, semerkandId: 218, semerkandLabel: "Aarhus", diyanetId: 12620 },
-      odense: { label: "Odense", lat: 55.4038, lng: 10.4024, semerkandId: 554, semerkandLabel: "Odense", diyanetId: 12619 },
-      aalborg: { label: "Aalborg", lat: 57.0488, lng: 9.9217, semerkandId: 857, semerkandLabel: "Aalborg", diyanetId: 12647 },
-      ballerup: { label: "Ballerup", lat: 55.7317, lng: 12.3633, semerkandId: 221, semerkandLabel: "København", diyanetId: 17801 },
-      esbjerg: { label: "Esbjerg", lat: 55.4765, lng: 8.4594, semerkandId: 849, semerkandLabel: "Esbjerg", diyanetId: 12638 },
-      fredericia: { label: "Fredericia", lat: 55.5657, lng: 9.7526, semerkandId: 829, semerkandLabel: "Fredericia", diyanetId: 12623 },
-      frederikssund: { label: "Frederikssund", lat: 55.8396, lng: 12.0690, semerkandId: 851, semerkandLabel: "Hillerod", diyanetId: 12640 },
-      frederikshavn: { label: "Frederikshavn", lat: 57.4427, lng: 10.5210, semerkandId: 842, semerkandLabel: "Frederikshavn", diyanetId: 12650 },
-      glostrup: { label: "Glostrup", lat: 55.6666, lng: 12.4030, semerkandId: 221, semerkandLabel: "København", diyanetId: 12618 },
-      haderslev: { label: "Haderslev", lat: 55.2494, lng: 9.4877, semerkandId: 850, semerkandLabel: "Haderslev", diyanetId: 12639 },
-      helsingor: { label: "Helsingør", lat: 56.0361, lng: 12.6136, semerkandId: 219, semerkandLabel: "Helsingor", diyanetId: 12626 },
-      herning: { label: "Herning", lat: 56.1386, lng: 8.9673, semerkandId: 220, semerkandLabel: "Herning", diyanetId: 12631 },
-      hilleroed: { label: "Hillerød", lat: 55.9279, lng: 12.3008, semerkandId: 851, semerkandLabel: "Hillerod", diyanetId: 12640 },
-      hjoerring: { label: "Hjørring", lat: 57.4562, lng: 9.9950, semerkandId: 843, semerkandLabel: "Hjorring", diyanetId: 12651 },
-      holstebro: { label: "Holstebro", lat: 56.3601, lng: 8.6161, semerkandId: 840, semerkandLabel: "Holstebro", diyanetId: 12648 },
-      horsens: { label: "Horsens", lat: 55.8607, lng: 9.8503, semerkandId: 837, semerkandLabel: "Horsens (Vejle)", diyanetId: 12633 },
-      ikast: { label: "Ikast", lat: 56.1388, lng: 9.1577, semerkandId: 831, semerkandLabel: "Ikast", diyanetId: 12625 },
-      ishoej: { label: "Ishøj", lat: 55.6155, lng: 12.3518, semerkandId: 221, semerkandLabel: "København", diyanetId: 17800 },
-      kalundborg: { label: "Kalundborg", lat: 55.6819, lng: 11.0886, semerkandId: 828, semerkandLabel: "Holbaek", diyanetId: 33334 },
-      kolding: { label: "Kolding", lat: 55.4904, lng: 9.4722, semerkandId: 835, semerkandLabel: "Kolding", diyanetId: 12630 },
-      koege: { label: "Køge", lat: 55.4580, lng: 12.1821, semerkandId: 834, semerkandLabel: "Koge", diyanetId: 12629 },
-      middelfart: { label: "Middelfart", lat: 55.5059, lng: 9.7305, semerkandId: 829, semerkandLabel: "Fredericia", diyanetId: 33330 },
-      nakskov: { label: "Nakskov", lat: 54.8333, lng: 11.1500, semerkandId: 888, semerkandLabel: "Vordingborg", diyanetId: 12617 },
-      nyborg: { label: "Nyborg", lat: 55.3127, lng: 10.7896, semerkandId: 886, semerkandLabel: "Nyborg (F)", diyanetId: 12614 },
-      nykoebing_falster: { label: "Nykøbing Falster", lat: 54.7654, lng: 11.8755, semerkandId: 888, semerkandLabel: "Vordingborg", diyanetId: 12617 },
-      naestved: { label: "Næstved", lat: 55.2299, lng: 11.7609, semerkandId: 222, semerkandLabel: "Næstved", diyanetId: 12641 },
-      randers: { label: "Randers", lat: 56.4607, lng: 10.0364, semerkandId: 853, semerkandLabel: "Randers", diyanetId: 12643 },
-      ribe: { label: "Ribe", lat: 55.3285, lng: 8.7697, semerkandId: 845, semerkandLabel: "Ribe", diyanetId: 12653 },
-      ringsted: { label: "Ringsted", lat: 55.4426, lng: 11.7901, semerkandId: 833, semerkandLabel: "Ringsted", diyanetId: 12628 },
-      roskilde: { label: "Roskilde", lat: 55.6415, lng: 12.0803, semerkandId: 830, semerkandLabel: "Roskilde", diyanetId: 12624 },
-      roenne: { label: "Rønne", lat: 55.1009, lng: 14.7066, semerkandId: 221, semerkandLabel: "København", diyanetId: 12618 },
-      silkeborg: { label: "Silkeborg", lat: 56.1697, lng: 9.5451, semerkandId: 838, semerkandLabel: "Silkeborg", diyanetId: 12634 },
-      skive: { label: "Skive", lat: 56.5667, lng: 9.0300, semerkandId: 847, semerkandLabel: "Skive", diyanetId: 12655 },
-      slagelse: { label: "Slagelse", lat: 55.4030, lng: 11.3546, semerkandId: 827, semerkandLabel: "Slagelse", diyanetId: 12621 },
-      stenloese: { label: "Stenløse", lat: 55.7685, lng: 12.1971, semerkandId: 221, semerkandLabel: "København", diyanetId: 17801 },
-      soenderborg: { label: "Sønderborg", lat: 54.9138, lng: 9.7922, semerkandId: 854, semerkandLabel: "Sonderborg", diyanetId: 12644 },
-      svendborg: { label: "Svendborg", lat: 55.0598, lng: 10.6068, semerkandId: 839, semerkandLabel: "Svendborg", diyanetId: 12635 },
-      taastrup: { label: "Taastrup", lat: 55.6500, lng: 12.3014, semerkandId: 221, semerkandLabel: "København", diyanetId: 17800 },
-      thisted: { label: "Thisted", lat: 56.9552, lng: 8.6949, semerkandId: 847, semerkandLabel: "Skive", diyanetId: 12655 },
-      vejle: { label: "Vejle", lat: 55.7113, lng: 9.5364, semerkandId: 855, semerkandLabel: "Vejle", diyanetId: 12645 },
-      viborg: { label: "Viborg", lat: 56.4520, lng: 9.4024, semerkandId: 848, semerkandLabel: "Viborg", diyanetId: 12656 },
-      oelstykke: { label: "Ølstykke", lat: 55.7957, lng: 12.1552, semerkandId: 221, semerkandLabel: "København", diyanetId: 17801 }
-    };
+  <!-- HERO VIDEO -->
+  <div class="hero-video">
+    <div class="video-frame">
+      <div class="video-topbar">
+        <span class="traffic-light tl-r"></span>
+        <span class="traffic-light tl-y"></span>
+        <span class="traffic-light tl-g"></span>
+        <span class="video-url">praksis.ai/spørg</span>
+      </div>
+      <div class="video-content">
+        <div class="hero-scenes">
 
-    const baseFallback = { Fajr: "01:14", Sunrise: "04:30", Dhuhr: "13:09", Asr: "17:32", Maghrib: "21:38", Isha: "23:45" };
-
-    const prayers = [
-      { key: "Fajr", name: "Sabah", tone: "İmsak", icon: "M4 18h16M6 14.5c1.2-2.5 3.2-4 6-4s4.8 1.5 6 4M12 3v3.2M5.6 6.2l2.3 2.3M18.4 6.2l-2.3 2.3" },
-      { key: "Sunrise", name: "Güneş", tone: "Sabah biter", isPrayer: false, icon: "M4 18h16M7 14.5a5 5 0 0 1 10 0M12 4v3M5.8 7.1l2.1 2.1M18.2 7.1l-2.1 2.1" },
-      { key: "Dhuhr", name: "Öğle", tone: "Öğle vakti", icon: "M12 4v2.6M12 17.4V20M4 12h2.6M17.4 12H20M6.35 6.35l1.85 1.85M15.8 15.8l1.85 1.85M17.65 6.35 15.8 8.2M8.2 15.8l-1.85 1.85M12 8.4a3.6 3.6 0 1 1 0 7.2 3.6 3.6 0 0 1 0-7.2Z" },
-      { key: "Asr", name: "İkindi", tone: "Öğleden sonra", icon: "M4 17.5h16M7 13.8c1.4-1.8 3.1-2.7 5.1-2.7 2.2 0 4 .9 5.4 2.7M18.6 7.6c-1.8.3-3.6-.8-4.2-2.6-.6 2.3-2.7 3.8-5.1 3.6" },
-      { key: "Maghrib", name: "Akşam", tone: "Gün batımı", icon: "M4 18h16M6.5 14.4a5.9 5.9 0 0 1 11 0M8 7.5c1.2.8 2.6 1.2 4 1.2s2.8-.4 4-1.2M12 4.5v2" },
-      { key: "Isha", name: "Yatsı", tone: "Gece", icon: "M18.7 15.2A7.2 7.2 0 0 1 8.8 5.3a7.2 7.2 0 1 0 9.9 9.9ZM17.7 4.8l.5 1.3 1.3.5-1.3.5-.5 1.3-.5-1.3-1.3-.5 1.3-.5.5-1.3Z" }
-    ];
-
-    const citySelect = document.querySelector("#citySelect");
-    const grid = document.querySelector("#prayerGrid");
-    const statusText = document.querySelector("#statusText");
-    const sourceText = document.querySelector("#sourceText");
-    const methodText = document.querySelector("#methodText");
-    const dateText = document.querySelector("#dateText");
-    const locationButton = document.querySelector("#locationButton");
-    const locationButtonText = document.querySelector("#locationButtonText");
-    const nextName = document.querySelector("#nextName");
-    const countdown = document.querySelector("#countdown");
-    const ezanAudio = document.querySelector("#ezanAudio");
-    const ezanToggle = document.querySelector("#ezanToggle");
-    const ezanToggleText = document.querySelector("#ezanToggleText");
-    const ezanTest = document.querySelector("#ezanTest");
-    const ezanStop = document.querySelector("#ezanStop");
-    const ezanState = document.querySelector("#ezanState");
-    const notificationToggle = document.querySelector("#notificationToggle");
-    const notificationToggleText = document.querySelector("#notificationToggleText");
-    const notificationState = document.querySelector("#notificationState");
-    const installButton = document.querySelector("#installButton");
-    const installHint = document.querySelector("#installHint");
-    let currentTimes = {};
-    let ezanEnabled = localStorage.getItem("ezanEnabled") === "true";
-    let notificationsEnabled = localStorage.getItem("notificationsEnabled") === "true";
-    let dailyRefreshTimer = null;
-    let deferredInstallPrompt = null;
-    let detectingLocation = false;
-
-    const formatter = new Intl.DateTimeFormat("tr-TR", {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-      year: "numeric"
-    });
-
-    dateText.textContent = formatter.format(new Date());
-
-    function cleanTime(value) {
-      return String(value || "").match(/\d{1,2}:\d{2}/)?.[0] || "--:--";
-    }
-
-    function todayPath() {
-      const now = new Date();
-      const dd = String(now.getDate()).padStart(2, "0");
-      const mm = String(now.getMonth() + 1).padStart(2, "0");
-      const yyyy = now.getFullYear();
-      return `${dd}-${mm}-${yyyy}`;
-    }
-
-    function todayKey() {
-      return todayPath().split("-").reverse().join("-");
-    }
-
-    function todayDotted() {
-      return todayPath().split("-").join(".");
-    }
-
-    function dayOfYear(date = new Date()) {
-      return Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 86400000);
-    }
-
-    function minutesFromTime(time) {
-      const [hours, minutes] = cleanTime(time).split(":").map(Number);
-      return hours * 60 + minutes;
-    }
-
-    function validMinutesFromTime(time) {
-      const [hours, minutes] = cleanTime(time).split(":").map(Number);
-      if (!Number.isFinite(hours) || !Number.isFinite(minutes)) return null;
-      return hours * 60 + minutes;
-    }
-
-    function minutesToTime(totalMinutes) {
-      const normalized = ((Math.round(totalMinutes) % 1440) + 1440) % 1440;
-      const hours = Math.floor(normalized / 60);
-      const minutes = normalized % 60;
-      return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
-    }
-
-    function medianTime(times, fallback) {
-      const values = times
-        .map(validMinutesFromTime)
-        .filter((value) => Number.isFinite(value))
-        .sort((a, b) => a - b);
-
-      if (!values.length) return cleanTime(fallback);
-      const midpoint = Math.floor(values.length / 2);
-      if (values.length % 2) return minutesToTime(values[midpoint]);
-      return minutesToTime((values[midpoint - 1] + values[midpoint]) / 2);
-    }
-
-    function formatRemaining(hours, minutes) {
-      if (hours <= 0) return `${minutes} dk kaldı`;
-      return `${hours} sa ${String(minutes).padStart(2, "0")} dk kaldı`;
-    }
-
-    function distanceKm(fromLat, fromLng, toLat, toLng) {
-      const radius = 6371;
-      const latDelta = (toLat - fromLat) * Math.PI / 180;
-      const lngDelta = (toLng - fromLng) * Math.PI / 180;
-      const firstLat = fromLat * Math.PI / 180;
-      const secondLat = toLat * Math.PI / 180;
-      const a = Math.sin(latDelta / 2) ** 2
-        + Math.cos(firstLat) * Math.cos(secondLat) * Math.sin(lngDelta / 2) ** 2;
-      return radius * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    }
-
-    function nearestCityFrom(lat, lng) {
-      return Object.entries(cities)
-        .map(([key, city]) => ({
-          key,
-          city,
-          distance: distanceKm(lat, lng, city.lat, city.lng)
-        }))
-        .sort((a, b) => a.distance - b.distance)[0];
-    }
-
-    function updateLocationButton(text, active = false) {
-      locationButtonText.textContent = text;
-      locationButton.classList.toggle("locating", active);
-      locationButton.disabled = active;
-    }
-
-    function getCurrentPosition(options) {
-      return new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject, options);
-      });
-    }
-
-    async function detectNearestCity({ silent = false } = {}) {
-      if (!navigator.geolocation || detectingLocation) return false;
-
-      detectingLocation = true;
-      if (!silent) updateLocationButton("Bulunuyor", true);
-      if (!silent) statusText.textContent = "Konum bulunuyor";
-
-      try {
-        const position = await getCurrentPosition({
-          enableHighAccuracy: false,
-          timeout: 9000,
-          maximumAge: 1000 * 60 * 20
-        });
-        const nearest = nearestCityFrom(position.coords.latitude, position.coords.longitude);
-        if (!nearest) return false;
-
-        citySelect.value = nearest.key;
-        localStorage.setItem("selectedCity", nearest.key);
-        updateLocationButton("Bulundu");
-        sourceText.textContent = `En yakın şehir: ${nearest.city.label}`;
-        await loadTimes();
-        return true;
-      } catch (error) {
-        if (!silent) updateLocationButton("Bul");
-        if (!silent) statusText.textContent = "Şehri elle seçin";
-        return false;
-      } finally {
-        detectingLocation = false;
-        if (!silent) window.setTimeout(() => updateLocationButton("Bul"), 2600);
-      }
-    }
-
-    async function autoDetectCity() {
-      const savedCity = localStorage.getItem("selectedCity");
-      if (savedCity && cities[savedCity]) {
-        citySelect.value = savedCity;
-      }
-
-      await loadTimes();
-
-      if (!navigator.geolocation) {
-        return;
-      }
-
-      if (navigator.permissions?.query) {
-        try {
-          const permission = await navigator.permissions.query({ name: "geolocation" });
-          if (permission.state === "denied") {
-            return;
-          }
-        } catch (error) {}
-      }
-
-      detectNearestCity({ silent: true });
-    }
-
-    function scheduleDailyRefresh() {
-      window.clearTimeout(dailyRefreshTimer);
-      const nextRefresh = new Date();
-      nextRefresh.setDate(nextRefresh.getDate() + 1);
-      nextRefresh.setHours(0, 7, 0, 0);
-
-      dailyRefreshTimer = window.setTimeout(() => {
-        dateText.textContent = formatter.format(new Date());
-        loadTimes();
-        scheduleDailyRefresh();
-      }, nextRefresh.getTime() - Date.now());
-    }
-
-    function isRunningAsApp() {
-      return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
-    }
-
-    function showInstallButton() {
-      installButton.hidden = isRunningAsApp();
-    }
-
-    function hideInstallHintSoon() {
-      window.clearTimeout(window.installHintTimer);
-      window.installHintTimer = window.setTimeout(() => {
-        installHint.hidden = true;
-      }, 6200);
-    }
-
-    function fallbackFor(city) {
-      const longitudeOffset = (12.5683 - city.lng) * 4;
-      const latitudeDelta = city.lat - 55.6761;
-
-      return {
-        Fajr: minutesToTime(minutesFromTime(baseFallback.Fajr) + longitudeOffset - latitudeDelta * 12),
-        Sunrise: minutesToTime(minutesFromTime(baseFallback.Sunrise) + longitudeOffset - latitudeDelta * 2),
-        Dhuhr: minutesToTime(minutesFromTime(baseFallback.Dhuhr) + longitudeOffset),
-        Asr: minutesToTime(minutesFromTime(baseFallback.Asr) + longitudeOffset + latitudeDelta * 4),
-        Maghrib: minutesToTime(minutesFromTime(baseFallback.Maghrib) + longitudeOffset + latitudeDelta * 4),
-        Isha: minutesToTime(minutesFromTime(baseFallback.Isha) + longitudeOffset + latitudeDelta * 18)
-      };
-    }
-
-    function render(times) {
-      currentTimes = times;
-      grid.innerHTML = prayers.map((prayer) => `
-        <article class="prayer${prayer.isPrayer === false ? " info" : ""}" data-prayer="${prayer.key}">
-          <div class="prayer-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
-              <path d="${prayer.icon}"></path>
-            </svg>
+          <!-- SCENE 1: MARKETING -->
+          <div class="hero-scene">
+            <div class="scene-badge">Marketing</div>
+            <div class="chat-msg">
+              <div class="avatar av-user">MK</div>
+              <div class="chat-bubble">Skriv en LinkedIn-post der annoncerer vores nye AI-kursus &mdash; tone: ærlig og direkte.</div>
+            </div>
+            <div class="chat-msg">
+              <div class="avatar av-ai">P</div>
+              <div class="chat-bubble ai">Her er et udkast i din tone:</div>
+            </div>
+            <div class="chat-msg" style="margin-left: 40px;">
+              <div class="result-card">
+                <div class="result-post">
+                  <div class="post-head">Vi lærte 2.400 danskere at bruge AI i 2025.</div>
+                  Det handler ikke om at læse om teknologien. Det handler om at sætte sig ned og bygge noget rigtigt &mdash; en pivottabel, en kampagne, en model.
+                  <div class="hashtags">#AI #Læring #Praksis</div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
-            <h2>${prayer.name}</h2>
-            <p>${prayer.tone}</p>
+
+          <!-- SCENE 2: FINANS -->
+          <div class="hero-scene">
+            <div class="scene-badge" style="background: #1F5358;">Finans</div>
+            <div class="chat-msg">
+              <div class="avatar av-user">MK</div>
+              <div class="chat-bubble">Analysér min portefølje &mdash; hvilke aktier trækker mest ned i år?</div>
+            </div>
+            <div class="chat-msg">
+              <div class="avatar av-ai">P</div>
+              <div class="chat-bubble ai">Her er dine fem positioner sorteret efter YTD-afkast:</div>
+            </div>
+            <div class="chat-msg" style="margin-left: 40px;">
+              <div class="result-card result-chart">
+                <div class="result-chart-head">
+                  <span>YTD AFKAST · 2026</span>
+                  <strong>+12.4%</strong>
+                </div>
+                <div class="result-chart-row"><span>Novo Nordisk</span><span>+24.8%</span></div>
+                <div class="result-chart-row"><span>Ørsted</span><span>+18.2%</span></div>
+                <div class="result-chart-row"><span>Mærsk</span><span>+9.4%</span></div>
+                <div class="result-chart-row neg"><span>Vestas</span><span>−4.2%</span></div>
+                <div class="result-chart-row neg"><span>DSV</span><span>−7.1%</span></div>
+              </div>
+            </div>
           </div>
-          <div class="time">${cleanTime(times[prayer.key])}</div>
-        </article>
-      `).join("");
-      updateNextPrayer();
-      checkPrayerAlerts();
-      syncPushSubscription();
-    }
 
-    function updateNextPrayer() {
-      if (!Object.keys(currentTimes).length) return;
+          <!-- SCENE 3: BOLIG -->
+          <div class="hero-scene">
+            <div class="scene-badge" style="background: #5A6B3A;">Bolig</div>
+            <div class="chat-msg">
+              <div class="avatar av-user">MK</div>
+              <div class="chat-bubble">Hvad er en 3-værelses lejlighed på 78m² i Aarhus C ca. værd?</div>
+            </div>
+            <div class="chat-msg">
+              <div class="avatar av-ai">P</div>
+              <div class="chat-bubble ai">Baseret på 47 salg de sidste 6 mdr.:</div>
+            </div>
+            <div class="chat-msg" style="margin-left: 40px;">
+              <div class="result-card result-property">
+                <div class="prop-meta">Vurdering · Aarhus C · 78m²</div>
+                <div class="prop-price">3.840.000 <em>kr.</em></div>
+                <div class="prop-stats">
+                  <div class="prop-stat">m²-pris<strong>49.230 kr.</strong></div>
+                  <div class="prop-stat">Liggetid<strong>42 dage</strong></div>
+                  <div class="prop-stat">YoY<strong>+6.8%</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-      const now = new Date();
-      const nowMinutes = now.getHours() * 60 + now.getMinutes();
-      const schedule = prayers
-        .filter((prayer) => prayer.isPrayer !== false)
-        .map((prayer) => ({
-          ...prayer,
-          minutes: minutesFromTime(currentTimes[prayer.key])
-        }));
+          <!-- SCENE 4: EMAIL -->
+          <div class="hero-scene">
+            <div class="scene-badge" style="background: #7A6244;">Skriv</div>
+            <div class="chat-msg">
+              <div class="avatar av-user">MK</div>
+              <div class="chat-bubble">Skriv et venligt afslag på leverandørens tilbud &mdash; vi vil gerne bevare relationen.</div>
+            </div>
+            <div class="chat-msg">
+              <div class="avatar av-ai">P</div>
+              <div class="chat-bubble ai">Her er et udkast:</div>
+            </div>
+            <div class="chat-msg" style="margin-left: 40px;">
+              <div class="result-card result-email">
+                <div class="email-meta">Til: <strong>Anders Holm</strong> · Emne: <strong>Tak for tilbuddet</strong></div>
+                Kære Anders,<br><br>
+                Tak for det grundige tilbud. Vi har valgt at gå en anden vej denne gang &mdash; men vi sætter stor pris på samarbejdet og kommer gerne tilbage på et senere tidspunkt.<br><br>
+                Bedste hilsner, Mette
+              </div>
+            </div>
+          </div>
 
-      let next = schedule.find((item) => item.minutes > nowMinutes);
-      let extraDay = false;
-      if (!next) {
-        next = schedule[0];
-        extraDay = true;
-      }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      document.querySelectorAll(".prayer").forEach((item) => {
-        item.classList.toggle("active", item.dataset.prayer === next.key);
-      });
+<!-- LOGOS / MARQUEE -->
+<section class="logos">
+  <div class="logos-inner">
+    <div class="logos-label">Du lærer at bruge:</div>
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>ChatGPT</span><span class="sep">●</span>
+        <span>Claude</span><span class="sep">●</span>
+        <span>Gemini</span><span class="sep">●</span>
+        <span>Perplexity</span><span class="sep">●</span>
+        <span>Copilot</span><span class="sep">●</span>
+        <span>Excel</span><span class="sep">●</span>
+        <span>Google Sheets</span><span class="sep">●</span>
+        <span>Notion</span><span class="sep">●</span>
+        <span>Airtable</span><span class="sep">●</span>
+        <span>Midjourney</span><span class="sep">●</span>
+        <span>DALL·E</span><span class="sep">●</span>
+        <span>Sora</span><span class="sep">●</span>
+        <span>Runway</span><span class="sep">●</span>
+        <span>ElevenLabs</span><span class="sep">●</span>
+        <span>NotebookLM</span><span class="sep">●</span>
+        <span>Cursor</span><span class="sep">●</span>
+        <span>v0</span><span class="sep">●</span>
+        <span>Replit</span><span class="sep">●</span>
+        <span>Zapier</span><span class="sep">●</span>
+        <span>Make</span><span class="sep">●</span>
+        <span>n8n</span><span class="sep">●</span>
+        <span>HeyGen</span><span class="sep">●</span>
+        <span>Descript</span><span class="sep">●</span>
+        <span>Figma AI</span><span class="sep">●</span>
+        <!-- duplikeret for jævn loop -->
+        <span>ChatGPT</span><span class="sep">●</span>
+        <span>Claude</span><span class="sep">●</span>
+        <span>Gemini</span><span class="sep">●</span>
+        <span>Perplexity</span><span class="sep">●</span>
+        <span>Copilot</span><span class="sep">●</span>
+        <span>Excel</span><span class="sep">●</span>
+        <span>Google Sheets</span><span class="sep">●</span>
+        <span>Notion</span><span class="sep">●</span>
+        <span>Airtable</span><span class="sep">●</span>
+        <span>Midjourney</span><span class="sep">●</span>
+        <span>DALL·E</span><span class="sep">●</span>
+        <span>Sora</span><span class="sep">●</span>
+        <span>Runway</span><span class="sep">●</span>
+        <span>ElevenLabs</span><span class="sep">●</span>
+        <span>NotebookLM</span><span class="sep">●</span>
+        <span>Cursor</span><span class="sep">●</span>
+        <span>v0</span><span class="sep">●</span>
+        <span>Replit</span><span class="sep">●</span>
+        <span>Zapier</span><span class="sep">●</span>
+        <span>Make</span><span class="sep">●</span>
+        <span>n8n</span><span class="sep">●</span>
+        <span>HeyGen</span><span class="sep">●</span>
+        <span>Descript</span><span class="sep">●</span>
+        <span>Figma AI</span><span class="sep">●</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-      const target = new Date();
-      target.setHours(Math.floor(next.minutes / 60), next.minutes % 60, 0, 0);
-      if (extraDay) target.setDate(target.getDate() + 1);
+<!-- AREAS -->
+<section id="omrader">
+  <div class="section-head">
+    <div class="section-label mono">/ Pensum</div>
+    <h2>Fjorten områder.<br><em>Hver med sin egen vej.</em></h2>
+    <p>Hvert område er bygget op som en stige &mdash; fra første lektion til praktisk anvendelse. Tag dem i den rækkefølge der passer dig.</p>
+  </div>
 
-      const diff = Math.max(0, target - now);
-      const totalMinutes = Math.floor(diff / 60000);
-      const hours = Math.floor(totalMinutes / 60);
-      const minutes = totalMinutes % 60;
+  <div class="areas">
 
-      nextName.textContent = next.name;
-      countdown.textContent = formatRemaining(hours, minutes);
-    }
+    <!-- EXCEL -->
+    <a class="area-card" href="data.html">
+      <div class="area-video">
+        <div class="scene scene-excel">
+          <div class="cell" style="top: 20%; left: 12%; width: 22%; height: 14%;"></div>
+          <div class="cell" style="top: 20%; left: 38%; width: 22%; height: 14%; animation-delay: 0.3s;"></div>
+          <div class="cell" style="top: 20%; left: 64%; width: 22%; height: 14%; animation-delay: 0.6s;"></div>
+          <div class="cell" style="top: 38%; left: 12%; width: 22%; height: 14%; animation-delay: 0.9s;"></div>
+          <div class="cell" style="top: 38%; left: 38%; width: 22%; height: 14%; animation-delay: 1.2s;"></div>
+          <div class="cell" style="top: 38%; left: 64%; width: 22%; height: 14%; animation-delay: 1.5s;"></div>
+          <div class="num" style="top: 24%; left: 18%; animation-delay: 0.2s;">248</div>
+          <div class="num" style="top: 24%; left: 44%; animation-delay: 0.5s;">187</div>
+          <div class="num" style="top: 24%; left: 70%; animation-delay: 0.8s;">94</div>
+          <div class="num" style="top: 42%; left: 18%; animation-delay: 1.1s;">142</div>
+          <div class="num" style="top: 42%; left: 44%; animation-delay: 1.4s;">298</div>
+          <div class="num" style="top: 42%; left: 70%; animation-delay: 1.7s;">156</div>
+          <div class="sum-bar">SUM = 1.395</div>
+        </div>
+      </div>
+      <div class="area-body">
+        <div class="area-cat">Excel · Sheets · Modeller</div>
+        <h3 class="area-title">Data &amp; <em>regneark</em></h3>
+        <p class="area-desc">Få AI til at bygge formler, pivottabeller og komplette økonomimodeller for dig.</p>
+      </div>
+    </a>
 
-    function setNotificationState(text) {
-      notificationState.textContent = text;
-      notificationToggle.setAttribute("aria-pressed", String(notificationsEnabled));
-      notificationToggleText.textContent = notificationsEnabled ? "Kapat" : "Etkinleştir";
-    }
+    <!-- FINANCE -->
+    <a class="area-card" href="finans.html">
+      <div class="area-video">
+        <div class="scene scene-finance">
+          <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">
+            <polyline class="chart-line" points="20,200 60,180 100,190 140,150 180,160 220,120 260,130 300,90 340,100 380,50" />
+            <circle class="chart-dot" cx="380" cy="50" r="6" />
+            <text class="chart-label" x="20" y="40">+18.4%</text>
+          </svg>
+        </div>
+      </div>
+      <div class="area-body">
+        <div class="area-cat">Finance · Trading · Analyse</div>
+        <h3 class="area-title">Finansielle <em>platforme</em></h3>
+        <p class="area-desc">Byg dine egne værktøjer til aktieanalyse, porteføljer og automatiseret rapportering.</p>
+      </div>
+    </a>
 
-    function supportsPushNotifications() {
-      return "Notification" in window && "serviceWorker" in navigator && "PushManager" in window;
-    }
+    <!-- MARKETING -->
+    <a class="area-card" href="marketing.html">
+      <div class="area-video">
+        <div class="scene scene-marketing">
+          <div class="typing-box">
+            <div class="heading-anim">Sælg bedre, hver dag.</div>
+            <div class="body-line"></div>
+            <div class="body-line"></div>
+            <div class="body-line"></div>
+          </div>
+        </div>
+      </div>
+      <div class="area-body">
+        <div class="area-cat">Marketing · Content · SEO</div>
+        <h3 class="area-title">Markedsføring &amp; <em>indhold</em></h3>
+        <p class="area-desc">Skab kampagner, annoncetekster og kundeanalyser med AI som co-pilot.</p>
+      </div>
+    </a>
 
-    function urlBase64ToUint8Array(value) {
-      const padding = "=".repeat((4 - value.length % 4) % 4);
-      const base64 = (value + padding).replace(/-/g, "+").replace(/_/g, "/");
-      const raw = window.atob(base64);
-      return Uint8Array.from([...raw].map((char) => char.charCodeAt(0)));
-    }
+    <!-- BOLIG -->
+    <a class="area-card" href="bolig.html">
+      <div class="area-video">
+        <div class="scene scene-bolig">
+          <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">
+            <rect class="building b1" x="60" y="100" width="60" height="130"/>
+            <rect class="building b2" x="140" y="60" width="80" height="170"/>
+            <polygon class="building b2" points="140,60 180,30 220,60" />
+            <rect class="building b3" x="240" y="80" width="100" height="150"/>
+            <rect fill="rgba(178, 63, 30, 0.7)" class="building b1" x="76" y="120" width="10" height="14"/>
+            <rect fill="rgba(178, 63, 30, 0.7)" class="building b1" x="94" y="120" width="10" height="14"/>
+            <rect fill="rgba(178, 63, 30, 0.7)" class="building b2" x="160" y="80" width="12" height="16"/>
+            <rect fill="rgba(178, 63, 30, 0.7)" class="building b2" x="186" y="80" width="12" height="16"/>
+            <rect fill="rgba(178, 63, 30, 0.7)" class="building b3" x="260" y="100" width="14" height="18"/>
+            <rect fill="rgba(178, 63, 30, 0.7)" class="building b3" x="290" y="100" width="14" height="18"/>
+            <rect fill="rgba(178, 63, 30, 0.7)" class="building b3" x="320" y="100" width="14" height="18"/>
+          </svg>
+        </div>
+      </div>
+      <div class="area-body">
+        <div class="area-cat">Bolig · Mægler · Investor</div>
+        <h3 class="area-title">Bolig &amp; <em>ejendom</em></h3>
+        <p class="area-desc">Ejendomsvurdering, markedsanalyse og lejeberegninger for investorer og mæglere.</p>
+      </div>
+    </a>
 
-    async function getServiceWorkerRegistration() {
-      if (!("serviceWorker" in navigator)) return null;
-      await navigator.serviceWorker.register("./service-worker.js");
-      return navigator.serviceWorker.ready;
-    }
+    <!-- CODE -->
+    <a class="area-card" href="kode.html">
+      <div class="area-video">
+        <div class="scene scene-code">
+          <div class="code-block">
+            <div class="line-item"><span class="com">// auto-rapport</span></div>
+            <div class="line-item"><span class="kw">const</span> data = <span class="kw">fetch</span>(<span class="str">"/sales"</span>)</div>
+            <div class="line-item"><span class="kw">const</span> sum = data.<span class="kw">reduce</span>(...)</div>
+            <div class="line-item"><span class="kw">return</span> <span class="str">"Q4 = "</span> + sum</div>
+          </div>
+        </div>
+      </div>
+      <div class="area-body">
+        <div class="area-cat">No-code · Automation · Code</div>
+        <h3 class="area-title">Kode &amp; <em>automation</em></h3>
+        <p class="area-desc">Byg dine egne værktøjer uden at være udvikler. Fra Zapier-flows til skræddersyede apps.</p>
+      </div>
+    </a>
 
-    async function apiPost(path, payload) {
-      const response = await fetch(path, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      if (!response.ok) throw new Error("API çağrısı başarısız");
-      return response.json();
-    }
+    <!-- HVERDAG -->
+    <a class="area-card" href="hverdag.html">
+      <div class="area-video">
+        <div class="scene scene-hverdag">
+          <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">
+            <circle cx="100" cy="125" r="60" fill="none" stroke="rgba(15,13,11,0.25)" stroke-width="1"/>
+            <circle cx="100" cy="125" r="40" fill="rgba(15,13,11,0.08)"/>
+            <g class="clock-hand" style="transform-origin: 100px 125px;">
+              <line x1="100" y1="125" x2="100" y2="85" stroke="rgba(15,13,11,0.85)" stroke-width="2"/>
+            </g>
+            <circle cx="100" cy="125" r="3" fill="var(--ink)"/>
+            <text class="task t1" x="180" y="80">✓ Mail til klienten</text>
+            <text class="task t2" x="180" y="125">✓ Booking i kalender</text>
+            <text class="task t3" x="180" y="170">✓ Rapport sendt</text>
+          </svg>
+        </div>
+      </div>
+      <div class="area-body">
+        <div class="area-cat">Produktivitet · Hverdag</div>
+        <h3 class="area-title">AI i <em>hverdagen</em></h3>
+        <p class="area-desc">Konkrete løsninger på rigtige problemer. Email, planlægning og beslutninger som assistent.</p>
+      </div>
+    </a>
 
-    async function getPushSubscription(create = false) {
-      const registration = await getServiceWorkerRegistration();
-      if (!registration) return null;
+    <a class="area-card" href="karriere.html">
+      <div class="area-video" style="background:linear-gradient(135deg,#D8CFE6 0%,#C0B5D8 100%)">
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+          <rect x="40" y="60" width="320" height="20" rx="4" fill="rgba(61,45,92,0.15)"/>
+          <rect x="40" y="60" width="290" height="20" rx="4" fill="#3D2D5C"/>
+          <text x="48" y="74" fill="#fff" font-size="10" font-family="JetBrains Mono">PYTHON · 96%</text>
+          <rect x="40" y="95" width="320" height="20" rx="4" fill="rgba(61,45,92,0.15)"/>
+          <rect x="40" y="95" width="260" height="20" rx="4" fill="#3D2D5C"/>
+          <text x="48" y="109" fill="#fff" font-size="10" font-family="JetBrains Mono">SQL · 88%</text>
+          <rect x="40" y="130" width="320" height="20" rx="4" fill="rgba(61,45,92,0.15)"/>
+          <rect x="40" y="130" width="195" height="20" rx="4" fill="#3D2D5C"/>
+          <text x="48" y="144" fill="#fff" font-size="10" font-family="JetBrains Mono">REACT · 72%</text>
+          <text x="40" y="180" fill="#3D2D5C" font-size="12" font-family="Fraunces" font-style="italic">CV-match til Senior Developer</text>
+          <text x="40" y="200" fill="#3D2D5C" font-size="10" font-family="JetBrains Mono">★ 85% match</text>
+        </svg>
+      </div>
+      <div class="area-body">
+        <div class="area-cat">Job · CV · Interview</div>
+        <h3 class="area-title">Karriere &amp; <em>jobsøgning</em></h3>
+        <p class="area-desc">Find drømmejobbet, byg CV'et der får svar, og forbered dig til ethvert interview.</p>
+      </div>
+    </a>
 
-      let subscription = await registration.pushManager.getSubscription();
-      if (!subscription && create) {
-        const keyResponse = await fetch("/api/push/public-key", { cache: "no-store" });
-        if (!keyResponse.ok) throw new Error("Push sunucusu hazır değil");
-        const { publicKey } = await keyResponse.json();
-        subscription = await registration.pushManager.subscribe({
-          userVisibleOnly: true,
-          applicationServerKey: urlBase64ToUint8Array(publicKey)
-        });
-      }
+    <a class="area-card" href="sundhed.html">
+      <div class="area-video" style="background:linear-gradient(135deg,#C5DCC8 0%,#A5BCA8 100%)">
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+          <text x="40" y="40" fill="#1F4A2A" font-size="10" font-family="JetBrains Mono">UGENS PLAN · 4 TRÆNINGER</text>
+          <g font-family="JetBrains Mono" font-size="9">
+            <rect x="40" y="55" width="60" height="40" rx="6" fill="rgba(31,74,42,0.18)"/>
+            <text x="48" y="72" fill="#1F4A2A">MAN</text><text x="48" y="86" fill="#1F4A2A" font-size="8">Løb 5km</text>
+            <rect x="108" y="55" width="60" height="40" rx="6" fill="rgba(31,74,42,0.08)"/>
+            <text x="116" y="72" fill="#1F4A2A">TIR</text><text x="116" y="86" fill="#1F4A2A" font-size="8">Yoga</text>
+            <rect x="176" y="55" width="60" height="40" rx="6" fill="rgba(31,74,42,0.18)"/>
+            <text x="184" y="72" fill="#1F4A2A">ONS</text><text x="184" y="86" fill="#1F4A2A" font-size="8">Hvile</text>
+            <rect x="244" y="55" width="60" height="40" rx="6" fill="rgba(31,74,42,0.18)"/>
+            <text x="252" y="72" fill="#1F4A2A">TOR</text><text x="252" y="86" fill="#1F4A2A" font-size="8">Styrke</text>
+            <rect x="312" y="55" width="48" height="40" rx="6" fill="rgba(31,74,42,0.18)"/>
+            <text x="320" y="72" fill="#1F4A2A">FRE</text><text x="320" y="86" fill="#1F4A2A" font-size="8">Løb 8km</text>
+          </g>
+          <text x="40" y="135" fill="#1F4A2A" font-size="22" font-family="Fraunces" font-style="italic">2.100 kal/dag</text>
+          <text x="40" y="160" fill="#1F4A2A" font-size="12" font-family="Manrope">Personlig madplan + træning</text>
+          <text x="40" y="180" fill="#1F4A2A" font-size="10" font-family="JetBrains Mono" opacity="0.6">★ ★ ★ ★ ★ TILPASSET DIN UGE</text>
+        </svg>
+      </div>
+      <div class="area-body">
+        <div class="area-cat">Træning · Mad · Søvn</div>
+        <h3 class="area-title">Sundhed &amp; <em>krop</em></h3>
+        <p class="area-desc">Madplaner, træningsprogrammer og søvn-analyse &mdash; tilpasset din krop og din uge.</p>
+      </div>
+    </a>
 
-      return subscription;
-    }
+    <a class="area-card" href="laering.html">
+      <div class="area-video" style="background:linear-gradient(135deg,#E5D4C5 0%,#C5B4A5 100%)">
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+          <rect x="30" y="40" width="340" height="70" rx="10" fill="rgba(74,53,32,0.08)"/>
+          <text x="42" y="62" fill="#4A3520" font-size="9" font-family="JetBrains Mono">SPANSK · LEKTION 14</text>
+          <text x="42" y="82" fill="#4A3520" font-size="14" font-family="Fraunces">"Soy danés" &mdash; <tspan font-style="italic">jeg er dansker</tspan></text>
+          <text x="42" y="100" fill="#4A3520" font-size="11" font-family="Manrope" opacity="0.7">SER vs ESTAR forklaret</text>
+          <rect x="30" y="120" width="160" height="50" rx="8" fill="rgba(74,53,32,0.05)"/>
+          <text x="42" y="140" fill="#4A3520" font-size="20" font-family="Fraunces" font-style="italic">23%</text>
+          <text x="42" y="158" fill="#4A3520" font-size="9" font-family="JetBrains Mono" opacity="0.6">FREMSKRIDT</text>
+          <rect x="210" y="120" width="160" height="50" rx="8" fill="rgba(74,53,32,0.05)"/>
+          <text x="222" y="140" fill="#4A3520" font-size="20" font-family="Fraunces" font-style="italic">142</text>
+          <text x="222" y="158" fill="#4A3520" font-size="9" font-family="JetBrains Mono" opacity="0.6">DAGES STRIBE</text>
+          <text x="30" y="200" fill="#4A3520" font-size="10" font-family="Manrope" opacity="0.7">AI som privatlærer der kender dit niveau</text>
+        </svg>
+      </div>
+      <div class="area-body">
+        <div class="area-cat">Sprog · Studier · Memo</div>
+        <h3 class="area-title">Læring &amp; <em>uddannelse</em></h3>
+        <p class="area-desc">Lær sprog, svære fag og nye færdigheder &mdash; med AI som personlig privatlærer.</p>
+      </div>
+    </a>
 
-    async function syncPushSubscription() {
-      if (!notificationsEnabled) return;
+    <a class="area-card" href="skriv.html">
+      <div class="area-video" style="background:linear-gradient(135deg,#E8D4DC 0%,#C8B4BC 100%)">
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+          <text x="30" y="40" fill="#5C2A38" font-size="9" font-family="JetBrains Mono">KAPITEL 7 · 2.840 ORD</text>
+          <text x="30" y="70" fill="#5C2A38" font-size="20" font-family="Fraunces" font-style="italic">Mørket falder</text>
+          <text x="30" y="92" fill="#5C2A38" font-size="20" font-family="Fraunces">over Hellerup</text>
+          <line x1="30" y1="105" x2="370" y2="105" stroke="#5C2A38" stroke-width="0.5" opacity="0.3"/>
+          <text x="30" y="125" fill="#5C2A38" font-size="11" font-family="Fraunces" font-style="italic">"Det var lugten der ramte hende</text>
+          <text x="30" y="142" fill="#5C2A38" font-size="11" font-family="Fraunces" font-style="italic">først, før hun overhovedet</text>
+          <text x="30" y="159" fill="#5C2A38" font-size="11" font-family="Fraunces" font-style="italic">åbnede døren..."</text>
+          <rect x="30" y="180" width="340" height="40" rx="8" fill="rgba(92,42,56,0.08)"/>
+          <text x="42" y="200" fill="#5C2A38" font-size="10" font-family="Manrope">AI co-skriver foreslår 3 retninger</text>
+          <text x="42" y="214" fill="#5C2A38" font-size="9" font-family="JetBrains Mono" opacity="0.6">→ LANGSOM UHYGGE / HURTIGT TEMPO / IN MEDIAS</text>
+        </svg>
+      </div>
+      <div class="area-body">
+        <div class="area-cat">Fiktion · Essays · Manuskripter</div>
+        <h3 class="area-title">Skrivning &amp; <em>kreativitet</em></h3>
+        <p class="area-desc">Romaner, manuskripter og podcasts &mdash; AI som co-skriver og hård redaktør, aldrig ghostwriter.</p>
+      </div>
+    </a>
 
-      if (!supportsPushNotifications()) {
-        notificationsEnabled = false;
-        localStorage.setItem("notificationsEnabled", "false");
-        setNotificationState("Desteklenmiyor");
-        return;
-      }
+    <a class="area-card" href="ivaerksaetteri.html">
+      <div class="area-video" style="background:linear-gradient(135deg,#D4C5E5 0%,#B4A5C8 100%)">
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+          <text x="30" y="40" fill="#2A1F4A" font-size="9" font-family="JetBrains Mono">BUSINESS MODEL · PIVOT 3</text>
+          <text x="30" y="68" fill="#2A1F4A" font-size="22" font-family="Fraunces">Frokost-app for</text>
+          <text x="30" y="90" fill="#2A1F4A" font-size="22" font-family="Fraunces" font-style="italic">kontorbrugere</text>
+          <rect x="30" y="105" width="100" height="60" rx="8" fill="rgba(42,31,74,0.1)"/>
+          <text x="42" y="125" fill="#2A1F4A" font-size="10" font-family="JetBrains Mono">VALIDERET</text>
+          <text x="42" y="148" fill="#2A1F4A" font-size="20" font-family="Fraunces" font-style="italic">12 kunder</text>
+          <rect x="140" y="105" width="100" height="60" rx="8" fill="rgba(42,31,74,0.1)"/>
+          <text x="152" y="125" fill="#2A1F4A" font-size="10" font-family="JetBrains Mono">MRR</text>
+          <text x="152" y="148" fill="#2A1F4A" font-size="20" font-family="Fraunces" font-style="italic">42k</text>
+          <rect x="250" y="105" width="120" height="60" rx="8" fill="rgba(178,63,30,0.15)"/>
+          <text x="262" y="125" fill="#B23F1E" font-size="10" font-family="JetBrains Mono">PIPELINE</text>
+          <text x="262" y="148" fill="#B23F1E" font-size="20" font-family="Fraunces" font-style="italic">+ 86 leads</text>
+          <text x="30" y="195" fill="#2A1F4A" font-size="10" font-family="Manrope" opacity="0.7">AI som CTO, marketingteam og sparringspartner</text>
+        </svg>
+      </div>
+      <div class="area-body">
+        <div class="area-cat">Startup · Validering · Skalering</div>
+        <h3 class="area-title">Iværksætteri &amp; <em>startup</em></h3>
+        <p class="area-desc">Fra ide til første kunde til skaleret forretning &mdash; med AI som dit ekstra team.</p>
+      </div>
+    </a>
 
-      if (Notification.permission === "denied") {
-        notificationsEnabled = false;
-        localStorage.setItem("notificationsEnabled", "false");
-        setNotificationState("Engellendi");
-        return;
-      }
+    <a class="area-card" href="salg.html">
+      <div class="area-video" style="background:linear-gradient(135deg,#E5D4B8 0%,#C8B498 100%)">
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+          <text x="30" y="40" fill="#4A3A1A" font-size="9" font-family="JetBrains Mono">ROLLESPIL · INDVENDING 3</text>
+          <rect x="30" y="55" width="280" height="48" rx="12" fill="rgba(74,58,26,0.12)"/>
+          <text x="42" y="78" fill="#4A3A1A" font-size="13" font-family="Fraunces" font-style="italic">"Det er for dyrt."</text>
+          <text x="42" y="95" fill="#4A3A1A" font-size="10" font-family="Manrope" opacity="0.7">— Indkøbschef hos Carlsberg</text>
+          <rect x="30" y="115" width="340" height="60" rx="12" fill="#4A3A1A"/>
+          <text x="42" y="135" fill="#E5D4B8" font-size="10" font-family="JetBrains Mono">DIT SVAR</text>
+          <text x="42" y="155" fill="#fff" font-size="11" font-family="Fraunces" font-style="italic">"Forstået. Sammenlignet</text>
+          <text x="42" y="170" fill="#fff" font-size="11" font-family="Fraunces" font-style="italic">med hvad præcist?"</text>
+          <text x="30" y="200" fill="#4A3A1A" font-size="10" font-family="JetBrains Mono">★ STÆRKT SVAR · INTET FORSVAR</text>
+        </svg>
+      </div>
+      <div class="area-body">
+        <div class="area-cat">Sælg · Forhandl · Luk</div>
+        <h3 class="area-title">Salg &amp; <em>forhandling</em></h3>
+        <p class="area-desc">Træn med AI som svær kunde. Spørg bedre, lyt bedre, luk bedre &mdash; uden at virke som sælger.</p>
+      </div>
+    </a>
 
-      if (Notification.permission !== "granted") {
-        setNotificationState("İzin gerekli");
-        return;
-      }
+    <a class="area-card" href="rejse.html">
+      <div class="area-video" style="background:linear-gradient(135deg,#B8D4E0 0%,#98B4C0 100%)">
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+          <text x="30" y="40" fill="#1A3D52" font-size="9" font-family="JetBrains Mono">REJSEPLAN · 7 DAGE · 2 PERS</text>
+          <text x="30" y="70" fill="#1A3D52" font-size="22" font-family="Fraunces">Kyoto &amp;</text>
+          <text x="30" y="92" fill="#1A3D52" font-size="22" font-family="Fraunces" font-style="italic">Osaka i april</text>
+          <g font-family="JetBrains Mono" font-size="9">
+            <circle cx="40" cy="125" r="4" fill="#1A3D52"/>
+            <text x="55" y="129" fill="#1A3D52">DAG 1-3 · ARASHIYAMA RYOKAN</text>
+            <line x1="40" y1="135" x2="40" y2="155" stroke="#1A3D52" stroke-width="1" opacity="0.4"/>
+            <circle cx="40" cy="160" r="4" fill="#1A3D52"/>
+            <text x="55" y="164" fill="#1A3D52">DAG 4-5 · OSAKA · DAGSTUR NARA</text>
+            <line x1="40" y1="170" x2="40" y2="190" stroke="#1A3D52" stroke-width="1" opacity="0.4"/>
+            <circle cx="40" cy="195" r="4" fill="#B23F1E"/>
+            <text x="55" y="199" fill="#1A3D52">DAG 6-7 · KOYASAN · HJEM</text>
+          </g>
+          <text x="30" y="225" fill="#1A3D52" font-size="11" font-family="Fraunces" font-style="italic">€2.140 · uden masseturisme</text>
+        </svg>
+      </div>
+      <div class="area-body">
+        <div class="area-cat">Planlægning · Lokalt · Logistik</div>
+        <h3 class="area-title">Rejse &amp; <em>oplevelser</em></h3>
+        <p class="area-desc">Rejseplaner der matcher dig &mdash; ikke TripAdvisor-listen. Find skjulte perler og spar penge.</p>
+      </div>
+    </a>
 
-      try {
-        const subscription = await getPushSubscription(false);
-        if (!subscription) {
-          setNotificationState("Tekrar etkinleştir");
-          return;
-        }
+    <a class="area-card" href="mad.html">
+      <div class="area-video" style="background:linear-gradient(135deg,#E8C8B8 0%,#C8A898 100%)">
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+          <text x="30" y="40" fill="#5C2818" font-size="9" font-family="JetBrains Mono">KØLESKAB → OPSKRIFT · 25 MIN</text>
+          <g font-family="JetBrains Mono" font-size="10">
+            <rect x="30" y="55" width="100" height="28" rx="14" fill="rgba(92,40,24,0.12)"/>
+            <text x="48" y="73" fill="#5C2818">KYLLING</text>
+            <rect x="140" y="55" width="80" height="28" rx="14" fill="rgba(92,40,24,0.12)"/>
+            <text x="158" y="73" fill="#5C2818">PEBER</text>
+            <rect x="230" y="55" width="60" height="28" rx="14" fill="rgba(92,40,24,0.12)"/>
+            <text x="248" y="73" fill="#5C2818">RIS</text>
+            <rect x="300" y="55" width="70" height="28" rx="14" fill="rgba(92,40,24,0.12)"/>
+            <text x="318" y="73" fill="#5C2818">CITRON</text>
+          </g>
+          <text x="30" y="115" fill="#5C2818" font-size="14" font-family="Fraunces">Stegt ris med kylling</text>
+          <text x="30" y="135" fill="#5C2818" font-size="14" font-family="Fraunces" font-style="italic">&amp; citron-peberfrugt</text>
+          <line x1="30" y1="150" x2="370" y2="150" stroke="#5C2818" stroke-width="0.5" opacity="0.3"/>
+          <text x="30" y="172" fill="#5C2818" font-size="11" font-family="Manrope">25 min · 4 personer · ★ 4.8</text>
+          <text x="30" y="200" fill="#5C2818" font-size="10" font-family="JetBrains Mono" opacity="0.6">→ TRIN FOR TRIN PÅ TELEFONEN</text>
+        </svg>
+      </div>
+      <div class="area-body">
+        <div class="area-cat">Køkken · Diæter · Madplan</div>
+        <h3 class="area-title">Mad &amp; <em>opskrifter</em></h3>
+        <p class="area-desc">Lav mad af det du har. AI som personlig kok der kender dine evner, præferencer og tid.</p>
+      </div>
+    </a>
 
-        const city = cities[citySelect.value];
-        await apiPost("/api/push/subscribe", {
-          subscription: subscription.toJSON(),
-          cityKey: citySelect.value,
-          cityLabel: city.label
-        });
-        setNotificationState("Aktif: kilit ekranı");
-      } catch (error) {
-        setNotificationState("Senkronizasyon başarısız");
-      }
-    }
+  </div>
 
-    async function enableNotifications() {
-      if (!supportsPushNotifications()) {
-        setNotificationState("Desteklenmiyor");
-        return;
-      }
+  <div style="text-align: center; margin-top: 60px;">
+    <a href="#" class="btn-outline">Se alle 14 områder →</a>
+  </div>
+</section>
 
-      try {
-        let permission = Notification.permission;
-        if (permission !== "granted") {
-          permission = await Notification.requestPermission();
-        }
+<!-- METODE — tre trin -->
+<section class="how" id="metode">
+  <div class="how-inner">
+    <div class="section-head">
+      <div class="section-label mono">/ Metode</div>
+      <h2>Tre trin.<br><em>Ikke en lektion mere</em> end nødvendigt.</h2>
+      <p>Hver lektion følger samme rytme &mdash; se, læs, byg. Det er den hurtigste vej fra koncept til praktisk kunnen.</p>
+    </div>
 
-        if (permission !== "granted") {
-          notificationsEnabled = false;
-          localStorage.setItem("notificationsEnabled", "false");
-          setNotificationState(permission === "denied" ? "Engellendi" : "Kapalı");
-          return;
-        }
+    <div class="steps">
+      <div class="step">
+        <div class="step-body">
+          <div class="step-num">01</div>
+          <h3 class="step-title">Se &amp; forstå</h3>
+          <p class="step-desc">Konceptet forklares kort og klart med visuelle eksempler og rigtige use cases &mdash; så du forstår hvorfor før du går i gang.</p>
+        </div>
+      </div>
 
-        setNotificationState("Etkinleştiriliyor");
-        const subscription = await getPushSubscription(true);
-        const city = cities[citySelect.value];
-        await apiPost("/api/push/subscribe", {
-          subscription: subscription.toJSON(),
-          cityKey: citySelect.value,
-          cityLabel: city.label
-        });
+      <div class="step">
+        <div class="step-body">
+          <div class="step-num">02</div>
+          <h3 class="step-title">Læs &amp; fordyb</h3>
+          <p class="step-desc">Detaljeret tekst som går i dybden. Genfindes nemt og fungerer som dit eget opslagsværk.</p>
+        </div>
+      </div>
 
-        notificationsEnabled = true;
-        localStorage.setItem("notificationsEnabled", "true");
-        setNotificationState("Aktif: kilit ekranı");
-      } catch (error) {
-        notificationsEnabled = false;
-        localStorage.setItem("notificationsEnabled", "false");
-        setNotificationState("Sunucu hazır değil");
-      }
-    }
+      <div class="step">
+        <div class="step-body">
+          <div class="step-num">03</div>
+          <h3 class="step-title">Byg &amp; brug</h3>
+          <p class="step-desc">Praktisk øvelse hvor du bygger noget rigtigt. Med skabeloner du tager med dig.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    async function disableNotifications() {
-      notificationsEnabled = false;
-      localStorage.setItem("notificationsEnabled", "false");
-      setNotificationState("Kapalı");
+<!-- PRO SECTION -->
+<section class="pro-section" id="pro">
+  <div class="pro-inner">
+    <div class="pro-head">
+      <div class="pro-badge mono">/ Pro</div>
+      <h2>Når <em>basis</em> ikke er nok.</h2>
+      <p class="pro-lead">Praksis Pro er for dig der har fundamentet og vil bygge rigtige systemer. Seks dybe områder for udviklere, founders og specialister &mdash; samme tilgang, dybere materiale.</p>
+    </div>
 
-      try {
-        const subscription = await getPushSubscription(false);
-        if (!subscription) return;
-        await apiPost("/api/push/unsubscribe", { endpoint: subscription.endpoint });
-        await subscription.unsubscribe();
-      } catch (error) {}
-    }
+    <div class="pro-grid">
+      <a class="pro-card" href="pro-byg.html">
+        <div class="pro-num">01</div>
+        <div class="pro-card-body">
+          <h3>Byg <em>AI-produkter</em></h3>
+          <p>Fra MVP til lanceret SaaS. Stack-valg, arkitektur, deployment, monitering. Vi bygger en rigtig version af praksis.ai sammen.</p>
+          <div class="pro-tags">
+            <span>Next.js</span><span>Supabase</span><span>Stripe</span><span>Vercel</span>
+          </div>
+        </div>
+        <div class="pro-meta"><strong>~18 min</strong>pr. lektion</div>
+      </a>
 
-    function setEzanState(text) {
-      ezanState.textContent = text;
-      ezanToggle.setAttribute("aria-pressed", String(ezanEnabled));
-      ezanToggleText.textContent = ezanEnabled ? "Kapat" : "Etkinleştir";
-    }
+      <a class="pro-card" href="pro-automation.html">
+        <div class="pro-num">02</div>
+        <div class="pro-card-body">
+          <h3>Automation <em>i skala</em></h3>
+          <p>Komplekse Make/n8n/custom pipelines. API-orkestrering, fejlhåndtering, queue-systemer og hvordan du bygger automation der ikke knækker.</p>
+          <div class="pro-tags">
+            <span>n8n</span><span>Make</span><span>Webhooks</span><span>Queues</span>
+          </div>
+        </div>
+        <div class="pro-meta"><strong>~16 min</strong>pr. lektion</div>
+      </a>
 
-    function stopEzan() {
-      ezanAudio.pause();
-      ezanAudio.currentTime = 0;
-      setEzanState(ezanEnabled ? "Beş namaz için aktif" : "Kapalı");
-    }
+      <a class="pro-card" href="pro-prompt.html">
+        <div class="pro-num">03</div>
+        <div class="pro-card-body">
+          <h3>Prompt <em>engineering</em></h3>
+          <p>RAG-systemer, agents, evals, prompt-arkitektur. Hvordan du bygger prompts der overlever produktion og virker konsistent på tværs af 10.000 kald.</p>
+          <div class="pro-tags">
+            <span>RAG</span><span>Agents</span><span>Evals</span><span>Embeddings</span>
+          </div>
+        </div>
+        <div class="pro-meta"><strong>~20 min</strong>pr. lektion</div>
+      </a>
 
-    async function playEzan(prayerName) {
-      if (!ezanEnabled) return;
+      <a class="pro-card" href="pro-strategi.html">
+        <div class="pro-num">04</div>
+        <div class="pro-card-body">
+          <h3>AI-strategi <em>for virksomheder</em></h3>
+          <p>Implementering i organisationer. ROI-beregninger, governance, change management. Sådan får du AI fra pilot til produktion.</p>
+          <div class="pro-tags">
+            <span>ROI</span><span>Governance</span><span>Pilot</span><span>Adoption</span>
+          </div>
+        </div>
+        <div class="pro-meta"><strong>~15 min</strong>pr. lektion</div>
+      </a>
 
-      try {
-        ezanAudio.pause();
-        ezanAudio.currentTime = 0;
-        ezanAudio.volume = 0.9;
-        await ezanAudio.play();
-        setEzanState(`${prayerName} için ezan çalıyor`);
-      } catch (error) {
-        ezanEnabled = false;
-        localStorage.setItem("ezanEnabled", "false");
-        setEzanState("Tekrar etkinleştir'e basın");
-      }
-    }
+      <a class="pro-card" href="pro-finans.html">
+        <div class="pro-num">05</div>
+        <div class="pro-card-body">
+          <h3>Avanceret <em>finans</em></h3>
+          <p>Egne kvant-modeller, backtesting, alpha-strategier. Python, pandas, yfinance. Til dig der vil bygge modeller, ikke følge analytikere.</p>
+          <div class="pro-tags">
+            <span>Python</span><span>Pandas</span><span>Backtest</span><span>Kvant</span>
+          </div>
+        </div>
+        <div class="pro-meta"><strong>~22 min</strong>pr. lektion</div>
+      </a>
 
-    async function enableEzan() {
-      try {
-        ezanAudio.load();
-        ezanAudio.muted = true;
-        await ezanAudio.play();
-        ezanAudio.pause();
-        ezanAudio.currentTime = 0;
-        ezanAudio.muted = false;
-        ezanEnabled = true;
-        localStorage.setItem("ezanEnabled", "true");
-        setEzanState("Beş namaz için aktif");
-      } catch (error) {
-        ezanEnabled = false;
-        localStorage.setItem("ezanEnabled", "false");
-        setEzanState("Ses başlatılamadı");
-      }
-    }
+      <a class="pro-card" href="pro-research.html">
+        <div class="pro-num">06</div>
+        <div class="pro-card-body">
+          <h3>AI-research <em>&amp; analyse</em></h3>
+          <p>Deep research med Perplexity, Claude og NotebookLM. Synthesis på tværs af 100+ kilder. Til konsulenter, journalister og analytikere.</p>
+          <div class="pro-tags">
+            <span>Perplexity</span><span>NotebookLM</span><span>Synthesis</span><span>Verifikation</span>
+          </div>
+        </div>
+        <div class="pro-meta"><strong>~17 min</strong>pr. lektion</div>
+      </a>
+    </div>
 
-    function disableEzan() {
-      ezanEnabled = false;
-      localStorage.setItem("ezanEnabled", "false");
-      stopEzan();
-      setEzanState("Kapalı");
-    }
+    <div class="pro-cta-block">
+      <div class="pro-cta-text">
+        <h3>Pro <em>er et add-on</em>.</h3>
+        <p>Få adgang til hele Intro-biblioteket plus alle 6 pro-områder. <strong>299 kr/md</strong> eller <strong>2.990 kr/år</strong>.</p>
+      </div>
+      <div class="pro-cta-buttons">
+        <a href="#" class="btn-pro">Start Pro-prøveperiode →</a>
+        <a href="#pro-byg" class="btn-pro-ghost">Se eksempel: Byg praksis.ai</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-    function checkPrayerAlerts() {
-      if (!ezanEnabled || !Object.keys(currentTimes).length) return;
+<!-- CTA -->
+<section class="cta" id="priser">
+  <h2>Klar til at<br><em>begynde?</em></h2>
+  <p>Få fuld adgang til alle 14 områder, 70 lektioner og nye kurser hver måned &mdash; fra 166 kr / md.</p>
+  <div class="cta-buttons">
+    <a href="#" class="btn-primary btn-large">Start gratis prøveperiode →</a>
+    <a href="#" class="btn-outline">Se priser</a>
+  </div>
+</section>
 
-      const now = new Date();
-      const currentMinute = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
-      const prayer = prayers.find((item) => item.isPrayer !== false && cleanTime(currentTimes[item.key]) === currentMinute);
-      if (!prayer) return;
+<!-- FOOTER -->
+<footer>
+  <div>© 2026 Praksis ApS · Bygget i København</div>
+  <div>CVR 00000000 · <a href="#" style="color: var(--ink-3);">Vilkår</a> · <a href="#" style="color: var(--ink-3);">Privatliv</a></div>
+</footer>
 
-      const stamp = `${todayKey()}-${citySelect.value}-${prayer.key}-${currentMinute}`;
-      if (localStorage.getItem("ezanLastPlayed") === stamp) return;
 
-      localStorage.setItem("ezanLastPlayed", stamp);
-      playEzan(prayer.name);
-    }
+<script>
+(function(){
+  var toggle=document.querySelector('.nav-toggle');
+  var menu=document.querySelector('.mobile-menu');
+  if(!toggle||!menu)return;
+  function close(){toggle.setAttribute('aria-expanded','false');menu.classList.remove('open');document.body.classList.remove('menu-open');}
+  toggle.addEventListener('click',function(){
+    var open=toggle.getAttribute('aria-expanded')==='true';
+    if(open){close();}
+    else{toggle.setAttribute('aria-expanded','true');menu.classList.add('open');document.body.classList.add('menu-open');}
+  });
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
+})();
+</script>
 
-    async function fetchSemerkandTimes(city) {
-      if (!city.semerkandId) return null;
-
-      const url = new URL("https://www.semerkandtakvimi.com/api/salaat-times");
-      url.searchParams.set("year", new Date().getFullYear());
-      url.searchParams.set("CityId", city.semerkandId);
-
-      const response = await fetch(url);
-      if (!response.ok) throw new Error("Semerkand vakitleri alınamadı");
-      const yearTimes = await response.json();
-      const today = yearTimes.find((item) => Number(item.DayOfYear) === dayOfYear());
-      if (!today) return null;
-
-      return {
-        Fajr: today.Fajr,
-        Sunrise: today.Tulu,
-        Dhuhr: today.Zuhr,
-        Asr: today.Asr,
-        Maghrib: today.Maghrib,
-        Isha: today.Isha
-      };
-    }
-
-    async function fetchDiyanetTimes(city) {
-      if (!city.diyanetId) return null;
-
-      const response = await fetch(`https://ezanvakti.emushaf.net/vakitler/${city.diyanetId}`);
-      if (!response.ok) throw new Error("Diyanet vakitleri alınamadı");
-      const monthTimes = await response.json();
-      if (!Array.isArray(monthTimes)) return null;
-      const todayIso = todayKey();
-      const todayDate = todayDotted();
-      const today = monthTimes.find((item) => {
-        const isoDate = String(item.MiladiTarihKisaIso8601 || item.MiladiTarihUzunIso8601 || "").slice(0, 10);
-        return isoDate === todayIso || item.MiladiTarihKisa === todayDate;
-      });
-      if (!today) return null;
-
-      return {
-        Fajr: today.Imsak,
-        Sunrise: today.Gunes,
-        Dhuhr: today.Ogle,
-        Asr: today.Ikindi,
-        Maghrib: today.Aksam,
-        Isha: today.Yatsi
-      };
-    }
-
-    function mergeOptimizedTimes({ semerkandTimes, diyanetTimes, mwlTimes, fallbackTimes }) {
-      const primary = semerkandTimes || mwlTimes || fallbackTimes;
-
-      return {
-        Fajr: medianTime([semerkandTimes?.Fajr, diyanetTimes?.Fajr, mwlTimes?.Fajr], primary.Fajr || fallbackTimes.Fajr),
-        Sunrise: primary.Sunrise || mwlTimes?.Sunrise || diyanetTimes?.Sunrise || fallbackTimes.Sunrise,
-        Dhuhr: primary.Dhuhr || mwlTimes?.Dhuhr || diyanetTimes?.Dhuhr || fallbackTimes.Dhuhr,
-        Asr: primary.Asr || mwlTimes?.Asr || diyanetTimes?.Asr || fallbackTimes.Asr,
-        Maghrib: primary.Maghrib || mwlTimes?.Maghrib || diyanetTimes?.Maghrib || fallbackTimes.Maghrib,
-        Isha: medianTime([semerkandTimes?.Isha, diyanetTimes?.Isha, mwlTimes?.Isha], primary.Isha || fallbackTimes.Isha)
-      };
-    }
-
-    function updateMethodText(city, sources) {
-      const baseSource = sources.semerkand
-        ? `Semerkand Takvimi (${city.semerkandLabel || city.label})`
-        : sources.mwl
-          ? "Muslim World League yedeği"
-          : "Çevrimdışı yedek";
-      const medianSources = [
-        sources.semerkand && "Semerkand",
-        sources.diyanet && "Diyanet",
-        sources.mwl && "Muslim World League"
-      ].filter(Boolean);
-      const medianNote = medianSources.length
-        ? `Sabah ve Yatsı: ${medianSources.join(" + ")} medyanı`
-        : "Sabah ve Yatsı: çevrimdışı yedek";
-
-      methodText.innerHTML = `Temel: ${baseSource} &middot; ${medianNote} &middot; <a href="https://www.semerkandtakvimi.com/" target="_blank" rel="noreferrer">Semerkand</a> / <a href="https://ezanvakti.emushaf.net/" target="_blank" rel="noreferrer">Diyanet</a> / <a href="https://aladhan.com/prayer-times-api" target="_blank" rel="noreferrer">MWL</a> &middot; <a href="https://commons.wikimedia.org/wiki/File:Call_to_prayer_by_Sabah_Fakhry.mp3" target="_blank" rel="noreferrer">Ezan: Sabah Fakhry / public domain</a>`;
-    }
-
-    async function loadTimes() {
-      const city = cities[citySelect.value];
-      statusText.textContent = "Vakitler alınıyor";
-      sourceText.textContent = `${city.label} için vakitler hesaplanıyor`;
-
-      try {
-        const semerkandPromise = fetchSemerkandTimes(city).catch(() => null);
-        const diyanetPromise = fetchDiyanetTimes(city).catch(() => null);
-        const url = new URL(`https://api.aladhan.com/v1/timings/${todayPath()}`);
-        url.searchParams.set("latitude", city.lat);
-        url.searchParams.set("longitude", city.lng);
-        url.searchParams.set("method", "3");
-        url.searchParams.set("school", "1");
-        url.searchParams.set("timezonestring", "Europe/Copenhagen");
-
-        const response = await fetch(url);
-        if (!response.ok) throw new Error("Namaz vakitleri alınamadı");
-        const payload = await response.json();
-        const timings = payload?.data?.timings || {};
-        const semerkandTimes = await semerkandPromise;
-        const diyanetTimes = await diyanetPromise;
-        const mwlTimes = timings.Fajr || timings.Isha
-          ? {
-              Fajr: timings.Fajr,
-              Sunrise: timings.Sunrise,
-              Dhuhr: timings.Dhuhr,
-              Asr: timings.Asr,
-              Maghrib: timings.Maghrib,
-              Isha: timings.Isha
-            }
-          : null;
-
-        render(mergeOptimizedTimes({ semerkandTimes, diyanetTimes, mwlTimes, fallbackTimes: fallbackFor(city) }));
-
-        statusText.textContent = "Güncellendi";
-        sourceText.textContent = `${city.label} için canlı vakitler`;
-        updateMethodText(city, {
-          semerkand: Boolean(semerkandTimes),
-          diyanet: Boolean(diyanetTimes),
-          mwl: Boolean(mwlTimes)
-        });
-      } catch (error) {
-        const [semerkandTimes, diyanetTimes] = await Promise.all([
-          fetchSemerkandTimes(city).catch(() => null),
-          fetchDiyanetTimes(city).catch(() => null)
-        ]);
-        render(mergeOptimizedTimes({
-          semerkandTimes,
-          diyanetTimes,
-          mwlTimes: null,
-          fallbackTimes: fallbackFor(city)
-        }));
-        statusText.textContent = semerkandTimes || diyanetTimes ? "Kısmen güncellendi" : "Çevrimdışı vakitler";
-        sourceText.textContent = semerkandTimes || diyanetTimes ? `${city.label} için kaynaklar + yedek` : `${city.label} için örnek`;
-        updateMethodText(city, {
-          semerkand: Boolean(semerkandTimes),
-          diyanet: Boolean(diyanetTimes),
-          mwl: false
-        });
-      }
-    }
-
-    citySelect.addEventListener("change", () => {
-      localStorage.setItem("selectedCity", citySelect.value);
-      loadTimes();
-    });
-    locationButton.addEventListener("click", () => {
-      detectNearestCity({ silent: false }).then((found) => {
-        if (!found) loadTimes();
-      });
-    });
-    notificationToggle.addEventListener("click", () => {
-      if (notificationsEnabled) {
-        disableNotifications();
-      } else {
-        enableNotifications();
-      }
-    });
-    ezanToggle.addEventListener("click", () => {
-      if (ezanEnabled) {
-        disableEzan();
-      } else {
-        enableEzan();
-      }
-    });
-    ezanTest.addEventListener("click", async () => {
-      if (!ezanEnabled) await enableEzan();
-      playEzan("test");
-    });
-    ezanStop.addEventListener("click", stopEzan);
-    ezanAudio.addEventListener("ended", () => {
-      setEzanState(ezanEnabled ? "Beş namaz için aktif" : "Kapalı");
-    });
-
-    window.addEventListener("beforeinstallprompt", (event) => {
-      event.preventDefault();
-      deferredInstallPrompt = event;
-      showInstallButton();
-    });
-
-    installButton.addEventListener("click", async () => {
-      if (deferredInstallPrompt) {
-        deferredInstallPrompt.prompt();
-        const choice = await deferredInstallPrompt.userChoice;
-        deferredInstallPrompt = null;
-        installButton.hidden = choice.outcome === "accepted";
-        return;
-      }
-
-      installHint.hidden = !installHint.hidden;
-      if (!installHint.hidden) hideInstallHintSoon();
-    });
-
-    window.addEventListener("appinstalled", () => {
-      installButton.hidden = true;
-      installHint.hidden = true;
-      deferredInstallPrompt = null;
-    });
-
-    document.addEventListener("visibilitychange", () => {
-      if (!document.hidden) {
-        updateNextPrayer();
-        syncPushSubscription();
-      }
-    });
-
-    if ("serviceWorker" in navigator && ["https:", "http:"].includes(window.location.protocol)) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./service-worker.js").catch(() => {});
-      });
-    }
-
-    showInstallButton();
-    setEzanState(ezanEnabled ? "Beş namaz için aktif" : "Kapalı");
-    setNotificationState(notificationsEnabled ? "Aktif: kilit ekranı" : "Kapalı");
-    scheduleDailyRefresh();
-    setInterval(() => {
-      updateNextPrayer();
-      checkPrayerAlerts();
-    }, 15000);
-    autoDetectCity();
-  </script>
 </body>
 </html>

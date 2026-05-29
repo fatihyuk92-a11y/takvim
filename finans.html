@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Finansielle platforme — Praksis</title>
+<meta name="description" content="AI til finansiel analyse: aktievurdering, porteføljer, makro og rapportering. Undervisning — ikke investeringsrådgivning." />
+<meta name="theme-color" content="#F8F4EA" />
+<link rel="canonical" href="https://praksis-ai.vercel.app/finans" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Finansielle platforme — Praksis" />
+<meta property="og:description" content="AI til finansiel analyse: aktievurdering, porteføljer, makro og rapportering. Undervisning — ikke investeringsrådgivning." />
+<meta property="og:locale" content="da_DK" />
+<meta property="og:site_name" content="Praksis·ai" />
+<meta property="og:url" content="https://praksis-ai.vercel.app/finans" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Finansielle platforme — Praksis" />
+<meta name="twitter:description" content="AI til finansiel analyse: aktievurdering, porteføljer, makro og rapportering. Undervisning — ikke investeringsrådgivning." />
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;✦&lt;/text&gt;&lt;/svg&gt;" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,200..700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F8F4EA;
+    --bg-2: #F2EDE0;
+    --paper: #FFFFFF;
+    --ink: #0F0D0B;
+    --ink-2: #2A2520;
+    --ink-3: #4A4239;
+    --ink-dim: #6B6258;
+    --ink-faint: #A8A095;
+    --rule: #E5DDC9;
+    --rule-soft: #EFE9D8;
+    --accent: #B23F1E;
+    --accent-soft: #F2E1D9;
+    --area-color: #C5D5DE;
+    --area-deep: #1E3A55;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 11px;
+  }
+
+  /* ============ NAV ============ */
+  .nav {
+    background: rgba(248, 244, 234, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .nav-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .brand em { font-style: italic; font-weight: 300; color: var(--accent); }
+
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    color: var(--ink-2);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-right { display: flex; align-items: center; gap: 16px; }
+
+  .nav-login {
+    color: var(--ink-2);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 12px 22px;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover { background: var(--accent); }
+
+  /* ============ BREADCRUMB ============ */
+  .breadcrumb {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 40px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--ink-dim);
+    font-size: 13px;
+  }
+  .breadcrumb a {
+    color: var(--ink-2);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .breadcrumb a:hover { color: var(--accent); }
+  .breadcrumb .sep { color: var(--ink-faint); }
+  .breadcrumb .current { color: var(--ink); font-weight: 600; }
+
+  /* ============ HERO ============ */
+  .hero {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 50px 40px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .area-tag {
+    display: inline-block;
+    background: var(--area-color);
+    color: var(--area-deep);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(48px, 6vw, 84px);
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    margin-bottom: 36px;
+    max-width: 520px;
+    font-weight: 400;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    padding: 24px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 32px;
+    max-width: 520px;
+  }
+  .hero-stats div .num {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .hero-stats div .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 6px;
+  }
+
+  .hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .btn-large {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 18px 32px;
+    font-size: 15px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.3s;
+  }
+  .btn-large:hover { background: var(--accent); }
+
+  .btn-ghost {
+    color: var(--ink-2);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-ghost:hover { color: var(--accent); }
+
+  /* ============ HERO VIDEO (FINANCE) ============ */
+  .hero-video {
+    background: var(--area-deep);
+    border-radius: 20px;
+    aspect-ratio: 4/3.2;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 40px 80px -30px rgba(15, 13, 11, 0.35);
+  }
+
+  .hv-topbar {
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    background: rgba(0,0,0,0.2);
+  }
+
+  .traffic-light { width: 11px; height: 11px; border-radius: 50%; }
+  .tl-r { background: #FF5F57; }
+  .tl-y { background: #FEBC2E; }
+  .tl-g { background: #28C840; }
+
+  .hv-tab {
+    margin-left: 16px;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.85);
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .hv-live {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255,255,255,0.6);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .hv-live::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #28C840;
+    border-radius: 50%;
+    animation: livePulse 1.5s infinite;
+  }
+  @keyframes livePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hv-content {
+    padding: 24px;
+    height: calc(100% - 48px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* Portfolio summary header */
+  .hv-portfolio-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .hv-portfolio-head .left .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .hv-portfolio-head .left .value {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: white;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .hv-portfolio-head .right .badge {
+    background: rgba(40, 200, 64, 0.2);
+    color: #6FE08C;
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .hv-portfolio-head .right .sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    text-align: right;
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  /* Animated chart */
+  .hv-chart {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border-radius: 10px;
+    padding: 14px;
+    position: relative;
+  }
+  .hv-chart svg {
+    width: 100%;
+    height: 100%;
+  }
+  .chart-area {
+    fill: rgba(232, 168, 124, 0.15);
+    opacity: 0;
+    animation: areaFade 4s 0.8s forwards;
+  }
+  @keyframes areaFade {
+    to { opacity: 1; }
+  }
+  .chart-line {
+    fill: none;
+    stroke: #E8A87C;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 800;
+    stroke-dashoffset: 800;
+    animation: drawLine 2.5s 0.3s forwards cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  @keyframes drawLine {
+    to { stroke-dashoffset: 0; }
+  }
+  .chart-dot {
+    fill: #E8A87C;
+    opacity: 0;
+    animation: dotIn 0.5s 2.5s forwards;
+  }
+  @keyframes dotIn {
+    to { opacity: 1; }
+  }
+  .chart-dot.pulse {
+    animation: dotIn 0.5s 2.5s forwards, dotPulse 2s 3s infinite;
+  }
+  @keyframes dotPulse {
+    0%, 100% { r: 5; }
+    50% { r: 8; }
+  }
+
+  /* Holdings list */
+  .hv-holdings {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .hv-holding {
+    background: rgba(255,255,255,0.05);
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: holdingIn 0.5s forwards;
+  }
+  .hv-holding:nth-child(1) { animation-delay: 3.0s; }
+  .hv-holding:nth-child(2) { animation-delay: 3.15s; }
+  .hv-holding:nth-child(3) { animation-delay: 3.3s; }
+  .hv-holding:nth-child(4) { animation-delay: 3.45s; }
+  @keyframes holdingIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hv-holding .name {
+    color: rgba(255,255,255,0.85);
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .hv-holding .change {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .hv-holding .change.up { color: #6FE08C; }
+  .hv-holding .change.down { color: #FFAB7E; }
+
+  /* ============ SECTION ============ */
+  section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  .section-head {
+    margin-bottom: 60px;
+    max-width: 800px;
+  }
+
+  .section-label {
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .section-head h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(36px, 4.5vw, 60px);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .section-head h2 em { font-style: italic; color: var(--accent); }
+  .section-head p {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    max-width: 600px;
+  }
+
+  /* ============ LEARN ============ */
+  .learn {
+    background: var(--bg-2);
+    padding: 100px 0;
+  }
+  .learn-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .learn-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .learn-item {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    padding: 28px;
+    transition: all 0.3s;
+  }
+  .learn-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px -20px rgba(15, 13, 11, 0.12);
+  }
+  .learn-item .num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 40px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .learn-item h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--ink);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .learn-item p {
+    color: var(--ink-3);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  /* ============ CURRICULUM ============ */
+  .curriculum-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .module {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 32px;
+    align-items: center;
+    transition: all 0.3s;
+  }
+  .module:hover {
+    border-color: var(--ink-faint);
+    box-shadow: 0 16px 40px -20px rgba(15, 13, 11, 0.1);
+  }
+
+  .module-num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 200;
+    font-size: 48px;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .module-body h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .module-body h3 em { font-style: italic; font-weight: 300; }
+  .module-body p {
+    color: var(--ink-3);
+    font-size: 14px;
+    line-height: 1.55;
+    margin-bottom: 10px;
+  }
+  .module-lessons {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .module-lesson {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 4px 10px;
+    background: var(--bg-2);
+    border-radius: 100px;
+  }
+
+  .module-meta {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .module-meta strong {
+    display: block;
+    font-family: 'Manrope', sans-serif;
+    font-size: 18px;
+    color: var(--ink);
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    margin-bottom: 2px;
+  }
+
+  /* ============ PREVIEW LESSONS ============ */
+  .lessons-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .lesson-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .lesson-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 50px -25px rgba(15, 13, 11, 0.15);
+  }
+
+  .lesson-thumb {
+    aspect-ratio: 16/10;
+    background: var(--area-deep);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lesson-thumb .play-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    z-index: 2;
+  }
+  .lesson-card:hover .play-btn {
+    background: var(--accent);
+  }
+  .lesson-card:hover .play-btn::before { border-left-color: white; }
+  .play-btn::before {
+    content: '';
+    border-left: 14px solid var(--ink);
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    margin-left: 3px;
+    transition: border-left-color 0.3s;
+  }
+
+  .lesson-thumb svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+  }
+
+  .lesson-thumb .duration {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .lesson-thumb .badge-free {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--accent);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .lesson-info {
+    padding: 22px 24px 24px;
+  }
+  .lesson-info .cat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .lesson-info h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .lesson-info p {
+    color: var(--ink-3);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  /* ============ CTA ============ */
+  .cta-section {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 100px 40px;
+    margin-top: 60px;
+  }
+  .cta-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .cta-section h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(36px, 5vw, 60px);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    margin-bottom: 24px;
+  }
+  .cta-section h2 em { font-style: italic; color: #E8A87C; }
+  .cta-section p {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: rgba(248, 244, 234, 0.8);
+    line-height: 1.55;
+    max-width: 480px;
+  }
+  .cta-pricebox {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 32px;
+  }
+  .cta-pricebox .price-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #E8A87C;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .cta-pricebox .price {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 48px;
+    color: white;
+    line-height: 1;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+  }
+  .cta-pricebox .price em { font-style: italic; }
+  .cta-pricebox .price-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+  .cta-pricebox ul {
+    list-style: none;
+    margin-bottom: 24px;
+  }
+  .cta-pricebox ul li {
+    color: rgba(255,255,255,0.85);
+    padding: 8px 0;
+    font-size: 14px;
+    display: flex;
+    gap: 10px;
+  }
+  .cta-pricebox ul li::before {
+    content: '+';
+    color: #E8A87C;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+  }
+  .btn-orange {
+    background: var(--accent);
+    color: white;
+    padding: 16px 28px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    width: 100%;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+  }
+  .btn-orange:hover { background: white; color: var(--ink); }
+
+  /* ============ RELATED AREAS ============ */
+  .related {
+    padding: 100px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .related h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(28px, 3.5vw, 42px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 40px;
+  }
+  .related h3 em { font-style: italic; color: var(--accent); }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .related-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    padding: 24px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s;
+  }
+  .related-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .related-card .info .cat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--ink-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .related-card .info .title {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: var(--ink);
+  }
+  .related-card .info .title em { font-style: italic; font-weight: 300; }
+  .related-card .arrow {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink);
+    transition: all 0.3s;
+  }
+  .related-card:hover .arrow {
+    background: var(--accent);
+    color: white;
+    transform: rotate(-45deg);
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    color: var(--ink-3);
+    font-size: 13px;
+  }
+  footer a { color: var(--ink-3); }
+
+  /* ============ MOBILE ============ */
+  @media (max-width: 980px) {
+    .nav-inner { padding: 16px 20px; gap: 16px; }
+    .nav-links { display: none; }
+    .breadcrumb { padding: 18px 20px 0; flex-wrap: wrap; }
+    .hero { grid-template-columns: 1fr; padding: 32px 20px 60px; gap: 40px; }
+    section { padding: 60px 20px; }
+    .learn { padding: 60px 0; }
+    .learn-inner { padding: 0 20px; }
+    .learn-grid, .lessons-grid, .related-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .module {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 24px;
+    }
+    .module-meta { text-align: left; }
+    .cta-section { padding: 60px 20px; }
+    .cta-inner { grid-template-columns: 1fr; gap: 32px; }
+    .related { padding: 60px 20px; }
+    footer { padding: 24px 20px; flex-direction: column; }
+    .hero-stats { gap: 20px; }
+    .hero-stats div .num { font-size: 22px; }
+  }
+
+/* === Clickable module cards (link to undervisning) === */
+a.module{cursor:pointer;text-decoration:none;color:inherit}
+a.module .module-cta{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--accent);margin-top:8px;display:inline-flex;align-items:center;gap:6px;transition:gap .25s}
+a.module:hover .module-cta{gap:12px}
+.curriculum-cta{margin-top:36px;display:flex;justify-content:center}
+.btn-undervisning{background:var(--ink);color:var(--bg);padding:16px 30px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:.3s}
+.btn-undervisning:hover{background:var(--accent);transform:translateY(-2px)}
+
+
+/* === Anchor offset under sticky nav === */
+section[id], [id^="undervisning-"]{scroll-margin-top:150px}
+/* === Respect reduced motion === */
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+
+
+/* ===================== MOBILE MENU ===================== */
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:none;border:none;cursor:pointer;padding:10px;margin-left:auto;z-index:60}
+.nav-toggle span{display:block;height:2px;width:100%;background:var(--ink);border-radius:2px;transition:.3s}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;inset:0;top:0;background:var(--bg);z-index:55;padding:90px 28px 40px;flex-direction:column;gap:4px;overflow-y:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Fraunces',serif;font-size:26px;color:var(--ink);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule)}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu a em{font-style:italic;color:var(--accent)}
+.mobile-menu .mm-cta{margin-top:24px;background:var(--ink);color:var(--bg);border-radius:100px;text-align:center;padding:16px;font-family:'Manrope',sans-serif;font-size:15px;font-weight:600;border-bottom:none}
+body.menu-open{overflow:hidden}
+
+/* ===================== PHONE BREAKPOINT (<=600px) ===================== */
+@media (max-width:600px){
+  /* show hamburger, hide desktop links */
+  .nav-toggle{display:flex}
+  .nav-inner .nav-links{display:none}
+  .nav-inner .nav-right{display:none}
+  .nav-inner{padding:14px 18px}
+  .brand{font-size:20px}
+
+  /* tame huge display type */
+  .hero h1{font-size:clamp(38px,11vw,52px)!important}
+  h1{word-break:break-word;hyphens:auto}
+  .section-head h2,.cta h2,.platform-demo h2,.how h2,.outro h2,.related h3{font-size:clamp(30px,8vw,40px)!important}
+  .lesson-title{font-size:clamp(28px,8vw,36px)!important}
+  .lesson-num{font-size:64px!important}
+
+  /* tighter section padding */
+  section{padding:48px 18px!important}
+  .hero{padding:28px 18px 44px!important}
+  .lesson{padding:40px 18px 16px!important}
+  .breadcrumb{padding:16px 18px 0!important;font-size:12px}
+
+  /* prevent overflow from wide demos / code */
+  .code-block,.code-box code{font-size:11px!important;padding:16px!important}
+  .demo-frame,.hero-video,.hero-card{max-width:100%;overflow:hidden}
+  pre,code{white-space:pre-wrap!important;word-break:break-word}
+
+  /* stack any 2-up compares and tool grids */
+  .brief-compare,.code-compare,.code-compare.three,.tools-grid,.lessons-grid,.learn-grid,.related-grid{grid-template-columns:1fr!important}
+
+  /* touch targets */
+  .btn-primary,.btn-large,.btn-ghost,.btn-orange,.btn-outline,.btn-undervisning,.lesson-link,.nav-login{min-height:44px;display:inline-flex;align-items:center}
+
+  /* lesson prev/next stacks */
+  .lesson-nav{flex-direction:column}
+
+  /* hero stats / mini stats wrap */
+  .hero-stats{flex-wrap:wrap;gap:18px!important}
+
+  /* sticky section-nav scroll on teaching pages */
+  .section-nav-inner{padding:12px 18px}
+
+  /* reduce scroll-margin so anchors aren't too low on small screens */
+  section[id],[id^="undervisning-"]{scroll-margin-top:80px}
+
+  /* footer */
+  footer{padding:24px 18px!important}
+  .hero-stats{flex-wrap:wrap}
+  .hero-video,.hero-card,.demo-frame{max-width:100%;height:auto}
+}
+
+/* prevent horizontal scroll globally */
+html,body{max-width:100%;overflow-x:hidden}
+
+
+/* ===================== NAV DROPDOWNS ===================== */
+.nav-links{position:relative}
+.has-dropdown{position:relative;display:inline-block}
+.has-dropdown > a{position:relative}
+.has-dropdown > a::after{
+  content:'';
+  display:inline-block;
+  width:0;height:0;
+  margin-left:6px;
+  vertical-align:middle;
+  border-left:3.5px solid transparent;
+  border-right:3.5px solid transparent;
+  border-top:4px solid currentColor;
+  opacity:.55;
+  transition:transform .2s
+}
+.has-dropdown:hover > a::after{transform:rotate(180deg)}
+.dropdown-menu{
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%) translateY(8px);
+  min-width:280px;
+  background:var(--paper);
+  border:1px solid var(--rule);
+  border-radius:14px;
+  padding:10px;
+  box-shadow:0 24px 60px -20px rgba(15,13,11,.18), 0 4px 16px -4px rgba(15,13,11,.08);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index:80;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px
+}
+.dropdown-menu.single-col{grid-template-columns:1fr;min-width:240px}
+.has-dropdown:hover .dropdown-menu,
+.has-dropdown:focus-within .dropdown-menu{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(2px)
+}
+/* Bridge so cursor doesn't drop the menu when crossing gap */
+.has-dropdown::before{
+  content:'';
+  position:absolute;
+  top:100%;
+  left:0;right:0;
+  height:14px
+}
+.dropdown-menu a{
+  display:block;
+  padding:9px 14px;
+  border-radius:9px;
+  color:var(--ink-2)!important;
+  font-family:'Manrope',sans-serif;
+  font-size:13.5px;
+  font-weight:500;
+  text-decoration:none;
+  letter-spacing:0;
+  text-transform:none;
+  white-space:nowrap;
+  transition:background .12s, color .12s
+}
+.dropdown-menu a:hover{
+  background:var(--bg-2);
+  color:var(--ink)!important
+}
+.dropdown-menu a .dd-num{
+  display:inline-block;
+  width:22px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--ink-faint);
+  font-weight:600;
+  margin-right:4px
+}
+.dropdown-menu .dd-all{
+  grid-column:1 / -1;
+  margin-top:6px;
+  padding-top:10px;
+  border-top:1px solid var(--rule);
+  font-style:italic;
+  font-family:'Fraunces',serif;
+  color:var(--accent)!important;
+  font-size:13px
+}
+/* Skjul dropdowns på mobil */
+@media (max-width:600px){
+  .has-dropdown::before{display:none}
+  .dropdown-menu{display:none!important}
+  .has-dropdown > a::after{display:none}
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Praksis<em>·ai</em></a>
+    <div class="nav-links">
+      <span class="has-dropdown"><a href="index.html#omrader">Områder</a>
+<div class="dropdown-menu">
+  <a href="data.html"><span class="dd-num">01</span>Data &amp; Excel</a>
+  <a href="marketing.html"><span class="dd-num">02</span>Markedsføring</a>
+  <a href="finans.html"><span class="dd-num">03</span>Finans</a>
+  <a href="bolig.html"><span class="dd-num">04</span>Bolig</a>
+  <a href="kode.html"><span class="dd-num">05</span>Kode</a>
+  <a href="hverdag.html"><span class="dd-num">06</span>Hverdag</a>
+  <a href="karriere.html"><span class="dd-num">07</span>Karriere</a>
+  <a href="sundhed.html"><span class="dd-num">08</span>Sundhed</a>
+  <a href="laering.html"><span class="dd-num">09</span>Læring</a>
+  <a href="skriv.html"><span class="dd-num">10</span>Skriv</a>
+  <a href="ivaerksaetteri.html"><span class="dd-num">11</span>Iværksætteri</a>
+  <a href="salg.html"><span class="dd-num">12</span>Salg</a>
+  <a href="rejse.html"><span class="dd-num">13</span>Rejse</a>
+  <a href="mad.html"><span class="dd-num">14</span>Mad</a>
+  <a href="index.html#omrader" class="dd-all">Se alle 14 områder &rarr;</a>
+</div>
+</span>
+      <a href="index.html#metode">Metode</a>
+      <span class="has-dropdown"><a href="index.html#pro">Pro</a>
+<div class="dropdown-menu single-col">
+  <a href="pro-byg.html"><span class="dd-num">01</span>Byg AI-produkter</a>
+  <a href="pro-automation.html"><span class="dd-num">02</span>Automation i skala</a>
+  <a href="pro-prompt.html"><span class="dd-num">03</span>Prompt engineering</a>
+  <a href="pro-strategi.html"><span class="dd-num">04</span>AI-strategi</a>
+  <a href="pro-finans.html"><span class="dd-num">05</span>Avanceret finans</a>
+  <a href="pro-research.html"><span class="dd-num">06</span>AI-research</a>
+  <a href="index.html#pro" class="dd-all">Se alle Pro-områder &rarr;</a>
+</div>
+</span>
+      <a href="index.html#priser">Priser</a>
+      <a href="#">Blog</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button><div class="nav-right">
+      <a href="#" class="nav-login">Log ind</a>
+      <a href="#cta" class="btn-primary">Start gratis →</a>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu">
+<a href="index.html#omrader">Områder</a>
+<a href="index.html#metode">Metode</a>
+<a href="index.html#pro">Pro</a>
+<a href="index.html#priser">Priser</a>
+<a href="#">Blog</a>
+<a href="#">Log ind</a>
+<a href="#cta" class="mm-cta">Start gratis →</a>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Bibliotek</a>
+  <span class="sep">/</span>
+  <span class="current">Finansielle platforme</span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="area-tag">Område 03 · Øvet niveau</div>
+    <h1>Finansielle<br><em>platforme.</em></h1>
+    <p class="hero-sub">Byg dine egne værktøjer til aktieanalyse, porteføljestyring og finansiel rapportering &mdash; uden at være kvant eller udvikler. AI gør det tunge arbejde.</p>
+    <div class="hero-stats">
+      <div>
+        <div class="num">56</div>
+        <div class="label">Lektioner</div>
+      </div>
+      <div>
+        <div class="num">18t</div>
+        <div class="label">Indhold</div>
+      </div>
+      <div>
+        <div class="num">★ 4.9</div>
+        <div class="label">Bedømmelse</div>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a href="#cta" class="btn-large">Start dette område →</a>
+      <a href="#previews" class="btn-ghost">Se gratis lektioner</a>
+    </div>
+  </div>
+
+  <!-- ANIMATED HERO VIDEO -->
+  <div class="hero-video">
+    <div class="hv-topbar">
+      <span class="traffic-light tl-r"></span>
+      <span class="traffic-light tl-y"></span>
+      <span class="traffic-light tl-g"></span>
+      <span class="hv-tab">portefølje.dk</span>
+      <span class="hv-live">Live</span>
+    </div>
+    <div class="hv-content">
+      <div class="hv-portfolio-head">
+        <div class="left">
+          <div class="label">Total Portefølje · YTD</div>
+          <div class="value">2.840.392 kr.</div>
+        </div>
+        <div class="right">
+          <div class="badge">+12.4%</div>
+          <div class="sub">+312.840 kr.</div>
+        </div>
+      </div>
+
+      <div class="hv-chart">
+        <svg viewBox="0 0 400 140" preserveAspectRatio="none">
+          <path class="chart-area" d="M 0 110 L 40 95 L 80 100 L 120 85 L 160 78 L 200 65 L 240 60 L 280 45 L 320 50 L 360 30 L 400 25 L 400 140 L 0 140 Z"/>
+          <polyline class="chart-line" points="0,110 40,95 80,100 120,85 160,78 200,65 240,60 280,45 320,50 360,30 400,25"/>
+          <circle class="chart-dot pulse" cx="400" cy="25" r="5"/>
+        </svg>
+      </div>
+
+      <div class="hv-holdings">
+        <div class="hv-holding">
+          <span class="name">Novo Nordisk</span>
+          <span class="change up">+24.8%</span>
+        </div>
+        <div class="hv-holding">
+          <span class="name">Ørsted</span>
+          <span class="change up">+18.2%</span>
+        </div>
+        <div class="hv-holding">
+          <span class="name">Mærsk</span>
+          <span class="change up">+9.4%</span>
+        </div>
+        <div class="hv-holding">
+          <span class="name">Vestas</span>
+          <span class="change down">−4.2%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEARN -->
+<section class="learn">
+  <div class="learn-inner">
+    <div class="section-head">
+      <div class="section-label mono">/ Hvad lærer du</div>
+      <h2>Fra første lektion til <em>din egen platform.</em></h2>
+      <p>Du går fra at læse om aktier til at bygge dine egne værktøjer der analyserer, anbefaler og rapporterer for dig.</p>
+    </div>
+
+    <div class="learn-grid">
+      <div class="learn-item">
+        <div class="num">01</div>
+        <h4>Læse en årsrapport på 5 minutter</h4>
+        <p>Lad AI hive de vigtigste tal og signaler ud af 200 siders rapporter — uden du behøver læse dem selv.</p>
+      </div>
+      <div class="learn-item">
+        <div class="num">02</div>
+        <h4>Byg din egen porteføljemodel</h4>
+        <p>Et automatisk dashboard der trækker kurser, beregner afkast og advarer dig ved store udsving.</p>
+      </div>
+      <div class="learn-item">
+        <div class="num">03</div>
+        <h4>Analysér aktier som en proff</h4>
+        <p>DCF-modeller, P/E-sammenligninger og branchedata — strukturet og forklaret af AI.</p>
+      </div>
+      <div class="learn-item">
+        <div class="num">04</div>
+        <h4>Automatisér din rapportering</h4>
+        <p>Få månedlige porteføljerapporter sendt på email automatisk &mdash; med grafer og kommentarer.</p>
+      </div>
+      <div class="learn-item">
+        <div class="num">05</div>
+        <h4>Identificér risici tidligt</h4>
+        <p>Lær at konstruere AI-baserede early-warning systemer der scanner nyheder og kurser.</p>
+      </div>
+      <div class="learn-item">
+        <div class="num">06</div>
+        <h4>Forstå makroøkonomien</h4>
+        <p>Renter, inflation og valuta forklaret simpelt &mdash; så du forstår dine investeringer i en større kontekst.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section id="curriculum">
+  <div class="section-head">
+    <div class="section-label mono">/ Pensum</div>
+    <h2>Seks moduler.<br><em>56 lektioner</em> i alt.</h2>
+    <p>Hvert modul bygger oven på det forrige. Du kan hoppe mellem dem, men anbefalingen er at tage dem i rækkefølge.</p>
+  </div>
+
+  <div class="curriculum-list">
+
+    <a class="module" href="finans-undervisning.html#undervisning-1"><div class="module-num">01</div><div class="module-body">
+        <h3>Fundamentet &amp; <em>første værktøjer</em></h3>
+        <p>Opsætning af din arbejdsstation, valg af AI-modeller og introduktion til finans-prompts.</p>
+        <div class="module-lessons">
+          <span class="module-lesson">Opsætning</span>
+          <span class="module-lesson">AI-modeller</span>
+          <span class="module-lesson">Datakilder</span>
+          <span class="module-lesson">Første prompt</span>
+        </div>
+      <span class="module-cta">Læs undervisningen →</span></div><div class="module-meta"><strong>~4 min</strong>læsning</div></a>
+
+    <a class="module" href="finans-undervisning.html#undervisning-2"><div class="module-num">02</div><div class="module-body">
+        <h3>Aktieanalyse &amp; <em>fundamentals</em></h3>
+        <p>Lær at læse balance, resultatopgørelse og pengestrøm med AI som tolk. P/E, ROE, gæld &mdash; alt forklaret.</p>
+        <div class="module-lessons">
+          <span class="module-lesson">Årsrapporter</span>
+          <span class="module-lesson">Nøgletal</span>
+          <span class="module-lesson">DCF</span>
+          <span class="module-lesson">Peer-analyse</span>
+        </div>
+      <span class="module-cta">Læs undervisningen →</span></div><div class="module-meta"><strong>~4 min</strong>læsning</div></a>
+
+    <a class="module" href="finans-undervisning.html#undervisning-3"><div class="module-num">03</div><div class="module-body">
+        <h3>Porteføljemodeller &amp; <em>dashboards</em></h3>
+        <p>Byg dit eget porteføljeoverblik der opdaterer sig automatisk og advarer ved volatilitet.</p>
+        <div class="module-lessons">
+          <span class="module-lesson">API-opsætning</span>
+          <span class="module-lesson">Dashboard</span>
+          <span class="module-lesson">Alerts</span>
+          <span class="module-lesson">Allokering</span>
+        </div>
+      <span class="module-cta">Læs undervisningen →</span></div><div class="module-meta"><strong>~4 min</strong>læsning</div></a>
+
+    <a class="module" href="finans-undervisning.html#undervisning-4"><div class="module-num">04</div><div class="module-body">
+        <h3>Makro &amp; <em>kontekst</em></h3>
+        <p>Renter, inflation, valuta og geopolitik &mdash; lær at forbinde de store tendenser med dine investeringer.</p>
+        <div class="module-lessons">
+          <span class="module-lesson">Renter</span>
+          <span class="module-lesson">Inflation</span>
+          <span class="module-lesson">Valuta</span>
+          <span class="module-lesson">Sektorrotation</span>
+        </div>
+      <span class="module-cta">Læs undervisningen →</span></div><div class="module-meta"><strong>~4 min</strong>læsning</div></a>
+
+    <a class="module" href="finans-undervisning.html#undervisning-5"><div class="module-num">05</div><div class="module-body">
+        <h3>Automatiseret <em>rapportering</em></h3>
+        <p>Få månedlige porteføljerapporter genereret automatisk &mdash; med kommentarer, grafer og PDF-eksport.</p>
+        <div class="module-lessons">
+          <span class="module-lesson">PDF-rapporter</span>
+          <span class="module-lesson">Email-flow</span>
+          <span class="module-lesson">Kommentarer</span>
+        </div>
+      <span class="module-cta">Læs undervisningen →</span></div><div class="module-meta"><strong>~4 min</strong>læsning</div></a>
+
+    <a class="module" href="finans-undervisning.html"><div class="module-num">06</div><div class="module-body">
+        <h3>Avanceret: <em>egen strategi</em></h3>
+        <p>Byg din egen investeringsstrategi med AI som rådgiver. Backtest, optimering og risikostyring.</p>
+        <div class="module-lessons">
+          <span class="module-lesson">Backtesting</span>
+          <span class="module-lesson">Risikostyring</span>
+          <span class="module-lesson">Strategi</span>
+          <span class="module-lesson">Modul-projekt</span>
+        </div>
+      <span class="module-cta">Læs undervisningen →</span></div><div class="module-meta"><strong>~4 min</strong>læsning</div></a>
+
+  </div>
+  <div class="curriculum-cta"><a href="finans-undervisning.html" class="btn-undervisning">Åbn hele undervisningen →</a></div>
+
+</section>
+
+<!-- PREVIEW LESSONS -->
+<section id="previews">
+  <div class="section-head">
+    <div class="section-label mono">/ Prøv gratis</div>
+    <h2>Tre <em>gratis lektioner</em> at starte med.</h2>
+    <p>Få en fornemmelse af tempo, dybde og format før du melder dig ind. Disse tre lektioner er gratis for alle.</p>
+  </div>
+
+  <div class="lessons-grid">
+
+    <div class="lesson-card">
+      <div class="lesson-thumb">
+        <span class="badge-free">Gratis</span>
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">
+          <polyline points="20,200 80,170 140,180 200,140 260,150 320,100 380,80" fill="none" stroke="rgba(232, 168, 124, 0.9)" stroke-width="2.5" stroke-linecap="round"/>
+          <text x="20" y="50" font-family="JetBrains Mono" font-size="11" fill="rgba(255,255,255,0.7)" font-weight="600">SAMPLE PORTFOLIO</text>
+        </svg>
+        <div class="play-btn"></div>
+        <div class="duration">06:42</div>
+      </div>
+      <div class="lesson-info">
+        <div class="cat">Modul 01 · Lektion 03</div>
+        <h4>Din første AI-aktieanalyse</h4>
+        <p>Vi tager Novo Nordisks seneste årsrapport og lader AI fortælle hvad der reelt er værd at vide.</p>
+      </div>
+    </div>
+
+    <div class="lesson-card">
+      <div class="lesson-thumb">
+        <span class="badge-free">Gratis</span>
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">
+          <rect x="40" y="80" width="80" height="140" fill="rgba(232, 168, 124, 0.6)"/>
+          <rect x="140" y="60" width="80" height="160" fill="rgba(232, 168, 124, 0.5)"/>
+          <rect x="240" y="120" width="80" height="100" fill="rgba(232, 168, 124, 0.4)"/>
+          <text x="40" y="50" font-family="JetBrains Mono" font-size="11" fill="rgba(255,255,255,0.7)" font-weight="600">ALLOKERING · %</text>
+        </svg>
+        <div class="play-btn"></div>
+        <div class="duration">08:18</div>
+      </div>
+      <div class="lesson-info">
+        <div class="cat">Modul 03 · Lektion 01</div>
+        <h4>Byg dit porteføljedashboard</h4>
+        <p>Det første dashboard i Google Sheets der trækker live-kurser ind og beregner afkast.</p>
+      </div>
+    </div>
+
+    <div class="lesson-card">
+      <div class="lesson-thumb">
+        <span class="badge-free">Gratis</span>
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">
+          <circle cx="200" cy="125" r="70" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+          <path d="M 200 55 A 70 70 0 0 1 270 125 L 200 125 Z" fill="rgba(232, 168, 124, 0.7)"/>
+          <path d="M 270 125 A 70 70 0 0 1 200 195 L 200 125 Z" fill="rgba(232, 168, 124, 0.5)"/>
+          <path d="M 200 195 A 70 70 0 0 1 130 125 L 200 125 Z" fill="rgba(232, 168, 124, 0.35)"/>
+          <text x="40" y="50" font-family="JetBrains Mono" font-size="11" fill="rgba(255,255,255,0.7)" font-weight="600">RISIKOFORDELING</text>
+        </svg>
+        <div class="play-btn"></div>
+        <div class="duration">11:24</div>
+      </div>
+      <div class="lesson-info">
+        <div class="cat">Modul 04 · Lektion 02</div>
+        <h4>Forstå makroøkonomi med AI</h4>
+        <p>Renter, inflation og valuta — forklaret på 10 minutter med konkrete eksempler fra dansk økonomi.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="cta-inner">
+    <div>
+      <div class="section-label mono" style="color: #E8A87C;">/ Adgang</div>
+      <h2>Få adgang til alle 56 lektioner.<br><em>Og 11 andre områder.</em></h2>
+      <p>Når du melder dig ind, får du adgang til hele biblioteket &mdash; ikke kun finans. Nye områder lægges til hver måned.</p>
+    </div>
+
+    <div class="cta-pricebox">
+      <div class="price-label">Årligt medlemskab</div>
+      <div class="price">166<em>kr</em></div>
+      <div class="price-sub">per måned · 1.990 kr / år</div>
+      <ul>
+        <li>Alle 14 områder, 70 lektioner</li>
+        <li>Nye kurser hver måned</li>
+        <li>Adgang til lukket Discord</li>
+        <li>Personligt certifikat</li>
+        <li>Annullér når du vil</li>
+      </ul>
+      <a href="#" class="btn-orange">Start gratis prøveperiode</a>
+    </div>
+  </div>
+</section>
+
+<!-- RELATED -->
+<section class="related">
+  <h3>Andre områder du måske <em>kunne lide</em>.</h3>
+  <div class="related-grid">
+    <a href="data.html" class="related-card">
+      <div class="info">
+        <div class="cat">Område 01</div>
+        <div class="title">Data &amp; <em>regneark</em></div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a href="marketing.html" class="related-card">
+      <div class="info">
+        <div class="cat">Område 02</div>
+        <div class="title">Markedsføring &amp; <em>indhold</em></div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a href="bolig.html" class="related-card">
+      <div class="info">
+        <div class="cat">Område 04</div>
+        <div class="title">Bolig &amp; <em>ejendom</em></div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2026 Praksis ApS · Bygget i København</div>
+  <div>CVR 00000000 · <a href="#">Vilkår</a> · <a href="#">Privatliv</a></div>
+</footer>
+
+
+<script>
+(function(){
+  var toggle=document.querySelector('.nav-toggle');
+  var menu=document.querySelector('.mobile-menu');
+  if(!toggle||!menu)return;
+  function close(){toggle.setAttribute('aria-expanded','false');menu.classList.remove('open');document.body.classList.remove('menu-open');}
+  toggle.addEventListener('click',function(){
+    var open=toggle.getAttribute('aria-expanded')==='true';
+    if(open){close();}
+    else{toggle.setAttribute('aria-expanded','true');menu.classList.add('open');document.body.classList.add('menu-open');}
+  });
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
+})();
+</script>
+
+</body>
+</html>

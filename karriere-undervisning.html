@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Undervisning i Karriere &amp; jobsøgning — Praksis</title>
+<meta name="description" content="AI til karriere og jobsøgning: retning, CV, jobsamtaler, lønforhandling og LinkedIn. Din personlige karriere-coach." />
+<meta name="theme-color" content="#F8F4EA" />
+<link rel="canonical" href="https://praksis-ai.vercel.app/karriere-undervisning" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Undervisning i Karriere &amp; jobsøgning — Praksis" />
+<meta property="og:description" content="AI til karriere og jobsøgning: retning, CV, jobsamtaler, lønforhandling og LinkedIn. Din personlige karriere-coach." />
+<meta property="og:locale" content="da_DK" />
+<meta property="og:site_name" content="Praksis·ai" />
+<meta property="og:url" content="https://praksis-ai.vercel.app/karriere-undervisning" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Undervisning i Karriere &amp; jobsøgning — Praksis" />
+<meta name="twitter:description" content="AI til karriere og jobsøgning: retning, CV, jobsamtaler, lønforhandling og LinkedIn. Din personlige karriere-coach." />
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;✦&lt;/text&gt;&lt;/svg&gt;" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,200..700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F8F4EA;--bg-2:#F2EDE0;--paper:#FFFFFF;--ink:#0F0D0B;--ink-2:#2A2520;--ink-3:#4A4239;--ink-dim:#6B6258;--ink-faint:#A8A095;--rule:#E5DDC9;--rule-soft:#EFE9D8;--accent:#B23F1E;--accent-soft:#F2E1D9;--area-color:#D8CFE6;--area-deep:#3D2D5C;--good:#2A6B3D;--good-soft:#E1EFE5;--warn:#A6630B;--warn-soft:#F5E8CC;--bad:#9B2C20;--bad-soft:#F2DDDB}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Manrope',system-ui,sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.mono{font-family:'JetBrains Mono',monospace;font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:11px}
+a{color:var(--accent)}
+.nav{background:rgba(248,244,234,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:50}
+.nav-inner{max-width:1400px;margin:0 auto;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;gap:40px}
+.brand{font-family:'Fraunces',serif;font-size:22px;color:var(--ink);text-decoration:none}
+.brand em{font-style:italic;font-weight:300;color:var(--accent)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{color:var(--ink-2);text-decoration:none;font-size:13px;font-weight:600}
+.nav-links a:hover{color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.btn-primary{background:var(--ink);color:var(--bg);padding:12px 22px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none}
+.btn-primary:hover{background:var(--accent)}
+.breadcrumb{max-width:1400px;margin:0 auto;padding:24px 40px 0;display:flex;align-items:center;gap:10px;color:var(--ink-dim);font-size:13px}
+.breadcrumb a{color:var(--ink-2);text-decoration:none;font-weight:500}
+.breadcrumb a:hover{color:var(--accent)}
+.breadcrumb .sep{color:var(--ink-faint)}.breadcrumb .current{color:var(--ink);font-weight:600}
+.hero{max-width:1400px;margin:0 auto;padding:50px 40px 60px}
+.area-tag{display:inline-block;background:var(--area-color);color:var(--area-deep);padding:6px 14px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:24px}
+.hero h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(44px,5.5vw,76px);line-height:.95;letter-spacing:-.035em;margin-bottom:24px;max-width:900px}
+.hero h1 em{font-style:italic;color:var(--accent);font-weight:300}
+.hero-sub{font-family:'Fraunces',serif;font-size:19px;line-height:1.55;color:var(--ink-2);margin-bottom:32px;max-width:680px}
+.hero-cta{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.btn-large{background:var(--ink);color:var(--bg);padding:16px 28px;font-size:14px;border-radius:100px;font-weight:600;text-decoration:none}
+.btn-large:hover{background:var(--accent)}
+.btn-ghost{color:var(--ink-2);text-decoration:none;font-size:14px;font-weight:600}.btn-ghost:hover{color:var(--accent)}
+.section-nav{background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);position:sticky;top:73px;z-index:40}
+.section-nav-inner{max-width:1400px;margin:0 auto;padding:18px 40px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.section-nav-inner::-webkit-scrollbar{display:none}
+.section-nav a{flex-shrink:0;display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:100px;background:transparent;color:var(--ink-2);text-decoration:none;font-size:13px;font-weight:600;border:1px solid transparent;transition:.2s}
+.section-nav a:hover{background:var(--paper);border-color:var(--rule)}
+.section-nav a .n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-faint);font-weight:600}
+.lesson{max-width:1400px;margin:0 auto;padding:90px 40px 40px;display:grid;grid-template-columns:1fr 2fr;gap:60px}
+.lesson-header{position:sticky;top:160px;align-self:start}
+.lesson-num{font-family:'Fraunces',serif;font-style:italic;font-weight:200;font-size:clamp(72px,9vw,140px);line-height:.85;color:var(--accent);margin-bottom:8px}
+.lesson-label{color:var(--ink-3);margin-bottom:14px}
+.lesson-title{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(34px,3.6vw,48px);line-height:1;letter-spacing:-.025em}
+.lesson-title em{font-style:italic;color:var(--accent);font-weight:300}
+.lesson-body{max-width:720px}
+.lesson-body h3{font-family:'Fraunces',serif;font-weight:400;font-size:28px;line-height:1.15;letter-spacing:-.015em;margin:42px 0 16px}
+.lesson-body h3:first-child{margin-top:0}
+.lesson-body h3 em{font-style:italic;color:var(--accent);font-weight:300}
+.lesson-body h4{font-family:'Fraunces',serif;font-weight:500;font-size:18px;line-height:1.3;margin:28px 0 10px;color:var(--ink)}
+.lesson-body p{margin-bottom:16px;color:var(--ink-2);font-size:15.5px;line-height:1.7}
+.lesson-body p strong{color:var(--ink);font-weight:600}
+.lesson-body ul:not(.checklist):not(.bullet-mono){margin:14px 0 22px;padding-left:0;list-style:none}
+.lesson-body ul:not(.checklist):not(.bullet-mono) li{position:relative;padding-left:24px;margin-bottom:10px;color:var(--ink-2);line-height:1.65}
+.lesson-body ul:not(.checklist):not(.bullet-mono) li::before{content:'';position:absolute;left:0;top:11px;width:14px;height:1px;background:var(--accent)}
+.lesson-body strong em{font-style:italic;color:var(--accent)}
+.callout{background:var(--bg-2);border-left:3px solid var(--accent);padding:18px 24px;margin:24px 0;font-family:'Fraunces',serif;font-style:italic;font-size:17px;line-height:1.5;color:var(--ink-2);border-radius:0 8px 8px 0}
+.callout strong{font-style:normal;font-family:'Manrope',sans-serif;color:var(--ink);display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;font-weight:600}
+.brief-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+.brief-box{padding:20px 22px;border-radius:12px;border:1px solid var(--rule);background:var(--paper)}
+.brief-box.bad{background:var(--bad-soft);border-color:rgba(155,44,32,.25)}
+.brief-box.good{background:var(--good-soft);border-color:rgba(42,107,61,.25)}
+.brief-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.brief-box.bad .brief-label{color:var(--bad)}
+.brief-box.good .brief-label{color:var(--good)}
+.brief-box p{font-family:'Fraunces',serif;font-style:italic;font-size:15px;line-height:1.5;color:var(--ink-2);margin:0}
+.code-block{background:var(--ink);color:var(--bg);border-radius:14px;padding:24px 28px;margin:24px 0;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;overflow-x:auto;font-weight:400}
+.code-label-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:8px}
+.tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:24px 0}
+.tool-card{background:var(--paper);border:1px solid var(--rule);border-radius:14px;padding:20px 22px}
+.tool-card h4{font-family:'Fraunces',serif;font-weight:500;font-size:17px;margin:0 0 8px;color:var(--ink)}
+.tool-card p{font-size:13.5px;color:var(--ink-3);margin:0;line-height:1.6}
+.fail-box{background:#FBF4E8;border:1px solid rgba(166,99,11,.25);border-left:3px solid var(--warn);border-radius:0 12px 12px 0;padding:20px 24px;margin:24px 0}
+.fail-box h4{font-family:'Manrope',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--warn);margin:0 0 12px}
+.fail-box ul{margin:0;padding:0;list-style:none}
+.fail-box ul li{position:relative;padding-left:22px;margin-bottom:10px;color:var(--ink-2);font-size:14px;line-height:1.55}
+.fail-box ul li:last-child{margin-bottom:0}
+.fail-box ul li::before{content:'!';position:absolute;left:0;top:0;width:14px;height:14px;background:var(--warn);color:#fff;border-radius:50%;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:3px}
+.bullet-mono{list-style:none;padding:0;margin:20px 0 0;border-top:1px solid var(--rule);padding-top:18px}
+.bullet-mono li{position:relative;padding-left:22px;margin-bottom:10px;color:var(--ink-3);font-size:13.5px;line-height:1.55}
+.bullet-mono li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.lesson-body code:not(.code-block code){background:var(--bg-2);padding:2px 7px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink);font-weight:500}
+.divider{max-width:1400px;margin:0 auto;padding:0 40px}
+.divider hr{border:none;border-top:1px solid var(--rule);margin:20px 0}
+.outro{max-width:1400px;margin:0 auto;padding:80px 40px 100px;text-align:center}
+.outro h2{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(36px,4.5vw,56px);line-height:1;letter-spacing:-.03em;margin-bottom:24px}
+.outro h2 em{font-style:italic;color:var(--accent);font-weight:300}
+.outro p{font-family:'Fraunces',serif;font-size:18px;color:var(--ink-2);max-width:560px;margin:0 auto 32px;line-height:1.5}
+.outro-cta{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+footer{border-top:1px solid var(--rule);padding:40px;max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;color:var(--ink-3);font-size:13px}
+footer a{color:var(--ink-3);text-decoration:none}
+footer a:hover{color:var(--accent)}
+@media (max-width:980px){.nav-inner{padding:16px 20px;gap:16px}.nav-links{display:none}.breadcrumb{padding:18px 20px 0;flex-wrap:wrap}.hero{padding:36px 20px 40px}.section-nav{top:65px}.section-nav-inner{padding:14px 20px}.lesson{grid-template-columns:1fr;gap:32px;padding:60px 20px 20px}.lesson-header{position:static;top:auto}.lesson-num{font-size:80px}.brief-compare,.tools-grid{grid-template-columns:1fr}.outro{padding:60px 20px 80px}footer{padding:24px 20px;flex-direction:column}}
+
+/* === Progress bar === */
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:0%;z-index:60;transition:width .1s linear}
+/* === Active section nav highlight === */
+.section-nav a.active{background:var(--paper);border-color:var(--accent);color:var(--accent)}
+.section-nav a.active .n{color:var(--accent)}
+/* === Prev/next lesson nav === */
+.lesson-nav{display:flex;justify-content:space-between;gap:16px;max-width:720px;margin-left:auto}
+.lesson-nav-btn{flex:1;display:flex;flex-direction:column;gap:4px;padding:18px 22px;border:1px solid var(--rule);border-radius:14px;background:var(--paper);text-decoration:none;transition:.25s}
+.lesson-nav-btn:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 12px 30px -18px rgba(15,13,11,.25)}
+.lesson-nav-btn.next{text-align:right;align-items:flex-end}
+.lesson-nav-btn .dir{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
+.lesson-nav-btn .ttl{font-family:'Fraunces',serif;font-size:17px;color:var(--ink);line-height:1.1}
+.lesson-nav-btn .ttl em{font-style:italic;color:var(--accent);font-weight:300}
+.lesson-nav-btn.disabled{opacity:.4;pointer-events:none}
+/* === Back to top === */
+.to-top{position:fixed;bottom:28px;right:28px;width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--bg);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:18px;opacity:0;pointer-events:none;transition:.3s;z-index:55;border:none;cursor:pointer}
+.to-top.show{opacity:1;pointer-events:auto}
+.to-top:hover{background:var(--accent)}
+@media (max-width:980px){.lesson-nav{margin-left:0}.lesson-nav-btn{padding:14px 16px}.lesson-nav-btn .ttl{font-size:15px}.to-top{bottom:18px;right:18px;width:42px;height:42px}}
+
+
+/* === Anchor offset under sticky nav === */
+section[id], [id^="undervisning-"]{scroll-margin-top:150px}
+/* === Respect reduced motion === */
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+
+
+/* ===================== MOBILE MENU ===================== */
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:none;border:none;cursor:pointer;padding:10px;margin-left:auto;z-index:60}
+.nav-toggle span{display:block;height:2px;width:100%;background:var(--ink);border-radius:2px;transition:.3s}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;inset:0;top:0;background:var(--bg);z-index:55;padding:90px 28px 40px;flex-direction:column;gap:4px;overflow-y:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Fraunces',serif;font-size:26px;color:var(--ink);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule)}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu a em{font-style:italic;color:var(--accent)}
+.mobile-menu .mm-cta{margin-top:24px;background:var(--ink);color:var(--bg);border-radius:100px;text-align:center;padding:16px;font-family:'Manrope',sans-serif;font-size:15px;font-weight:600;border-bottom:none}
+body.menu-open{overflow:hidden}
+
+/* ===================== PHONE BREAKPOINT (<=600px) ===================== */
+@media (max-width:600px){
+  /* show hamburger, hide desktop links */
+  .nav-toggle{display:flex}
+  .nav-inner .nav-links{display:none}
+  .nav-inner .nav-right{display:none}
+  .nav-inner{padding:14px 18px}
+  .brand{font-size:20px}
+
+  /* tame huge display type */
+  .hero h1{font-size:clamp(38px,11vw,52px)!important}
+  h1{word-break:break-word;hyphens:auto}
+  .section-head h2,.cta h2,.platform-demo h2,.how h2,.outro h2,.related h3{font-size:clamp(30px,8vw,40px)!important}
+  .lesson-title{font-size:clamp(28px,8vw,36px)!important}
+  .lesson-num{font-size:64px!important}
+
+  /* tighter section padding */
+  section{padding:48px 18px!important}
+  .hero{padding:28px 18px 44px!important}
+  .lesson{padding:40px 18px 16px!important}
+  .breadcrumb{padding:16px 18px 0!important;font-size:12px}
+
+  /* prevent overflow from wide demos / code */
+  .code-block,.code-box code{font-size:11px!important;padding:16px!important}
+  .demo-frame,.hero-video,.hero-card{max-width:100%;overflow:hidden}
+  pre,code{white-space:pre-wrap!important;word-break:break-word}
+
+  /* stack any 2-up compares and tool grids */
+  .brief-compare,.code-compare,.code-compare.three,.tools-grid,.lessons-grid,.learn-grid,.related-grid{grid-template-columns:1fr!important}
+
+  /* touch targets */
+  .btn-primary,.btn-large,.btn-ghost,.btn-orange,.btn-outline,.btn-undervisning,.lesson-link,.nav-login{min-height:44px;display:inline-flex;align-items:center}
+
+  /* lesson prev/next stacks */
+  .lesson-nav{flex-direction:column}
+
+  /* hero stats / mini stats wrap */
+  .hero-stats{flex-wrap:wrap;gap:18px!important}
+
+  /* sticky section-nav scroll on teaching pages */
+  .section-nav-inner{padding:12px 18px}
+
+  /* reduce scroll-margin so anchors aren't too low on small screens */
+  section[id],[id^="undervisning-"]{scroll-margin-top:80px}
+  .section-nav{top:60px}
+  .hero-video,.hero-card,.demo-frame{transform:none!important}
+
+  /* footer */
+  footer{padding:24px 18px!important}
+}
+
+/* prevent horizontal scroll globally */
+html,body{max-width:100%;overflow-x:hidden}
+
+
+/* === Eksplicitte font-weights (matcher data.html) === */
+body{font-weight:400}
+.brand{font-weight:400}
+.hero-stats div .num{font-weight:400}
+.module-body h3{font-weight:400}
+.learn-item h4{font-weight:500}
+.lesson-info h4{font-weight:400}
+.lesson-thumb .duration{font-weight:600}
+.lesson-thumb .badge-free{font-weight:700}
+.lesson-info .cat{font-weight:600}
+
+
+/* === Prompt-demo animation === */
+.prompt-demo{max-width:1100px;margin:30px auto 60px;padding:0 40px}
+.prompt-demo-card{background:var(--ink);color:var(--bg);border-radius:18px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(15,13,11,.3)}
+.prompt-demo-bar{background:rgba(255,255,255,.05);padding:12px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.prompt-demo-dots{display:flex;gap:6px}
+.prompt-demo-dots span{width:11px;height:11px;border-radius:50%}
+.prompt-demo-dots span:nth-child(1){background:#FF5F57}
+.prompt-demo-dots span:nth-child(2){background:#FEBC2E}
+.prompt-demo-dots span:nth-child(3){background:#28C840}
+.prompt-demo-url{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.4);margin-left:16px;letter-spacing:.05em}
+.prompt-demo-stage{padding:24px 28px;min-height:340px;display:flex;flex-direction:column;gap:14px}
+.pd-row{display:flex;gap:14px;align-items:flex-start;opacity:0;animation:pdFade .4s forwards}
+.pd-avatar{width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;flex-shrink:0;letter-spacing:0}
+.pd-avatar.ai{background:rgba(255,255,255,.1);color:rgba(255,255,255,.7)}
+.pd-bubble{flex:1;background:rgba(255,255,255,.06);padding:13px 16px;border-radius:12px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.6;color:rgba(255,255,255,.92);white-space:pre-wrap;word-break:break-word}
+.pd-bubble.user{background:rgba(178,63,30,.18);border:1px solid rgba(178,63,30,.4)}
+.pd-bubble.ai{font-family:'Manrope',sans-serif;font-size:13px;line-height:1.65}
+.pd-bubble.ai pre{font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.55;color:#E8C8B8;margin:0}
+.pd-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:600;padding:18px 0 6px;border-top:1px dashed rgba(255,255,255,.1);margin-top:6px;opacity:0;animation:pdFade .4s forwards}
+.pd-label:first-child{padding-top:0;border-top:none;margin-top:0}
+.pd-label.bad{color:#E8A87C}
+.pd-label.good{color:#A0D4A8}
+@keyframes pdFade{to{opacity:1}}
+@keyframes pdType{from{width:0}to{width:100%}}
+.prompt-demo-caption{text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--ink-3);margin-top:18px;line-height:1.5}
+.prompt-demo-caption strong{font-style:normal;color:var(--accent);font-weight:500}
+@media (max-width:600px){
+  .prompt-demo{padding:0 18px;margin:18px auto 36px}
+  .prompt-demo-stage{padding:18px 16px;min-height:auto}
+  .pd-bubble{font-size:11.5px;padding:11px 13px}
+  .pd-bubble.ai{font-size:12px}
+  .pd-bubble.ai pre{font-size:10.5px}
+}
+
+
+/* ===================== NAV DROPDOWNS ===================== */
+.nav-links{position:relative}
+.has-dropdown{position:relative;display:inline-block}
+.has-dropdown > a{position:relative}
+.has-dropdown > a::after{
+  content:'';
+  display:inline-block;
+  width:0;height:0;
+  margin-left:6px;
+  vertical-align:middle;
+  border-left:3.5px solid transparent;
+  border-right:3.5px solid transparent;
+  border-top:4px solid currentColor;
+  opacity:.55;
+  transition:transform .2s
+}
+.has-dropdown:hover > a::after{transform:rotate(180deg)}
+.dropdown-menu{
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%) translateY(8px);
+  min-width:280px;
+  background:var(--paper);
+  border:1px solid var(--rule);
+  border-radius:14px;
+  padding:10px;
+  box-shadow:0 24px 60px -20px rgba(15,13,11,.18), 0 4px 16px -4px rgba(15,13,11,.08);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index:80;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px
+}
+.dropdown-menu.single-col{grid-template-columns:1fr;min-width:240px}
+.has-dropdown:hover .dropdown-menu,
+.has-dropdown:focus-within .dropdown-menu{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(2px)
+}
+/* Bridge so cursor doesn't drop the menu when crossing gap */
+.has-dropdown::before{
+  content:'';
+  position:absolute;
+  top:100%;
+  left:0;right:0;
+  height:14px
+}
+.dropdown-menu a{
+  display:block;
+  padding:9px 14px;
+  border-radius:9px;
+  color:var(--ink-2)!important;
+  font-family:'Manrope',sans-serif;
+  font-size:13.5px;
+  font-weight:500;
+  text-decoration:none;
+  letter-spacing:0;
+  text-transform:none;
+  white-space:nowrap;
+  transition:background .12s, color .12s
+}
+.dropdown-menu a:hover{
+  background:var(--bg-2);
+  color:var(--ink)!important
+}
+.dropdown-menu a .dd-num{
+  display:inline-block;
+  width:22px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--ink-faint);
+  font-weight:600;
+  margin-right:4px
+}
+.dropdown-menu .dd-all{
+  grid-column:1 / -1;
+  margin-top:6px;
+  padding-top:10px;
+  border-top:1px solid var(--rule);
+  font-style:italic;
+  font-family:'Fraunces',serif;
+  color:var(--accent)!important;
+  font-size:13px
+}
+/* Skjul dropdowns på mobil */
+@media (max-width:600px){
+  .has-dropdown::before{display:none}
+  .dropdown-menu{display:none!important}
+  .has-dropdown > a::after{display:none}
+}
+
+</style></head><body>
+<div class="progress-bar"></div>
+<button class="to-top" aria-label="Til toppen">↑</button>
+<nav class="nav"><div class="nav-inner">
+<a href="index.html" class="brand">Praksis<em>·ai</em></a>
+<div class="nav-links"><span class="has-dropdown"><a href="index.html#omrader">Områder</a>
+<div class="dropdown-menu">
+  <a href="data.html"><span class="dd-num">01</span>Data &amp; Excel</a>
+  <a href="marketing.html"><span class="dd-num">02</span>Markedsføring</a>
+  <a href="finans.html"><span class="dd-num">03</span>Finans</a>
+  <a href="bolig.html"><span class="dd-num">04</span>Bolig</a>
+  <a href="kode.html"><span class="dd-num">05</span>Kode</a>
+  <a href="hverdag.html"><span class="dd-num">06</span>Hverdag</a>
+  <a href="karriere.html"><span class="dd-num">07</span>Karriere</a>
+  <a href="sundhed.html"><span class="dd-num">08</span>Sundhed</a>
+  <a href="laering.html"><span class="dd-num">09</span>Læring</a>
+  <a href="skriv.html"><span class="dd-num">10</span>Skriv</a>
+  <a href="ivaerksaetteri.html"><span class="dd-num">11</span>Iværksætteri</a>
+  <a href="salg.html"><span class="dd-num">12</span>Salg</a>
+  <a href="rejse.html"><span class="dd-num">13</span>Rejse</a>
+  <a href="mad.html"><span class="dd-num">14</span>Mad</a>
+  <a href="index.html#omrader" class="dd-all">Se alle 14 områder &rarr;</a>
+</div>
+</span><a href="index.html#metode">Metode</a><span class="has-dropdown"><a href="index.html#pro">Pro</a>
+<div class="dropdown-menu single-col">
+  <a href="pro-byg.html"><span class="dd-num">01</span>Byg AI-produkter</a>
+  <a href="pro-automation.html"><span class="dd-num">02</span>Automation i skala</a>
+  <a href="pro-prompt.html"><span class="dd-num">03</span>Prompt engineering</a>
+  <a href="pro-strategi.html"><span class="dd-num">04</span>AI-strategi</a>
+  <a href="pro-finans.html"><span class="dd-num">05</span>Avanceret finans</a>
+  <a href="pro-research.html"><span class="dd-num">06</span>AI-research</a>
+  <a href="index.html#pro" class="dd-all">Se alle Pro-områder &rarr;</a>
+</div>
+</span><a href="index.html#priser">Priser</a></div>
+<button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button><div class="nav-right"><a href="karriere.html#cta" class="btn-primary">Start gratis →</a></div>
+</div></nav>
+<div class="mobile-menu">
+<a href="index.html#omrader">Områder</a>
+<a href="index.html#metode">Metode</a>
+<a href="index.html#pro">Pro</a>
+<a href="index.html#priser">Priser</a>
+<a href="karriere.html#cta" class="mm-cta">Start gratis →</a>
+</div>
+<div class="breadcrumb"><a href="index.html">Forside</a><span class="sep">/</span><a href="karriere.html">Karriere &amp; jobsøgning</a><span class="sep">/</span><span class="current">Undervisning</span></div>
+<section class="hero">
+<div class="area-tag">Område 07 · Undervisning</div>
+<h1>Undervisning i <em>karriere &amp; jobsøgning.</em></h1>
+<p class="hero-sub">Fem undervisninger i retning, CV, samtaler, forhandling og LinkedIn. AI som personlig karriere-coach &mdash; tilgængelig kl 22 om søndagen.</p>
+<div class="hero-cta">
+<a href="#undervisning-1" class="btn-large">Start med undervisning 1 →</a>
+<a href="karriere.html#curriculum" class="btn-ghost">Tilbage til pensum</a>
+</div>
+</section>
+
+<section class="prompt-demo" aria-label="Eksempel: dårlig vs god prompt">
+  <div class="prompt-demo-card">
+    <div class="prompt-demo-bar">
+      <div class="prompt-demo-dots"><span></span><span></span><span></span></div>
+      <div class="prompt-demo-url">chat.karriere.ai</div>
+    </div>
+    <div class="prompt-demo-stage">
+      <div class="pd-label bad">Vag prompt — overfladisk svar</div>
+      <div class="pd-row">
+        <div class="pd-avatar">DU</div>
+        <div class="pd-bubble user">Skriv en god ansøgning til mig.</div>
+      </div>
+      <div class="pd-row">
+        <div class="pd-avatar ai">AI</div>
+        <div class="pd-bubble ai">Kære [virksomhed], jeg skriver for at ansøge om stillingen som... [generisk skabelon]</div>
+      </div>
+      <div class="pd-label good">Detaljeret prompt — brugbart svar</div>
+      <div class="pd-row">
+        <div class="pd-avatar">DU</div>
+        <div class="pd-bubble user">Her er min CV [vedhæftet]. Her er jobopslaget [vedhæftet]. Lav: 1) De 5 vigtigste krav i opslaget (eksplicit + skjulte), 2) Hvilke af mine erfaringer matcher bedst, 3) Omformulér mine bullets så de bruger samme termer som opslaget, 4) Identificér 2 huller mellem mig og opslaget — hvordan bygger jeg bro?</div>
+      </div>
+      <div class="pd-row">
+        <div class="pd-avatar ai">AI</div>
+        <div class="pd-bubble ai">De 5 vigtigste krav (rangordnet):<br>  1. Erfaring med skalering af SaaS-teams (15+ personer)<br>  2. Senior product-baggrund (ikke generel ledelse)<br>  3. Tværfaglig kommunikation (skjult i &quot;stakeholder mgmt&quot;)<br>  4. Data-drevet beslutningstagning<br>  5. Internationalt mindset<br><br>Dit match: stærk på 1, 3, 5. Mellem på 4. Hul på 2.<br><br>Bro-strategi for hul #2: ramm 2018-2020 hvor du de facto<br>fungerede som product-leder uden titlen...</div>
+      </div>
+    </div>
+  </div>
+  <div class="prompt-demo-caption">Forskellen er ikke AI'en — det er <strong>briefen</strong>.</div>
+</section>
+
+<div class="section-nav"><div class="section-nav-inner">
+<a href="#undervisning-1"><span class="n">01</span> Retning</a>
+<a href="#undervisning-2"><span class="n">02</span> CV</a>
+<a href="#undervisning-3"><span class="n">03</span> Samtale</a>
+<a href="#undervisning-4"><span class="n">04</span> Løn</a>
+<a href="#undervisning-5"><span class="n">05</span> LinkedIn</a>
+</div></div>
+<section class="lesson" id="undervisning-1">
+<div class="lesson-header">
+<div class="lesson-num">01</div>
+<div class="lesson-label mono">/ Undervisning 1</div>
+<h2 class="lesson-title">Find <em>retningen</em></h2>
+</div>
+<div class="lesson-body">
+
+<h3>De fleste sender CV'er <em>før</em> de har spurgt sig selv hvad de leder efter.</h3>
+<p>Den hyppigste karriere-fælde: at søge på de jobs der ligner det du allerede har, fordi det er det letteste. Det er sjældent det rigtige. AI er fremragende til at hjælpe dig finde retningen før du begynder at søge.</p>
+
+<h3>De fire spørgsmål du burde svare først.</h3>
+<ul>
+<li><strong>Hvilke opgaver mister du tid på?</strong> Ikke "hvad er du god til" &mdash; hvad får dig til at glemme klokken.</li>
+<li><strong>Hvilke mennesker vil du arbejde med?</strong> Domæne, kultur, ambitionsniveau, livsstil.</li>
+<li><strong>Hvad er dine ikke-forhandlinger?</strong> Hjemmearbejde, rejse, løn, fleksibilitet &mdash; klart.</li>
+<li><strong>Hvor vil du være om 5 år?</strong> Ikke som titel &mdash; som type af problemer du løser.</li>
+</ul>
+
+<div class="callout"><strong>Retnings-prompt</strong>"Vær min karriere-coach. Stil mig 7 spørgsmål, ét ad gangen, der vil hjælpe mig finde ud af hvilken type rolle jeg skal søge. Ikke standard spørgsmål &mdash; nogle der tvinger mig til at se mønstre i hvad jeg har lavet de sidste 3 år."</div>
+
+<h3>Career mapping med AI.</h3>
+<p>Tag de sidste 3-5 år af din karriere og bed AI om at finde mønstre. Det er ofte overraskende hvad der dukker op:</p>
+
+<div class="brief-compare"><div class="brief-box bad"><div class="brief-label">✗ Generisk</div><p>"Hvad skal jeg blive?"</p></div><div class="brief-box good"><div class="brief-label">✓ God</div><p>"Her er de seneste 5 jobs jeg har haft, med hovedansvar: [liste]. Her er de 3 projekter jeg er mest stolt af: [liste]. Her er de 3 jeg helst ikke vil gentage: [liste]. Find mønstre: hvad er den røde tråd? Hvilke typer roller passer til den tråd? Liste 5 jobtitler jeg burde overveje &mdash; også dem der virker langt fra hvad jeg har lavet."</p></div></div>
+
+<h3>De skjulte jobs &mdash; <em>80% af stillinger annonceres ikke</em>.</h3>
+<p>Den åbne arbejdsmarked på Jobindex og LinkedIn er kun toppen af isbjerget. De gode roller bliver ofte besat via netværk. AI kan hjælpe dig kortlægge dit netværk og finde åbninger:</p>
+<ul>
+<li><strong>Netværk-map:</strong> Skriv liste over alle relevante kontakter. Bed AI hjælpe dig prioritere hvem du skal opdatere.</li>
+<li><strong>Cold outreach:</strong> Skriv personlige beskeder til folk i roller du gerne vil have.</li>
+<li><strong>Informational interviews:</strong> Forbered spørgsmål der ikke spilder den andres tid.</li>
+</ul>
+
+<h3>Den klassiske fælde: <em>"jeg vil noget mere meningsfuldt"</em>.</h3>
+<p>Det er den hyppigste karriere-frustration &mdash; og ofte den misvisende. Mening er sjældent fundet i jobtitlen. Den findes i hvilke problemer du løser, hvem du løser dem for, og hvordan du arbejder. AI kan hjælpe dig skille de tre:</p>
+
+<div class="code-label-tag">Mening-i-arbejde-rutine</div><div class="code-block">Jeg føler mit nuværende arbejde mangler mening.
+
+KONTEKST:
+- Nuværende rolle: [beskriv]
+- Hvad jeg konkret laver om ugen: [liste]
+- Hvor jeg føler tilfredsstillelse: [konkret]
+- Hvor jeg føler tømhed: [konkret]
+
+Tænk højt med mig:
+1. Er problemet hvad jeg LAVER, eller hvor (kultur, mål, målinger)?
+2. Er der ting i mit nuvaerende job jeg kunne forstærke vs starte forfra?
+3. Hvis jeg skulle ændre én ting (ikke alt), hvad ville gøre størst forskel?
+4. Stil 3 spørgsmål der vil tvinge mig til at se hvad jeg ignorerer.</div>
+
+<div class="fail-box"><h4>Hvor AI fejler</h4><ul><li><strong>Læser job-opslag som tjekliste.</strong> Hvis du opfylder 60%, skal du søge. Ingen virksomhed forventer 100%.</li><li><strong>Tror titler er det vigtige.</strong> En "Manager" hos en lille virksomhed laver noget andet end "Manager" hos en stor.</li><li><strong>Undgår at tale med folk.</strong> AI kan hjælpe dig forberede samtaler, ikke erstatte dem.</li><li><strong>Søger for længe alene.</strong> Hvis du har søgt i 6 måneder uden held, tal med en rigtig career coach.</li></ul></div><ul class="bullet-mono"><li>Find retningen — ønsker du har — før du sender CV'er.</li><li>80% af jobs bliver besat gennem netværk &mdash; investér i det først.</li><li>Mening kommer fra konkrete opgaver, ikke jobtitler.</li><li>Hvis du opfylder 60% af job-kravene, så søg.</li></ul>
+
+<div class="lesson-nav"><span class="lesson-nav-btn prev disabled"><span class="dir">← Forrige</span><span class="ttl">Start</span></span><a href="#undervisning-2" class="lesson-nav-btn next"><span class="dir">Næste →</span><span class="ttl">CV</span></a></div>
+</div>
+</section>
+<div class="divider"><hr></div>
+<section class="lesson" id="undervisning-2">
+<div class="lesson-header">
+<div class="lesson-num">02</div>
+<div class="lesson-label mono">/ Undervisning 2</div>
+<h2 class="lesson-title">CV &amp; <em>ansøgning</em></h2>
+</div>
+<div class="lesson-body">
+
+<h3>De fleste CV'er <em>fortæller</em>. De gode CV'er <em>viser</em>.</h3>
+<p>"Erfaren projektleder med stærke kommunikationsevner" siger intet. "Ledte 12-personers team gennem migration der reducerede driftsomkostninger 30%" siger alt. AI er fremragende til at hjælpe dig konvertere generiske udtalelser til specifikke beviser.</p>
+
+<h3>STAR-formatet &mdash; det <em>burde</em> være standard.</h3>
+<ul>
+<li><strong>Situation</strong> &mdash; konteksten i 1 sætning</li>
+<li><strong>Task</strong> &mdash; dit ansvar i 1 sætning</li>
+<li><strong>Action</strong> &mdash; hvad du gjorde &mdash; konkret</li>
+<li><strong>Result</strong> &mdash; målbart udfald med tal</li>
+</ul>
+
+<div class="brief-compare"><div class="brief-box bad"><div class="brief-label">✗ Generisk</div><p>"Ansvarlig for kundeservice og support."</p></div><div class="brief-box good"><div class="brief-label">✓ God</div><p>"Restrukturerede et 6-personers supportteam (S/T). Implementerede triagering og knowledge-base (A). Reducerede gennemsnitlig responstid fra 18 til 4 timer og NPS steg fra 32 til 58 (R)."</p></div></div>
+
+<h3>Skræddersy hvert CV &mdash; men ikke fra bunden.</h3>
+<p>Den klassiske fejl: én generic CV der sendes til alle jobs. Den næste fejl: bruge 4 timer på at omskrive hvert CV. Den rigtige tilgang er en master-CV med ALT, og lade AI hjælpe dig udvælge og omformulere til hvert specifikt job:</p>
+
+<div class="code-label-tag">CV-skræddersy-prompt</div><div class="code-block">Du er senior HR-konsulent.
+
+Her er min master-CV [paste].
+Her er jobopslaget jeg søger [paste].
+
+Lav:
+1. Identificér de 5 vigtigste krav i opslaget (eksplicit + skjulte)
+2. For hvert krav: hvilke af mine erfaringer matcher bedst?
+3. Foreslå omformuleringer af mine bullets, så de bruger samme termer som opslaget
+4. Skriv 3 alternativer til min "Profil"-sektion på toppen, hver med forskelligt fokus
+5. Hvilke erfaringer fra min CV bør jeg SKJULE for denne ansøgning (irrelevante)?
+6. Identificér 2 huller mellem mig og opslaget &mdash; hvordan bygger jeg bro?
+
+Vær konkret. Ingen klichéer.</div>
+
+<h3>Ansøgningsbrevet &mdash; <em>er sjældent det vigtige</em>.</h3>
+<p>Hvis du tror ansøgningsbrevet er den vigtige del, har du allerede tabt. Det er CV'et + dit netværk der får dig til samtalen. Ansøgningsbrevet skal være: 1) Kort. 2) Specifikt for denne rolle. 3) Vise du forstår virksomheden. Tre afsnit, ikke fem.</p>
+
+<h3>De tre afsnit der virker.</h3>
+<div class="tools-grid"><div class="tool-card"><h4>Afsnit 1: Hvorfor I</h4><p>Vis at du kender virksomheden. Ikke fra deres hjemmeside &mdash; fra noget du har observeret. Et produkt-valg, en rækkefølge i deres roadmap, en udtalelse fra deres CEO.</p></div><div class="tool-card"><h4>Afsnit 2: Hvorfor mig</h4><p>Et konkret resultat fra dit forrige job der direkte adresserer hvad de leder efter. Ikke flere. Et.</p></div><div class="tool-card"><h4>Afsnit 3: Hvad nu</h4><p>En invitation til samtale. Konkret om hvad du gerne vil tale om i den. Ikke "Jeg ser frem til at høre fra jer".</p></div><div class="tool-card"><h4>IKKE: Hele dit CV</h4><p>CV'et står ved siden af brevet. Genskriv det ikke.</p></div></div>
+
+<h3>ATS &mdash; <em>de usynlige robotter</em>.</h3>
+<p>70% af danske virksomheder bruger Applicant Tracking Systems (ATS) der filtrerer CV'er før mennesker ser dem. AI kan hjælpe dig optimere:</p>
+<ul>
+<li>Brug samme keywords som jobopslaget (men ikke keyword-stuffing &mdash; det fanges)</li>
+<li>Standard sektioner: Profil, Erfaring, Uddannelse, Færdigheder &mdash; ikke kreative titler</li>
+<li>Læselig PDF (ikke skannet) eller Word &mdash; ikke designet PDF med billeder</li>
+<li>Match jobtitler hvor muligt &mdash; "Senior Backend Developer" er bedre end "Tech Lead" hvis det er rollen</li>
+</ul>
+
+<div class="fail-box"><h4>Hvor AI fejler</h4><ul><li><strong>Bruger AI-genererede CV'er uændret.</strong> Lyder generisk. ATS fanger ofte AI-skreven tekst.</li><li><strong>Lyver om ær/måneder.</strong> Det bliver tjekket. Ærlighed slaar perfektion.</li><li><strong>Længde over 2 sider.</strong> Med mindre du har 20+ års erfaring i samme felt, hold det til 2 sider.</li><li><strong>Ingen tal.</strong> Et CV uden målbare resultater er en ønskeliste.</li></ul></div><ul class="bullet-mono"><li>Vis &mdash; lad være med at fortælle. Tal slaar adjektiver.</li><li>Skræddersy hvert CV med AI som assistent, ikke ghostwriter.</li><li>Ansøgningsbrev: 3 afsnit, 250 ord, konkret.</li><li>Hold dit CV ATS-læsbart &mdash; ingen kreative formater.</li></ul>
+
+<div class="lesson-nav"><a href="#undervisning-1" class="lesson-nav-btn prev"><span class="dir">← Forrige</span><span class="ttl">Retning</span></a><a href="#undervisning-3" class="lesson-nav-btn next"><span class="dir">Næste →</span><span class="ttl">Samtale</span></a></div>
+</div>
+</section>
+<div class="divider"><hr></div>
+<section class="lesson" id="undervisning-3">
+<div class="lesson-header">
+<div class="lesson-num">03</div>
+<div class="lesson-label mono">/ Undervisning 3</div>
+<h2 class="lesson-title">Jobsamtalen &amp; <em>forberedelse</em></h2>
+</div>
+<div class="lesson-body">
+
+<h3>De fleste samtaler tabes på <em>20 minutters forberedelse</em>.</h3>
+<p>Den hyppigste fejl ved samtaler er ikke svar-kvaliteten &mdash; det er manglende forberedelse. AI er din 24/7 træningspartner der kan stille de svære spørgsmål inden interviewet, så du ikke møder dem første gang i rummet.</p>
+
+<h3>De fire kategorier af interview-spørgsmål.</h3>
+<ul>
+<li><strong>Fortæl-mig-om-dig.</strong> "Why are you here?" / "Walk me through your CV." Du skal have et 2-minutters svar i søvne.</li>
+<li><strong>Adfærds-baserede.</strong> "Fortæl om en gang du..." Brug STAR-metoden. Forbered 5 historier der dækker mange spørgsmåls-vinkler.</li>
+<li><strong>Hypotetiske.</strong> "Hvad ville du gøre hvis..." Tænk højt &mdash; processen er vigtigere end svaret.</li>
+<li><strong>Faglige.</strong> Test af din viden. Forbereder du dig som til en eksamen.</li>
+</ul>
+
+<h3>De 5 historier du burde have klar.</h3>
+<p>Du behøver ikke forberede 50 historier &mdash; 5 godt valgte historier dækker 80% af spørgsmål:</p>
+<ol style="margin:14px 0 22px;padding-left:0;list-style:none;counter-reset:l">
+<li style="counter-increment:l;position:relative;padding-left:30px;margin-bottom:10px;color:var(--ink-2)"><span style="position:absolute;left:0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);font-weight:600;top:3px">01</span><strong>Et stort resultat</strong> &mdash; din "wow"-historie</li>
+<li style="counter-increment:l;position:relative;padding-left:30px;margin-bottom:10px;color:var(--ink-2)"><span style="position:absolute;left:0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);font-weight:600;top:3px">02</span><strong>En konflikt løst</strong> &mdash; konfrontation eller misforståelse</li>
+<li style="counter-increment:l;position:relative;padding-left:30px;margin-bottom:10px;color:var(--ink-2)"><span style="position:absolute;left:0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);font-weight:600;top:3px">03</span><strong>En fiasko du lærte af</strong> &mdash; ikke "perfectionism" som svaghed</li>
+<li style="counter-increment:l;position:relative;padding-left:30px;margin-bottom:10px;color:var(--ink-2)"><span style="position:absolute;left:0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);font-weight:600;top:3px">04</span><strong>Lederskab</strong> &mdash; også uden titel</li>
+<li style="counter-increment:l;position:relative;padding-left:30px;margin-bottom:10px;color:var(--ink-2)"><span style="position:absolute;left:0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);font-weight:600;top:3px">05</span><strong>Initiativ</strong> &mdash; en gang du gjorde noget der ikke var dit ansvar</li>
+</ol>
+
+<div class="callout"><strong>Rollespils-rutine</strong>"Du er hiring manager for [rolle] hos [firma]. Du har læst mit CV [paste]. Stil mig 10 spørgsmål, ét ad gangen. Efter hvert svar: vurdér hvor stærkt det var på 1-10 og hvad jeg kunne forbedre. Vær kritisk men konstruktiv."</div>
+
+<h3>Research virksomheden &mdash; <em>ikke kun deres hjemmeside</em>.</h3>
+<p>De fleste kandidater læser "Om os"-siden og er klar. Det er ikke nok. Brug AI til at samle:</p>
+<ul>
+<li><strong>Seneste nyheder.</strong> Hvad har de annonceret de sidste 6 måneder?</li>
+<li><strong>Konkurrenter.</strong> Hvem konkurrerer de mod? Hvordan adskiller de sig?</li>
+<li><strong>Glassdoor og Trustpilot.</strong> Hvad siger nuværende og tidligere medarbejdere?</li>
+<li><strong>Lederteamet.</strong> Hvor kommer de fra? Hvilke baggrunde har de?</li>
+<li><strong>Investorer (hvis startup).</strong> Hvem ejer dem? Hvor i fundraising-cyklen er de?</li>
+</ul>
+
+<h3>Spørgsmål du selv stiller &mdash; <em>de afslører dig</em>.</h3>
+<p>De spørgsmål du stiller i slutningen af interviewet siger mere om dig end dine svar. AI kan hjælpe dig generere de gode &mdash; ikke de generiske:</p>
+
+<div class="brief-compare"><div class="brief-box bad"><div class="brief-label">✗ Generisk</div><p>"Hvad er kulturen?"</p></div><div class="brief-box good"><div class="brief-label">✓ God</div><p>"Da Sarah skiftede fra Senior til Lead-rollen for 9 måneder siden &mdash; hvad gjorde hende klar til springet? Og hvad var ikke klart før hun var i rollen?"</p></div></div>
+
+<h3>De svære spørgsmål du skal forberede.</h3>
+<ul>
+<li><strong>"Hvorfor forlader du dit nuværende job?"</strong> Aldrig negativt om nuværende arbejdsgiver. Fokus på hvad du søger frem mod.</li>
+<li><strong>"Hvad er din svaghed?"</strong> Aldrig "jeg er perfektionist". Ægte svar med konkret eksempel på hvordan du arbejder med den.</li>
+<li><strong>"Hvor ser du dig selv om 5 år?"</strong> Match til rollen &mdash; lyver ikke, men show alignment.</li>
+<li><strong>"Hvad er din lønforventning?"</strong> Du skål have et tal &mdash; men giv den helst senere i processen (se lønforhandling).</li>
+</ul>
+
+<div class="fail-box"><h4>Hvor AI fejler</h4><ul><li><strong>Forbereder ikke konkrete eksempler.</strong> "Jeg er god til teamwork" uden historie der viser det.</li><li><strong>Lyver eller pynter.</strong> Erfarne interviewere fanger det. Ærlighed med svagheder slaar overdrevne stærker.</li><li><strong>Glemmer at læse rummet.</strong> Hvis intervieweren keder sig, skål du justere &mdash; ikke holde fast i din pitch.</li><li><strong>Stiller daerlige spørgsmål til sidst.</strong> "Hvad er kulturen?" siger at du ikke har tænkt over det.</li></ul></div><ul class="bullet-mono"><li>Forbered 5 historier i STAR-format &mdash; ikke 50.</li><li>Brug AI som rollespil-partner i de sværeste spørgsmål.</li><li>Research mere end deres "Om os"-side.</li><li>Dine egne spørgsmål er din vigtigste demonstration.</li></ul>
+
+<div class="lesson-nav"><a href="#undervisning-2" class="lesson-nav-btn prev"><span class="dir">← Forrige</span><span class="ttl">CV</span></a><a href="#undervisning-4" class="lesson-nav-btn next"><span class="dir">Næste →</span><span class="ttl">Løn</span></a></div>
+</div>
+</section>
+<div class="divider"><hr></div>
+<section class="lesson" id="undervisning-4">
+<div class="lesson-header">
+<div class="lesson-num">04</div>
+<div class="lesson-label mono">/ Undervisning 4</div>
+<h2 class="lesson-title">Forhandling &amp; <em>løn</em></h2>
+</div>
+<div class="lesson-body">
+
+<h3>De fleste lader 50.000-100.000 kr <em>ligge på bordet</em>.</h3>
+<p>Lønforhandling føles ubehageligt &mdash; så de fleste accepterer det første tilbud. Det er næsten altid en fejl. Virksomheder har plads til forhandling i 80% af tilfældene, men det er din pligt at finde det. AI kan hjælpe dig forberede og handle uden at det føles aggressivt.</p>
+
+<h3>Den ene regel: <em>kend dit benchmark før samtalen</em>.</h3>
+<p>Du må vide hvad rollen er værd på markedet. Ikke gennemsnit &mdash; men spændvidde for din specifikke kombination af færdigheder, erfaring, og geografi:</p>
+<div class="tools-grid">
+<div class="tool-card"><h4>Glassdoor &amp; Levels.fyi</h4><p>God baseline, men ofte forældet eller skæv. Brug som start, ikke som facit.</p></div>
+<div class="tool-card"><h4>LinkedIn Salary Insights</h4><p>Bedst i større danske byer. Filtrér på erfaring og specialitet.</p></div>
+<div class="tool-card"><h4>Egne kontakter</h4><p>De målbare data. Spørg 3-5 personer i samme rolle: "Hvad er et rimeligt bånd for denne stilling i dag?"</p></div>
+<div class="tool-card"><h4>Rekrutterær</h4><p>De ved hvad markedet faktisk betaler &mdash; ofte mere end Glassdoor. Vær åben om at du leder.</p></div>
+</div>
+
+<h3>Den første regel: <em>aldrig først-nævn tal</em>.</h3>
+<p>Det største forhandlings-misstag: at sige dit lønbrev før virksomheden gør. Den der nævner et tal først, sætter ankrene &mdash; ofte for lavt. Hvordan du undgår det:</p>
+
+<div class="brief-compare"><div class="brief-box bad"><div class="brief-label">✗ Generisk</div><p>Rekrutter: "Hvad er dine lønforventninger?"<br>Du: "Jeg tænker omkring 650.000 kr."</p></div><div class="brief-box good"><div class="brief-label">✓ God</div><p>Rekrutter: "Hvad er dine lønforventninger?"<br>Du: "Jeg vil gerne forstå rollen før vi taler tal. Kan du fortælle mig hvad båndet er for denne stilling?"</p></div></div>
+
+<h3>Når tilbuddet kommer &mdash; <em>de tre svar</em>.</h3>
+<p>Det værste du kan gøre: sige ja med det samme. Den korrekte rutine:</p>
+<ol style="margin:14px 0 22px;padding-left:0;list-style:none;counter-reset:l">
+<li style="counter-increment:l;position:relative;padding-left:30px;margin-bottom:10px;color:var(--ink-2)"><span style="position:absolute;left:0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);font-weight:600;top:3px">01</span><strong>Tak.</strong> "Tak for tilbuddet &mdash; det er jeg virkelig glad for."</li>
+<li style="counter-increment:l;position:relative;padding-left:30px;margin-bottom:10px;color:var(--ink-2)"><span style="position:absolute;left:0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);font-weight:600;top:3px">02</span><strong>Tid.</strong> "Må jeg vende tilbage med endeligt svar i morgen/inden mandag?"</li>
+<li style="counter-increment:l;position:relative;padding-left:30px;margin-bottom:10px;color:var(--ink-2)"><span style="position:absolute;left:0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);font-weight:600;top:3px">03</span><strong>Spørgsmål.</strong> "Inden jeg svarer, har jeg et par spørgsmål..."</li>
+</ol>
+
+<h3>Det er ikke kun grundløn.</h3>
+<p>De fleste forhandler kun på grundløn. Det er at give nogle af de mest værdifulde tilkomster væk. Forhandl ALLE elementer:</p>
+<ul>
+<li><strong>Grundløn</strong> &mdash; selvfølgelig</li>
+<li><strong>Bonus &amp; bånd</strong> &mdash; både mål og garanti</li>
+<li><strong>Pension</strong> &mdash; både procent og arbejdsgivers andel</li>
+<li><strong>Ferie</strong> &mdash; ofte forhandelbart, særligt 25 vs 30 dage</li>
+<li><strong>Hjemmearbejde</strong> &mdash; hvor mange dage, fleksibilitet</li>
+<li><strong>Sign-on bonus</strong> &mdash; ofte muligt hvis grundløn er fast</li>
+<li><strong>Stock/options</strong> &mdash; i startups, måske vigtigste tal</li>
+<li><strong>Titel</strong> &mdash; senior vs lead kan ændre din næste forhandling om 2 år</li>
+<li><strong>Udviklingsbudget</strong> &mdash; kurser, certificeringer, konferencer</li>
+</ul>
+
+<h3>Forhandlings-script med AI.</h3>
+<div class="code-label-tag">Lønforhandlings-rollespil</div><div class="code-block">Du er hiring manager. Vi har lige sluttet et godt
+interview-forløb for [rolle]. I er ved at tilbyde mig
+[grundløn].
+
+Mit benchmark for denne rolle med min erfaring er
+[X-Y kr]. Jeg vil forhandle.
+
+Lad os spille forhandlingen igennem:
+1. Du sender mig tilbuddet
+2. Jeg svarer (vis mig først hvordan jeg burde formulere)
+3. Du reagerer realistisk (både positivt og negativt)
+4. Vi går frem og tilbage 3-4 runder
+5. Til sidst: hvad gjorde jeg godt, hvor kunne jeg styrke?
+
+Vær realistisk &mdash; ikke alle ansøgere får alt de beder om. Vis mig hvad sandsynligheden er.</div>
+
+<h3>BATNA &mdash; din <em>vigtigste forberedelse</em>.</h3>
+<p>BATNA er Best Alternative To Negotiated Agreement &mdash; hvad du har, hvis du siger nej. Det er din forhandlings-styrke:</p>
+<ul>
+<li>Et andet job-tilbud (selv ikke det perfekte)</li>
+<li>Dit nuværende job som du kan blive i</li>
+<li>Friheden til at vente på noget bedre</li>
+</ul>
+<p>Hvis du har nul BATNA &mdash; du SKAL have dette job &mdash; har du minimal forhandlingskraft. Bygg din BATNA op før du forhandler.</p>
+
+<div class="fail-box"><h4>Hvor AI fejler</h4><ul><li><strong>Forhandler kun på løn.</strong> Mister fleksibilitet, pension, ferie på bordet.</li><li><strong>Tager det personligt.</strong> Virksomheden forhandler nøgternt &mdash; det burde du også.</li><li><strong>Bluffer med job-tilbud du ikke har.</strong> Hvis det opdages, taber du al kredibilitet.</li><li><strong>Forhandler over mail kun.</strong> En telefon-samtale flytter ofte mere end ti mails.</li></ul></div><ul class="bullet-mono"><li>Få dem til at nævne tal først.</li><li>Forhandl alle elementer, ikke kun grundløn.</li><li>Brug AI til rollespil med modstand &mdash; ikke til at få dig til at føle dig god.</li><li>Bygg din BATNA før samtalen &mdash; det er din vigtigste styrke.</li></ul>
+
+<div class="lesson-nav"><a href="#undervisning-3" class="lesson-nav-btn prev"><span class="dir">← Forrige</span><span class="ttl">Samtale</span></a><a href="#undervisning-5" class="lesson-nav-btn next"><span class="dir">Næste →</span><span class="ttl">LinkedIn</span></a></div>
+</div>
+</section>
+<div class="divider"><hr></div>
+<section class="lesson" id="undervisning-5">
+<div class="lesson-header">
+<div class="lesson-num">05</div>
+<div class="lesson-label mono">/ Undervisning 5</div>
+<h2 class="lesson-title">LinkedIn &amp; <em>synlighed</em></h2>
+</div>
+<div class="lesson-body">
+
+<h3>LinkedIn er en <em>karriere-database</em>, ikke et socialt medie.</h3>
+<p>De fleste bruger LinkedIn passivt &mdash; opdaterer profilen når de skifter job, og glemmer det resten af tiden. Det er nok hvis du aldrig vil ledes efter. Den proaktive brug, hvor du bygger en synlighed der gør at jobs kommer til dig, kræver 30 min/uge.</p>
+
+<h3>Den profil der bliver fundet.</h3>
+<p>LinkedIn søgemaskine matcher kandidater til job-opslag. Hvis du vil findes, skal din profil tale samme sprog:</p>
+<ul>
+<li><strong>Headline</strong> &mdash; ikke kun jobtitel. Brug 220 tegn til at sige hvad du laver og for hvem.</li>
+<li><strong>Skills-sektion</strong> &mdash; LinkedIn matcher specifikt på skills. Tilføj 30-50.</li>
+<li><strong>Erfarings-bullets</strong> &mdash; brug samme termer som job-opslag i dit felt.</li>
+<li><strong>Geografi</strong> &mdash; åben for "lige nu i København, åben for Europa" hvis det gælder.</li>
+<li><strong>"Open to work"-flag</strong> &mdash; synlig kun for rekrutterære, ikke din arbejdsgiver.</li>
+</ul>
+
+<div class="brief-compare"><div class="brief-box bad"><div class="brief-label">✗ Generisk</div><p>Headline: "Project Manager"</p></div><div class="brief-box good"><div class="brief-label">✓ God</div><p>Headline: "Project Manager hos [firma] | Digital transformation i finansvirksomheder | Tidligere PMO-leder, certificeret PMP &amp; PRINCE2"</p></div></div>
+
+<h3>Indhold &mdash; <em>du behøver ikke være influencer</em>.</h3>
+<p>De fleste forsøger at "skabe content" og giver op efter 3 ugers stilhed. Den realistiske strategi: 1 personlig post om måneden, 1 kommentar om dagen.</p>
+
+<h3>De fire post-typer der virker.</h3>
+<div class="tools-grid"><div class="tool-card"><h4>Læring</h4><p>"Jeg lærte X i sidste uge &mdash; her er hvad jeg havde ønsket at vide tidligere..." Konkret, kort, ydmygt.</p></div><div class="tool-card"><h4>Observation</h4><p>Du mærker noget interessant i dit felt &mdash; et trend, en ændring, en mod-intuition.</p></div><div class="tool-card"><h4>Resultat</h4><p>Du delte et konkret resultat. Tal, kontekst, hvad I gjorde, hvad du lærte.</p></div><div class="tool-card"><h4>Spørgsmål</h4><p>Et reelt spørgsmål du ønsker svar på fra netværket. Får ofte engagement og indsigt.</p></div></div>
+
+<h3>Den ene aktivitet der ændrer mest.</h3>
+<p>Kommentarer på andres posts. Det er 80% af LinkedIn-værdi for 5% af indsatsen. En gennemtænkt kommentar på en post fra nogen i dit mål-felt er værd 10x en post fra dig selv ingen ser.</p>
+
+<div class="callout"><strong>Kommentar-strategi</strong>"Find 3-5 personer i dit felt som du beundrer. Folge dem aktivt. Hver dag: skriv én gennemtænkt kommentar (3-5 sætninger) på noget de poster. Efter 30 dage: de kender dit navn. Efter 90: de svarer dig når du rækker ud."</div>
+
+<h3>Cold outreach med AI som hjælp.</h3>
+<p>LinkedIn DM er stadig en god vej til konversation &mdash; hvis ikke spammy. AI hjælper dig skrive personlige beskeder hurtigt:</p>
+
+<div class="code-label-tag">Personlig outreach-prompt</div><div class="code-block">Du er senior career coach.
+
+Jeg vil sende en LinkedIn DM til [navn], [rolle] hos [firma].
+Min mål: [konkret &mdash; informational interview / netværk / mulig samarbejde]
+
+Det vi har til fælles: [konkret &mdash; samme uddannelse / mødte til konference / overlappende interesse]
+
+Hvad jeg ved om dem: [paste deres seneste posts eller noget specifikt]
+
+Lav 3 udkast af DM'en:
+1. Direkte og kort (4-5 sætninger)
+2. Værdi-først (jeg tilbyder noget før jeg spørger)
+3. Spørgsmål-baseret (jeg spørger om deres mening om noget)
+
+For hver: vurdér sandsynligheden for svar. Vær konkret.
+Aldrig brug ord som "synergi", "tæt på din lygt", "tag fat".</div>
+
+<h3>Anbefalinger &mdash; <em>de glemte guldkorn</em>.</h3>
+<p>Tre anbefalinger fra rette personer er ofte vigtigere end alle dine egne posts. Den hyppigste fejl: at vente med at bede om dem til man søger job. Den rigtige tilgang: bed når samarbejdet slutter, mens det stadig er friskt &mdash; uanset om du leder eller ej.</p>
+
+<div class="fail-box"><h4>Hvor AI fejler</h4><ul><li><strong>Skriver "looking for opportunities" headlines.</strong> Det signalerer desperat. Vær specifik om hvad.</li><li><strong>Spam-connect til 200 personer ad gangen.</strong> Folk ser det &mdash; det skader dig.</li><li><strong>Genererer AI-posts uændret.</strong> Folk fanger det. Hellere 2 ægte posts end 20 generiske.</li><li><strong>Aldrig kommenterer på andre.</strong> Konsumerer kun. Du er usynlig.</li></ul></div><ul class="bullet-mono"><li>Profilen skal matche job-opslag i sprog &mdash; ellers findes du ikke.</li><li>1 post om måneden, 1 kommentar om dagen.</li><li>Bed om anbefalinger når samarbejdet slutter, ikke når du leder efter job.</li><li>Cold DM'er: personligt, kort, konkret om hvad du spørger om.</li></ul>
+
+<div class="lesson-nav"><a href="#undervisning-4" class="lesson-nav-btn prev"><span class="dir">← Forrige</span><span class="ttl">Løn</span></a><span class="lesson-nav-btn next disabled"><span class="dir">Næste →</span><span class="ttl">Færdig</span></span></div>
+</div>
+</section>
+<div class="divider"><hr></div>
+
+<section class="outro">
+<h2>Klar til at bruge pensum <em>i praksis?</em></h2>
+<p>Gå tilbage til moduloversigten, eller hop direkte til den undervisning du vil bygge videre på.</p>
+<div class="outro-cta">
+<a href="karriere.html#curriculum" class="btn-large">Tilbage til moduloversigten</a>
+<a href="karriere.html#cta" class="btn-ghost">Se priser →</a>
+</div>
+</section>
+<footer>
+<div>© 2026 Praksis ApS · Bygget i København</div>
+<div><a href="index.html">Forside</a> · <a href="karriere.html">Karriere &amp; jobsøgning</a></div>
+</footer>
+<script>
+(function(){
+  var bar=document.querySelector('.progress-bar');
+  var toTop=document.querySelector('.to-top');
+  var navLinks=Array.prototype.slice.call(document.querySelectorAll('.section-nav a'));
+  var sections=navLinks.map(function(a){var id=a.getAttribute('href').slice(1);return document.getElementById(id);});
+  function onScroll(){
+    var h=document.documentElement;
+    var scrolled=h.scrollTop;
+    var height=h.scrollHeight-h.clientHeight;
+    var pct=height>0?(scrolled/height*100):0;
+    if(bar)bar.style.width=pct+'%';
+    if(toTop){if(scrolled>600)toTop.classList.add('show');else toTop.classList.remove('show');}
+    // active section
+    var idx=-1;
+    for(var i=0;i<sections.length;i++){
+      if(sections[i]&&sections[i].getBoundingClientRect().top<=160)idx=i;
+    }
+    navLinks.forEach(function(a,i){if(i===idx)a.classList.add('active');else a.classList.remove('active');});
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+  if(toTop)toTop.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+
+
+<script>
+(function(){
+  var toggle=document.querySelector('.nav-toggle');
+  var menu=document.querySelector('.mobile-menu');
+  if(!toggle||!menu)return;
+  function close(){toggle.setAttribute('aria-expanded','false');menu.classList.remove('open');document.body.classList.remove('menu-open');}
+  toggle.addEventListener('click',function(){
+    var open=toggle.getAttribute('aria-expanded')==='true';
+    if(open){close();}
+    else{toggle.setAttribute('aria-expanded','true');menu.classList.add('open');document.body.classList.add('menu-open');}
+  });
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
+})();
+</script>
+
+
+<script>
+(function(){
+  var demo = document.querySelector('.prompt-demo');
+  if(!demo) return;
+  var rows = demo.querySelectorAll('.pd-row, .pd-label');
+  rows.forEach(function(r){r.style.animationPlayState='paused';});
+  function trigger(){
+    rows.forEach(function(r, i){
+      r.style.animationDelay = (i*0.5) + 's';
+      r.style.animationPlayState = 'running';
+    });
+  }
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){trigger(); io.disconnect();}
+      });
+    }, {threshold: 0.2});
+    io.observe(demo);
+  } else { trigger(); }
+})();
+</script>
+
+</body></html>
