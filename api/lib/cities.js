@@ -1,0 +1,52 @@
+const cities = {
+  copenhagen: { label: "København", lat: 55.6761, lng: 12.5683, semerkandId: 221, semerkandLabel: "København", diyanetId: 12618 },
+  aabenraa: { label: "Aabenraa", lat: 55.0443, lng: 9.4174, semerkandId: 856, semerkandLabel: "Aabenraa", diyanetId: 12646 },
+  aarhus: { label: "Aarhus", lat: 56.1629, lng: 10.2039, semerkandId: 218, semerkandLabel: "Aarhus", diyanetId: 12620 },
+  odense: { label: "Odense", lat: 55.4038, lng: 10.4024, semerkandId: 554, semerkandLabel: "Odense", diyanetId: 12619 },
+  aalborg: { label: "Aalborg", lat: 57.0488, lng: 9.9217, semerkandId: 857, semerkandLabel: "Aalborg", diyanetId: 12647 },
+  ballerup: { label: "Ballerup", lat: 55.7317, lng: 12.3633, semerkandId: 221, semerkandLabel: "København", diyanetId: 17801 },
+  esbjerg: { label: "Esbjerg", lat: 55.4765, lng: 8.4594, semerkandId: 849, semerkandLabel: "Esbjerg", diyanetId: 12638 },
+  fredericia: { label: "Fredericia", lat: 55.5657, lng: 9.7526, semerkandId: 829, semerkandLabel: "Fredericia", diyanetId: 12623 },
+  frederikssund: { label: "Frederikssund", lat: 55.8396, lng: 12.0690, semerkandId: 851, semerkandLabel: "Hillerod", diyanetId: 12640 },
+  frederikshavn: { label: "Frederikshavn", lat: 57.4427, lng: 10.5210, semerkandId: 842, semerkandLabel: "Frederikshavn", diyanetId: 12650 },
+  glostrup: { label: "Glostrup", lat: 55.6666, lng: 12.4030, semerkandId: 221, semerkandLabel: "København", diyanetId: 12618 },
+  haderslev: { label: "Haderslev", lat: 55.2494, lng: 9.4877, semerkandId: 850, semerkandLabel: "Haderslev", diyanetId: 12639 },
+  helsingor: { label: "Helsingør", lat: 56.0361, lng: 12.6136, semerkandId: 219, semerkandLabel: "Helsingor", diyanetId: 12626 },
+  herning: { label: "Herning", lat: 56.1386, lng: 8.9673, semerkandId: 220, semerkandLabel: "Herning", diyanetId: 12631 },
+  hilleroed: { label: "Hillerød", lat: 55.9279, lng: 12.3008, semerkandId: 851, semerkandLabel: "Hillerod", diyanetId: 12640 },
+  hjoerring: { label: "Hjørring", lat: 57.4562, lng: 9.9950, semerkandId: 843, semerkandLabel: "Hjorring", diyanetId: 12651 },
+  holstebro: { label: "Holstebro", lat: 56.3601, lng: 8.6161, semerkandId: 840, semerkandLabel: "Holstebro", diyanetId: 12648 },
+  horsens: { label: "Horsens", lat: 55.8607, lng: 9.8503, semerkandId: 837, semerkandLabel: "Horsens (Vejle)", diyanetId: 12633 },
+  ikast: { label: "Ikast", lat: 56.1388, lng: 9.1577, semerkandId: 831, semerkandLabel: "Ikast", diyanetId: 12625 },
+  ishoej: { label: "Ishøj", lat: 55.6155, lng: 12.3518, semerkandId: 221, semerkandLabel: "København", diyanetId: 17800 },
+  kalundborg: { label: "Kalundborg", lat: 55.6819, lng: 11.0886, semerkandId: 828, semerkandLabel: "Holbaek", diyanetId: 33334 },
+  kolding: { label: "Kolding", lat: 55.4904, lng: 9.4722, semerkandId: 835, semerkandLabel: "Kolding", diyanetId: 12630 },
+  koege: { label: "Køge", lat: 55.4580, lng: 12.1821, semerkandId: 834, semerkandLabel: "Koge", diyanetId: 12629 },
+  middelfart: { label: "Middelfart", lat: 55.5059, lng: 9.7305, semerkandId: 829, semerkandLabel: "Fredericia", diyanetId: 33330 },
+  nakskov: { label: "Nakskov", lat: 54.8333, lng: 11.1500, semerkandId: 888, semerkandLabel: "Vordingborg", diyanetId: 12617 },
+  nyborg: { label: "Nyborg", lat: 55.3127, lng: 10.7896, semerkandId: 886, semerkandLabel: "Nyborg (F)", diyanetId: 12614 },
+  nykoebing_falster: { label: "Nykøbing Falster", lat: 54.7654, lng: 11.8755, semerkandId: 888, semerkandLabel: "Vordingborg", diyanetId: 12617 },
+  naestved: { label: "Næstved", lat: 55.2299, lng: 11.7609, semerkandId: 222, semerkandLabel: "Næstved", diyanetId: 12641 },
+  randers: { label: "Randers", lat: 56.4607, lng: 10.0364, semerkandId: 853, semerkandLabel: "Randers", diyanetId: 12643 },
+  ribe: { label: "Ribe", lat: 55.3285, lng: 8.7697, semerkandId: 845, semerkandLabel: "Ribe", diyanetId: 12653 },
+  ringsted: { label: "Ringsted", lat: 55.4426, lng: 11.7901, semerkandId: 833, semerkandLabel: "Ringsted", diyanetId: 12628 },
+  roskilde: { label: "Roskilde", lat: 55.6415, lng: 12.0803, semerkandId: 830, semerkandLabel: "Roskilde", diyanetId: 12624 },
+  roenne: { label: "Rønne", lat: 55.1009, lng: 14.7066, semerkandId: 221, semerkandLabel: "København", diyanetId: 12618 },
+  silkeborg: { label: "Silkeborg", lat: 56.1697, lng: 9.5451, semerkandId: 838, semerkandLabel: "Silkeborg", diyanetId: 12634 },
+  skive: { label: "Skive", lat: 56.5667, lng: 9.0300, semerkandId: 847, semerkandLabel: "Skive", diyanetId: 12655 },
+  slagelse: { label: "Slagelse", lat: 55.4030, lng: 11.3546, semerkandId: 827, semerkandLabel: "Slagelse", diyanetId: 12621 },
+  stenloese: { label: "Stenløse", lat: 55.7685, lng: 12.1971, semerkandId: 221, semerkandLabel: "København", diyanetId: 17801 },
+  soenderborg: { label: "Sønderborg", lat: 54.9138, lng: 9.7922, semerkandId: 854, semerkandLabel: "Sonderborg", diyanetId: 12644 },
+  svendborg: { label: "Svendborg", lat: 55.0598, lng: 10.6068, semerkandId: 839, semerkandLabel: "Svendborg", diyanetId: 12635 },
+  taastrup: { label: "Taastrup", lat: 55.6500, lng: 12.3014, semerkandId: 221, semerkandLabel: "København", diyanetId: 17800 },
+  thisted: { label: "Thisted", lat: 56.9552, lng: 8.6949, semerkandId: 847, semerkandLabel: "Skive", diyanetId: 12655 },
+  vejle: { label: "Vejle", lat: 55.7113, lng: 9.5364, semerkandId: 855, semerkandLabel: "Vejle", diyanetId: 12645 },
+  viborg: { label: "Viborg", lat: 56.4520, lng: 9.4024, semerkandId: 848, semerkandLabel: "Viborg", diyanetId: 12656 },
+  oelstykke: { label: "Ølstykke", lat: 55.7957, lng: 12.1552, semerkandId: 221, semerkandLabel: "København", diyanetId: 17801 }
+};
+
+function getCity(cityKey) {
+  return cities[cityKey] || cities.copenhagen;
+}
+
+module.exports = { cities, getCity };
