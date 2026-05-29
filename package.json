@@ -1,0 +1,13 @@
+{
+  "name": "bonnetider-danmark",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "generate:vapid": "web-push generate-vapid-keys"
+  },
+  "dependencies": {
+    "@vercel/kv": "^3.0.0",
+    "web-push": "^3.6.7"
+  },
+  "devDependencies": {}
+}
