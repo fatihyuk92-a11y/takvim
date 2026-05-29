@@ -1,5 +1,5 @@
 const webpush = require("web-push");
-const { getAllSubscriptions, updateSubscription, deleteSubscriptionByEndpoint, hasKvConfig } = require("../lib/push-store");
+const { getAllSubscriptions, updateSubscription, deleteSubscriptionByEndpoint, hasStorageConfig } = require("../lib/push-store");
 const { prayers, addDays, partsInCopenhagen, minutesFromTime, cleanTime, zonedDateToUtcMs, getPrayerTimes } = require("../lib/prayer-times");
 
 const WINDOW_MINUTES = Number(process.env.PUSH_CRON_WINDOW_MINUTES || 2);
@@ -102,8 +102,8 @@ module.exports = async function handler(request, response) {
     return;
   }
 
-  if (!hasKvConfig()) {
-    response.status(503).json({ error: "KV storage mangler" });
+  if (!hasStorageConfig()) {
+    response.status(503).json({ error: "Redis storage mangler" });
     return;
   }
 

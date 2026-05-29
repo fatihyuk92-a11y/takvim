@@ -1,16 +1,30 @@
 const crypto = require("crypto");
-const { kv } = require("@vercel/kv");
+const { createClient } = require("redis");
 
 const STORE_KEY = "bonnetider:push-subscriptions";
+let redisPromise = null;
 
-function hasKvConfig() {
-  return Boolean(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN);
+function getRedisUrl() {
+  return process.env.REDIS_URL || process.env.STORAGE_URL || process.env.KV_URL;
 }
 
-function ensureKvConfig() {
-  if (!hasKvConfig()) {
-    throw new Error("KV storage is not configured");
+function hasStorageConfig() {
+  return Boolean(getRedisUrl());
+}
+
+async function getRedis() {
+  const url = getRedisUrl();
+  if (!url) {
+    throw new Error("Redis storage is not configured");
   }
+
+  if (!redisPromise) {
+    const client = createClient({ url });
+    client.on("error", () => {});
+    redisPromise = client.connect().then(() => client);
+  }
+
+  return redisPromise;
 }
 
 function subscriptionId(endpoint) {
@@ -24,7 +38,7 @@ function parseRecord(value) {
 }
 
 async function saveSubscription({ subscription, cityKey, cityLabel }) {
-  ensureKvConfig();
+  const redis = await getRedis();
   const id = subscriptionId(subscription.endpoint);
   const now = new Date().toISOString();
   const record = {
@@ -39,31 +53,31 @@ async function saveSubscription({ subscription, cityKey, cityLabel }) {
     sent: {}
   };
 
-  await kv.hset(STORE_KEY, { [id]: JSON.stringify(record) });
+  await redis.hSet(STORE_KEY, id, JSON.stringify(record));
   return record;
 }
 
 async function updateSubscription(record) {
-  ensureKvConfig();
+  const redis = await getRedis();
   record.updatedAt = new Date().toISOString();
-  await kv.hset(STORE_KEY, { [record.id]: JSON.stringify(record) });
+  await redis.hSet(STORE_KEY, record.id, JSON.stringify(record));
 }
 
 async function deleteSubscriptionByEndpoint(endpoint) {
-  ensureKvConfig();
-  await kv.hdel(STORE_KEY, subscriptionId(endpoint));
+  const redis = await getRedis();
+  await redis.hDel(STORE_KEY, subscriptionId(endpoint));
 }
 
 async function getAllSubscriptions() {
-  ensureKvConfig();
-  const records = await kv.hgetall(STORE_KEY);
+  const redis = await getRedis();
+  const records = await redis.hGetAll(STORE_KEY);
   return Object.values(records || {})
     .map(parseRecord)
     .filter((record) => record?.enabled && record.subscription?.endpoint);
 }
 
 module.exports = {
-  hasKvConfig,
+  hasStorageConfig,
   saveSubscription,
   updateSubscription,
   deleteSubscriptionByEndpoint,

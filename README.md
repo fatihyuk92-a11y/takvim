@@ -13,7 +13,7 @@ En statisk PWA til danske bønnetider med:
 
 1. Upload alle filer i denne mappe til et GitHub-repository.
 2. Importér repository i Vercel.
-3. Opret Vercel KV/Redis Storage til projektet.
+3. Opret Vercel Redis Storage til projektet.
 4. Tilføj environment variables fra `.env.example`.
 5. Kør `npm run generate:vapid` lokalt eller via `npx web-push generate-vapid-keys`, og indsæt nøglerne som `VAPID_PUBLIC_KEY` og `VAPID_PRIVATE_KEY`.
 6. Deploy.
@@ -24,7 +24,9 @@ iPhone kræver, at brugeren installerer appen på hjemmeskærmen, før Web Push-
 
 ## Vigtigt om notifikationer
 
-Brugeren skal selv aktivere notifikationer i appen. Indstillingen gemmes på serveren, og push fortsætter automatisk, indtil brugeren slår det fra.
+Brugeren skal selv aktivere notifikationer i appen. Indstillingen gemmes i Redis på serveren, og push fortsætter automatisk, indtil brugeren slår det fra.
+
+Redis-integrationen skal give en connection URL som `STORAGE_URL`, `REDIS_URL` eller `KV_URL`. Hvis du brugte prefix `STORAGE`, passer `STORAGE_URL` direkte.
 
 Vercel Hobby/free tillader ikke cron hvert minut. Derfor bruger denne version en ekstern cron-service til at kalde:
 
