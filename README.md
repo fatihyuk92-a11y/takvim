@@ -26,8 +26,26 @@ iPhone kræver, at brugeren installerer appen på hjemmeskærmen, før Web Push-
 
 Brugeren skal selv aktivere notifikationer i appen. Indstillingen gemmes på serveren, og push fortsætter automatisk, indtil brugeren slår det fra.
 
-`vercel.json` kører `/api/push/cron` hvert minut, så notifikationerne kan komme mens mobilen er låst. Vercel Hobby/free kan være begrænset til daglige cron jobs. Hvis deployment fejler på cron-grænsen, fjern `crons`-sektionen i `vercel.json` og brug i stedet en ekstern cron-service til at kalde:
+Vercel Hobby/free tillader ikke cron hvert minut. Derfor bruger denne version en ekstern cron-service til at kalde:
 
 `https://dit-domæne.vercel.app/api/push/cron`
 
 Den bør kaldes hvert minut for mest præcise bønnetidsnotifikationer.
+
+Du kan fx bruge cron-job.org:
+
+1. Opret en cronjob efter deployment.
+2. Sæt URL til `https://dit-domæne.vercel.app/api/push/cron`.
+3. Sæt schedule til hvert minut.
+4. Sæt method til `GET`.
+
+Hvis du senere opgraderer til Vercel Pro, kan du i stedet tilføje dette i `vercel.json`:
+
+```json
+"crons": [
+  {
+    "path": "/api/push/cron",
+    "schedule": "* * * * *"
+  }
+]
+```

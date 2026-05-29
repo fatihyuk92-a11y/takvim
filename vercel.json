@@ -1,10 +1,4 @@
 {
-  "crons": [
-    {
-      "path": "/api/push/cron",
-      "schedule": "* * * * *"
-    }
-  ],
   "headers": [
     {
       "source": "/service-worker.js",
