@@ -1305,9 +1305,10 @@
     let deferredInstallPrompt = null;
     let detectingLocation = false;
     let locationPanelOpen = false;
-    let selectedDate = startOfDay(new Date());
-    let minSelectableDate = addMonthsClamped(selectedDate, -1);
-    let maxSelectableDate = addMonthsClamped(selectedDate, 1);
+    let todayAnchor = startOfDay(new Date());
+    let selectedDate = new Date(todayAnchor);
+    let minSelectableDate = addMonthsClamped(todayAnchor, -1);
+    let maxSelectableDate = addMonthsClamped(todayAnchor, 1);
 
     const formatter = new Intl.DateTimeFormat("tr-TR", {
       weekday: "long",
@@ -1350,10 +1351,13 @@
       return normalized;
     }
 
-    function refreshDateBounds() {
-      const today = startOfDay(new Date());
-      minSelectableDate = addMonthsClamped(today, -1);
-      maxSelectableDate = addMonthsClamped(today, 1);
+    function refreshDateBounds({ rollToday = false } = {}) {
+      const previousToday = todayAnchor;
+      const selectedWasToday = compareDates(selectedDate, previousToday) === 0;
+      todayAnchor = startOfDay(new Date());
+      minSelectableDate = addMonthsClamped(todayAnchor, -1);
+      maxSelectableDate = addMonthsClamped(todayAnchor, 1);
+      if (rollToday && selectedWasToday) selectedDate = new Date(todayAnchor);
       selectedDate = clampDate(selectedDate);
     }
 
@@ -1532,6 +1536,7 @@
     }
 
     function updateDateControls() {
+      refreshDateBounds({ rollToday: true });
       dateText.textContent = isSelectedToday() ? "Bugün" : dateButtonFormatter.format(selectedDate);
       dateText.setAttribute("aria-label", isSelectedToday() ? "Bugün" : "Bugüne dön");
       prevDate.disabled = compareDates(selectedDate, minSelectableDate) <= 0;
@@ -1539,6 +1544,7 @@
     }
 
     function setSelectedDate(date) {
+      refreshDateBounds({ rollToday: true });
       const next = clampDate(date);
       if (compareDates(next, selectedDate) === 0) {
         updateDateControls();
@@ -1660,9 +1666,7 @@
       nextRefresh.setHours(0, 7, 0, 0);
 
       dailyRefreshTimer = window.setTimeout(() => {
-        const wasToday = isSelectedToday();
-        refreshDateBounds();
-        if (wasToday) selectedDate = startOfDay(new Date());
+        refreshDateBounds({ rollToday: true });
         updateDateControls();
         loadTimes();
         scheduleDailyRefresh();
@@ -2235,7 +2239,14 @@
 
     document.addEventListener("visibilitychange", () => {
       if (!document.hidden) {
-        updateNextPrayer();
+        const previousDateKey = selectedKey();
+        refreshDateBounds({ rollToday: true });
+        updateDateControls();
+        if (previousDateKey !== selectedKey()) {
+          loadTimes();
+        } else {
+          updateNextPrayer();
+        }
         syncPushSubscription();
       }
     });
