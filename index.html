@@ -1609,6 +1609,7 @@
         updateLocationButton("Bulundu");
         sourceText.textContent = `En yakın şehir: ${nearest.city.label}`;
         await loadTimes();
+        await syncPushSubscription();
         setLocationPanel(false);
         return true;
       } catch (error) {
@@ -1634,6 +1635,7 @@
       populateCityOptions(initialCountry, savedCity);
 
       await loadTimes();
+      await syncPushSubscription();
 
       if (!navigator.geolocation) {
         return;
@@ -2070,12 +2072,34 @@
       methodText.innerHTML = `Temel: ${baseSource} &middot; ${medianNote} &middot; ${sourceNote} &middot; <a href="https://www.semerkandtakvimi.com/" target="_blank" rel="noreferrer">Semerkand</a> / <a href="https://ezanvakti.emushaf.net/" target="_blank" rel="noreferrer">Diyanet</a> / <a href="https://aladhan.com/prayer-times-api" target="_blank" rel="noreferrer">MWL</a> &middot; <a href="https://commons.wikimedia.org/wiki/File:Call_to_prayer_by_Sabah_Fakhry.mp3" target="_blank" rel="noreferrer">Ezan: Sabah Fakhry / public domain</a>`;
     }
 
+    async function fetchServerPrayerTimes(cityKey) {
+      if (!["http:", "https:"].includes(window.location.protocol)) {
+        throw new Error("Sunucu API kullanılamıyor");
+      }
+
+      const url = new URL("/api/prayer-times", window.location.origin);
+      url.searchParams.set("city", cityKey);
+      url.searchParams.set("date", selectedKey());
+
+      const response = await fetch(url, { cache: "no-store" });
+      if (!response.ok) throw new Error("Sunucu vakitleri alınamadı");
+      return response.json();
+    }
+
     async function loadTimes() {
       const city = cities[citySelect.value];
       statusText.textContent = "Vakitler alınıyor";
       sourceText.textContent = `${city.label} için ${selectedDateLabel()} vakitleri hesaplanıyor`;
 
       try {
+        const serverSchedule = await fetchServerPrayerTimes(citySelect.value);
+
+        render(serverSchedule.times);
+        statusText.textContent = "Güncellendi";
+        sourceText.textContent = `${city.label} için ${selectedDateLabel()} vakitleri`;
+        updateMethodText(city, serverSchedule.sources || {});
+      } catch (serverError) {
+        try {
         const semerkandPromise = fetchSemerkandTimes(city).catch(() => null);
         const diyanetPromise = fetchDiyanetTimes(city).catch(() => null);
         const url = new URL(`https://api.aladhan.com/v1/timings/${selectedPath()}`);
@@ -2083,7 +2107,7 @@
         url.searchParams.set("longitude", city.lng);
         url.searchParams.set("method", "3");
         url.searchParams.set("school", "1");
-      url.searchParams.set("timezonestring", cityTimeZone(city));
+        url.searchParams.set("timezonestring", cityTimeZone(city));
 
         const response = await fetch(url);
         if (!response.ok) throw new Error("Namaz vakitleri alınamadı");
@@ -2111,7 +2135,7 @@
           diyanet: Boolean(diyanetTimes),
           mwl: Boolean(mwlTimes)
         });
-      } catch (error) {
+        } catch (error) {
         const [semerkandTimes, diyanetTimes] = await Promise.all([
           fetchSemerkandTimes(city).catch(() => null),
           fetchDiyanetTimes(city).catch(() => null)
@@ -2130,22 +2154,25 @@
           mwl: false
         });
       }
+      }
     }
 
-    countrySelect.addEventListener("change", () => {
+    countrySelect.addEventListener("change", async () => {
       const countryKey = countrySelect.value;
       populateCityOptions(countryKey);
       localStorage.setItem("selectedCountry", countryKey);
       localStorage.setItem("selectedCity", citySelect.value);
       setLocationPanel(false);
-      loadTimes();
+      await loadTimes();
+      await syncPushSubscription();
     });
-    citySelect.addEventListener("change", () => {
+    citySelect.addEventListener("change", async () => {
       localStorage.setItem("selectedCountry", cityCountryKey(citySelect.value));
       localStorage.setItem("selectedCity", citySelect.value);
       updateLocationSummary();
       setLocationPanel(false);
-      loadTimes();
+      await loadTimes();
+      await syncPushSubscription();
     });
     locationSummary.addEventListener("click", () => {
       setLocationPanel(!locationPanelOpen);

@@ -221,7 +221,12 @@ async function getPrayerTimes(cityKey, localDate) {
   return {
     city,
     dateKey: dateKey(localDate),
-    times: mergeTimes(city, semerkandTimes, diyanetTimes, mwlTimes)
+    times: mergeTimes(city, semerkandTimes, diyanetTimes, mwlTimes),
+    sources: {
+      semerkand: Boolean(semerkandTimes),
+      diyanet: Boolean(diyanetTimes),
+      mwl: Boolean(mwlTimes)
+    }
   };
 }
 

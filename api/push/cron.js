@@ -34,17 +34,18 @@ function buildEventsForDate(schedule, localDate) {
     const startAt = zonedDateToUtcMs(localDate, minutes, schedule.city.timeZone || TIME_ZONE);
     const reminderAt = startAt - 45 * 60 * 1000;
     const displayTime = cleanTime(time);
+    const timeStamp = displayTime.replace(":", "");
 
     return [
       {
         at: reminderAt,
-        stamp: `${schedule.dateKey}-${prayer.key}-reminder`,
+        stamp: `${schedule.dateKey}-${prayer.key}-${timeStamp}-reminder`,
         title: `45 dk sonra: ${prayer.name}`,
         body: `${schedule.city.label} için ${prayer.name} vakti saat ${displayTime}.`
       },
       {
         at: startAt,
-        stamp: `${schedule.dateKey}-${prayer.key}-start`,
+        stamp: `${schedule.dateKey}-${prayer.key}-${timeStamp}-start`,
         title: `${prayer.name} vakti girdi`,
         body: `${schedule.city.label} için namaz vakti: ${displayTime}.`
       }
