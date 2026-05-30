@@ -1,4 +1,4 @@
-const CACHE_NAME = "yksl-takvim-v18";
+const CACHE_NAME = "yksl-takvim-v20";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -38,6 +38,20 @@ self.addEventListener("fetch", (event) => {
   }
 
   if (event.request.headers.has("range")) {
+    return;
+  }
+
+  const acceptsHtml = event.request.mode === "navigate" || event.request.headers.get("accept")?.includes("text/html");
+  if (acceptsHtml) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+          return response;
+        })
+        .catch(() => caches.match(event.request).then((cached) => cached || caches.match("./index.html") || caches.match("./")))
+    );
     return;
   }
 

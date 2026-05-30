@@ -176,6 +176,11 @@
       display: none;
     }
 
+    .install-app:disabled {
+      opacity: 0.62;
+      cursor: wait;
+    }
+
     .install-app svg {
       width: 17px;
       height: 17px;
@@ -413,6 +418,35 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+    }
+
+    .date-picker-wrap {
+      position: relative;
+      display: inline-flex;
+    }
+
+    .date-picker-wrap .date-chip {
+      width: 100%;
+    }
+
+    .date-picker-native {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .date-picker-native::-webkit-calendar-picker-indicator {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      opacity: 0;
+      cursor: pointer;
     }
 
     .date-step {
@@ -836,6 +870,11 @@
         padding: 0 12px;
       }
 
+      .date-picker-wrap {
+        flex: 1;
+        min-width: 0;
+      }
+
       .date-step {
         flex: 0 0 44px;
         width: 44px;
@@ -1008,6 +1047,14 @@
             </svg>
             <span>Yükle</span>
           </button>
+          <button class="install-app update-app" id="updateAppButton" type="button">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M20 6v5h-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 18v-5h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18.4 10.3A6.8 6.8 0 0 0 6.8 7.6L4 10.2m2 3.5a6.8 6.8 0 0 0 11.2 2.7L20 13.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Güncelle</span>
+          </button>
           <div class="status-pill">
             <span class="status-dot"></span>
             <span id="statusText">Vakitler alınıyor</span>
@@ -1072,7 +1119,10 @@
                     <path d="M15 18 9 12l6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </button>
-                <button class="date-chip" id="dateText" type="button">Bugün</button>
+                <span class="date-picker-wrap">
+                  <button class="date-chip" id="dateText" type="button" tabindex="-1" aria-hidden="true">Bugün</button>
+                  <input class="date-picker-native" id="datePicker" type="date" aria-label="Tarih seç">
+                </span>
                 <button class="date-step" id="nextDate" type="button" aria-label="Sonraki gün">
                   <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1280,6 +1330,7 @@
     const sourceText = document.querySelector("#sourceText");
     const methodText = document.querySelector("#methodText");
     const dateText = document.querySelector("#dateText");
+    const datePicker = document.querySelector("#datePicker");
     const prevDate = document.querySelector("#prevDate");
     const nextDate = document.querySelector("#nextDate");
     const locationButton = document.querySelector("#locationButton");
@@ -1297,6 +1348,7 @@
     const notificationToggleText = document.querySelector("#notificationToggleText");
     const notificationState = document.querySelector("#notificationState");
     const installButton = document.querySelector("#installButton");
+    const updateAppButton = document.querySelector("#updateAppButton");
     const installHint = document.querySelector("#installHint");
     let currentTimes = {};
     let ezanEnabled = localStorage.getItem("ezanEnabled") === "true";
@@ -1538,7 +1590,10 @@
     function updateDateControls() {
       refreshDateBounds({ rollToday: true });
       dateText.textContent = isSelectedToday() ? "Bugün" : dateButtonFormatter.format(selectedDate);
-      dateText.setAttribute("aria-label", isSelectedToday() ? "Bugün" : "Bugüne dön");
+      datePicker.value = selectedKey();
+      datePicker.min = datePath(minSelectableDate).split("-").reverse().join("-");
+      datePicker.max = datePath(maxSelectableDate).split("-").reverse().join("-");
+      datePicker.setAttribute("aria-label", isSelectedToday() ? "Bugün, tarih seç" : `${selectedDateLabel()}, tarih seç`);
       prevDate.disabled = compareDates(selectedDate, minSelectableDate) <= 0;
       nextDate.disabled = compareDates(selectedDate, maxSelectableDate) >= 0;
     }
@@ -1554,6 +1609,23 @@
       selectedDate = next;
       updateDateControls();
       loadTimes();
+    }
+
+    function dateFromPickerValue(value) {
+      const match = String(value || "").match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      if (!match) return null;
+      return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+    }
+
+    function openDatePicker() {
+      refreshDateBounds({ rollToday: true });
+      updateDateControls();
+      if (typeof datePicker.showPicker === "function") {
+        datePicker.showPicker();
+        return;
+      }
+      datePicker.focus();
+      datePicker.click();
     }
 
     function shiftSelectedDate(days) {
@@ -1808,6 +1880,35 @@
       if (!("serviceWorker" in navigator)) return null;
       await navigator.serviceWorker.register("./service-worker.js");
       return navigator.serviceWorker.ready;
+    }
+
+    async function clearAppCaches() {
+      if (!("caches" in window)) return;
+      const keys = await caches.keys();
+      await Promise.all(
+        keys
+          .filter((key) => key.startsWith("yksl-takvim-"))
+          .map((key) => caches.delete(key))
+      );
+    }
+
+    async function forceAppUpdate() {
+      updateAppButton.disabled = true;
+      statusText.textContent = "Güncelleniyor";
+
+      try {
+        await clearAppCaches();
+        if ("serviceWorker" in navigator) {
+          const registration = await navigator.serviceWorker.getRegistration();
+          await registration?.update();
+        }
+      } catch (error) {
+        statusText.textContent = "Yeniden açılıyor";
+      } finally {
+        const url = new URL(window.location.href);
+        url.searchParams.set("guncelle", String(Date.now()));
+        window.location.replace(url.toString());
+      }
     }
 
     async function apiPost(path, payload) {
@@ -2183,7 +2284,11 @@
     });
     prevDate.addEventListener("click", () => shiftSelectedDate(-1));
     nextDate.addEventListener("click", () => shiftSelectedDate(1));
-    dateText.addEventListener("click", () => setSelectedDate(new Date()));
+    dateText.addEventListener("click", openDatePicker);
+    datePicker.addEventListener("change", () => {
+      const pickedDate = dateFromPickerValue(datePicker.value);
+      if (pickedDate) setSelectedDate(pickedDate);
+    });
     locationButton.addEventListener("click", () => {
       detectNearestCity({ silent: false }).then((found) => {
         if (!found) loadTimes();
@@ -2230,6 +2335,7 @@
       installHint.hidden = !installHint.hidden;
       if (!installHint.hidden) hideInstallHintSoon();
     });
+    updateAppButton.addEventListener("click", forceAppUpdate);
 
     window.addEventListener("appinstalled", () => {
       installButton.hidden = true;
